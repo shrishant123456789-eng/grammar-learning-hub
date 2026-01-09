@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Noun: Case</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Segoe UI, Arial, sans-serif;
+  background:#eef2ff;
+  line-height:1.7;
+}
+header{
+  background:linear-gradient(90deg,#000,#1e40af,#16a34a,#facc15);
+  color:white;
+  padding:28px;
+  text-align:center;
+  animation:slideDown 0.9s ease;
+}
+section{padding:18px}
+.card{
+  background:white;
+  margin-bottom:22px;
+  padding:18px;
+  border-radius:20px;
+  box-shadow:0 12px 22px rgba(0,0,0,0.12);
+  animation:fadeUp 0.8s ease;
+}
+h2{color:#1e40af}
+.case{
+  background:#ecfeff;
+  border-left:7px solid #06b6d4;
+  padding:14px;
+  margin:14px 0;
+}
+.example{
+  background:#fefce8;
+  border-left:7px solid #facc15;
+  padding:10px;
+  margin-top:8px;
+}
+.question{
+  margin-top:16px;
+}
+input{
+  padding:9px;
+  width:220px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+.check-btn{
+  margin-left:8px;
+  padding:9px 16px;
+  background:linear-gradient(90deg,#16a34a,#22c55e);
+  color:white;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+.check-btn:hover{
+  transform:scale(1.12);
+  background:linear-gradient(90deg,#15803d,#16a34a);
+}
+.feedback{
+  margin-top:6px;
+  font-weight:600;
+  animation:fadeUp 0.4s ease;
+}
+.correct{color:green}
+.wrong{color:#dc2626}
+
+.download-btn{
+  margin-top:22px;
+  padding:12px 22px;
+  background:linear-gradient(90deg,#1d4ed8,#2563eb);
+  color:white;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.download-btn:hover{
+  transform:scale(1.06);
+  background:#1e40af;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes slideDown{
+  from{opacity:0;transform:translateY(-30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Noun: Case</h1>
+<p>Clear Rules + Examples + Practice (Basic to Advanced)</p>
+</header>
+
+<section>
+
+<div class="card">
+<h2>📘 What is Case?</h2>
+<p>
+The case of a noun shows the <b>relation of the noun</b> to other words in a sentence.
+</p>
+</div>
+
+<div class="card">
+<h2>📗 Kinds of Noun Case</h2>
+
+<div class="case">
+<b>1. Nominative Case</b><br>
+A noun in the nominative case is the <b>subject</b> of a verb.
+<div class="example">
+Ram plays cricket. <br>
+(The word <b>Ram</b> is the subject.)
+</div>
+</div>
+
+<div class="case">
+<b>2. Objective Case</b><br>
+A noun in the objective case is the <b>object</b> of a verb or preposition.
+<div class="example">
+She saw <b>Ram</b>.<br>
+He sat on the <b>chair</b>.
+</div>
+</div>
+
+<div class="case">
+<b>3. Possessive Case</b><br>
+A noun in the possessive case shows <b>ownership or possession</b>.
+<div class="example">
+Ram’s book, the boy’s bag, girls’ hostel
+</div>
+</div>
+
+</div>
+
+<div class="card">
+<h2>📙 Important Notes</h2>
+<ul>
+<li>Nominative case answers <b>who?</b> or <b>what?</b></li>
+<li>Objective case answers <b>whom?</b> or <b>what?</b></li>
+<li>Possessive case usually uses <b>’s</b> or <b>’</b></li>
+</ul>
+</div>
+
+<div class="card">
+<h2>📝 Practice Questions (30)</h2>
+<div id="quiz"></div>
+
+<button class="download-btn" onclick="downloadNotes()">Download Notes</button>
+</div>
+
+</section>
+
+<script>
+const questions=[
+{q:"Ram is playing football. (Case of Ram?)",a:"nominative",why:"Ram is the subject of the verb."},
+{q:"She called Riya. (Case of Riya?)",a:"objective",why:"Riya is the object of the verb."},
+{q:"This is Mohan’s pen. (Case of Mohan?)",a:"possessive",why:"Shows ownership."},
+{q:"The dog chased the cat. (Case of dog?)",a:"nominative",why:"Dog is the subject."},
+{q:"He bought a book for Sita. (Case of Sita?)",a:"objective",why:"Object of the preposition 'for'."},
+
+{q:"Ramesh’s house is big. (Case of Ramesh?)",a:"possessive",why:"Shows possession."},
+{q:"The teacher praised the student. (Case of student?)",a:"objective",why:"Student is the object."},
+{q:"Birds fly in the sky. (Case of birds?)",a:"nominative",why:"Birds is the subject."},
+{q:"The boy’s shoes are new. (Case of boy?)",a:"possessive",why:"Shows ownership."},
+{q:"She helped her friend. (Case of friend?)",a:"objective",why:"Friend receives the action."},
+
+{q:"My brother is a doctor. (Case of brother?)",a:"nominative",why:"Brother is the subject."},
+{q:"The children’s toys are lost. (Case of children?)",a:"possessive",why:"Shows possession."},
+{q:"He met his uncle. (Case of uncle?)",a:"objective",why:"Object of the verb met."},
+{q:"The sun rises in the east. (Case of sun?)",a:"nominative",why:"Sun is the subject."},
+{q:"I borrowed Riya’s notes. (Case of Riya?)",a:"possessive",why:"Shows ownership."},
+
+{q:"She spoke to the teacher. (Case of teacher?)",a:"objective",why:"Object of the preposition 'to'."},
+{q:"The king ruled the country. (Case of king?)",a:"nominative",why:"King is the subject."},
+{q:"The girl’s dress is red. (Case of girl?)",a:"possessive",why:"Shows possession."},
+{q:"We watched the movie. (Case of movie?)",a:"objective",why:"Object of the verb watched."},
+{q:"The players won the match. (Case of players?)",a:"nominative",why:"Players is the subject."},
+
+{q:"This is my father’s car. (Case of father?)",a:"possessive",why:"Shows ownership."},
+{q:"She found the keys. (Case of keys?)",a:"objective",why:"Object of the verb found."},
+{q:"The farmer works hard. (Case of farmer?)",a:"nominative",why:"Farmer is the subject."},
+{q:"He cleaned the room. (Case of room?)",a:"objective",why:"Object of the verb cleaned."},
+{q:"The dog’s tail is long. (Case of dog?)",a:"possessive",why:"Shows possession."},
+{q:"The teacher teaches English. (Case of teacher?)",a:"nominative",why:"Teacher is the subject."},
+{q:"She sent a gift to her sister. (Case of sister?)",a:"objective",why:"Object of the preposition 'to'."},
+{q:"The boy broke the window. (Case of boy?)",a:"nominative",why:"Boy is the subject."},
+{q:"Ravi’s bike is new. (Case of Ravi?)",a:"possessive",why:"Shows ownership."}
+];
+
+const quiz=document.getElementById("quiz");
+
+questions.forEach((item,i)=>{
+ quiz.innerHTML+=`
+ <div class="question">
+ ${i+1}. ${item.q}<br>
+ <input id="ans${i}" type="text" placeholder="nominative / objective / possessive">
+ <button class="check-btn" onclick="check(${i})">Check</button>
+ <div id="fb${i}" class="feedback"></div>
+ </div>`;
+});
+
+function check(i){
+ const user=document.getElementById("ans"+i).value.trim().toLowerCase();
+ const fb=document.getElementById("fb"+i);
+ if(user===questions[i].a){
+   fb.innerHTML="✔ Correct";
+   fb.className="feedback correct";
+ }else{
+   fb.innerHTML="❌ Wrong<br><b>Correct:</b> "+questions[i].a+
+   "<br><b>Why:</b> "+questions[i].why;
+   fb.className="feedback wrong";
+ }
+}
+
+function downloadNotes(){
+ const text=document.body.innerText;
+ const blob=new Blob([text],{type:"text/plain"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);
+ a.download="Noun-Case-Notes.txt";
+ a.click();
+}
+</script>
+
+</body>
+</html>

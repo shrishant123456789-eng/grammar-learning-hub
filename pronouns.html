@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pronouns</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Segoe UI, Arial, sans-serif;
+  background:#eef2ff;
+  line-height:1.7;
+}
+header{
+  background:linear-gradient(90deg,#000,#1e3a8a,#16a34a,#facc15);
+  color:white;
+  padding:26px;
+  text-align:center;
+  animation:slideDown 0.9s ease;
+}
+section{padding:18px}
+.card{
+  background:white;
+  margin-bottom:22px;
+  padding:18px;
+  border-radius:18px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.12);
+  animation:fadeUp 0.8s ease;
+}
+h2{color:#1e40af}
+.type{
+  background:#ecfeff;
+  border-left:7px solid #06b6d4;
+  padding:14px;
+  margin:14px 0;
+}
+.example{
+  background:#fefce8;
+  border-left:7px solid #facc15;
+  padding:10px;
+  margin-top:8px;
+}
+.question{
+  margin-top:16px;
+}
+input{
+  padding:8px;
+  width:190px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+.check-btn{
+  margin-left:8px;
+  padding:8px 14px;
+  background:linear-gradient(90deg,#16a34a,#22c55e);
+  color:white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+.check-btn:hover{
+  transform:scale(1.08);
+  background:linear-gradient(90deg,#15803d,#16a34a);
+}
+.feedback{
+  margin-top:6px;
+  font-weight:600;
+  animation:fadeUp 0.4s ease;
+}
+.correct{color:green}
+.wrong{color:#dc2626}
+
+.download-btn{
+  margin-top:20px;
+  padding:11px 20px;
+  background:linear-gradient(90deg,#1d4ed8,#2563eb);
+  color:white;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.download-btn:hover{
+  transform:scale(1.05);
+  background:#1e40af;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(25px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes slideDown{
+  from{opacity:0;transform:translateY(-25px)}
+  to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Pronouns</h1>
+<p>Complete Notes + Practice (Basic to Advanced)</p>
+</header>
+
+<section>
+
+<div class="card">
+<h2>📘 What is a Pronoun?</h2>
+<p>
+A pronoun is a word used in place of a noun to avoid repetition.
+</p>
+</div>
+
+<div class="card">
+<h2>📗 Types of Pronouns</h2>
+
+<div class="type">
+<b>1. Personal Pronoun</b><br>
+Used to refer to persons or things.
+<div class="example">I, we, you, he, she, it, they</div>
+</div>
+
+<div class="type">
+<b>2. Relative Pronoun</b><br>
+Used to join clauses.
+<div class="example">who, whom, whose, which, that</div>
+</div>
+
+<div class="type">
+<b>3. Demonstrative Pronoun</b><br>
+Points out specific persons or things.
+<div class="example">this, that, these, those</div>
+</div>
+
+<div class="type">
+<b>4. Indefinite Pronoun</b><br>
+Refers to persons or things in a general way.
+<div class="example">someone, anyone, everybody</div>
+</div>
+
+<div class="type">
+<b>5. Reflexive Pronoun</b><br>
+Refers back to the subject.
+<div class="example">myself, himself, herself</div>
+</div>
+
+<div class="type">
+<b>6. Emphatic Pronoun</b><br>
+Used to emphasize the subject.
+<div class="example">I myself did it</div>
+</div>
+
+</div>
+
+<div class="card">
+<h2>📝 Practice Questions (30)</h2>
+<div id="quiz"></div>
+
+<button class="download-btn" onclick="downloadNotes()">Download Notes</button>
+</div>
+
+</section>
+
+<script>
+const questions=[
+{q:"Ram said that ___ was tired.",a:"he",why:"Pronoun replaces Ram."},
+{q:"This is the boy ___ won the prize.",a:"who",why:"Who is used for persons."},
+{q:"___ is my pen.",a:"this",why:"Demonstrative pronoun."},
+{q:"Everyone forgot ___ homework.",a:"their",why:"Singular with gender-neutral reference."},
+{q:"She hurt ___ while playing.",a:"herself",why:"Reflexive pronoun refers back to subject."},
+
+{q:"The girl ___ bag is lost is crying.",a:"whose",why:"Whose shows possession."},
+{q:"___ are my friends.",a:"they",why:"Pronoun replaces noun."},
+{q:"I ___ completed the work.",a:"myself",why:"Emphatic pronoun."},
+{q:"Is there ___ at the door?",a:"someone",why:"Indefinite pronoun."},
+{q:"The book ___ you gave me is good.",a:"that",why:"That joins clauses."},
+
+{q:"He blamed ___ for the mistake.",a:"himself",why:"Reflexive pronoun."},
+{q:"___ of the answers is correct.",a:"one",why:"Indefinite pronoun."},
+{q:"Those are the players ___ won.",a:"who",why:"Who refers to persons."},
+{q:"This pen is better than ___ one.",a:"that",why:"Demonstrative pronoun."},
+{q:"She said ___ would come.",a:"she",why:"Personal pronoun."},
+
+{q:"___ broke the window.",a:"someone",why:"Indefinite pronoun."},
+{q:"The man ___ we met is kind.",a:"whom",why:"Object of verb."},
+{q:"He did it ___.",a:"himself",why:"Emphasis on subject."},
+{q:"___ wants to be a doctor.",a:"he",why:"Personal pronoun."},
+{q:"This is the house ___ was sold.",a:"which",why:"Which refers to things."},
+
+{q:"She prepared ___ for the exam.",a:"herself",why:"Reflexive pronoun."},
+{q:"___ of them were absent.",a:"some",why:"Indefinite pronoun."},
+{q:"The teacher ___ teaches us is kind.",a:"who",why:"Relative pronoun for person."},
+{q:"I met the boy ___ father is a doctor.",a:"whose",why:"Shows possession."},
+{q:"___ are expensive shoes.",a:"these",why:"Demonstrative pronoun."},
+{q:"He found the pen ___ he lost.",a:"that",why:"Joins clauses."},
+{q:"They enjoyed ___ at the picnic.",a:"themselves",why:"Reflexive pronoun."},
+{q:"___ helped me yesterday.",a:"someone",why:"Indefinite pronoun."},
+{q:"This is the girl ___ won.",a:"who",why:"Relative pronoun for person."},
+{q:"I will do it ___.",a:"myself",why:"Emphatic pronoun."}
+];
+
+const quiz=document.getElementById("quiz");
+
+questions.forEach((item,i)=>{
+ quiz.innerHTML+=`
+ <div class="question">
+ ${i+1}. ${item.q}<br>
+ <input id="ans${i}" type="text">
+ <button class="check-btn" onclick="check(${i})">Check</button>
+ <div id="fb${i}" class="feedback"></div>
+ </div>`;
+});
+
+function check(i){
+ const user=document.getElementById("ans"+i).value.trim().toLowerCase();
+ const fb=document.getElementById("fb"+i);
+ if(user===questions[i].a){
+   fb.innerHTML="✔ Correct";
+   fb.className="feedback correct";
+ }else{
+   fb.innerHTML="❌ Wrong<br><b>Correct:</b> "+questions[i].a+
+   "<br><b>Why:</b> "+questions[i].why;
+   fb.className="feedback wrong";
+ }
+}
+
+function downloadNotes(){
+ const text=document.body.innerText;
+ const blob=new Blob([text],{type:"text/plain"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);
+ a.download="Pronouns-Notes.txt";
+ a.click();
+}
+</script>
+
+</body>
+</html>

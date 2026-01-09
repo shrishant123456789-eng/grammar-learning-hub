@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Adjectives</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Segoe UI, Arial, sans-serif;
+  background:#eef2ff;
+  line-height:1.7;
+}
+header{
+  background:linear-gradient(90deg,#000,#1e40af,#16a34a,#facc15);
+  color:white;
+  padding:28px;
+  text-align:center;
+  animation:slideDown 0.9s ease;
+}
+section{padding:18px}
+.card{
+  background:white;
+  margin-bottom:22px;
+  padding:18px;
+  border-radius:20px;
+  box-shadow:0 12px 22px rgba(0,0,0,0.12);
+  animation:fadeUp 0.8s ease;
+}
+h2{color:#1e40af}
+.type{
+  background:#ecfeff;
+  border-left:7px solid #06b6d4;
+  padding:14px;
+  margin:14px 0;
+}
+.example{
+  background:#fefce8;
+  border-left:7px solid #facc15;
+  padding:10px;
+  margin-top:8px;
+}
+.question{
+  margin-top:16px;
+}
+input{
+  padding:9px;
+  width:200px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+.check-btn{
+  margin-left:8px;
+  padding:9px 16px;
+  background:linear-gradient(90deg,#16a34a,#22c55e);
+  color:white;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+.check-btn:hover{
+  transform:scale(1.12) rotate(-1deg);
+  background:linear-gradient(90deg,#15803d,#16a34a);
+}
+.feedback{
+  margin-top:6px;
+  font-weight:600;
+  animation:fadeUp 0.4s ease;
+}
+.correct{color:green}
+.wrong{color:#dc2626}
+
+.download-btn{
+  margin-top:22px;
+  padding:12px 22px;
+  background:linear-gradient(90deg,#1d4ed8,#2563eb);
+  color:white;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.download-btn:hover{
+  transform:scale(1.06);
+  background:#1e40af;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes slideDown{
+  from{opacity:0;transform:translateY(-30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Adjectives</h1>
+<p>Clear Notes + Practice (Basic to Advanced)</p>
+</header>
+
+<section>
+
+<div class="card">
+<h2>📘 What is an Adjective?</h2>
+<p>
+An adjective is a word that describes or qualifies a noun or a pronoun.
+</p>
+<div class="example">
+a tall boy, a red pen, five apples
+</div>
+</div>
+
+<div class="card">
+<h2>📗 Types of Adjectives</h2>
+
+<div class="type">
+<b>1. Adjective of Quality</b><br>
+Shows the kind or quality.
+<div class="example">honest man, beautiful girl</div>
+</div>
+
+<div class="type">
+<b>2. Adjective of Quantity</b><br>
+Shows amount.
+<div class="example">some milk, little sugar</div>
+</div>
+
+<div class="type">
+<b>3. Adjective of Number</b><br>
+Shows number or order.
+<div class="example">five books, first prize</div>
+</div>
+
+<div class="type">
+<b>4. Demonstrative Adjective</b><br>
+Points out nouns.
+<div class="example">this pen, those boys</div>
+</div>
+
+<div class="type">
+<b>5. Possessive Adjective</b><br>
+Shows possession.
+<div class="example">my book, her bag</div>
+</div>
+
+<div class="type">
+<b>6. Interrogative Adjective</b><br>
+Used with nouns to ask questions.
+<div class="example">which book? whose pen?</div>
+</div>
+
+</div>
+
+<div class="card">
+<h2>📙 Degrees of Comparison</h2>
+
+<div class="type">
+<b>Positive:</b> tall<br>
+<b>Comparative:</b> taller<br>
+<b>Superlative:</b> tallest
+</div>
+
+</div>
+
+<div class="card">
+<h2>📝 Practice Questions (30)</h2>
+<div id="quiz"></div>
+
+<button class="download-btn" onclick="downloadNotes()">Download Notes</button>
+</div>
+
+</section>
+
+<script>
+const questions=[
+{q:"He is a ___ boy. (honest)",a:"honest",why:"Adjective of quality."},
+{q:"I have ___ money.",a:"little",why:"Shows quantity."},
+{q:"She bought ___ books.",a:"five",why:"Shows number."},
+{q:"___ pen is mine.",a:"this",why:"Demonstrative adjective."},
+{q:"That is ___ house.",a:"my",why:"Possessive adjective."},
+
+{q:"___ boy won the race.",a:"first",why:"Adjective of number (order)."},
+{q:"She is ___ than her sister. (tall)",a:"taller",why:"Comparative degree."},
+{q:"This is the ___ building. (high)",a:"highest",why:"Superlative degree."},
+{q:"He drank ___ water.",a:"some",why:"Adjective of quantity."},
+{q:"___ book do you want?",a:"which",why:"Interrogative adjective."},
+
+{q:"She has ___ friends.",a:"many",why:"Shows quantity."},
+{q:"That was a ___ movie.",a:"boring",why:"Adjective of quality."},
+{q:"He solved the ___ question.",a:"difficult",why:"Describes noun."},
+{q:"___ boys are playing.",a:"those",why:"Demonstrative adjective."},
+{q:"This is ___ bag.",a:"her",why:"Possessive adjective."},
+
+{q:"He is the ___ player. (good)",a:"best",why:"Superlative degree."},
+{q:"She is ___ than me. (smart)",a:"smarter",why:"Comparative degree."},
+{q:"I have ___ time.",a:"enough",why:"Adjective of quantity."},
+{q:"___ shirt is dirty.",a:"your",why:"Possessive adjective."},
+{q:"He ate ___ apples.",a:"two",why:"Adjective of number."},
+
+{q:"This is a ___ story.",a:"true",why:"Adjective of quality."},
+{q:"She lives in a ___ house.",a:"big",why:"Describes noun."},
+{q:"___ student passed the exam.",a:"every",why:"Adjective of number."},
+{q:"That was the ___ day. (bad)",a:"worst",why:"Superlative degree."},
+{q:"He is ___ than his brother. (strong)",a:"stronger",why:"Comparative degree."},
+{q:"She has ___ patience.",a:"much",why:"Quantity adjective."},
+{q:"___ car is faster.",a:"this",why:"Demonstrative adjective."},
+{q:"It is a ___ question.",a:"simple",why:"Adjective of quality."},
+{q:"___ house is on the corner.",a:"whose",why:"Interrogative adjective."},
+{q:"She wore a ___ dress.",a:"beautiful",why:"Adjective of quality."}
+];
+
+const quiz=document.getElementById("quiz");
+
+questions.forEach((item,i)=>{
+ quiz.innerHTML+=`
+ <div class="question">
+ ${i+1}. ${item.q}<br>
+ <input id="ans${i}" type="text">
+ <button class="check-btn" onclick="check(${i})">Check</button>
+ <div id="fb${i}" class="feedback"></div>
+ </div>`;
+});
+
+function check(i){
+ const user=document.getElementById("ans"+i).value.trim().toLowerCase();
+ const fb=document.getElementById("fb"+i);
+ if(user===questions[i].a){
+   fb.innerHTML="✔ Correct";
+   fb.className="feedback correct";
+ }else{
+   fb.innerHTML="❌ Wrong<br><b>Correct:</b> "+questions[i].a+
+   "<br><b>Why:</b> "+questions[i].why;
+   fb.className="feedback wrong";
+ }
+}
+
+function downloadNotes(){
+ const text=document.body.innerText;
+ const blob=new Blob([text],{type:"text/plain"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);
+ a.download="Adjectives-Notes.txt";
+ a.click();
+}
+</script>
+
+</body>
+</html>
