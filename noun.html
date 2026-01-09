@@ -1,93 +1,133 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Chapter 1 - Noun</title>
+  <title>Chapter 2: Noun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-  <h1>Chapter 1: Noun</h1>
-  <p>Basic to Advanced Practice</p>
+  <h1>Chapter 2: NOUN</h1>
+  <p>Complete Notes + Practice (Basic to Advanced)</p>
 </header>
 
 <main>
 
-<h2>Introduction</h2>
+<!-- ================= NOTES ================= -->
+<section style="background:#e8f5ff;padding:15px;border-radius:10px;">
+<h2 style="color:#0b3c5d;">📘 What is a Noun?</h2>
 <p>
-A noun is the name of a person, place, animal, thing, or idea.
+A <b>Noun</b> is a word used as the name of a <b>person, place, animal, thing, or idea</b>.
 </p>
 
-<h2>Rules</h2>
+<h3 style="color:#1faa59;">Examples:</h3>
 <ul>
-  <li>Names of people are nouns</li>
-  <li>Names of places are nouns</li>
-  <li>Names of things are nouns</li>
+  <li>Person: Ram, Sita, Teacher</li>
+  <li>Place: Delhi, School, India</li>
+  <li>Thing: Book, Table, Phone</li>
+  <li>Animal: Dog, Cow, Lion</li>
+  <li>Idea: Honesty, Love, Happiness</li>
 </ul>
+
+<h2 style="color:#0b3c5d;">📗 Kinds of Nouns</h2>
+
+<p><b>1. Proper Noun:</b> Special name of a person or place.<br>
+<i>Example: Ram, Delhi</i></p>
+
+<p><b>2. Common Noun:</b> General name of a person or place.<br>
+<i>Example: boy, city</i></p>
+
+<p><b>3. Collective Noun:</b> Name of a group.<br>
+<i>Example: team, class</i></p>
+
+<p><b>4. Abstract Noun:</b> Name of a quality or idea.<br>
+<i>Example: honesty, bravery</i></p>
+
+<p><b>5. Material Noun:</b> Name of material or substance.<br>
+<i>Example: gold, water</i></p>
+</section>
 
 <hr>
 
-<h2>Practice Questions</h2>
+<!-- ================= PRACTICE ================= -->
+<h2 style="color:#ff9800;">📝 Practice Questions (30)</h2>
 
-<!-- QUESTION 1 -->
-<p>1. Identify the noun in the sentence:<br>
-<b>The boy is playing.</b></p>
+<div id="questions">
 
-<input type="text" id="ans1" placeholder="Write your answer">
-<button onclick="checkAnswer(1)">Check Answer</button>
+<!-- Questions will be shown one by one -->
 
-<p id="result1"></p>
+<script>
+const questions = [
+{q:"Identify the noun: The boy is running.", a:"boy", w:"'Boy' is the name of a person."},
+{q:"Identify the noun: She lives in Delhi.", a:"Delhi", w:"'Delhi' is the name of a place."},
+{q:"Find the noun: Honesty is the best policy.", a:"honesty", w:"'Honesty' is an abstract idea."},
+{q:"Which word is a noun: run, blue, cat, quickly?", a:"cat", w:"'Cat' is the name of an animal."},
+{q:"Identify the noun: The team won the match.", a:"team", w:"'Team' is a collective noun."},
+{q:"Find the noun: Gold is a precious metal.", a:"gold", w:"'Gold' is a material noun."},
+{q:"Which is a proper noun: city, boy, Ram, pen?", a:"ram", w:"'Ram' is a specific name."},
+{q:"Find the noun: The teacher is kind.", a:"teacher", w:"'Teacher' is the name of a person."},
+{q:"Identify the noun: We love freedom.", a:"freedom", w:"'Freedom' is an abstract noun."},
+{q:"Which word is a noun: eat, apple, quickly, run?", a:"apple", w:"'Apple' is a thing."},
 
-<!-- QUESTION 2 -->
-<p>2. Which one is a noun?<br>
-<b>run, blue, honesty, quickly</b></p>
+{q:"Identify the noun: The cow gives milk.", a:"cow", w:"'Cow' is an animal."},
+{q:"Find the noun: The class is silent.", a:"class", w:"'Class' is a group."},
+{q:"Which is a noun: beauty, beautiful, beautify?", a:"beauty", w:"'Beauty' is an idea."},
+{q:"Identify the noun: My brother is tall.", a:"brother", w:"'Brother' is a person."},
+{q:"Find the noun: Water is essential.", a:"water", w:"'Water' is a substance."},
+{q:"Which is a proper noun: river, ganga, water?", a:"ganga", w:"'Ganga' is a specific river."},
+{q:"Identify the noun: The lion is strong.", a:"lion", w:"'Lion' is an animal."},
+{q:"Find the noun: We need courage.", a:"courage", w:"'Courage' is an abstract noun."},
+{q:"Which is a noun: teacher, teach, teaching?", a:"teacher", w:"'Teacher' is a person."},
+{q:"Identify the noun: Books are useful.", a:"books", w:"'Books' are things."},
 
-<input type="text" id="ans2" placeholder="Write your answer">
-<button onclick="checkAnswer(2)">Check Answer</button>
+{q:"Find the noun: The sky is blue.", a:"sky", w:"'Sky' is a thing."},
+{q:"Which word is a noun: quickly, honesty, fast?", a:"honesty", w:"'Honesty' is an idea."},
+{q:"Identify the noun: The child is happy.", a:"child", w:"'Child' is a person."},
+{q:"Find the noun: Milk is healthy.", a:"milk", w:"'Milk' is a substance."},
+{q:"Which is a collective noun: crowd, man, city?", a:"crowd", w:"'Crowd' means group."},
+{q:"Identify the noun: India is my country.", a:"india", w:"'India' is a proper noun."},
+{q:"Find the noun: He bought a pen.", a:"pen", w:"'Pen' is a thing."},
+{q:"Which is an abstract noun: fear, dog, table?", a:"fear", w:"'Fear' is a feeling."},
+{q:"Identify the noun: The police arrived.", a:"police", w:"'Police' refers to a group."},
+{q:"Find the noun: Knowledge is power.", a:"knowledge", w:"'Knowledge' is an idea."}
+];
 
-<p id="result2"></p>
+let html="";
+questions.forEach((item,i)=>{
+html+=`
+<div style="background:#f9fff1;margin:15px;padding:15px;border-radius:10px;">
+<p><b>Q${i+1}.</b> ${item.q}</p>
+<input type="text" id="a${i}" placeholder="Your answer">
+<button onclick="check(${i})">Check Answer</button>
+<p id="r${i}"></p>
+</div>`;
+});
+document.write(html);
+
+function check(i){
+let user=document.getElementById("a"+i).value.trim().toLowerCase();
+let r=document.getElementById("r"+i);
+if(user===questions[i].a){
+r.innerHTML="✅ Correct!<br><b>Why:</b> "+questions[i].w;
+r.style.color="green";
+}else{
+r.innerHTML="❌ Wrong!<br><b>Correct Answer:</b> "+questions[i].a+
+"<br><b>Why wrong:</b> "+questions[i].w;
+r.style.color="red";
+}
+}
+</script>
+
+</div>
 
 <a href="index.html">⬅ Back to Home</a>
 
 </main>
 
-<!-- 🔴 JAVASCRIPT INSIDE HTML (VISIBLE) -->
-<script>
-function checkAnswer(q){
-  
-  if(q === 1){
-    let user = document.getElementById("ans1").value.toLowerCase();
-    let result = document.getElementById("result1");
-
-    if(user === "boy"){
-      result.innerHTML = "✅ Correct!<br>Rule: 'Boy' is the name of a person, so it is a noun.";
-      result.style.color = "green";
-    }else{
-      result.innerHTML =
-      "❌ Wrong Answer<br>" +
-      "Correct Answer: boy<br>" +
-      "Why wrong: A noun names a person, place or thing. 'Boy' is the person here.";
-      result.style.color = "red";
-    }
-  }
-
-  if(q === 2){
-    let user = document.getElementById("ans2").value.toLowerCase();
-    let result = document.getElementById("result2");
-
-    if(user === "honesty"){
-      result.innerHTML = "✅ Correct!<br>Rule: 'Honesty' is an abstract noun (idea).";
-      result.style.color = "green";
-    }else{
-      result.innerHTML =
-      "❌ Wrong Answer<br>" +
-      "Correct Answer: honesty<br>" +
-      "Why wrong: 'Honesty' names an idea, so it is a noun.";
-      result.style.color = "red";
-    }
-  }
-}
-</script>
+<footer>
+<p>Grammar Learning Hub | Founder: <b>Shrishant Yadav</b></p>
+</footer>
 
 </body>
 </html>

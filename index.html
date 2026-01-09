@@ -2,38 +2,87 @@
 <html>
 <head>
   <title>Grammar Learning Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
   <h1>Grammar Learning Hub</h1>
-  <p>Created by Shrishant Yadav</p>
+  <p class="tagline">Complete English Grammar Practice Platform</p>
+  <p class="creator">Created by <b>Shrishant Yadav</b></p>
 </header>
 
 <main>
-  <button onclick="showChapters()">Start Practice</button>
 
-  <div id="chapters" style="display:none;">
-    <h2>Available Chapters</h2>
+<button class="start-btn" onclick="showSyllabus()">Start Practice</button>
 
-    <!-- Chapter 1 -->
-    <a href="sentence.html" class="chapter">
-      Chapter 1: Sentence
-    </a>
-    <p class="chapter-desc">
-      Learn what a sentence is, its types, rules, and practice questions.
-    </p>
+<div id="syllabus" style="display:none;">
 
-    <!-- Chapter 2 -->
-    <a href="noun.html" class="chapter">
-      Chapter 2: Noun
-    </a>
-    <p class="chapter-desc">
-      Learn nouns from basic to advanced with practice and explanations.
-    </p>
+<!-- ================= PHASE 1 ================= -->
+<h2 class="phase">Phase 1: Foundations (The Basics)</h2>
 
-  </div>
+<div class="topic active">
+  <a href="sentence.html">The Sentence</a>
+</div>
+
+<div class="topic coming">Subject and Predicate (Coming Soon)</div>
+<div class="topic coming">Types of Sentences (Coming Soon)</div>
+<div class="topic coming">Parts of Speech – Overview (Coming Soon)</div>
+<div class="topic coming">Articles – A, An, The (Coming Soon)</div>
+
+<div class="topic active">
+  <a href="noun.html">Nouns</a>
+</div>
+
+<div class="topic coming">Kinds of Nouns (Coming Soon)</div>
+<div class="topic coming">Noun: Number (Coming Soon)</div>
+<div class="topic coming">Noun: Gender (Coming Soon)</div>
+<div class="topic coming">Noun: Case (Coming Soon)</div>
+
+<div class="topic coming">Pronouns (Coming Soon)</div>
+<div class="topic coming">Types of Pronouns (Coming Soon)</div>
+<div class="topic coming">Adjectives (Coming Soon)</div>
+<div class="topic coming">Degrees of Comparison (Coming Soon)</div>
+
+<!-- ================= PHASE 2 ================= -->
+<h2 class="phase">Phase 2: Functional Grammar (Core)</h2>
+
+<div class="topic coming">Verbs (Coming Soon)</div>
+<div class="topic coming">Main vs Helping Verbs (Coming Soon)</div>
+<div class="topic coming">Tenses – Complete Study (Coming Soon)</div>
+<div class="topic coming">Modals (Coming Soon)</div>
+<div class="topic coming">Active & Passive Voice (Coming Soon)</div>
+<div class="topic coming">Direct & Indirect Speech (Coming Soon)</div>
+
+<!-- ================= PHASE 3 ================= -->
+<h2 class="phase">Phase 3: Syntax and Mechanics</h2>
+
+<div class="topic coming">Adverbs (Coming Soon)</div>
+<div class="topic coming">Prepositions (Coming Soon)</div>
+<div class="topic coming">Conjunctions (Coming Soon)</div>
+<div class="topic coming">Subject Verb Agreement (Coming Soon)</div>
+<div class="topic coming">Question Tags (Coming Soon)</div>
+
+<!-- ================= PHASE 4 ================= -->
+<h2 class="phase">Phase 4: Advanced Grammar</h2>
+
+<div class="topic coming">Non-Finite Verbs (Coming Soon)</div>
+<div class="topic coming">Conditionals (Coming Soon)</div>
+<div class="topic coming">Clauses (Coming Soon)</div>
+<div class="topic coming">Transformation of Sentences (Coming Soon)</div>
+<div class="topic coming">Punctuation & Capitalization (Coming Soon)</div>
+
+<!-- ================= PHASE 5 ================= -->
+<h2 class="phase">Phase 5: Vocabulary & Composition</h2>
+
+<div class="topic coming">Phrasal Verbs (Coming Soon)</div>
+<div class="topic coming">Idioms & Phrases (Coming Soon)</div>
+<div class="topic coming">Synonyms & Antonyms (Coming Soon)</div>
+<div class="topic coming">One-Word Substitution (Coming Soon)</div>
+<div class="topic coming">Figures of Speech (Coming Soon)</div>
+
+</div>
 </main>
 
 <footer>
@@ -42,8 +91,8 @@
 </footer>
 
 <script>
-function showChapters(){
-  document.getElementById("chapters").style.display = "block";
+function showSyllabus(){
+  document.getElementById("syllabus").style.display = "block";
 }
 </script>
 
