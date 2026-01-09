@@ -7,71 +7,83 @@
 
 <style>
 body{
-  font-family: Arial, sans-serif;
-  background:#f8fafc;
   margin:0;
+  font-family:Segoe UI, Arial, sans-serif;
+  background:#f4f6fb;
+  line-height:1.7;
 }
 header{
-  background:linear-gradient(90deg,#0f172a,#1e40af);
+  background:linear-gradient(90deg,#000,#1e40af,#facc15);
   color:white;
-  padding:20px;
+  padding:24px;
   text-align:center;
-  animation: slideDown 1s ease;
+  animation:slideDown 0.8s ease;
 }
-section{
-  padding:18px;
-}
+section{padding:18px}
 .card{
   background:white;
-  padding:15px;
-  margin-bottom:15px;
-  border-radius:12px;
-  box-shadow:0 6px 12px rgba(0,0,0,0.1);
-  animation: fadeIn 1s ease;
+  margin-bottom:20px;
+  padding:18px;
+  border-radius:16px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.12);
+  animation:fadeUp 0.7s ease;
 }
 h2{color:#1e3a8a}
 .rule{
   background:#ecfeff;
   border-left:6px solid #06b6d4;
-  padding:10px;
-  margin:10px 0;
+  padding:14px;
+  margin:12px 0;
 }
 .example{
   background:#fefce8;
   border-left:6px solid #facc15;
   padding:10px;
-  margin:10px 0;
+  margin-top:8px;
 }
 .question{
-  margin:10px 0;
+  margin-top:14px;
 }
 input{
-  padding:6px;
-  width:120px;
+  padding:7px;
+  width:170px;
+  border-radius:6px;
+  border:1px solid #ccc;
 }
-button{
+.check-btn{
+  margin-left:6px;
+  padding:7px 12px;
   background:#16a34a;
   color:white;
-  padding:10px 15px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+.check-btn:hover{background:#15803d}
+.feedback{
+  margin-top:6px;
+  font-weight:600;
+}
+.correct{color:green}
+.wrong{color:#dc2626}
+
+.download-btn{
+  margin-top:18px;
+  padding:10px 18px;
+  background:#1d4ed8;
+  color:white;
   border:none;
   border-radius:8px;
   cursor:pointer;
 }
-button:hover{background:#15803d}
-.result{
-  font-weight:bold;
-  margin-top:10px;
-}
-.download{
-  background:#dc2626;
-  margin-top:20px;
-}
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(20px)}
+.download-btn:hover{background:#1e40af}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(25px)}
   to{opacity:1;transform:translateY(0)}
 }
 @keyframes slideDown{
-  from{opacity:0;transform:translateY(-30px)}
+  from{opacity:0;transform:translateY(-25px)}
   to{opacity:1;transform:translateY(0)}
 }
 </style>
@@ -81,124 +93,150 @@ button:hover{background:#15803d}
 
 <header>
 <h1>Articles – A, An, The</h1>
-<p>Complete Notes + Practice (Basic to Advanced)</p>
+<p>Basic to Advanced | Clear Rules | Practice with Explanation</p>
 </header>
 
 <section>
 
 <div class="card">
 <h2>📘 What is an Article?</h2>
-<p>Article is a word used before a noun to limit or define its meaning.</p>
-<p>There are <b>three Articles</b> in English: <b>A, An, The</b></p>
+<p>
+An article is a word used before a noun to show whether the noun is general or specific.
+</p>
 </div>
 
 <div class="card">
 <h2>📗 Types of Articles</h2>
-<ul>
-<li><b>Indefinite Articles:</b> A, An</li>
-<li><b>Definite Article:</b> The</li>
-</ul>
-</div>
 
-<div class="card">
-<h2>📕 Rules of A</h2>
-<div class="rule">A is used before words starting with a consonant sound.</div>
-<div class="example">
-A boy, A cat, A university (yu sound)
-</div>
-</div>
-
-<div class="card">
-<h2>📕 Rules of An</h2>
-<div class="rule">An is used before words starting with a vowel sound.</div>
-<div class="example">
-An apple, An honest man, An hour
-</div>
-</div>
-
-<div class="card">
-<h2>📕 Rules of The</h2>
 <div class="rule">
-The is used for specific person/place/thing or something already known.
-</div>
+<b>1. A</b><br>
+Used before a word beginning with a <b>consonant sound</b>.
 <div class="example">
-The sun, The Ganga, The book you gave me
+a boy, a pen, a university
 </div>
+</div>
+
+<div class="rule">
+<b>2. An</b><br>
+Used before a word beginning with a <b>vowel sound</b>.
+<div class="example">
+an apple, an hour, an honest man
+</div>
+</div>
+
+<div class="rule">
+<b>3. The</b><br>
+Used to refer to a <b>particular or specific</b> person or thing.
+<div class="example">
+the sun, the Taj Mahal, the boy you met
+</div>
+</div>
+
 </div>
 
 <div class="card">
-<h2>⚠ Important Points</h2>
-<ul>
-<li>Article depends on <b>sound</b>, not spelling</li>
-<li>No article used with plural/general nouns</li>
-<li>No article before names of persons</li>
-</ul>
+<h2>📙 Important Rules (Exam Focus)</h2>
+
+<div class="rule">
+• Use <b>a / an</b> for first mention, <b>the</b> for second mention.
 </div>
 
-<!-- QUESTIONS -->
+<div class="rule">
+• Use <b>an</b> with vowel sound, not vowel letter.
+</div>
+
+<div class="rule">
+• Use <b>the</b> with unique things, rivers, seas, mountains.
+</div>
+
+<div class="rule">
+• No article before plural or abstract nouns when used generally.
+</div>
+
+</div>
+
 <div class="card">
 <h2>📝 Practice Questions (30)</h2>
 <div id="quiz"></div>
 
-<button onclick="checkAnswers()">Check Answers</button>
-<div class="result" id="result"></div>
+<button class="download-btn" onclick="downloadNotes()">Download Notes</button>
 </div>
-
-<button class="download" onclick="downloadNotes()">⬇ Download Notes</button>
 
 </section>
 
 <script>
 const questions = [
- {q:"___ apple a day keeps the doctor away.",a:"an",why:"Apple starts with vowel sound"},
- {q:"He is ___ honest man.",a:"an",why:"Honest has silent h"},
- {q:"I saw ___ lion in zoo.",a:"a",why:"Lion starts with consonant sound"},
- {q:"___ sun rises in east.",a:"the",why:"Only one sun"},
- {q:"She bought ___ umbrella.",a:"an",why:"Umbrella starts with vowel sound"},
- {q:"This is ___ best book.",a:"the",why:"Specific book"},
- {q:"He is ___ university student.",a:"a",why:"University starts with yu sound"},
- {q:"___ Ganga is holy river.",a:"the",why:"Name of river"},
- {q:"I want ___ pen.",a:"a",why:"Any pen"},
- {q:"___ earth moves around sun.",a:"the",why:"Unique object"}
+{q:"___ boy is playing.",a:"a",why:"Boy starts with a consonant sound."},
+{q:"She ate ___ apple.",a:"an",why:"Apple starts with a vowel sound."},
+{q:"___ sun rises in the east.",a:"the",why:"Sun is a unique object."},
+{q:"He is ___ honest man.",a:"an",why:"Honest starts with a vowel sound."},
+{q:"I saw ___ elephant.",a:"an",why:"Elephant starts with a vowel sound."},
+
+{q:"She bought ___ pen.",a:"a",why:"Pen starts with consonant sound."},
+{q:"___ Ganga is a holy river.",a:"the",why:"Rivers take 'the'."},
+{q:"He is ___ European.",a:"a",why:"European starts with 'you' sound."},
+{q:"This is ___ best book.",a:"the",why:"Superlative degree uses 'the'."},
+{q:"___ owl is a bird.",a:"an",why:"Owl starts with vowel sound."},
+
+{q:"He has ___ umbrella.",a:"an",why:"Umbrella starts with vowel sound."},
+{q:"___ students are playing.",a:"",why:"No article before plural noun used generally."},
+{q:"She likes ___ music.",a:"",why:"Abstract noun used generally."},
+{q:"___ Taj Mahal is beautiful.",a:"the",why:"Name of a famous monument."},
+{q:"He is ___ MLA.",a:"an",why:"M is pronounced 'em'."},
+
+{q:"I saw ___ one-eyed man.",a:"a",why:"One starts with 'w' sound."},
+{q:"She is ___ tallest girl.",a:"the",why:"Superlative degree."},
+{q:"___ honesty is the best policy.",a:"",why:"Abstract noun used generally."},
+{q:"He found ___ old coin.",a:"an",why:"Old starts with vowel sound."},
+{q:"___ milk is good for health.",a:"",why:"Material noun used generally."},
+
+{q:"She read ___ interesting story.",a:"an",why:"Interesting starts with vowel sound."},
+{q:"___ Earth moves round the sun.",a:"the",why:"Earth is unique."},
+{q:"He wants ___ job.",a:"a",why:"Job starts with consonant sound."},
+{q:"___ poor need help.",a:"the",why:"'The' used for a class of people."},
+{q:"He bought ___ pair of shoes.",a:"a",why:"Pair is singular."},
+
+{q:"She has ___ MBA degree.",a:"an",why:"M is pronounced 'em'."},
+{q:"___ honesty of the boy impressed me.",a:"the",why:"Specific honesty is referred."},
+{q:"He is ___ university student.",a:"a",why:"University starts with 'you' sound."},
+{q:"___ Himalayas are very high.",a:"the",why:"Mountain ranges take 'the'."},
+{q:"___ gold is precious.",a:"",why:"Material noun used generally."}
 ];
 
-// repeat to 30
-while(questions.length<30){
- questions.push(...questions.slice(0,5));
-}
+const quiz = document.getElementById("quiz");
 
-const quizDiv=document.getElementById("quiz");
 questions.forEach((item,i)=>{
- quizDiv.innerHTML+=`
+ quiz.innerHTML += `
  <div class="question">
  ${i+1}. ${item.q}<br>
- <input id="ans${i}" type="text">
- <div id="why${i}" style="color:#dc2626;"></div>
+ <input id="ans${i}" type="text" placeholder="a / an / the / blank">
+ <button class="check-btn" onclick="checkAnswer(${i})">Check</button>
+ <div id="fb${i}" class="feedback"></div>
  </div>`;
 });
 
-function checkAnswers(){
- let score=0;
- questions.forEach((item,i)=>{
-  let user=document.getElementById("ans"+i).value.toLowerCase().trim();
-  if(user===item.a){
-    score++;
-    document.getElementById("why"+i).innerHTML="";
-  }else{
-    document.getElementById("why"+i).innerHTML="❌ Wrong: "+item.why;
-  }
- });
- document.getElementById("result").innerHTML=
- "Score: "+score+"/30";
+function checkAnswer(i){
+ const user = document.getElementById("ans"+i).value.trim().toLowerCase();
+ const correct = questions[i].a;
+ const fb = document.getElementById("fb"+i);
+
+ if(user === correct){
+   fb.innerHTML = "✔ Correct";
+   fb.className = "feedback correct";
+ }else{
+   fb.innerHTML = "❌ Wrong<br><b>Correct Answer:</b> "+(correct==""?"No Article":correct)+
+   "<br><b>Why:</b> "+questions[i].why;
+   fb.className = "feedback wrong";
+ }
 }
 
 function downloadNotes(){
- const text=document.body.innerText;
- const blob=new Blob([text],{type:"text/plain"});
- const a=document.createElement("a");
- a.href=URL.createObjectURL(blob);
- a.download="Articles_A_An_The_Notes.txt";
- a.click();
+ const text = document.body.innerText;
+ const blob = new Blob([text], {type:"text/plain"});
+ const link = document.createElement("a");
+ link.href = URL.createObjectURL(blob);
+ link.download = "Articles-A-An-The-Notes.txt";
+ link.click();
 }
 </script>
 

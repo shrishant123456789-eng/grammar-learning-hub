@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kinds of Nouns</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Segoe UI, Arial, sans-serif;
+  background:#f5f7fb;
+  line-height:1.6;
+}
+header{
+  background:linear-gradient(90deg,#0f172a,#1e40af);
+  color:white;
+  padding:22px;
+  text-align:center;
+  animation:slideDown 0.8s ease;
+}
+section{padding:18px}
+.card{
+  background:white;
+  margin-bottom:18px;
+  padding:16px;
+  border-radius:14px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.1);
+  animation:fadeUp 0.7s ease;
+}
+h2{color:#1e3a8a}
+.kind{
+  background:#ecfeff;
+  border-left:6px solid #06b6d4;
+  padding:12px;
+  margin:12px 0;
+}
+.example{
+  background:#fefce8;
+  border-left:6px solid #facc15;
+  padding:10px;
+  margin-top:8px;
+}
+.question{
+  margin-top:14px;
+}
+input{
+  padding:6px;
+  width:160px;
+}
+.check-btn{
+  margin-left:6px;
+  padding:6px 10px;
+  background:#16a34a;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+.check-btn:hover{background:#15803d}
+.feedback{
+  margin-top:6px;
+  font-weight:600;
+}
+.correct{color:green}
+.wrong{color:#dc2626}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes slideDown{
+  from{opacity:0;transform:translateY(-20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Kinds of Nouns</h1>
+<p>Clear Notes + Practice (Basic to Advanced)</p>
+</header>
+
+<section>
+
+<div class="card">
+<h2>📘 What is a Noun?</h2>
+<p>A noun is a word that names a person, place, thing, or idea.</p>
+</div>
+
+<div class="card">
+<h2>📗 Kinds of Nouns</h2>
+
+<div class="kind">
+<b>1. Proper Noun</b><br>
+A Proper Noun is the name of a particular person, place, or thing.
+<div class="example">Ram, Delhi, India, Ganga</div>
+</div>
+
+<div class="kind">
+<b>2. Common Noun</b><br>
+A Common Noun is a general name of a person, place, or thing.
+<div class="example">boy, city, river, book</div>
+</div>
+
+<div class="kind">
+<b>3. Collective Noun</b><br>
+A Collective Noun denotes a group or collection.
+<div class="example">team, class, army, bunch</div>
+</div>
+
+<div class="kind">
+<b>4. Abstract Noun</b><br>
+An Abstract Noun denotes a quality, state, or idea.
+<div class="example">honesty, courage, childhood</div>
+</div>
+
+<div class="kind">
+<b>5. Material Noun</b><br>
+A Material Noun denotes a substance or material.
+<div class="example">gold, water, milk, iron</div>
+</div>
+</div>
+
+<div class="card">
+<h2>📝 Practice Questions (30)</h2>
+<div id="quiz"></div>
+</div>
+
+</section>
+
+<script>
+const questions=[
+{q:"Ram is a ______ noun.",a:"proper",why:"Ram is the name of a particular person."},
+{q:"City is a ______ noun.",a:"common",why:"It is a general name of a place."},
+{q:"Honesty is a ______ noun.",a:"abstract",why:"It denotes a quality."},
+{q:"Team is a ______ noun.",a:"collective",why:"It denotes a group."},
+{q:"Gold is a ______ noun.",a:"material",why:"It is a substance."},
+{q:"Delhi is a ______ noun.",a:"proper",why:"Name of a specific city."},
+{q:"Boy is a ______ noun.",a:"common",why:"General name of a person."},
+{q:"Army is a ______ noun.",a:"collective",why:"It refers to a group."},
+{q:"Bravery is a ______ noun.",a:"abstract",why:"It shows a quality."},
+{q:"Milk is a ______ noun.",a:"material",why:"It is a substance."},
+
+{q:"Class is a ______ noun.",a:"collective",why:"Class refers to a group of students."},
+{q:"Teacher is a ______ noun.",a:"common",why:"General name of a person."},
+{q:"Ravi is a ______ noun.",a:"proper",why:"Name of a particular person."},
+{q:"Happiness is a ______ noun.",a:"abstract",why:"It is a feeling."},
+{q:"Iron is a ______ noun.",a:"material",why:"It is a metal."},
+
+{q:"School is a ______ noun.",a:"common",why:"General name of a place."},
+{q:"India is a ______ noun.",a:"proper",why:"Name of a specific country."},
+{q:"Bunch is a ______ noun.",a:"collective",why:"It denotes a collection."},
+{q:"Childhood is a ______ noun.",a:"abstract",why:"It denotes a state of life."},
+{q:"Water is a ______ noun.",a:"material",why:"It is a substance."},
+
+{q:"Book is a ______ noun.",a:"common",why:"General name of a thing."},
+{q:"Committee is a ______ noun.",a:"collective",why:"It refers to a group."},
+{q:"Truth is a ______ noun.",a:"abstract",why:"It denotes an idea."},
+{q:"Silver is a ______ noun.",a:"material",why:"It is a metal."},
+{q:"Ramesh is a ______ noun.",a:"proper",why:"Name of a particular person."},
+{q:"River is a ______ noun.",a:"common",why:"General name of a natural feature."},
+{q:"Crowd is a ______ noun.",a:"collective",why:"It refers to many people together."},
+{q:"Wisdom is a ______ noun.",a:"abstract",why:"It denotes a quality."},
+{q:"Wood is a ______ noun.",a:"material",why:"It is a substance."}
+];
+
+const quiz=document.getElementById("quiz");
+
+questions.forEach((item,i)=>{
+ quiz.innerHTML+=`
+ <div class="question">
+ ${i+1}. ${item.q}<br>
+ <input id="ans${i}" type="text">
+ <button class="check-btn" onclick="checkOne(${i})">Check</button>
+ <div id="fb${i}" class="feedback"></div>
+ </div>`;
+});
+
+function checkOne(i){
+ const user=document.getElementById("ans"+i).value.trim().toLowerCase();
+ const fb=document.getElementById("fb"+i);
+ if(user===questions[i].a){
+   fb.innerHTML="✔ Correct";
+   fb.className="feedback correct";
+ }else{
+   fb.innerHTML="❌ Wrong<br>Correct Answer: <b>"+questions[i].a+
+   "</b><br>Why: "+questions[i].why;
+   fb.className="feedback wrong";
+ }
+}
+</script>
+
+</body>
+</html>
