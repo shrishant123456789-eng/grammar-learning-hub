@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Grammar Learning Hub - Sentence</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f4f6f8;
+}
+header{
+    background:#1976d2;
+    color:white;
+    padding:15px;
+    position:relative;
+}
+.creator{
+    position:absolute;
+    right:15px;
+    top:18px;
+    font-size:14px;
+}
+.container{
+    padding:20px;
+    max-width: 800px;
+    margin:auto;
+}
+h3{
+    margin-top:25px;
+}
+input{
+    width:95%;
+    padding:8px;
+    margin:8px 0 15px 0;
+    border:1px solid #ccc;
+    border-radius:4px;
+}
+button{
+    padding:12px 20px;
+    background:#1976d2;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+#result{
+    margin-top:15px;
+    font-weight:bold;
+    font-size:18px;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h2>Sentence</h2>
+<div class="creator">Created by Shrishant Yadav</div>
+</header>
+
+<div class="container">
+
+<!-- Chapter Introduction -->
+<p>
+A sentence is a group of words that expresses a complete thought.  
+A sentence must have a subject and a predicate.  
+Sentences begin with a capital letter and end with a full stop (.), question mark (?), or exclamation mark (!).  
+In this chapter, you will practice forming, completing, and correcting sentences from basic to advanced level.
+</p>
+
+<h3>Practice Questions (30)</h3>
+
+<!-- Questions 1-30 -->
+<p>1. He ___ playing football.</p>
+<input type="text" id="q1">
+
+<p>2. She ___ a teacher.</p>
+<input type="text" id="q2">
+
+<p>3. They ___ happy today.</p>
+<input type="text" id="q3">
+
+<p>4. I ___ a student.</p>
+<input type="text" id="q4">
+
+<p>5. We ___ going home.</p>
+<input type="text" id="q5">
+
+<p>6. The cat ___ on the roof.</p>
+<input type="text" id="q6">
+
+<p>7. You ___ very kind.</p>
+<input type="text" id="q7">
+
+<p>8. My father ___ working in a bank.</p>
+<input type="text" id="q8">
+
+<p>9. The birds ___ singing in the morning.</p>
+<input type="text" id="q9">
+
+<p>10. She ___ reading a book now.</p>
+<input type="text" id="q10">
+
+<p>11. Complete the sentence:<br>
+We ___ to the market yesterday.</p>
+<input type="text" id="q11">
+
+<p>12. Fill in the blank:<br>
+He ___ his homework every day.</p>
+<input type="text" id="q12">
+
+<p>13. Choose the correct word:<br>
+The dog ___ barking loudly.</p>
+<input type="text" id="q13">
+
+<p>14. Fill in the blank:<br>
+I ___ never been to London.</p>
+<input type="text" id="q14">
+
+<p>15. Complete the sentence:<br>
+She ___ working here since 2010.</p>
+<input type="text" id="q15">
+
+<p>16. Correct the sentence:<br>
+him go to school.</p>
+<input type="text" id="q16">
+
+<p>17. Correct the sentence:<br>
+She do not like apples.</p>
+<input type="text" id="q17">
+
+<p>18. Fill in the blank:<br>
+If it ___ raining, we will go outside.</p>
+<input type="text" id="q18">
+
+<p>19. Fill in the blank:<br>
+I wish I ___ taller.</p>
+<input type="text" id="q19">
+
+<p>20. Choose the correct form:<br>
+She asked me where I ___.</p>
+<input type="text" id="q20">
+
+<p>21. Complete the sentence:<br>
+Had I known, I ___ prepared better.</p>
+<input type="text" id="q21">
+
+<p>22. Correct the sentence:<br>
+He don't knows the answer.</p>
+<input type="text" id="q22">
+
+<p>23. Fill in the blank:<br>
+By the time he arrives, we ___ finished.</p>
+<input type="text" id="q23">
+
+<p>24. Choose the correct word:<br>
+Neither of them ___ guilty.</p>
+<input type="text" id="q24">
+
+<p>25. Complete the sentence:<br>
+Hardly ___ I reached home than it started raining.</p>
+<input type="text" id="q25">
+
+<p>26. Fill in the blank:<br>
+I prefer tea ___ coffee.</p>
+<input type="text" id="q26">
+
+<p>27. Correct the sentence:<br>
+Everyone have finished their work.</p>
+<input type="text" id="q27">
+
+<p>28. Complete the sentence:<br>
+No sooner ___ the teacher entered the class than the students stood up.</p>
+<input type="text" id="q28">
+
+<p>29. Fill in the blank:<br>
+She speaks English better ___ her brother.</p>
+<input type="text" id="q29">
+
+<p>30. Choose the correct word:<br>
+It is high time we ___ going.</p>
+<input type="text" id="q30">
+
+<!-- Check Answers Button -->
+<button onclick="checkAnswers()">Check Answers</button>
+<p id="result"></p>
+
+</div>
+
+<!-- JS inside same file -->
+<script>
+function checkAnswers(){
+    let score=0;
+    const answers = {
+        q1:"is", q2:"is", q3:"are", q4:"am", q5:"are",
+        q6:"is", q7:"are", q8:"is", q9:"are", q10:"is",
+        q11:"went", q12:"does", q13:"is", q14:"have",
+        q15:"has been", q16:"He goes", q17:"does not",
+        q18:"is", q19:"were", q20:"was", q21:"would have",
+        q22:"does not know", q23:"will have", q24:"is", q25:"had",
+        q26:"than", q27:"has", q28:"had", q29:"than", q30:"were"
+    };
+
+    for(let i=1;i<=30;i++){
+        let ans=document.getElementById("q"+i).value.trim().toLowerCase();
+        if(ans===answers["q"+i].toLowerCase()) score++;
+    }
+
+    document.getElementById("result").innerText="Your Score: "+score+" / 30";
+}
+</script>
+
+</body>
+</html>
