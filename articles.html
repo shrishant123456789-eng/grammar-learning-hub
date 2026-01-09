@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Articles – A, An, The</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f8fafc;
+  margin:0;
+}
+header{
+  background:linear-gradient(90deg,#0f172a,#1e40af);
+  color:white;
+  padding:20px;
+  text-align:center;
+  animation: slideDown 1s ease;
+}
+section{
+  padding:18px;
+}
+.card{
+  background:white;
+  padding:15px;
+  margin-bottom:15px;
+  border-radius:12px;
+  box-shadow:0 6px 12px rgba(0,0,0,0.1);
+  animation: fadeIn 1s ease;
+}
+h2{color:#1e3a8a}
+.rule{
+  background:#ecfeff;
+  border-left:6px solid #06b6d4;
+  padding:10px;
+  margin:10px 0;
+}
+.example{
+  background:#fefce8;
+  border-left:6px solid #facc15;
+  padding:10px;
+  margin:10px 0;
+}
+.question{
+  margin:10px 0;
+}
+input{
+  padding:6px;
+  width:120px;
+}
+button{
+  background:#16a34a;
+  color:white;
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+button:hover{background:#15803d}
+.result{
+  font-weight:bold;
+  margin-top:10px;
+}
+.download{
+  background:#dc2626;
+  margin-top:20px;
+}
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes slideDown{
+  from{opacity:0;transform:translateY(-30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Articles – A, An, The</h1>
+<p>Complete Notes + Practice (Basic to Advanced)</p>
+</header>
+
+<section>
+
+<div class="card">
+<h2>📘 What is an Article?</h2>
+<p>Article is a word used before a noun to limit or define its meaning.</p>
+<p>There are <b>three Articles</b> in English: <b>A, An, The</b></p>
+</div>
+
+<div class="card">
+<h2>📗 Types of Articles</h2>
+<ul>
+<li><b>Indefinite Articles:</b> A, An</li>
+<li><b>Definite Article:</b> The</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>📕 Rules of A</h2>
+<div class="rule">A is used before words starting with a consonant sound.</div>
+<div class="example">
+A boy, A cat, A university (yu sound)
+</div>
+</div>
+
+<div class="card">
+<h2>📕 Rules of An</h2>
+<div class="rule">An is used before words starting with a vowel sound.</div>
+<div class="example">
+An apple, An honest man, An hour
+</div>
+</div>
+
+<div class="card">
+<h2>📕 Rules of The</h2>
+<div class="rule">
+The is used for specific person/place/thing or something already known.
+</div>
+<div class="example">
+The sun, The Ganga, The book you gave me
+</div>
+</div>
+
+<div class="card">
+<h2>⚠ Important Points</h2>
+<ul>
+<li>Article depends on <b>sound</b>, not spelling</li>
+<li>No article used with plural/general nouns</li>
+<li>No article before names of persons</li>
+</ul>
+</div>
+
+<!-- QUESTIONS -->
+<div class="card">
+<h2>📝 Practice Questions (30)</h2>
+<div id="quiz"></div>
+
+<button onclick="checkAnswers()">Check Answers</button>
+<div class="result" id="result"></div>
+</div>
+
+<button class="download" onclick="downloadNotes()">⬇ Download Notes</button>
+
+</section>
+
+<script>
+const questions = [
+ {q:"___ apple a day keeps the doctor away.",a:"an",why:"Apple starts with vowel sound"},
+ {q:"He is ___ honest man.",a:"an",why:"Honest has silent h"},
+ {q:"I saw ___ lion in zoo.",a:"a",why:"Lion starts with consonant sound"},
+ {q:"___ sun rises in east.",a:"the",why:"Only one sun"},
+ {q:"She bought ___ umbrella.",a:"an",why:"Umbrella starts with vowel sound"},
+ {q:"This is ___ best book.",a:"the",why:"Specific book"},
+ {q:"He is ___ university student.",a:"a",why:"University starts with yu sound"},
+ {q:"___ Ganga is holy river.",a:"the",why:"Name of river"},
+ {q:"I want ___ pen.",a:"a",why:"Any pen"},
+ {q:"___ earth moves around sun.",a:"the",why:"Unique object"}
+];
+
+// repeat to 30
+while(questions.length<30){
+ questions.push(...questions.slice(0,5));
+}
+
+const quizDiv=document.getElementById("quiz");
+questions.forEach((item,i)=>{
+ quizDiv.innerHTML+=`
+ <div class="question">
+ ${i+1}. ${item.q}<br>
+ <input id="ans${i}" type="text">
+ <div id="why${i}" style="color:#dc2626;"></div>
+ </div>`;
+});
+
+function checkAnswers(){
+ let score=0;
+ questions.forEach((item,i)=>{
+  let user=document.getElementById("ans"+i).value.toLowerCase().trim();
+  if(user===item.a){
+    score++;
+    document.getElementById("why"+i).innerHTML="";
+  }else{
+    document.getElementById("why"+i).innerHTML="❌ Wrong: "+item.why;
+  }
+ });
+ document.getElementById("result").innerHTML=
+ "Score: "+score+"/30";
+}
+
+function downloadNotes(){
+ const text=document.body.innerText;
+ const blob=new Blob([text],{type:"text/plain"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);
+ a.download="Articles_A_An_The_Notes.txt";
+ a.click();
+}
+</script>
+
+</body>
+</html>

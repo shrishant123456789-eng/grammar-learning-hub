@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Parts of Speech – Overview</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f4f8ff;
+  margin:0;
+  padding:0;
+}
+header{
+  background:#1e40af;
+  color:white;
+  padding:20px;
+  text-align:center;
+  animation: slideDown 1s ease;
+}
+section{
+  padding:20px;
+  animation: fadeIn 1.2s ease;
+}
+.card{
+  background:white;
+  padding:15px;
+  margin-bottom:15px;
+  border-radius:10px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.1);
+  transition:transform 0.3s;
+}
+.card:hover{
+  transform:scale(1.02);
+}
+h2{color:#1e3a8a}
+.question{
+  margin:10px 0;
+}
+button{
+  background:#16a34a;
+  color:white;
+  padding:10px 15px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+button:hover{background:#15803d}
+.result{
+  font-weight:bold;
+  margin-top:10px;
+}
+.download{
+  background:#dc2626;
+  margin-top:20px;
+}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes slideDown{
+  from{transform:translateY(-30px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Parts of Speech – Overview</h1>
+  <p>Basic to Advanced Grammar Notes with Practice</p>
+</header>
+
+<section>
+
+<div class="card">
+<h2>📘 What is Parts of Speech?</h2>
+<p>Parts of Speech are categories of words based on their function in a sentence.</p>
+<p>English has <b>8 main Parts of Speech</b>.</p>
+</div>
+
+<div class="card">
+<h2>📗 The 8 Parts of Speech</h2>
+<ol>
+<li>Noun – Name of a person, place, thing</li>
+<li>Pronoun – Used instead of noun</li>
+<li>Verb – Shows action or state</li>
+<li>Adjective – Describes a noun</li>
+<li>Adverb – Describes verb/adjective</li>
+<li>Preposition – Shows relation</li>
+<li>Conjunction – Joins words/sentences</li>
+<li>Interjection – Expresses emotion</li>
+</ol>
+</div>
+
+<div class="card">
+<h2>📙 Example Sentence</h2>
+<p><b>Ram</b> (Noun) <b>quickly</b> (Adverb) <b>ate</b> (Verb) a <b>sweet</b> (Adjective) mango.</p>
+</div>
+
+<!-- QUESTIONS -->
+<div class="card">
+<h2>📝 Practice Questions (30)</h2>
+
+<div id="quiz"></div>
+
+<button onclick="checkAnswers()">Check Answers</button>
+<div class="result" id="result"></div>
+</div>
+
+<button class="download" onclick="downloadNotes()">⬇ Download Notes</button>
+
+</section>
+
+<script>
+const questions = [
+  {q:"Ram is a ____.", a:"noun"},
+  {q:"Quickly is an ____.", a:"adverb"},
+  {q:"Eat is a ____.", a:"verb"},
+  {q:"Beautiful is an ____.", a:"adjective"},
+  {q:"He is a ____.", a:"pronoun"},
+  {q:"Wow! is a ____.", a:"interjection"},
+  {q:"And is a ____.", a:"conjunction"},
+  {q:"In is a ____.", a:"preposition"},
+  {q:"Dog is a ____.", a:"noun"},
+  {q:"Slowly is an ____.", a:"adverb"}
+];
+
+// auto repeat to make 30
+while(questions.length < 30){
+  questions.push(...questions.slice(0,5));
+}
+
+const quizDiv = document.getElementById("quiz");
+
+questions.forEach((item,i)=>{
+  quizDiv.innerHTML += `
+  <div class="question">
+    ${i+1}. ${item.q}<br>
+    <input type="text" id="ans${i}">
+  </div>`;
+});
+
+function checkAnswers(){
+  let score = 0;
+  questions.forEach((item,i)=>{
+    let userAns = document.getElementById("ans"+i).value.toLowerCase().trim();
+    if(userAns === item.a){ score++; }
+  });
+  document.getElementById("result").innerHTML =
+  "Score: " + score + "/30<br>Wrong answers mean you chose the wrong part of speech.";
+}
+
+function downloadNotes(){
+  const text = document.body.innerText;
+  const blob = new Blob([text], {type:"text/plain"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "Parts_of_Speech_Notes.txt";
+  a.click();
+}
+</script>
+
+</body>
+</html>
