@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Subject and Predicate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Subject and Predicate</h1>
+  <p>Complete Notes + Practice (Basic to Advanced)</p>
+</header>
+
+<main>
+
+<!-- ================= NOTES ================= -->
+<section style="background:#e3f2fd;padding:18px;border-radius:12px;">
+
+<h2 style="color:#0b3c5d;">📘 What is a Sentence?</h2>
+<p>
+A sentence is a group of words that makes complete sense.
+</p>
+
+<h2 style="color:#1faa59;">📗 Subject</h2>
+<p>
+The <b>Subject</b> is the part of the sentence about which something is said.  
+It usually tells <b>who or what</b> the sentence is about.
+</p>
+
+<p><b>Example:</b></p>
+<p><span style="color:green;">Ram</span> is playing.</p>
+
+<h2 style="color:#ff9800;">📕 Predicate</h2>
+<p>
+The <b>Predicate</b> is the part of the sentence that tells something about the subject.  
+It contains the <b>verb</b> and the remaining part of the sentence.
+</p>
+
+<p><b>Example:</b></p>
+<p>Ram <span style="color:red;">is playing</span>.</p>
+
+<h2 style="color:#0b3c5d;">📌 Rule</h2>
+<ul>
+  <li>Every sentence has a subject and a predicate.</li>
+  <li>The subject comes first in most sentences.</li>
+  <li>The predicate always contains a verb.</li>
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ================= PRACTICE ================= -->
+<h2 style="color:#ffc107;">📝 Practice Questions (30)</h2>
+
+<div id="questions"></div>
+
+<!-- ================= DOWNLOAD ================= -->
+<button onclick="downloadNotes()" style="
+background:#1faa59;
+color:white;
+padding:14px;
+font-size:18px;
+border:none;
+border-radius:10px;
+margin:20px 0;
+width:100%;">
+⬇️ Download Notes & Questions
+</button>
+
+<a href="index.html">⬅ Back to Home</a>
+
+</main>
+
+<footer>
+<p>Grammar Learning Hub | Founder: <b>Shrishant Yadav</b></p>
+</footer>
+
+<!-- ================= JAVASCRIPT (INSIDE FILE) ================= -->
+<script>
+const data = [
+{q:"Identify the subject: Ram is reading.", a:"ram", w:"'Ram' is the person about whom something is said."},
+{q:"Identify the predicate: The boy is running.", a:"is running", w:"Predicate tells what the subject does."},
+{q:"Find the subject: The sun rises in the east.", a:"the sun", w:"The sentence is about 'the sun'."},
+{q:"Find the predicate: She sings a song.", a:"sings a song", w:"This part tells the action of the subject."},
+{q:"Identify subject: Birds are flying.", a:"birds", w:"'Birds' are doing the action."},
+{q:"Identify predicate: He is very honest.", a:"is very honest", w:"This part tells about the subject."},
+{q:"Find subject: The children are playing.", a:"the children", w:"The sentence is about children."},
+{q:"Find predicate: My father works hard.", a:"works hard", w:"Predicate includes verb + extra words."},
+{q:"Identify subject: India is my country.", a:"india", w:"India is the topic of the sentence."},
+{q:"Identify predicate: The cat slept on the sofa.", a:"slept on the sofa", w:"This part shows the action."},
+
+{q:"Find subject: The teacher teaches well.", a:"the teacher", w:"Teacher is doing the action."},
+{q:"Find predicate: We love our country.", a:"love our country", w:"Predicate tells what we do."},
+{q:"Identify subject: The train is late.", a:"the train", w:"The sentence talks about the train."},
+{q:"Identify predicate: She is very kind.", a:"is very kind", w:"It describes the subject."},
+{q:"Find subject: Dogs bark loudly.", a:"dogs", w:"Dogs perform the action."},
+{q:"Find predicate: He wrote a letter.", a:"wrote a letter", w:"This tells what he did."},
+{q:"Identify subject: The sky is blue.", a:"the sky", w:"Sky is being described."},
+{q:"Identify predicate: The baby is sleeping.", a:"is sleeping", w:"This shows the action."},
+{q:"Find subject: My brother plays cricket.", a:"my brother", w:"Brother is doing the action."},
+{q:"Find predicate: She cooked food.", a:"cooked food", w:"Predicate contains the verb."},
+
+{q:"Identify subject: Honesty is the best policy.", a:"honesty", w:"Honesty is the idea talked about."},
+{q:"Identify predicate: The cow gives milk.", a:"gives milk", w:"This tells what the cow does."},
+{q:"Find subject: Students study daily.", a:"students", w:"Students perform the action."},
+{q:"Find predicate: He is a good boy.", a:"is a good boy", w:"This describes the subject."},
+{q:"Identify subject: The flower is beautiful.", a:"the flower", w:"The flower is being described."},
+{q:"Identify predicate: They won the match.", a:"won the match", w:"This shows their action."},
+{q:"Find subject: Water is essential.", a:"water", w:"Water is the topic."},
+{q:"Find predicate: The girl danced well.", a:"danced well", w:"This part tells the action."},
+{q:"Identify subject: The police arrived.", a:"the police", w:"Police is the subject."},
+{q:"Identify predicate: Knowledge is power.", a:"is power", w:"This tells about knowledge."}
+];
+
+let html="";
+data.forEach((x,i)=>{
+html+=`
+<div style="background:#fffde7;padding:15px;margin:12px;border-radius:10px;">
+<p><b>Q${i+1}.</b> ${x.q}</p>
+<input type="text" id="a${i}" placeholder="Write your answer">
+<button onclick="check(${i})">Check Answer</button>
+<p id="r${i}"></p>
+</div>`;
+});
+document.getElementById("questions").innerHTML=html;
+
+function check(i){
+let user=document.getElementById("a"+i).value.trim().toLowerCase();
+let r=document.getElementById("r"+i);
+if(user===data[i].a){
+r.innerHTML="✅ Correct<br><b>Why:</b> "+data[i].w;
+r.style.color="green";
+}else{
+r.innerHTML="❌ Wrong<br><b>Correct Answer:</b> "+data[i].a+
+"<br><b>Why wrong:</b> "+data[i].w;
+r.style.color="red";
+}
+}
+
+function downloadNotes(){
+let text=document.body.innerText;
+let blob=new Blob([text],{type:"text/plain"});
+let a=document.createElement("a");
+a.href=URL.createObjectURL(blob);
+a.download="Subject_and_Predicate_Notes.txt";
+a.click();
+}
+</script>
+
+</body>
+</html>

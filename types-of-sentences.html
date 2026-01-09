@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Types of Sentences</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family:Arial;background:#f5f7fa;">
+
+<header style="background:#0b3c5d;color:white;padding:20px;border-radius:12px;">
+  <h1>Types of Sentences</h1>
+  <p>Full Notes + Practice (Basic to Advance)</p>
+</header>
+
+<main style="margin-top:20px;">
+
+<!-- ================= NOTES ================= -->
+<section style="background:#e3f2fd;padding:18px;border-radius:12px;">
+
+<h2>📘 What is a Sentence?</h2>
+<p>
+A sentence is a group of words that makes complete sense.
+</p>
+
+<h2>📗 Types of Sentences (Based on Meaning)</h2>
+
+<hr>
+
+<h3>1️⃣ Assertive / Declarative Sentence</h3>
+<p>
+An <b>Assertive sentence</b> states a fact or opinion.
+</p>
+<p><b>Rule:</b> It ends with a full stop (.)</p>
+<p><b>Examples:</b></p>
+<ul>
+<li>Ram is a good boy.</li>
+<li>The sun rises in the east.</li>
+</ul>
+
+<hr>
+
+<h3>2️⃣ Interrogative Sentence</h3>
+<p>
+An <b>Interrogative sentence</b> asks a question.
+</p>
+<p><b>Rule:</b> It ends with a question mark (?)</p>
+<p><b>Examples:</b></p>
+<ul>
+<li>What is your name?</li>
+<li>Are you ready?</li>
+</ul>
+
+<hr>
+
+<h3>3️⃣ Imperative Sentence</h3>
+<p>
+An <b>Imperative sentence</b> gives an order, advice, request, or command.
+</p>
+<p><b>Rule:</b> Subject is usually hidden (You).</p>
+<p><b>Examples:</b></p>
+<ul>
+<li>Close the door.</li>
+<li>Please help me.</li>
+</ul>
+
+<hr>
+
+<h3>4️⃣ Exclamatory Sentence</h3>
+<p>
+An <b>Exclamatory sentence</b> shows strong feelings or emotions.
+</p>
+<p><b>Rule:</b> It ends with an exclamation mark (!)</p>
+<p><b>Examples:</b></p>
+<ul>
+<li>What a beautiful day!</li>
+<li>How brave he is!</li>
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ================= PRACTICE ================= -->
+<h2 style="color:#ff9800;">📝 Practice Questions (30)</h2>
+
+<div id="questions"></div>
+
+<!-- ================= DOWNLOAD ================= -->
+<button onclick="downloadNotes()" style="
+background:#1faa59;
+color:white;
+padding:14px;
+font-size:18px;
+border:none;
+border-radius:10px;
+margin:20px 0;
+width:100%;">
+⬇️ Download Notes & Questions
+</button>
+
+<a href="index.html">⬅ Back to Home</a>
+
+</main>
+
+<footer style="margin-top:30px;text-align:center;">
+<p>Grammar Learning Hub | Founder: <b>Shrishant Yadav</b></p>
+</footer>
+
+<!-- ================= JAVASCRIPT (INSIDE FILE) ================= -->
+<script>
+const data = [
+{q:"Ram is playing.",a:"assertive",w:"It states a fact."},
+{q:"What is your name?",a:"interrogative",w:"It asks a question."},
+{q:"Close the window.",a:"imperative",w:"It gives an order."},
+{q:"What a beautiful flower!",a:"exclamatory",w:"It shows emotion."},
+{q:"She is very kind.",a:"assertive",w:"It states information."},
+{q:"Are you coming today?",a:"interrogative",w:"It asks something."},
+{q:"Please sit down.",a:"imperative",w:"It gives a request."},
+{q:"How intelligent you are!",a:"exclamatory",w:"It expresses feeling."},
+{q:"The cow gives milk.",a:"assertive",w:"It tells a fact."},
+{q:"Where do you live?",a:"interrogative",w:"It asks a question."},
+
+{q:"Bring me water.",a:"imperative",w:"It gives a command."},
+{q:"Alas! He is dead.",a:"exclamatory",w:"It shows sorrow."},
+{q:"India is my country.",a:"assertive",w:"It is a statement."},
+{q:"Did you finish your work?",a:"interrogative",w:"It asks a question."},
+{q:"Respect your elders.",a:"imperative",w:"It gives advice."},
+{q:"Hurrah! We won the match.",a:"exclamatory",w:"It shows happiness."},
+{q:"The train is late.",a:"assertive",w:"It tells information."},
+{q:"Who is your best friend?",a:"interrogative",w:"It asks something."},
+{q:"Do not make noise.",a:"imperative",w:"It gives instruction."},
+{q:"What a sad story!",a:"exclamatory",w:"It expresses emotion."},
+
+{q:"She sings well.",a:"assertive",w:"It states a fact."},
+{q:"Is he your brother?",a:"interrogative",w:"It asks a question."},
+{q:"Open your book.",a:"imperative",w:"It gives an order."},
+{q:"How lovely the weather is!",a:"exclamatory",w:"It shows happiness."},
+{q:"The earth moves around the sun.",a:"assertive",w:"It is a fact."},
+{q:"Can you help me?",a:"interrogative",w:"It asks a question."},
+{q:"Always speak the truth.",a:"imperative",w:"It gives advice."},
+{q:"Wow! What a goal!",a:"exclamatory",w:"It shows excitement."},
+{q:"We are proud of you.",a:"assertive",w:"It is a statement."},
+{q:"Why are you late?",a:"interrogative",w:"It asks a question."}
+];
+
+let html="";
+data.forEach((x,i)=>{
+html+=`
+<div style="background:#fffde7;padding:15px;margin:12px;border-radius:10px;">
+<p><b>Q${i+1}.</b> Identify the type of sentence:<br>${x.q}</p>
+<input type="text" id="a${i}" placeholder="assertive / interrogative / imperative / exclamatory">
+<button onclick="check(${i})">Check Answer</button>
+<p id="r${i}"></p>
+</div>`;
+});
+document.getElementById("questions").innerHTML=html;
+
+function check(i){
+let user=document.getElementById("a"+i).value.trim().toLowerCase();
+let r=document.getElementById("r"+i);
+if(user===data[i].a){
+r.innerHTML="✅ Correct<br><b>Why:</b> "+data[i].w;
+r.style.color="green";
+}else{
+r.innerHTML="❌ Wrong<br><b>Correct Answer:</b> "+data[i].a+
+"<br><b>Why wrong:</b> "+data[i].w;
+r.style.color="red";
+}
+}
+
+function downloadNotes(){
+let text=document.body.innerText;
+let blob=new Blob([text],{type:"text/plain"});
+let a=document.createElement("a");
+a.href=URL.createObjectURL(blob);
+a.download="Types_of_Sentences_Notes.txt";
+a.click();
+}
+</script>
+
+</body>
+</html>
