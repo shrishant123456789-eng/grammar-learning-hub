@@ -22,65 +22,23 @@
 <!-- ================= PHASE 1 ================= -->
 <h2 class="phase">Phase 1: Foundations (The Basics)</h2>
 
-<div class="topic active">
-  <a href="sentence.html">The Sentence</a>
-</div>
-
-<div class="topic coming">Subject and Predicate (Coming Soon)</div>
-<div class="topic coming">Types of Sentences (Coming Soon)</div>
-<div class="topic coming">Parts of Speech – Overview (Coming Soon)</div>
-<div class="topic coming">Articles – A, An, The (Coming Soon)</div>
-
-<div class="topic active">
-  <a href="noun.html">Nouns</a>
-</div>
-
-<div class="topic coming">Kinds of Nouns (Coming Soon)</div>
-<div class="topic coming">Noun: Number (Coming Soon)</div>
-<div class="topic coming">Noun: Gender (Coming Soon)</div>
-<div class="topic coming">Noun: Case (Coming Soon)</div>
-
-<div class="topic coming">Pronouns (Coming Soon)</div>
-<div class="topic coming">Types of Pronouns (Coming Soon)</div>
-<div class="topic coming">Adjectives (Coming Soon)</div>
-<div class="topic coming">Degrees of Comparison (Coming Soon)</div>
+<div id="phase1"></div>
 
 <!-- ================= PHASE 2 ================= -->
 <h2 class="phase">Phase 2: Functional Grammar (Core)</h2>
-
-<div class="topic coming">Verbs (Coming Soon)</div>
-<div class="topic coming">Main vs Helping Verbs (Coming Soon)</div>
-<div class="topic coming">Tenses – Complete Study (Coming Soon)</div>
-<div class="topic coming">Modals (Coming Soon)</div>
-<div class="topic coming">Active & Passive Voice (Coming Soon)</div>
-<div class="topic coming">Direct & Indirect Speech (Coming Soon)</div>
+<div id="phase2"></div>
 
 <!-- ================= PHASE 3 ================= -->
 <h2 class="phase">Phase 3: Syntax and Mechanics</h2>
-
-<div class="topic coming">Adverbs (Coming Soon)</div>
-<div class="topic coming">Prepositions (Coming Soon)</div>
-<div class="topic coming">Conjunctions (Coming Soon)</div>
-<div class="topic coming">Subject Verb Agreement (Coming Soon)</div>
-<div class="topic coming">Question Tags (Coming Soon)</div>
+<div id="phase3"></div>
 
 <!-- ================= PHASE 4 ================= -->
 <h2 class="phase">Phase 4: Advanced Grammar</h2>
-
-<div class="topic coming">Non-Finite Verbs (Coming Soon)</div>
-<div class="topic coming">Conditionals (Coming Soon)</div>
-<div class="topic coming">Clauses (Coming Soon)</div>
-<div class="topic coming">Transformation of Sentences (Coming Soon)</div>
-<div class="topic coming">Punctuation & Capitalization (Coming Soon)</div>
+<div id="phase4"></div>
 
 <!-- ================= PHASE 5 ================= -->
 <h2 class="phase">Phase 5: Vocabulary & Composition</h2>
-
-<div class="topic coming">Phrasal Verbs (Coming Soon)</div>
-<div class="topic coming">Idioms & Phrases (Coming Soon)</div>
-<div class="topic coming">Synonyms & Antonyms (Coming Soon)</div>
-<div class="topic coming">One-Word Substitution (Coming Soon)</div>
-<div class="topic coming">Figures of Speech (Coming Soon)</div>
+<div id="phase5"></div>
 
 </div>
 </main>
@@ -93,6 +51,70 @@
 <script>
 function showSyllabus(){
   document.getElementById("syllabus").style.display = "block";
+}
+
+/* ========= MASTER CHAPTER LIST ========= */
+const chapters = {
+  phase1: [
+    {name:"The Sentence", file:"sentence.html"},
+    {name:"Subject and Predicate", file:"subject-predicate.html"},
+    {name:"Types of Sentences", file:"types-of-sentences.html"},
+    {name:"Parts of Speech – Overview", file:"parts-of-speech.html"},
+    {name:"Articles – A, An, The", file:"articles.html"},
+    {name:"Nouns", file:"noun.html"},
+    {name:"Kinds of Nouns", file:"kinds-of-nouns.html"},
+    {name:"Noun: Number", file:"noun-number.html"},
+    {name:"Noun: Gender", file:"noun-gender.html"},
+    {name:"Noun: Case", file:"noun-case.html"},
+    {name:"Pronouns", file:"pronouns.html"},
+    {name:"Adjectives", file:"adjectives.html"}
+  ],
+  phase2: [
+    {name:"Verbs", file:"verbs.html"},
+    {name:"Tenses", file:"tenses.html"},
+    {name:"Modals", file:"modals.html"},
+    {name:"Active & Passive Voice", file:"active-passive.html"},
+    {name:"Direct & Indirect Speech", file:"narration.html"}
+  ],
+  phase3: [
+    {name:"Adverbs", file:"adverbs.html"},
+    {name:"Prepositions", file:"prepositions.html"},
+    {name:"Conjunctions", file:"conjunctions.html"}
+  ],
+  phase4: [
+    {name:"Non-Finite Verbs", file:"non-finite.html"},
+    {name:"Clauses", file:"clauses.html"},
+    {name:"Transformation of Sentences", file:"transformation.html"}
+  ],
+  phase5: [
+    {name:"Phrasal Verbs", file:"phrasal-verbs.html"},
+    {name:"Idioms & Phrases", file:"idioms.html"},
+    {name:"One-Word Substitution", file:"one-word.html"}
+  ]
+};
+
+/* ========= AUTO RENDER ========= */
+for (let phase in chapters) {
+  let container = document.getElementById(phase);
+  chapters[phase].forEach(ch => {
+    fetch(ch.file, {method: 'HEAD'})
+      .then(res => {
+        if(res.ok){
+          container.innerHTML += `
+            <div class="topic active">
+              <a href="${ch.file}">${ch.name}</a>
+            </div>`;
+        } else {
+          throw "not found";
+        }
+      })
+      .catch(() => {
+        container.innerHTML += `
+          <div class="topic coming">
+            ${ch.name} (Coming Soon)
+          </div>`;
+      });
+  });
 }
 </script>
 
