@@ -1,32 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Grammar Learning Hub</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Grammar Learning Hub</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <h1>Grammar Learning Hub</h1>
-    <span class="creator">Created by Shrishant Yadav</span>
+  <h1>Grammar Learning Hub</h1>
+  <p>Created by Shrishant Yadav</p>
 </header>
 
-<section class="content">
-    <p>
-        Welcome to Grammar Learning Hub.
-        <br><br>
-        This website is created to help beginners
-        practice English Grammar from basic to advanced level.
-        <br><br>
-        Start with basic grammar chapters and
-        improve step by step through practice.
+<main>
+  <button onclick="showChapters()">Start Practice</button>
+
+  <div id="chapters" style="display:none;">
+    <h2>Available Chapters</h2>
+
+    <!-- Chapter 1 -->
+    <a href="sentence.html" class="chapter">
+      Chapter 1: Sentence
+    </a>
+    <p class="chapter-desc">
+      Learn what a sentence is, its types, rules, and practice questions.
     </p>
 
-    <a href="chapters/alphabet.html" class="btn">
-        Start Practice
+    <!-- Chapter 2 -->
+    <a href="noun.html" class="chapter">
+      Chapter 2: Noun
     </a>
-</section>
+    <p class="chapter-desc">
+      Learn nouns from basic to advanced with practice and explanations.
+    </p>
+
+  </div>
+</main>
+
+<footer>
+  <img src="founder.jpg" alt="Founder Photo">
+  <p>Founder<br><b>Shrishant Yadav</b></p>
+</footer>
+
+<script>
+function showChapters(){
+  document.getElementById("chapters").style.display = "block";
+}
+</script>
 
 </body>
 </html>

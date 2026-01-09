@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chapter 1 - Noun</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Chapter 1: Noun</h1>
+  <p>Basic to Advanced Practice</p>
+</header>
+
+<main>
+
+<h2>Introduction</h2>
+<p>
+A noun is the name of a person, place, animal, thing, or idea.
+</p>
+
+<h2>Rules</h2>
+<ul>
+  <li>Names of people are nouns</li>
+  <li>Names of places are nouns</li>
+  <li>Names of things are nouns</li>
+</ul>
+
+<hr>
+
+<h2>Practice Questions</h2>
+
+<!-- QUESTION 1 -->
+<p>1. Identify the noun in the sentence:<br>
+<b>The boy is playing.</b></p>
+
+<input type="text" id="ans1" placeholder="Write your answer">
+<button onclick="checkAnswer(1)">Check Answer</button>
+
+<p id="result1"></p>
+
+<!-- QUESTION 2 -->
+<p>2. Which one is a noun?<br>
+<b>run, blue, honesty, quickly</b></p>
+
+<input type="text" id="ans2" placeholder="Write your answer">
+<button onclick="checkAnswer(2)">Check Answer</button>
+
+<p id="result2"></p>
+
+<a href="index.html">⬅ Back to Home</a>
+
+</main>
+
+<!-- 🔴 JAVASCRIPT INSIDE HTML (VISIBLE) -->
+<script>
+function checkAnswer(q){
+  
+  if(q === 1){
+    let user = document.getElementById("ans1").value.toLowerCase();
+    let result = document.getElementById("result1");
+
+    if(user === "boy"){
+      result.innerHTML = "✅ Correct!<br>Rule: 'Boy' is the name of a person, so it is a noun.";
+      result.style.color = "green";
+    }else{
+      result.innerHTML =
+      "❌ Wrong Answer<br>" +
+      "Correct Answer: boy<br>" +
+      "Why wrong: A noun names a person, place or thing. 'Boy' is the person here.";
+      result.style.color = "red";
+    }
+  }
+
+  if(q === 2){
+    let user = document.getElementById("ans2").value.toLowerCase();
+    let result = document.getElementById("result2");
+
+    if(user === "honesty"){
+      result.innerHTML = "✅ Correct!<br>Rule: 'Honesty' is an abstract noun (idea).";
+      result.style.color = "green";
+    }else{
+      result.innerHTML =
+      "❌ Wrong Answer<br>" +
+      "Correct Answer: honesty<br>" +
+      "Why wrong: 'Honesty' names an idea, so it is a noun.";
+      result.style.color = "red";
+    }
+  }
+}
+</script>
+
+</body>
+</html>
