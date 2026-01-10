@@ -1,482 +1,904 @@
-<!-- ===================== PRESENT TENSE ===================== -->
-<section class="section">
-<h2 class="toggle" onclick="toggleSection('presentBlock')">▶ Present Tense</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Tenses - Grammar Learning Hub</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --accent: #f59e0b;
+            --bg: #f0f4f8;
+            --text: #1e293b;
+            --white: #ffffff;
+            --success: #10b981;
+            --error: #ef4444;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
 
-<div id="presentBlock" class="content">
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            line-height: 1.6;
+        }
 
-<!-- ========= PRESENT INDEFINITE ========= -->
-<h3 class="toggle subToggle" onclick="toggleSection('pi')">▶ Present Indefinite Tense</h3>
-<div id="pi" class="content">
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-bottom: 5px solid var(--accent);
+        }
 
-<div class="notes">
-<b>Definition:</b>  
-Present Indefinite Tense is used to express daily habits, general facts, universal truths and permanent situations.
-<br><br>
+        .container {
+            max-width: 1000px;
+            margin: -2rem auto 2rem;
+            padding: 0 1rem;
+        }
 
-<b>Formula:</b><br>
-Affirmative: Subject + V1 / V1(s, es)<br>
-Negative: Subject + do/does + not + V1<br>
-Interrogative: Do/Does + Subject + V1?
-<br><br>
+        /* Tense Selection Navigation */
+        #main-nav {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
 
-<b>Examples:</b><br>
-• He plays cricket.<br>
-• The sun rises in the east.<br>
-• We respect our teachers.
+        .tense-category {
+            margin-bottom: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .category-header {
+            padding: 1.2rem;
+            cursor: pointer;
+            background: #f8fafc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            transition: background 0.3s;
+        }
+
+        .category-header:hover { background: #edf2f7; }
+
+        .sub-tenses {
+            display: none;
+            padding: 0.5rem;
+            background: white;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sub-tense-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.8rem 1.2rem;
+            margin: 4px 0;
+            border: none;
+            border-radius: 8px;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #475569;
+            transition: all 0.2s;
+        }
+
+        .sub-tense-btn:hover {
+            background: #f1f5f9;
+            color: var(--primary);
+            padding-left: 2rem;
+        }
+
+        /* Content Panel */
+        .content-panel {
+            display: none;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: scale(0.98); } 
+            to { opacity: 1; transform: scale(1); } 
+        }
+
+        .back-btn {
+            background: var(--text);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover { background: #000; }
+
+        .formula-box {
+            background: linear-gradient(to right, #eff6ff, #f5f3ff);
+            border-left: 6px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Practice Area */
+        .question-card {
+            background: #fff;
+            border: 2px solid #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.2rem;
+            transition: transform 0.2s;
+        }
+
+        .question-card:hover { transform: translateY(-3px); border-color: #cbd5e1; }
+
+        .input-group { display: flex; gap: 12px; margin-top: 12px; }
+        input[type="text"] {
+            flex: 1;
+            padding: 0.9rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus { border-color: var(--primary); background: #fdfdfd; }
+
+        .check-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.9rem 1.8rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .check-btn:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3); }
+        .check-btn:active { transform: scale(0.95); }
+
+        .feedback { 
+            margin-top: 12px; 
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 600; 
+            display: none; 
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        
+        .correct { background: #dcfce7; color: var(--success); border-left: 4px solid var(--success); }
+        .wrong { background: #fee2e2; color: var(--error); border-left: 4px solid var(--error); }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .b-aff { background: #dcfce7; color: #166534; }
+        .b-neg { background: #fee2e2; color: #991b1b; }
+        .b-int { background: #e0e7ff; color: #3730a3; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 style="font-size: 2.5rem; margin: 0;">English Tense Mastery</h1>
+    <p style="font-size: 1.1rem; opacity: 0.9;">Professional Notes & Interactive Practice Hub</p>
+</header>
+
+<div class="container">
+    <div id="main-nav">
+        <div class="tense-category">
+            <div class="category-header" onclick="toggleSub('present-sub')">
+                1. Present Tense (The Now) <span>▼</span>
+            </div>
+            <div class="sub-tenses" id="present-sub">
+                <button class="sub-tense-btn" onclick="showTense('pres_ind')">Present Indefinite</button>
+                <button class="sub-tense-btn" onclick="showTense('pres_cont')">Present Continuous</button>
+                <button class="sub-tense-btn" onclick="showTense('pres_perf')">Present Perfect</button>
+                <button class="sub-tense-btn" onclick="showTense('pres_perf_cont')">Present Perfect Continuous</button>
+            </div>
+        </div>
+
+        <div class="tense-category">
+            <div class="category-header" onclick="toggleSub('past-sub')">
+                2. Past Tense (The History) <span>▼</span>
+            </div>
+            <div class="sub-tenses" id="past-sub">
+                <button class="sub-tense-btn" onclick="showTense('past_ind')">Past Indefinite</button>
+                <button class="sub-tense-btn" onclick="showTense('past_cont')">Past Continuous</button>
+                <button class="sub-tense-btn" onclick="showTense('past_perf')">Past Perfect</button>
+                <button class="sub-tense-btn" onclick="showTense('past_perf_cont')">Past Perfect Continuous</button>
+            </div>
+        </div>
+
+        <div class="tense-category">
+            <div class="category-header" onclick="toggleSub('future-sub')">
+                3. Future Tense (The Vision) <span>▼</span>
+            </div>
+            <div class="sub-tenses" id="future-sub">
+                <button class="sub-tense-btn" onclick="showTense('fut_ind')">Future Indefinite</button>
+                <button class="sub-tense-btn" onclick="showTense('fut_cont')">Future Continuous</button>
+                <button class="sub-tense-btn" onclick="showTense('fut_perf')">Future Perfect</button>
+                <button class="sub-tense-btn" onclick="showTense('fut_perf_cont')">Future Perfect Continuous</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-panel" class="content-panel">
+        <button class="back-btn" onclick="goBack()">← Back to Categories</button>
+        <div id="tense-data"></div>
+    </div>
 </div>
 
-<!-- QUESTIONS -->
-<div class="question">
-1. She ___ to school every day. (go)  
-<input id="pi1">
-<button onclick="checkAns('pi1','goes','She is singular, so verb takes s/es')">Check</button>
-<div id="rpi1" class="result"></div>
-</div>
-
-<div class="question">
-2. They ___ football on Sunday. (play)  
-<input id="pi2">
-<button onclick="checkAns('pi2','play','Plural subject uses base verb')">Check</button>
-<div id="rpi2" class="result"></div>
-</div>
-
-<div class="question">
-3. He ___ not like coffee.  
-<input id="pi3">
-<button onclick="checkAns('pi3','does','Negative sentence with He uses does')">Check</button>
-<div id="rpi3" class="result"></div>
-</div>
-
-<div class="question">
-4. ___ you understand English?  
-<input id="pi4">
-<button onclick="checkAns('pi4','Do','Question with You uses Do')">Check</button>
-<div id="rpi4" class="result"></div>
-</div>
-
-<p><b>👉 Add remaining questions up to 30 using same pattern</b></p>
-</div>
-
-<!-- ========= PRESENT CONTINUOUS ========= -->
-<h3 class="toggle subToggle" onclick="toggleSection('pc')">▶ Present Continuous Tense</h3>
-<div id="pc" class="content">
-
-<div class="notes">
-<b>Definition:</b>  
-Used to show an action that is happening at the time of speaking.
-<br><br>
-
-<b>Formula:</b><br>
-Affirmative: Subject + is/am/are + V-ing<br>
-Negative: Subject + is/am/are + not + V-ing<br>
-Interrogative: Is/Am/Are + Subject + V-ing?
-<br><br>
-
-<b>Examples:</b><br>
-• She is reading a book.<br>
-• They are playing cricket.
-</div>
-
-<div class="question">
-1. I ___ reading a book now.  
-<input id="pc1">
-<button onclick="checkAns('pc1','am','I always uses am')">Check</button>
-<div id="rpc1" class="result"></div>
-</div>
-
-<div class="question">
-2. They ___ playing football.  
-<input id="pc2">
-<button onclick="checkAns('pc2','are','They uses are')">Check</button>
-<div id="rpc2" class="result"></div>
-</div>
-
-<p><b>👉 Add total 30 questions (basic → advance)</b></p>
-</div>
-
-<!-- ========= PRESENT PERFECT ========= -->
-<h3 class="toggle subToggle" onclick="toggleSection('pp')">▶ Present Perfect Tense</h3>
-<div id="pp" class="content">
-
-<div class="notes">
-<b>Definition:</b>  
-Used for an action completed in the past but its effect is seen in the present.
-<br><br>
-
-<b>Formula:</b><br>
-Affirmative: Subject + has/have + V3<br>
-Negative: Subject + has/have + not + V3<br>
-Interrogative: Has/Have + Subject + V3?
-<br><br>
-
-<b>Examples:</b><br>
-• I have finished my work.<br>
-• She has gone home.
-</div>
-
-<div class="question">
-1. He ___ completed the task.  
-<input id="pp1">
-<button onclick="checkAns('pp1','has','He is singular so has is used')">Check</button>
-<div id="rpp1" class="result"></div>
-</div>
-
-<p><b>👉 Add 30 questions here</b></p>
-</div>
-
-<!-- ========= PRESENT PERFECT CONTINUOUS ========= -->
-<h3 class="toggle subToggle" onclick="toggleSection('ppc')">▶ Present Perfect Continuous Tense</h3>
-<div id="ppc" class="content">
-
-<div class="notes">
-<b>Definition:</b>  
-Used for an action that started in the past and is still continuing.
-<br><br>
-
-<b>Formula:</b><br>
-Affirmative: Subject + has/have + been + V-ing + since/for<br>
-Negative: Subject + has/have + not + been + V-ing<br>
-Interrogative: Has/Have + Subject + been + V-ing?
-<br><br>
-
-<b>Examples:</b><br>
-• She has been studying for two hours.<br>
-• We have been waiting since morning.
-</div>
-
-<div class="question">
-1. She ___ been working here for 5 years.  
-<input id="ppc1">
-<button onclick="checkAns('ppc1','has','She uses has')">Check</button>
-<div id="rppc1" class="result"></div>
-</div>
-
-<p><b>👉 Add remaining questions (total 30)</b></p>
-</div>
-
-<button class="downloadBtn" onclick="window.print()">Download Present Tense Notes</button>
-
-</div>
-</section>
-
-<!-- ========== JS LOGIC (COMMON) ========== -->
 <script>
-function toggleSection(id){
-  let el=document.getElementById(id);
-  el.style.display = (el.style.display==="block") ? "none" : "block";
+/* ================= DATA REPOSITORY (ALL 12 TENSES) ================= */
+const tenseData = {
+    // 1. PRESENT INDEFINITE
+    pres_ind: {
+        title: "Present Indefinite Tense",
+        def: "Describes routine actions, universal truths, and permanent facts.",
+        rule: "For Plural (I/We/You/They) -> V1. For Singular (He/She/It/Name) -> V1 + s/es.",
+        formulas: [
+            "Affirmative: S + V1(s/es) + O",
+            "Negative: S + do/does + not + V1 + O",
+            "Interrogative: Do/Does + S + V1 + O?"
+        ],
+        expl: "Common markers: always, usually, every day. Note: 'does' is for singular, 'do' is for plural.",
+        example: "He writes code for a living.",
+        questions: [
+            {q: "She ____ (go) to the library.", a: "goes", type: "Affirmative"},
+            {q: "Birds ____ (fly) in the sky.", a: "fly", type: "Affirmative"},
+            {q: "The sun ____ (rise) in the east.", a: "rises", type: "Affirmative"},
+            {q: "I ____ (like) reading books.", a: "like", type: "Affirmative"},
+            {q: "Water ____ (boil) at 100 degrees.", a: "boils", type: "Affirmative"},
+            {q: "He ____ (not/eat) meat.", a: "does not eat", type: "Negative"},
+            {q: "They ____ (not/play) football.", a: "do not play", type: "Negative"},
+            {q: "I ____ (not/know) him.", a: "do not know", type: "Negative"},
+            {q: "Does he ____ (study) hard?", a: "study", type: "Interrogative"},
+            {q: "Do they ____ (speak) French?", a: "speak", type: "Interrogative"},
+            {q: "The shop ____ (open) at 9 AM.", a: "opens", type: "Affirmative"},
+            {q: "Cats ____ (love) milk.", a: "love", type: "Affirmative"},
+            {q: "My mother ____ (cook) food.", a: "cooks", type: "Affirmative"},
+            {q: "We ____ (visit) them often.", a: "visit", type: "Affirmative"},
+            {q: "Practice ____ (make) perfect.", a: "makes", type: "Affirmative"},
+            {q: "She ____ (not/want) any help.", a: "does not want", type: "Negative"},
+            {q: "It ____ (not/rain) here in summer.", a: "does not rain", type: "Negative"},
+            {q: "Dogs ____ (not/climb) trees.", a: "do not climb", type: "Negative"},
+            {q: "We ____ (not/agree) with you.", a: "do not agree", type: "Negative"},
+            {q: "You ____ (not/exercise) enough.", a: "do not exercise", type: "Negative"},
+            {q: "____ you ____ (play) the piano?", a: "Do play", type: "Interrogative"},
+            {q: "____ he ____ (understand) the lesson?", a: "Does understand", type: "Interrogative"},
+            {q: "____ they ____ (arrive) on time?", a: "Do arrive", type: "Interrogative"},
+            {q: "____ it ____ (matter) to you?", a: "Does matter", type: "Interrogative"},
+            {q: "____ your brother ____ (drive) a car?", a: "Does drive", type: "Interrogative"},
+            {q: "She ____ (always/help) her friends.", a: "always helps", type: "Affirmative"},
+            {q: "Does he ____ (drink) coffee?", a: "drink", type: "Interrogative"},
+            {q: "I ____ (rarely/smoke).", a: "rarely smoke", type: "Affirmative"},
+            {q: "Do you ____ (remember) me?", a: "remember", type: "Interrogative"},
+            {q: "They ____ (not/listen) to music.", a: "do not listen", type: "Negative"}
+        ]
+    },
+
+    // 2. PRESENT CONTINUOUS
+    pres_cont: {
+        title: "Present Continuous Tense",
+        def: "Describes actions happening at the exact moment of speaking.",
+        rule: "I + am | He/She/It + is | We/You/They + are | All + V-ing.",
+        formulas: [
+            "Affirmative: S + is/am/are + V-ing + O",
+            "Negative: S + is/am/are + not + V-ing + O",
+            "Interrogative: Is/Am/Are + S + V-ing + O?"
+        ],
+        expl: "Indicators: now, at the moment, currently. It shows temporary progress.",
+        example: "The teacher is explaining the grammar rules.",
+        questions: [
+            {q: "I ____ (study) English now.", a: "am studying", type: "Affirmative"},
+            {q: "The baby ____ (sleep) upstairs.", a: "is sleeping", type: "Affirmative"},
+            {q: "Listen! Someone ____ (sing).", a: "is singing", type: "Affirmative"},
+            {q: "We ____ (wait) for the train.", a: "are waiting", type: "Affirmative"},
+            {q: "The sun ____ (shine) brightly.", a: "is shining", type: "Affirmative"},
+            {q: "They ____ (not/work) today.", a: "are not working", type: "Negative"},
+            {q: "I ____ (not/joking) with you.", a: "am not joking", type: "Negative"},
+            {q: "He ____ (not/wearing) a jacket.", a: "is not wearing", type: "Negative"},
+            {q: "Is it ____ (rain) outside?", a: "raining", type: "Interrogative"},
+            {q: "Are you ____ (watch) the match?", a: "watching", type: "Interrogative"},
+            {q: "She ____ (dance) on the stage.", a: "is dancing", type: "Affirmative"},
+            {q: "Look! The bus ____ (come).", a: "is coming", type: "Affirmative"},
+            {q: "Birds ____ (build) a nest.", a: "are building", type: "Affirmative"},
+            {q: "He ____ (repair) his bike.", a: "is repairing", type: "Affirmative"},
+            {q: "I ____ (write) a letter.", a: "am writing", type: "Affirmative"},
+            {q: "You ____ (not/listening) to me.", a: "are not listening", type: "Negative"},
+            {q: "We ____ (not/expect) any guests.", a: "are not expecting", type: "Negative"},
+            {q: "She ____ (not/crying) anymore.", a: "is not crying", type: "Negative"},
+            {q: "They ____ (not/swimming) today.", a: "are not swimming", type: "Negative"},
+            {q: "The cat ____ (not/drinking) milk.", a: "is not drinking", type: "Negative"},
+            {q: "____ you ____ (feeling) better?", a: "Are feeling", type: "Interrogative"},
+            {q: "____ the fan ____ (working)?", a: "Is working", type: "Interrogative"},
+            {q: "____ they ____ (laughing) at us?", a: "Are laughing", type: "Interrogative"},
+            {q: "____ she ____ (sitting) there?", a: "Is sitting", type: "Interrogative"},
+            {q: "____ I ____ (disturbing) you?", a: "Am disturbing", type: "Interrogative"},
+            {q: "They ____ (always/asking) questions.", a: "are always asking", type: "Affirmative"},
+            {q: "Is he ____ (making) dinner?", a: "making", type: "Interrogative"},
+            {q: "I ____ (not/lying) to you.", a: "am not lying", type: "Negative"},
+            {q: "Why are you ____ (running)?", a: "running", type: "Interrogative"},
+            {q: "She ____ (doing) her hair.", a: "is doing", type: "Affirmative"}
+        ]
+    },
+
+    // 3. PRESENT PERFECT
+    pres_perf: {
+        title: "Present Perfect Tense",
+        def: "Links the past to the present; actions completed recently with lasting impact.",
+        rule: "He/She/It/Name + has. I/We/You/They + have. All + V3 (Past Participle).",
+        formulas: [
+            "Affirmative: S + has/have + V3 + O",
+            "Negative: S + has/have + not + V3 + O",
+            "Interrogative: Has/Have + S + V3 + O?"
+        ],
+        expl: "Markers: just, already, yet, never, ever. Focuses on the result.",
+        example: "I have already finished my dinner.",
+        questions: [
+            {q: "He ____ (lose) his passport.", a: "has lost", type: "Affirmative"},
+            {q: "We ____ (visited) this place before.", a: "have visited", type: "Affirmative"},
+            {q: "She ____ (just/arrive).", a: "has just arrived", type: "Affirmative"},
+            {q: "They ____ (win) the trophy.", a: "have won", type: "Affirmative"},
+            {q: "I ____ (seen) that movie twice.", a: "have seen", type: "Affirmative"},
+            {q: "I ____ (not/finish) the work yet.", a: "have not finished", type: "Negative"},
+            {q: "He ____ (not/call) me today.", a: "has not called", type: "Negative"},
+            {q: "We ____ (not/met) for a year.", a: "have not met", type: "Negative"},
+            {q: "Has she ____ (left) the office?", a: "left", type: "Interrogative"},
+            {q: "Have you ____ (ever/been) to Japan?", a: "ever been", type: "Interrogative"},
+            {q: "Someone ____ (break) the window.", a: "has broken", type: "Affirmative"},
+            {q: "They ____ (gone) to the market.", a: "have gone", type: "Affirmative"},
+            {q: "Scientists ____ (found) a cure.", a: "have found", type: "Affirmative"},
+            {q: "The train ____ (arrived) at platform 1.", a: "has arrived", type: "Affirmative"},
+            {q: "You ____ (changed) a lot.", a: "have changed", type: "Affirmative"},
+            {q: "She ____ (not/written) the report.", a: "has not written", type: "Negative"},
+            {q: "We ____ (not/told) anyone.", a: "have not told", type: "Negative"},
+            {q: "It ____ (not/stopped) raining.", a: "has not stopped", type: "Negative"},
+            {q: "I ____ (not/taken) my medicine.", a: "have not taken", type: "Negative"},
+            {q: "They ____ (not/returned) yet.", a: "have not returned", type: "Negative"},
+            {q: "____ you ____ (bought) the car?", a: "Have bought", type: "Interrogative"},
+            {q: "____ he ____ (cleaned) the room?", a: "Has cleaned", type: "Interrogative"},
+            {q: "____ they ____ (heard) the news?", a: "Have heard", type: "Interrogative"},
+            {q: "____ the postman ____ (come)?", a: "Has come", type: "Interrogative"},
+            {q: "____ I ____ (made) a mistake?", a: "Have I made", type: "Interrogative"},
+            {q: "I ____ (already/told) him.", a: "have already told", type: "Affirmative"},
+            {q: "Has he ____ (done) his homework?", a: "done", type: "Interrogative"},
+            {q: "They ____ (never/lied) to us.", a: "have never lied", type: "Affirmative"},
+            {q: "Have you ____ (seen) my keys?", a: "seen", type: "Interrogative"},
+            {q: "She ____ (forgotten) her phone.", a: "has forgotten", type: "Affirmative"}
+        ]
+    },
+
+    // 4. PRESENT PERFECT CONTINUOUS
+    pres_perf_cont: {
+        title: "Present Perfect Continuous Tense",
+        def: "Shows an action that started in the past and is still continuing now.",
+        rule: "Has/Have + been + V-ing. Use 'Since' for fixed time, 'For' for duration.",
+        formulas: [
+            "Affirmative: S + has/have + been + V-ing + O + since/for + T",
+            "Negative: S + has/have + not + been + V-ing + O + since/for + T",
+            "Interrogative: Has/Have + S + been + V-ing + O + since/for + T?"
+        ],
+        expl: "Emphasizes the duration of the action. Example: 'I have been studying since 9 AM.'",
+        example: "It has been raining for three hours.",
+        questions: [
+            {q: "I ____ (wait) here since morning.", a: "have been waiting", type: "Affirmative"},
+            {q: "She ____ (read) this book for a week.", a: "has been reading", type: "Affirmative"},
+            {q: "They ____ (play) since 4 PM.", a: "have been playing", type: "Affirmative"},
+            {q: "He ____ (work) in this bank for ten years.", a: "has been working", type: "Affirmative"},
+            {q: "We ____ (learn) English for 2 months.", a: "have been learning", type: "Affirmative"},
+            {q: "I ____ (not/sleeping) well lately.", a: "have not been sleeping", type: "Negative"},
+            {q: "He ____ (not/doing) anything since Monday.", a: "has not been doing", type: "Negative"},
+            {q: "They ____ (not/talking) to each other.", a: "have not been talking", type: "Negative"},
+            {q: "How long have you ____ (living) here?", a: "been living", type: "Interrogative"},
+            {q: "Has she ____ (crying) for long?", a: "been crying", type: "Interrogative"},
+            {q: "The sun ____ (shining) all day.", a: "has been shining", type: "Affirmative"},
+            {q: "Birds ____ (singing) since dawn.", a: "have been singing", type: "Affirmative"},
+            {q: "He ____ (driving) for six hours.", a: "has been driving", type: "Affirmative"},
+            {q: "I ____ (painting) the wall since 8 AM.", a: "have been painting", type: "Affirmative"},
+            {q: "You ____ (watching) TV all day.", a: "have been watching", type: "Affirmative"},
+            {q: "We ____ (not/using) the laptop.", a: "have not been using", type: "Negative"},
+            {q: "It ____ (not/snowing) here.", a: "has not been snowing", type: "Negative"},
+            {q: "They ____ (not/practicing) enough.", a: "have not been practicing", type: "Negative"},
+            {q: "He ____ (not/feeling) well recently.", a: "has not been feeling", type: "Negative"},
+            {q: "I ____ (not/thinking) about that.", a: "have not been thinking", type: "Negative"},
+            {q: "____ you ____ (studying) all night?", a: "Have been studying", type: "Interrogative"},
+            {q: "____ it ____ (raining) since last night?", a: "Has been raining", type: "Interrogative"},
+            {q: "____ they ____ (quarrelling) for long?", a: "Have been quarrelling", type: "Interrogative"},
+            {q: "____ she ____ (practicing) the piano?", a: "Has been practicing", type: "Interrogative"},
+            {q: "____ I ____ (talking) too much?", a: "Have I been talking", type: "Interrogative"},
+            {q: "He ____ (always/helping) people.", a: "has always been helping", type: "Affirmative"},
+            {q: "How long has he ____ (waiting)?", a: "been waiting", type: "Interrogative"},
+            {q: "She ____ (teaching) since 2010.", a: "has been teaching", type: "Affirmative"},
+            {q: "Have you ____ (working) on this?", a: "been working", type: "Interrogative"},
+            {q: "They ____ (making) noise for an hour.", a: "have been making", type: "Affirmative"}
+        ]
+    },
+
+    // 5. PAST INDEFINITE
+    past_ind: {
+        title: "Past Indefinite Tense",
+        def: "Actions that happened and finished in the past.",
+        rule: "Affirmative: V2 (second form). Negative/Int: Did + V1.",
+        formulas: [
+            "Affirmative: S + V2 + O",
+            "Negative: S + did + not + V1 + O",
+            "Interrogative: Did + S + V1 + O?"
+        ],
+        expl: "Golden Rule: Never use V2 with 'did'. Indicators: yesterday, last night, ago.",
+        example: "I went to Delhi last week.",
+        questions: [
+            {q: "She ____ (win) the race yesterday.", a: "won", type: "Affirmative"},
+            {q: "I ____ (see) him two days ago.", a: "saw", type: "Affirmative"},
+            {q: "They ____ (bought) a new house.", a: "bought", type: "Affirmative"},
+            {q: "India ____ (become) free in 1947.", a: "became", type: "Affirmative"},
+            {q: "He ____ (wrote) a beautiful poem.", a: "wrote", type: "Affirmative"},
+            {q: "He ____ (not/go) to school.", a: "did not go", type: "Negative"},
+            {q: "We ____ (not/receive) the letter.", a: "did not receive", type: "Negative"},
+            {q: "They ____ (not/tell) us the truth.", a: "did not tell", type: "Negative"},
+            {q: "Did you ____ (finish) the task?", a: "finish", type: "Interrogative"},
+            {q: "Did she ____ (say) anything?", a: "say", type: "Interrogative"},
+            {q: "The cat ____ (catch) the mouse.", a: "caught", type: "Affirmative"},
+            {q: "We ____ (played) well yesterday.", a: "played", type: "Affirmative"},
+            {q: "I ____ (forgot) my keys.", a: "forgot", type: "Affirmative"},
+            {q: "The rain ____ (stopped) suddenly.", a: "stopped", type: "Affirmative"},
+            {q: "He ____ (broke) the glass.", a: "broke", type: "Affirmative"},
+            {q: "I ____ (not/like) the movie.", a: "did not like", type: "Negative"},
+            {q: "They ____ (not/arrive) on time.", a: "did not arrive", type: "Negative"},
+            {q: "She ____ (not/hear) the bell.", a: "did not hear", type: "Negative"},
+            {q: "We ____ (not/know) the answer.", a: "did not know", type: "Negative"},
+            {q: "You ____ (not/call) me back.", a: "did not call", type: "Negative"},
+            {q: "____ you ____ (sleep) well?", a: "Did sleep", type: "Interrogative"},
+            {q: "____ he ____ (pass) the exam?", a: "Did pass", type: "Interrogative"},
+            {q: "____ they ____ (meet) you?", a: "Did meet", type: "Interrogative"},
+            {q: "____ it ____ (rain) yesterday?", a: "Did rain", type: "Interrogative"},
+            {q: "____ I ____ (disturb) you?", a: "Did I disturb", type: "Interrogative"},
+            {q: "I ____ (bought) this car in 2020.", a: "bought", type: "Affirmative"},
+            {q: "Did she ____ (invite) you?", a: "invite", type: "Interrogative"},
+            {q: "They ____ (sold) their old car.", a: "sold", type: "Affirmative"},
+            {q: "Did you ____ (see) the match?", a: "see", type: "Interrogative"},
+            {q: "We ____ (missed) the train.", a: "missed", type: "Affirmative"}
+        ]
+    },
+
+    // 6. PAST CONTINUOUS
+    past_cont: {
+        title: "Past Continuous Tense",
+        def: "Ongoing action at a specific time in the past.",
+        rule: "Was (for I/He/She/It) | Were (for We/You/They) + V-ing.",
+        formulas: [
+            "Affirmative: S + was/were + V-ing + O",
+            "Negative: S + was/were + not + V-ing + O",
+            "Interrogative: Was/Were + S + V-ing + O?"
+        ],
+        expl: "Often used with 'when' or 'while' to describe background actions.",
+        example: "I was sleeping when the bell rang.",
+        questions: [
+            {q: "He ____ (study) when I called.", a: "was studying", type: "Affirmative"},
+            {q: "They ____ (playing) cricket at 5 PM.", a: "were playing", type: "Affirmative"},
+            {q: "The sun ____ (shining) brightly.", a: "was shining", type: "Affirmative"},
+            {q: "We ____ (having) dinner then.", a: "were having", type: "Affirmative"},
+            {q: "I ____ (walking) home alone.", a: "was walking", type: "Affirmative"},
+            {q: "She ____ (not/cooking) at that time.", a: "was not cooking", type: "Negative"},
+            {q: "They ____ (not/listening) to me.", a: "were not listening", type: "Negative"},
+            {q: "I ____ (not/crying) for help.", a: "was not crying", type: "Negative"},
+            {q: "Was he ____ (driving) fast?", a: "driving", type: "Interrogative"},
+            {q: "Were they ____ (laughing) at you?", a: "laughing", type: "Interrogative"},
+            {q: "The wind ____ (blowing) fiercely.", a: "was blowing", type: "Affirmative"},
+            {q: "Birds ____ (chirping) in trees.", a: "were chirping", type: "Affirmative"},
+            {q: "He ____ (repairing) the fan.", a: "was repairing", type: "Affirmative"},
+            {q: "We ____ (watching) a movie.", a: "were watching", type: "Affirmative"},
+            {q: "The baby ____ (crying) all night.", a: "was crying", type: "Affirmative"},
+            {q: "I ____ (not/doing) anything wrong.", a: "was not doing", type: "Negative"},
+            {q: "They ____ (not/expecting) us.", a: "were not expecting", type: "Negative"},
+            {q: "He ____ (not/shouting) at you.", a: "was not shouting", type: "Negative"},
+            {q: "We ____ (not/waiting) for long.", a: "were not waiting", type: "Negative"},
+            {q: "It ____ (not/raining) heavily.", a: "was not raining", type: "Negative"},
+            {q: "____ you ____ (dreaming)?", a: "Were dreaming", type: "Interrogative"},
+            {q: "____ she ____ (writing) a letter?", a: "Was writing", type: "Interrogative"},
+            {q: "____ they ____ (working) hard?", a: "Were working", type: "Interrogative"},
+            {q: "____ the dogs ____ (barking)?", a: "Were barking", type: "Interrogative"},
+            {q: "____ I ____ (talking) in sleep?", a: "Was I talking", type: "Interrogative"},
+            {q: "She ____ (always/complaining).", a: "was always complaining", type: "Affirmative"},
+            {q: "Was he ____ (making) a noise?", a: "making", type: "Interrogative"},
+            {q: "They ____ (swimming) in the lake.", a: "were swimming", type: "Affirmative"},
+            {q: "Were you ____ (looking) for me?", a: "looking", type: "Interrogative"},
+            {q: "I ____ (reading) a book.", a: "was reading", type: "Affirmative"}
+        ]
+    },
+
+    // 7. PAST PERFECT
+    past_perf: {
+        title: "Past Perfect Tense",
+        def: "Action completed before another past action (Past of the Past).",
+        rule: "Had + V3 (for all subjects).",
+        formulas: [
+            "Affirmative: S + had + V3 + O",
+            "Negative: S + had + not + V3 + O",
+            "Interrogative: Had + S + V3 + O?"
+        ],
+        expl: "Used to distinguish between two past events. The earlier event uses 'had'.",
+        example: "The train had left before I reached the station.",
+        questions: [
+            {q: "The patient ____ (die) before doctor came.", a: "had died", type: "Affirmative"},
+            {q: "I ____ (finished) work by 10 PM.", a: "had finished", type: "Affirmative"},
+            {q: "They ____ (left) when we arrived.", a: "had left", type: "Affirmative"},
+            {q: "She ____ (met) him before.", a: "had met", type: "Affirmative"},
+            {q: "We ____ (seen) the news already.", a: "had seen", type: "Affirmative"},
+            {q: "He ____ (not/told) me anything.", a: "had not told", type: "Negative"},
+            {q: "They ____ (not/arrived) yet.", a: "had not arrived", type: "Negative"},
+            {q: "I ____ (not/heard) the music.", a: "had not heard", type: "Negative"},
+            {q: "Had you ____ (seen) him before?", a: "seen", type: "Interrogative"},
+            {q: "Had she ____ (done) the dishes?", a: "done", type: "Interrogative"},
+            {q: "The rain ____ (stopped) by noon.", a: "had stopped", type: "Affirmative"},
+            {q: "I ____ (lost) my way.", a: "had lost", type: "Affirmative"},
+            {q: "They ____ (bought) the tickets.", a: "had bought", type: "Affirmative"},
+            {q: "He ____ (sold) his old house.", a: "had sold", type: "Affirmative"},
+            {q: "We ____ (eaten) dinner already.", a: "had eaten", type: "Affirmative"},
+            {q: "She ____ (not/informed) us.", a: "had not informed", type: "Negative"},
+            {q: "I ____ (not/taken) the key.", a: "had not taken", type: "Negative"},
+            {q: "They ____ (not/locked) the door.", a: "had not locked", type: "Negative"},
+            {q: "We ____ (not/expected) this.", a: "had not expected", type: "Negative"},
+            {q: "He ____ (not/reached) home.", a: "had not reached", type: "Negative"},
+            {q: "____ you ____ (called) her?", a: "Had called", type: "Interrogative"},
+            {q: "____ he ____ (cleaned) the room?", a: "Had cleaned", type: "Interrogative"},
+            {q: "____ they ____ (heard) the news?", a: "Had heard", type: "Interrogative"},
+            {q: "____ the movie ____ (started)?", a: "Had started", type: "Interrogative"},
+            {q: "____ I ____ (made) a mistake?", a: "Had I made", type: "Interrogative"},
+            {q: "The sun ____ (set) by 6 PM.", a: "had set", type: "Affirmative"},
+            {q: "Had she ____ (forgotten) me?", a: "forgotten", type: "Interrogative"},
+            {q: "They ____ (never/been) there.", a: "had never been", type: "Affirmative"},
+            {q: "Had you ____ (visited) Paris?", a: "visited", type: "Interrogative"},
+            {q: "I ____ (found) my watch.", a: "had found", type: "Affirmative"}
+        ]
+    },
+
+    // 8. PAST PERFECT CONTINUOUS
+    past_perf_cont: {
+        title: "Past Perfect Continuous Tense",
+        def: "Ongoing past action that continued up to another past point.",
+        rule: "Had + been + V-ing. (Since/For for time).",
+        formulas: [
+            "Affirmative: S + had + been + V-ing + O + since/for + T",
+            "Negative: S + had + not + been + V-ing + O + since/for + T",
+            "Interrogative: Had + S + been + V-ing + O + since/for + T?"
+        ],
+        expl: "Example: 'She had been waiting for two hours when he finally came.'",
+        example: "The ground was wet because it had been raining.",
+        questions: [
+            {q: "I ____ (work) there for 5 years.", a: "had been working", type: "Affirmative"},
+            {q: "He ____ (waiting) since 2 PM.", a: "had been waiting", type: "Affirmative"},
+            {q: "They ____ (playing) for an hour.", a: "had been playing", type: "Affirmative"},
+            {q: "She ____ (studying) all night.", a: "had been studying", type: "Affirmative"},
+            {q: "We ____ (living) there since 1990.", a: "had been living", type: "Affirmative"},
+            {q: "He ____ (not/doing) anything.", a: "had not been doing", type: "Negative"},
+            {q: "I ____ (not/feeling) well.", a: "had not been feeling", type: "Negative"},
+            {q: "They ____ (not/talking) for long.", a: "had not been talking", type: "Negative"},
+            {q: "Had you ____ (crying)?", a: "been crying", type: "Interrogative"},
+            {q: "Had he ____ (driving) for long?", a: "been driving", type: "Interrogative"},
+            {q: "It ____ (snowing) for two days.", a: "had been snowing", type: "Affirmative"},
+            {q: "The fire ____ (burning) for hours.", a: "had been burning", type: "Affirmative"},
+            {q: "He ____ (running) since morning.", a: "had been running", type: "Affirmative"},
+            {q: "They ____ (quarrelling) all day.", a: "had been quarrelling", type: "Affirmative"},
+            {q: "We ____ (traveling) for long.", a: "had been traveling", type: "Affirmative"},
+            {q: "She ____ (not/sleeping) well.", a: "had not been sleeping", type: "Negative"},
+            {q: "I ____ (not/using) the phone.", a: "had not been using", type: "Negative"},
+            {q: "They ____ (not/practicing).", a: "had not been practicing", type: "Negative"},
+            {q: "He ____ (not/expecting) it.", a: "had not been expecting", type: "Negative"},
+            {q: "It ____ (not/raining) then.", a: "had not been raining", type: "Negative"},
+            {q: "____ you ____ (watching) TV?", a: "Had been watching", type: "Interrogative"},
+            {q: "____ she ____ (learning) music?", a: "Had been learning", type: "Interrogative"},
+            {q: "____ they ____ (discussing) it?", a: "Had been discussing", type: "Interrogative"},
+            {q: "____ I ____ (shouting)?", a: "Had I been shouting", type: "Interrogative"},
+            {q: "____ he ____ (smoking)?", a: "Had he been smoking", type: "Interrogative"},
+            {q: "They ____ (looking) for a job.", a: "had been looking", type: "Affirmative"},
+            {q: "Had she ____ (waiting) since 4?", a: "been waiting", type: "Interrogative"},
+            {q: "I ____ (exercising) for an hour.", a: "had been exercising", type: "Affirmative"},
+            {q: "Had you ____ (reading) a book?", a: "been reading", type: "Interrogative"},
+            {q: "We ____ (planning) to go.", a: "had been planning", type: "Affirmative"}
+        ]
+    },
+
+    // 9. FUTURE INDEFINITE
+    fut_ind: {
+        title: "Future Indefinite Tense",
+        def: "Simple actions that will happen in the future.",
+        rule: "Will + V1 (for all subjects). Shall is used with I/We (formal).",
+        formulas: [
+            "Affirmative: S + will + V1 + O",
+            "Negative: S + will + not + V1 + O",
+            "Interrogative: Will + S + V1 + O?"
+        ],
+        expl: "Markers: tomorrow, next week, soon. Used for predictions and decisions.",
+        example: "I will call you tomorrow.",
+        questions: [
+            {q: "I ____ (help) you.", a: "will help", type: "Affirmative"},
+            {q: "She ____ (pass) the exam.", a: "will pass", type: "Affirmative"},
+            {q: "They ____ (come) soon.", a: "will come", type: "Affirmative"},
+            {q: "It ____ (rain) tonight.", a: "will rain", type: "Affirmative"},
+            {q: "We ____ (win) the match.", a: "will win", type: "Affirmative"},
+            {q: "I ____ (not/leave) you.", a: "will not leave", type: "Negative"},
+            {q: "He ____ (not/tell) a lie.", a: "will not tell", type: "Negative"},
+            {q: "They ____ (not/agree).", a: "will not agree", type: "Negative"},
+            {q: "Will you ____ (marry) me?", a: "marry", type: "Interrogative"},
+            {q: "Will she ____ (dance)?", a: "dance", type: "Interrogative"},
+            {q: "The sun ____ (shine) tomorrow.", a: "will shine", type: "Affirmative"},
+            {q: "He ____ (become) a doctor.", a: "will become", type: "Affirmative"},
+            {q: "They ____ (build) a new school.", a: "will build", type: "Affirmative"},
+            {q: "I ____ (buy) a gift for her.", a: "will buy", type: "Affirmative"},
+            {q: "We ____ (visit) the zoo.", a: "will visit", type: "Affirmative"},
+            {q: "She ____ (not/sing) today.", a: "will not sing", type: "Negative"},
+            {q: "I ____ (not/waste) my time.", a: "will not waste", type: "Negative"},
+            {q: "They ____ (not/forgive) him.", a: "will not forgive", type: "Negative"},
+            {q: "We ____ (not/miss) the bus.", a: "will not miss", type: "Negative"},
+            {q: "You ____ (not/regret) this.", a: "will not regret", type: "Negative"},
+            {q: "____ you ____ (lend) me money?", a: "Will lend", type: "Interrogative"},
+            {q: "____ he ____ (reach) on time?", a: "Will reach", type: "Interrogative"},
+            {q: "____ they ____ (invite) us?", a: "Will invite", type: "Interrogative"},
+            {q: "____ it ____ (snow) this year?", a: "Will snow", type: "Interrogative"},
+            {q: "____ I ____ (succeed)?", a: "Will I succeed", type: "Interrogative"},
+            {q: "I ____ (always/remember) you.", a: "will always remember", type: "Affirmative"},
+            {q: "Will she ____ (wait) for me?", a: "wait", type: "Interrogative"},
+            {q: "They ____ (meet) us later.", a: "will meet", type: "Affirmative"},
+            {q: "Will you ____ (call) me?", a: "call", type: "Interrogative"},
+            {q: "We ____ (go) together.", a: "will go", type: "Affirmative"}
+        ]
+    },
+
+    // 10. FUTURE CONTINUOUS
+    fut_cont: {
+        title: "Future Continuous Tense",
+        def: "Actions that will be ongoing at a certain point in the future.",
+        rule: "Will + be + V-ing.",
+        formulas: [
+            "Affirmative: S + will + be + V-ing + O",
+            "Negative: S + will + not + be + V-ing + O",
+            "Interrogative: Will + S + be + V-ing + O?"
+        ],
+        expl: "Example: 'I will be traveling to Paris this time tomorrow.'",
+        example: "The stars will be shining at night.",
+        questions: [
+            {q: "I ____ (sleep) at 11 PM.", a: "will be sleeping", type: "Affirmative"},
+            {q: "She ____ (working) all day.", a: "will be working", type: "Affirmative"},
+            {q: "They ____ (playing) cricket.", a: "will be playing", type: "Affirmative"},
+            {q: "We ____ (waiting) for you.", a: "will be waiting", type: "Affirmative"},
+            {q: "It ____ (raining) tomorrow.", a: "will be raining", type: "Affirmative"},
+            {q: "He ____ (not/studying) then.", a: "will not be studying", type: "Negative"},
+            {q: "I ____ (not/doing) anything.", a: "will not be doing", type: "Negative"},
+            {q: "They ____ (not/watching) TV.", a: "will not be watching", type: "Negative"},
+            {q: "Will you ____ (coming) tomorrow?", a: "be coming", type: "Interrogative"},
+            {q: "Will she ____ (dancing)?", a: "be dancing", type: "Interrogative"},
+            {q: "The sun ____ (shining) at noon.", a: "will be shining", type: "Affirmative"},
+            {q: "Birds ____ (chirping) in morning.", a: "will be chirping", type: "Affirmative"},
+            {q: "He ____ (driving) to London.", a: "will be driving", type: "Affirmative"},
+            {q: "We ____ (celebrating) tonight.", a: "will be celebrating", type: "Affirmative"},
+            {q: "They ____ (swimming) in lake.", a: "will be swimming", type: "Affirmative"},
+            {q: "I ____ (not/using) the car.", a: "will not be using", type: "Negative"},
+            {q: "She ____ (not/cooking) dinner.", a: "will not be cooking", type: "Negative"},
+            {q: "They ____ (not/singing) songs.", a: "will not be singing", type: "Negative"},
+            {q: "We ____ (not/staying) there.", a: "will not be staying", type: "Negative"},
+            {q: "You ____ (not/shouting).", a: "will not be shouting", type: "Negative"},
+            {q: "____ you ____ (helping) us?", a: "Will be helping", type: "Interrogative"},
+            {q: "____ he ____ (writing) notes?", a: "Will be writing", type: "Interrogative"},
+            {q: "____ they ____ (laughing)?", a: "Will be laughing", type: "Interrogative"},
+            {q: "____ it ____ (snowing)?", a: "Will be snowing", type: "Interrogative"},
+            {q: "____ I ____ (dreaming)?", a: "Will I be dreaming", type: "Interrogative"},
+            {q: "He ____ (flying) to New York.", a: "will be flying", type: "Affirmative"},
+            {q: "Will she ____ (leaving)?", a: "be leaving", type: "Interrogative"},
+            {q: "They ____ (traveling) by bus.", a: "will be traveling", type: "Affirmative"},
+            {q: "Will you ____ (sitting) here?", a: "be sitting", type: "Interrogative"},
+            {q: "I ____ (reading) a novel.", a: "will be reading", type: "Affirmative"}
+        ]
+    },
+
+    // 11. FUTURE PERFECT
+    fut_perf: {
+        title: "Future Perfect Tense",
+        def: "Action that will be completed by a certain future time.",
+        rule: "Will + have + V3.",
+        formulas: [
+            "Affirmative: S + will + have + V3 + O",
+            "Negative: S + will + not + have + V3 + O",
+            "Interrogative: Will + S + have + V3 + O?"
+        ],
+        expl: "Commonly used with 'by' (by next month, by 2030).",
+        example: "I will have finished my course by June.",
+        questions: [
+            {q: "I ____ (finish) by 5 PM.", a: "will have finished", type: "Affirmative"},
+            {q: "She ____ (done) it by Monday.", a: "will have done", type: "Affirmative"},
+            {q: "They ____ (left) by tomorrow.", a: "will have left", type: "Affirmative"},
+            {q: "We ____ (saved) enough money.", a: "will have saved", type: "Affirmative"},
+            {q: "It ____ (stopped) by then.", a: "will have stopped", type: "Affirmative"},
+            {q: "He ____ (not/reached) yet.", a: "will not have reached", type: "Negative"},
+            {q: "I ____ (not/forgotten) you.", a: "will not have forgotten", type: "Negative"},
+            {q: "They ____ (not/arrived) yet.", a: "will not have arrived", type: "Negative"},
+            {q: "Will you ____ (taken) the exam?", a: "have taken", type: "Interrogative"},
+            {q: "Will she ____ (gone)?", a: "have gone", type: "Interrogative"},
+            {q: "I ____ (graduated) by 2025.", a: "will have graduated", type: "Affirmative"},
+            {q: "He ____ (painted) the house.", a: "will have painted", type: "Affirmative"},
+            {q: "They ____ (sold) the car.", a: "will have sold", type: "Affirmative"},
+            {q: "We ____ (visited) Paris.", a: "will have visited", type: "Affirmative"},
+            {q: "The train ____ (left).", a: "will have left", type: "Affirmative"},
+            {q: "She ____ (not/cleaned) the room.", a: "will not have cleaned", type: "Negative"},
+            {q: "I ____ (not/informed) him.", a: "will not have informed", type: "Negative"},
+            {q: "They ____ (not/won) the game.", a: "will not have won", type: "Negative"},
+            {q: "We ____ (not/bought) the land.", a: "will not have bought", type: "Negative"},
+            {q: "You ____ (not/lost) weight.", a: "will not have lost", type: "Negative"},
+            {q: "____ you ____ (called) her?", a: "Will have called", type: "Interrogative"},
+            {q: "____ he ____ (cooked) food?", a: "Will have cooked", type: "Interrogative"},
+            {q: "____ they ____ (heard) it?", a: "Will have heard", type: "Interrogative"},
+            {q: "____ it ____ (melted)?", a: "Will have melted", type: "Interrogative"},
+            {q: "____ I ____ (learned) it?", a: "Will I have learned", type: "Interrogative"},
+            {q: "He ____ (retired) by next year.", a: "will have retired", type: "Affirmative"},
+            {q: "Will she ____ (seen) it?", a: "have seen", type: "Interrogative"},
+            {q: "They ____ (paid) the bill.", a: "will have paid", type: "Affirmative"},
+            {q: "Will you ____ (met) him?", a: "have met", type: "Interrogative"},
+            {q: "I ____ (written) the book.", a: "will have written", type: "Affirmative"}
+        ]
+    },
+
+    // 12. FUTURE PERFECT CONTINUOUS
+    fut_perf_cont: {
+        title: "Future Perfect Continuous Tense",
+        def: "Ongoing future action that will continue up to a future point.",
+        rule: "Will + have + been + V-ing. (Since/For for time).",
+        formulas: [
+            "Affirmative: S + will + have + been + V-ing + O + since/for + T",
+            "Negative: S + will + not + have + been + V-ing + O + since/for + T",
+            "Interrogative: Will + S + have + been + V-ing + O + since/for + T?"
+        ],
+        expl: "Example: 'By 2030, I will have been working here for 20 years.'",
+        example: "She will have been sleeping for 8 hours by 7 AM.",
+        questions: [
+            {q: "I ____ (work) here for 10 years.", a: "will have been working", type: "Affirmative"},
+            {q: "She ____ (teaching) since 2015.", a: "will have been teaching", type: "Affirmative"},
+            {q: "They ____ (playing) for an hour.", a: "will have been playing", type: "Affirmative"},
+            {q: "We ____ (living) here since Jan.", a: "will have been living", type: "Affirmative"},
+            {q: "He ____ (waiting) for long.", a: "will have been waiting", type: "Affirmative"},
+            {q: "I ____ (not/sleeping) much.", a: "will not have been sleeping", type: "Negative"},
+            {q: "They ____ (not/talking).", a: "will not have been talking", type: "Negative"},
+            {q: "He ____ (not/using) it.", a: "will not have been using", type: "Negative"},
+            {q: "Will you ____ (studying)?", a: "have been studying", type: "Interrogative"},
+            {q: "Will she ____ (dancing)?", a: "have been dancing", type: "Interrogative"},
+            {q: "It ____ (snowing) for days.", a: "will have been snowing", type: "Affirmative"},
+            {q: "He ____ (driving) for hours.", a: "will have been driving", type: "Affirmative"},
+            {q: "They ____ (learning) since dawn.", a: "will have been learning", type: "Affirmative"},
+            {q: "We ____ (traveling) for long.", a: "will have been traveling", type: "Affirmative"},
+            {q: "I ____ (painting) the room.", a: "will have been painting", type: "Affirmative"},
+            {q: "She ____ (not/practicing).", a: "will not have been practicing", type: "Negative"},
+            {q: "They ____ (not/waiting).", a: "will not have been waiting", type: "Negative"},
+            {q: "He ____ (not/working).", a: "will not have been working", type: "Negative"},
+            {q: "We ____ (not/expecting).", a: "will not have been expecting", type: "Negative"},
+            {q: "It ____ (not/raining).", a: "will not have been raining", type: "Negative"},
+            {q: "____ you ____ (reading)?", a: "Will have been reading", type: "Interrogative"},
+            {q: "____ he ____ (writing)?", a: "Will have been writing", type: "Interrogative"},
+            {q: "____ they ____ (laughing)?", a: "Will have been laughing", type: "Interrogative"},
+            {q: "____ she ____ (singing)?", a: "Will have been singing", type: "Interrogative"},
+            {q: "____ I ____ (joking)?", a: "Will I have been joking", type: "Interrogative"},
+            {q: "He ____ (running) since morning.", a: "will have been running", type: "Affirmative"},
+            {q: "Will she ____ (learning)?", a: "have been learning", type: "Interrogative"},
+            {q: "They ____ (fighting) for long.", a: "will have been fighting", type: "Affirmative"},
+            {q: "Will you ____ (sitting) here?", a: "have been sitting", type: "Interrogative"},
+            {q: "I ____ (waiting) since 5.", a: "will have been waiting", type: "Affirmative"}
+        ]
+    }
+};
+
+/* ================= APP LOGIC ================= */
+function toggleSub(id) {
+    const el = document.getElementById(id);
+    const allSubs = document.querySelectorAll('.sub-tenses');
+    allSubs.forEach(sub => { if(sub.id !== id) sub.style.display = 'none'; });
+    el.style.display = el.style.display === "block" ? "none" : "block";
 }
 
-function checkAns(inputId, correct, reason){
-  let input=document.getElementById(inputId).value.trim().toLowerCase();
-  let res=document.getElementById("r"+inputId);
-  if(input===correct.toLowerCase()){
-    res.innerHTML="✔ Correct Answer";
-    res.style.color="lime";
-  }else{
-    res.innerHTML="❌ Wrong | Correct: <b>"+correct+"</b><br>Why: "+reason;
-    res.style.color="red";
-  }
+function showTense(key) {
+    const data = tenseData[key];
+    document.getElementById('main-nav').style.display = 'none';
+    const panel = document.getElementById('content-panel');
+    panel.style.display = 'block';
+    window.scrollTo(0, 0);
+
+    let html = `
+        <h2 style="color:var(--primary); font-size: 2rem; margin-top:0;">${data.title}</h2>
+        <p style="font-size: 1.1rem; border-left: 4px solid var(--accent); padding-left:15px;">
+            <strong>Concept:</strong> ${data.def}
+        </p>
+        
+        <div class="formula-box">
+            <strong style="color:var(--secondary)">Structures:</strong><br><br>
+            ${data.formulas.map(f => `• ${f}`).join('<br>')}
+        </div>
+
+        <div style="background:#fff9f0; padding:15px; border-radius:10px; margin: 20px 0;">
+            <strong>Pro Tip:</strong> ${data.expl}<br>
+            <strong>Standard Example:</strong> <em>${data.example}</em>
+        </div>
+
+        <div class="practice-area">
+            <h3 style="border-bottom: 2px solid #eee; padding-bottom: 10px;">Interactive Practice (30 Questions)</h3>
+            <p style="color:#666; margin-bottom:20px;">Complete the sentences with correct verb forms. Click "Check" to verify.</p>
+            <div id="questions-list"></div>
+        </div>
+    `;
+
+    document.getElementById('tense-data').innerHTML = html;
+
+    const qList = document.getElementById('questions-list');
+    data.questions.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'question-card';
+        div.innerHTML = `
+            <div><span class="badge ${getBadgeClass(item.type)}">${item.type}</span> <strong>${index+1}.</strong> ${item.q}</div>
+            <div class="input-group">
+                <input type="text" id="ans-${index}" placeholder="Type your answer...">
+                <button class="check-btn" onclick="checkAnswer(${index}, '${item.a.replace(/'/g, "\\'")}')">Check</button>
+            </div>
+            <div id="feedback-${index}" class="feedback"></div>
+        `;
+        qList.appendChild(div);
+    });
+}
+
+function getBadgeClass(type) {
+    if(type === "Affirmative") return "b-aff";
+    if(type === "Negative") return "b-neg";
+    return "b-int";
+}
+
+function checkAnswer(idx, correct) {
+    const userAns = document.getElementById(`ans-${idx}`).value.trim().toLowerCase();
+    const fb = document.getElementById(`feedback-${idx}`);
+    fb.style.display = "block";
+
+    if(userAns === correct.toLowerCase()) {
+        fb.innerHTML = "✨ Excellent! That's the correct form.";
+        fb.className = "feedback correct";
+    } else {
+        fb.innerHTML = `⚠️ Oops! The correct answer is: <strong>${correct}</strong>`;
+        fb.className = "feedback wrong";
+    }
+}
+
+function goBack() {
+    document.getElementById('main-nav').style.display = 'block';
+    document.getElementById('content-panel').style.display = 'none';
 }
 </script>
-<!-- ===================== PAST TENSE ===================== -->
-<section class="section">
-<h2 class="toggle" onclick="toggleSection('pastBlock')">▶ Past Tense</h2>
 
-<div id="pastBlock" class="content">
-
-<!-- ========= PAST INDEFINITE ========= -->
-<h3 class="toggle subToggle" onclick="toggleSection('pind')">▶ Past Indefinite Tense</h3>
-<div id="pind" class="content">
-
-<div class="notes">
-<b>Definition:</b><br>
-Past Indefinite Tense is used to describe an action that was completed in the past at a definite time.
-<br><br>
-
-<b>Formula:</b><br>
-Affirmative: Subject + V2<br>
-Negative: Subject + did not + V1<br>
-Interrogative: Did + Subject + V1 ?
-<br><br>
-
-<b>Examples:</b><br>
-• She bought a car yesterday.<br>
-• We visited Delhi last year.
-</div>
-
-<div class="question">
-1. He ___ the match yesterday. (win)  
-<input id="pind1">
-<button onclick="checkAns('pind1','won','Past tense of win is won')">Check</button>
-<div id="rpind1" class="result"></div>
-</div>
-
-<div class="question">
-2. They ___ not go to school.  
-<input id="pind2">
-<button onclick="checkAns('pind2','did','Negative sentence needs did')">Check</button>
-<div id="rpind2" class="result"></div>
-</div>
-
-<div class="question">
-3. ___ you see him last night?  
-<input id="pind3">
-<button onclick="checkAns('pind3','Did','Question in past uses Did')">Check</button>
-<div id="rpind3" class="result"></div>
-</div>
-
-<p><b>👉 Add remaining questions up to 30 (basic → advance)</b></p>
-</div>
-
-<!-- ========= PAST CONTINUOUS ========= -->
-<h3 class="toggle subToggle" onclick="toggleSection('pcon')">▶ Past Continuous Tense</h3>
-<div id="pcon" class="content">
-
-<div class="notes">
-<b>Definition:</b><br>
-Past Continuous Tense is used to show an action that was going on at a specific time in the past.
-<br><br>
-
-<b>Formula:</b><br>
-Affirmative: Subject + was/were + V-ing<br>
-Negative: Subject + was/were + not + V-ing<br>
-Interrogative: Was/Were + Subject + V-ing ?
-<br><br>
-
-<b>Examples:</b><br>
-• I was studying when he called.<br>
-• They were playing cricket.
-</div>
-
-<div class="question">
-1. She ___ watching TV at 8 PM.  
-<input id="pcon1">
-<button onclick="checkAns('pcon1','was','She is singular so was is used')">Check</button>
-<div id="rpcon1" class="result"></div>
-</div>
-
-<div class="question">
-2. We ___ not sleeping then.  
-<input id="pcon2">
-<button onclick="checkAns('pcon2','were','We uses were')">Check</button>
-<div id="rpcon2" class="result"></div>
-</div>
-
-<p><b>👉 Add total 30 questions here</b></p>
-</div>
-
-<!-- ========= PAST PERFECT ========= -->
-<h3 class="toggle subToggle" onclick="toggleSection('pper')">▶ Past Perfect Tense</h3>
-<div id="pper" class="content">
-
-<div class="notes">
-<b>Definition:</b><br>
-Past Perfect Tense is used to show an action that was completed before another action in the past.
-<br><br>
-
-<b>Formula:</b><br>
-Affirmative: Subject + had + V3<br>
-Negative: Subject + had not + V3<br>
-Interrogative: Had + Subject + V3 ?
-<br><br>
-
-<b>Examples:</b><br>
-• The train had left before we reached.<br>
-• She had finished her work.
-</div>
-
-<div class="question">
-1. He ___ completed the work before evening.  
-<input id="pper1">
-<button onclick="checkAns('pper1','had','Past perfect always uses had')">Check</button>
-<div id="rpper1" class="result"></div>
-</div>
-
-<p><b>👉 Add remaining 30 questions</b></p>
-</div>
-
-<!-- ========= PAST PERFECT CONTINUOUS ========= -->
-<h3 class="toggle subToggle" onclick="toggleSection('ppcon')">▶ Past Perfect Continuous Tense</h3>
-<div id="ppcon" class="content">
-
-<div class="notes">
-<b>Definition:</b><br>
-Used to show an action that had been continuing for some time before another past action.
-<br><br>
-
-<b>Formula:</b><br>
-Affirmative: Subject + had been + V-ing + since/for<br>
-Negative: Subject + had not been + V-ing<br>
-Interrogative: Had + Subject + been + V-ing ?
-<br><br>
-
-<b>Examples:</b><br>
-• He had been working for two hours.<br>
-• She had been waiting since morning.
-</div>
-
-<div class="question">
-1. They ___ been studying for 3 hours.  
-<input id="ppcon1">
-<button onclick="checkAns('ppcon1','had','Past perfect continuous uses had')">Check</button>
-<div id="rppcon1" class="result"></div>
-</div>
-
-<p><b>👉 Add remaining 30 questions</b></p>
-</div>
-
-<button class="downloadBtn" onclick="window.print()">Download Past Tense Notes</button>
-
-</div>
-</section>
-<!-- ===================== FUTURE TENSE ===================== -->
-<section class="section">
-<h2 class="toggle" onclick="toggleSection('futureBlock')">▶ Future Tense</h2>
-
-<div id="futureBlock" class="content">
-
-<!-- ========= FUTURE INDEFINITE ========= -->
-<h3 class="toggle subToggle" onclick="toggleSection('find')">▶ Future Indefinite Tense</h3>
-<div id="find" class="content">
-
-<div class="notes">
-<b>Definition:</b><br>
-Future Indefinite Tense is used to express an action that will happen in the future.
-<br><br>
-
-<b>Formula:</b><br>
-Affirmative: Subject + will/shall + V1<br>
-Negative: Subject + will not + V1<br>
-Interrogative: Will + Subject + V1 ?
-<br><br>
-
-<b>Examples:</b><br>
-• I will help you.<br>
-• She will pass the exam.
-</div>
-
-<div class="question">
-1. I ___ call you tomorrow.  
-<input id="find1">
-<button onclick="checkAns('find1','will','Future actions use will')">Check</button>
-<div id="rfind1" class="result"></div>
-</div>
-
-<div class="question">
-2. They ___ not come today.  
-<input id="find2">
-<button onclick="checkAns('find2','will','Negative future also uses will')">Check</button>
-<div id="rfind2" class="result"></div>
-</div>
-
-<div class="question">
-3. ___ you help me?  
-<input id="find3">
-<button onclick="checkAns('find3','Will','Questions start with Will')">Check</button>
-<div id="rfind3" class="result"></div>
-</div>
-
-<p><b>👉 Add remaining questions up to 30 (basic → advance)</b></p>
-</div>
-
-<!-- ========= FUTURE CONTINUOUS ========= -->
-<h3 class="toggle subToggle" onclick="toggleSection('fcon')">▶ Future Continuous Tense</h3>
-<div id="fcon" class="content">
-
-<div class="notes">
-<b>Definition:</b><br>
-Future Continuous Tense shows an action that will be going on at a particular time in the future.
-<br><br>
-
-<b>Formula:</b><br>
-Affirmative: Subject + will be + V-ing<br>
-Negative: Subject + will not be + V-ing<br>
-Interrogative: Will + Subject + be + V-ing ?
-<br><br>
-
-<b>Examples:</b><br>
-• I will be studying at night.<br>
-• They will be playing cricket.
-</div>
-
-<div class="question">
-1. She ___ be sleeping at 10 PM.  
-<input id="fcon1">
-<button onclick="checkAns('fcon1','will','Future continuous uses will be')">Check</button>
-<div id="rfcon1" class="result"></div>
-</div>
-
-<div class="question">
-2. We ___ be waiting for you.  
-<input id="fcon2">
-<button onclick="checkAns('fcon2','will','Helping verb is will')">Check</button>
-<div id="rfcon2" class="result"></div>
-</div>
-
-<p><b>👉 Add total 30 questions here</b></p>
-</div>
-
-<!-- ========= FUTURE PERFECT ========= -->
-<h3 class="toggle subToggle" onclick="toggleSection('fper')">▶ Future Perfect Tense</h3>
-<div id="fper" class="content">
-
-<div class="notes">
-<b>Definition:</b><br>
-Future Perfect Tense is used to show an action that will be completed before a given time in the future.
-<br><br>
-
-<b>Formula:</b><br>
-Affirmative: Subject + will have + V3<br>
-Negative: Subject + will not have + V3<br>
-Interrogative: Will + Subject + have + V3 ?
-<br><br>
-
-<b>Examples:</b><br>
-• She will have finished her work.<br>
-• We will have reached home by evening.
-</div>
-
-<div class="question">
-1. I ___ have completed the task by Monday.  
-<input id="fper1">
-<button onclick="checkAns('fper1','will','Future perfect uses will have')">Check</button>
-<div id="rfper1" class="result"></div>
-</div>
-
-<p><b>👉 Add remaining 30 questions</b></p>
-</div>
-
-<!-- ========= FUTURE PERFECT CONTINUOUS ========= -->
-<h3 class="toggle subToggle" onclick="toggleSection('fpcon')">▶ Future Perfect Continuous Tense</h3>
-<div id="fpcon" class="content">
-
-<div class="notes">
-<b>Definition:</b><br>
-Used to show an action that will have been continuing for a period of time in the future.
-<br><br>
-
-<b>Formula:</b><br>
-Affirmative: Subject + will have been + V-ing + since/for<br>
-Negative: Subject + will not have been + V-ing<br>
-Interrogative: Will + Subject + have been + V-ing ?
-<br><br>
-
-<b>Examples:</b><br>
-• By 2027, I will have been living here for 10 years.<br>
-• She will have been working since morning.
-</div>
-
-<div class="question">
-1. He ___ have been studying for 5 hours.  
-<input id="fpcon1">
-<button onclick="checkAns('fpcon1','will','Future perfect continuous starts with will')">Check</button>
-<div id="rfpcon1" class="result"></div>
-</div>
-
-<p><b>👉 Add remaining 30 questions</b></p>
-</div>
-
-<button class="downloadBtn" onclick="window.print()">Download Future Tense Notes</button>
-
-</div>
-</section>
+</body>
+</html>
