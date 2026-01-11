@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verb - Complete Grammar Chapter</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --light-text: #64748b;
+            --white: #ffffff;
+            --error: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Accordion Styles */
+        .accordion {
+            background-color: var(--white);
+            color: var(--text);
+            cursor: pointer;
+            padding: 1.2rem;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            border-bottom: 1px solid #e2e8f0;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .accordion:hover {
+            background-color: #f1f5f9;
+        }
+
+        .accordion.active {
+            background-color: var(--primary);
+            color: var(--white);
+            border-bottom: none;
+        }
+
+        .accordion:after {
+            content: '\002B'; /* Plus sign */
+            font-size: 1.5rem;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .accordion.active:after {
+            content: "\2212"; /* Minus sign */
+        }
+
+        .panel {
+            padding: 0 1.2rem;
+            background-color: var(--white);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-radius: 0 0 8px 8px;
+            margin-bottom: 1rem;
+        }
+
+        .panel.show {
+            padding: 1.2rem;
+            border: 1px solid #e2e8f0;
+            border-top: none;
+        }
+
+        /* Main Accordion Specifics */
+        .main-acc {
+            background-color: var(--primary-dark);
+            color: white;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .main-acc:hover {
+            background-color: var(--primary);
+        }
+
+        /* Content Styling */
+        h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .hinglish {
+            font-style: italic;
+            color: var(--light-text);
+            font-size: 0.95rem;
+            background: #f8fafc;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .example-box {
+            background-color: #f0f9ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .example-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .trick-box {
+            background-color: #fffbeb;
+            border: 2px dashed var(--accent);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--primary-dark);
+        }
+
+        /* Practice Section */
+        .quiz-section-title {
+            background: var(--light-text);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin: 20px 0 10px 0;
+            display: inline-block;
+        }
+
+        .question-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .q-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 1rem;
+            min-width: 200px;
+        }
+
+        button.check-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        button.check-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            font-size: 0.95rem;
+            animation: fadeIn 0.5s;
+        }
+
+        .feedback.correct {
+            background-color: #dcfce7;
+            color: #166534;
+            border: 1px solid #86efac;
+            display: block;
+        }
+
+        .feedback.wrong {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--text);
+            color: var(--light-text);
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.5rem; }
+            .accordion { font-size: 1rem; padding: 1rem; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 6px; }
+            .input-group { flex-direction: column; }
+            button.check-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>VERB</h1>
+        <p>Complete Grammar Chapter</p>
+        <div style="margin-top:10px; font-size: 0.8rem; background: rgba(255,255,255,0.2); display:inline-block; padding: 5px 15px; border-radius: 20px;">Learn • Revise • Practice</div>
+    </header>
+
+    <div class="container">
+
+        <button class="accordion main-acc">▶ START LEARNING VERB</button>
+        <div class="panel main-panel">
+            
+            <button class="accordion">1. What is Verb?</button>
+            <div class="panel">
+                <h3>Definition</h3>
+                <p>A verb is a word used to describe an action, state, or occurrence.</p>
+                <div class="hinglish">Simplest Definition: Verb wo shabd hai jo kisi kaam ka hona (Action), sthiti (State), ya adhikar (Possession) batata hai.</div>
+                
+                <div class="example-box">
+                    <span class="example-title">Examples:</span>
+                    <ul>
+                        <li>She <strong>plays</strong> cricket. (Action - Khelna)</li>
+                        <li>He <strong>is</strong> a doctor. (State - Hona)</li>
+                        <li>I <strong>have</strong> a car. (Possession - Pass hona)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="accordion">2. Identification Trick (Pahchan)</button>
+            <div class="panel">
+                <h3>The "Magic Questions" Trick</h3>
+                <p>To find the verb in any sentence, ask these questions:</p>
+                <div class="trick-box">
+                    <strong>Ask: "Kya kar raha hai?" (Action)</strong><br>
+                    <strong>Ask: "Kya hai?" (State)</strong>
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Sentence</th>
+                        <th>Question (Mann me socho)</th>
+                        <th>Answer (Verb)</th>
+                    </tr>
+                    <tr>
+                        <td>Rahul runs fast.</td>
+                        <td>Rahul kya kar raha hai?</td>
+                        <td>Runs (Daud raha hai)</td>
+                    </tr>
+                    <tr>
+                        <td>She is sad.</td>
+                        <td>Wo kaisi hai? (State)</td>
+                        <td>Is (Hai)</td>
+                    </tr>
+                    <tr>
+                        <td>They eat mangoes.</td>
+                        <td>Wo kya kar rahe hai?</td>
+                        <td>Eat (Kha rahe hai)</td>
+                    </tr>
+                    <tr>
+                        <td>I have a pen.</td>
+                        <td>Mere pass kya hai?</td>
+                        <td>Have (Pass hai)</td>
+                    </tr>
+                    <tr>
+                        <td>Birds fly.</td>
+                        <td>Birds kya karti hai?</td>
+                        <td>Fly (Udti hai)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <button class="accordion">3. Types of Verb (Classification)</button>
+            <div class="panel">
+                <p>Verbs are mainly divided into two categories:</p>
+
+                <h4>A. Main Verb (Mukhya Kriya)</h4>
+                <p>Shows the actual action.</p>
+                <div class="hinglish">Jo shabd asli kaam bataye. Example: Go, Sleep, Eat, Dance.</div>
+
+                <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ddd;">
+
+                <h4>B. Auxiliary / Helping Verb (Sahayak Kriya)</h4>
+                <p>Helps the main verb to form tenses or mood.</p>
+                <div class="hinglish">Ye main verb ki madad karta hai time batane me. Example: Is, am, are, was, were, has, have.</div>
+
+                <div class="example-box">
+                    She <strong>is</strong> (Helping) <strong>playing</strong> (Main).
+                </div>
+
+                <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ddd;">
+
+                <h4>C. Modal Verbs</h4>
+                <p>Show possibility, ability, or permission.</p>
+                <p><strong>List:</strong> Can, Could, May, Might, Should, Must.</p>
+                <div class="hinglish">Ex: I <strong>can</strong> swim. (Main tair sakta hu - Ability).</div>
+
+                <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ddd;">
+
+                <h4>D. Transitive vs Intransitive</h4>
+                <table>
+                    <tr>
+                        <th>Transitive (Sakarmak)</th>
+                        <th>Intransitive (Akarmak)</th>
+                    </tr>
+                    <tr>
+                        <td>Needs an Object to complete meaning.</td>
+                        <td>Does NOT need an object.</td>
+                    </tr>
+                    <tr>
+                        <td><em>He <strong>kicked</strong> the ball.</em><br>(Kicked WHAT? Ball. Object hai.)</td>
+                        <td><em>He <strong>slept</strong>.</em><br>(Slept WHAT? No answer. Complete meaning.)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <button class="accordion">4. Forms of Verb (V1–V5)</button>
+            <div class="panel">
+                <p>Every Main Verb has 5 forms used in different tenses.</p>
+                <table>
+                    <tr>
+                        <th>V1 (Base)</th>
+                        <th>V2 (Past)</th>
+                        <th>V3 (Perfect)</th>
+                        <th>V4 (Ing)</th>
+                        <th>V5 (s/es)</th>
+                    </tr>
+                    <tr>
+                        <td>Go</td>
+                        <td>Went</td>
+                        <td>Gone</td>
+                        <td>Going</td>
+                        <td>Goes</td>
+                    </tr>
+                    <tr>
+                        <td>Eat</td>
+                        <td>Ate</td>
+                        <td>Eaten</td>
+                        <td>Eating</td>
+                        <td>Eats</td>
+                    </tr>
+                    <tr>
+                        <td>Play</td>
+                        <td>Played</td>
+                        <td>Played</td>
+                        <td>Playing</td>
+                        <td>Plays</td>
+                    </tr>
+                    <tr>
+                        <td>Cut</td>
+                        <td>Cut</td>
+                        <td>Cut</td>
+                        <td>Cutting</td>
+                        <td>Cuts</td>
+                    </tr>
+                </table>
+                <div class="hinglish" style="margin-top:10px;">Note: V1 aur V5 Present Tense me use hote hai. V2 Past me. V3 Perfect tenses me.</div>
+            </div>
+
+            <button class="accordion">5. Verb & Tense Relation</button>
+            <div class="panel">
+                <p>Which verb form goes with which tense?</p>
+                
+                <h4>1. Present Tense</h4>
+                <ul>
+                    <li><strong>Simple:</strong> V1 or V5 (He <em>plays</em>, I <em>play</em>)</li>
+                    <li><strong>Continuous:</strong> Is/Am/Are + V4 (He is <em>playing</em>)</li>
+                    <li><strong>Perfect:</strong> Has/Have + V3 (He has <em>played</em>)</li>
+                </ul>
+                <br>
+                <h4>2. Past Tense</h4>
+                <ul>
+                    <li><strong>Simple:</strong> V2 (He <em>played</em>)</li>
+                    <li><strong>Continuous:</strong> Was/Were + V4 (He was <em>playing</em>)</li>
+                    <li><strong>Perfect:</strong> Had + V3 (He had <em>played</em>)</li>
+                </ul>
+                <br>
+                <h4>3. Future Tense</h4>
+                <ul>
+                    <li><strong>Simple:</strong> Will/Shall + V1 (He will <em>play</em>)</li>
+                    <li><strong>Continuous:</strong> Will be + V4 (He will be <em>playing</em>)</li>
+                </ul>
+            </div>
+
+            <button class="accordion">6. Common Mistakes</button>
+            <div class="panel">
+                <p>Don't make these beginner mistakes!</p>
+                <table>
+                    <tr>
+                        <th style="color:var(--error)">❌ Wrong</th>
+                        <th style="color:var(--secondary)">✔ Correct</th>
+                        <th>Why?</th>
+                    </tr>
+                    <tr>
+                        <td>He <strong>go</strong> to school.</td>
+                        <td>He <strong>goes</strong> to school.</td>
+                        <td>Singular subject (He) needs V5 (s/es).</td>
+                    </tr>
+                    <tr>
+                        <td>Did she <strong>went</strong> there?</td>
+                        <td>Did she <strong>go</strong> there?</td>
+                        <td>With 'Did', always use V1.</td>
+                    </tr>
+                    <tr>
+                        <td>I can <strong>to</strong> swim.</td>
+                        <td>I can swim.</td>
+                        <td>No 'to' after Modals (can, may, etc).</td>
+                    </tr>
+                    <tr>
+                        <td>She has <strong>eat</strong> food.</td>
+                        <td>She has <strong>eaten</strong> food.</td>
+                        <td>With Has/Have, use V3.</td>
+                    </tr>
+                    <tr>
+                        <td>He is <strong>play</strong>.</td>
+                        <td>He is <strong>playing</strong>.</td>
+                        <td>Is/Am/Are needs 'ing' form (V4).</td>
+                    </tr>
+                </table>
+            </div>
+
+            <button class="accordion">7. Practice (60 Questions)</button>
+            <div class="panel" id="quiz-panel">
+                <p style="text-align:center; margin-bottom: 20px;">Complete the sentences. <br> <span style="font-size:0.9rem; color: #666;">(Type carefully. Spelling matters!)</span></p>
+                
+                <div id="quiz-container">
+                    </div>
+            </div>
+
+        </div> </div> <footer>
+        <p>Created by SHRISHANT YADAV</p>
+        <p style="font-size: 0.8rem; margin-top:5px;">For Educational Purpose Only</p>
+    </footer>
+
+    <script>
+        /* --- ACCORDION LOGIC --- */
+        const accordions = document.getElementsByClassName("accordion");
+
+        for (let i = 0; i < accordions.length; i++) {
+            accordions[i].addEventListener("click", function() {
+                // Toggle active class
+                this.classList.toggle("active");
+
+                // Toggle panel visibility
+                const panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                    panel.classList.remove("show");
+                } else {
+                    // For smooth animation of nested content
+                    panel.classList.add("show");
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    
+                    // If this is a sub-accordion, we need to increase the parent's max-height
+                    const parentPanel = this.closest('.panel.show');
+                    if (parentPanel && !this.classList.contains('main-acc')) {
+                        parentPanel.style.maxHeight = (parentPanel.scrollHeight + panel.scrollHeight) + "px";
+                    }
+                }
+            });
+        }
+
+        /* --- QUIZ DATA (60 QUESTIONS) --- */
+        const quizData = [
+            // 1-20 Affirmative
+            { q: "She ___ (play) tennis every Sunday.", a: "plays", hint: "Simple Present + Singular Subject" },
+            { q: "I ___ (go) to the market yesterday.", a: "went", hint: "Past tense of go" },
+            { q: "They are ___ (watch) a movie.", a: "watching", hint: "Present Continuous (ing)" },
+            { q: "He has ___ (finish) his work.", a: "finished", hint: "Has + V3" },
+            { q: "We ___ (live) in India.", a: "live", hint: "Simple Present + Plural Subject" },
+            { q: "The sun ___ (rise) in the east.", a: "rises", hint: "Universal Truth (V5)" },
+            { q: "My mother ___ (cook) tasty food.", a: "cooks", hint: "Singular Subject (V5)" },
+            { q: "They ___ (buy) a new car last week.", a: "bought", hint: "Past of buy" },
+            { q: "I am ___ (read) a book.", a: "reading", hint: "Am + V4" },
+            { q: "She had ___ (sleep) before I came.", a: "slept", hint: "Had + V3" },
+            { q: "Rahul ___ (run) very fast.", a: "runs", hint: "Singular Subject" },
+            { q: "We will ___ (visit) the Taj Mahal.", a: "visit", hint: "Will + V1" },
+            { q: "Cats ___ (like) milk.", a: "like", hint: "Plural Subject (Cats)" },
+            { q: "He was ___ (cry) loudly.", a: "crying", hint: "Was + V4" },
+            { q: "I have ___ (see) this movie.", a: "seen", hint: "Have + V3" },
+            { q: "The bird ___ (fly) in the sky.", a: "flies", hint: "V5 of fly" },
+            { q: "They were ___ (dance) at the party.", a: "dancing", hint: "Were + V4" },
+            { q: "You should ___ (work) hard.", a: "work", hint: "Modal + V1" },
+            { q: "She ___ (teach) English.", a: "teaches", hint: "V5 of teach (es)" },
+            { q: "The train ___ (arrive) at 9 PM.", a: "arrives", hint: "Simple Present schedule" },
+
+            // 21-40 Negative (Convert/Fill Negative)
+            { q: "She ___ not like coffee. (do/does)", a: "does", hint: "She is singular" },
+            { q: "I ___ not go there yesterday. (do/did)", a: "did", hint: "Yesterday means Past" },
+            { q: "They ___ not playing well. (is/are)", a: "are", hint: "They is plural" },
+            { q: "He has ___ eaten yet. (not)", a: "not", hint: "Negative placement" },
+            { q: "We ___ not want to fight. (do/does)", a: "do", hint: "We is plural" },
+            { q: "Rahul is ___ a doctor. (not)", a: "not", hint: "Basic negative" },
+            { q: "She ___ not have a pen. (do/does)", a: "does", hint: "Singular subject helper" },
+            { q: "I ___ not sleeping now. (am/is)", a: "am", hint: "I goes with am" },
+            { q: "They will ___ come tomorrow. (not)", a: "not", hint: "Future negative" },
+            { q: "He ___ not study last night. (did/do)", a: "did", hint: "Past tense helper" },
+            { q: "You must ___ smoke here. (not)", a: "not", hint: "Modal negative" },
+            { q: "It ___ not rain today. (does/do)", a: "does", hint: "It is singular" },
+            { q: "We have ___ visited Delhi. (not)", a: "not", hint: "Perfect negative" },
+            { q: "She was ___ listening. (not)", a: "not", hint: "Past Continuous negative" },
+            { q: "I can ___ hear you. (not)", a: "not", hint: "Modal negative" },
+            { q: "They ___ not finish the work yet. (have/has)", a: "have", hint: "They + Have" },
+            { q: "Ram ___ not know the answer. (does/do)", a: "does", hint: "Ram is singular" },
+            { q: "You were ___ invited. (not)", a: "not", hint: "Passive negative" },
+            { q: "He ___ not buy the car. (did)", a: "did", hint: "Past helper" },
+            { q: "We are ___ going. (not)", a: "not", hint: "Continuous negative" },
+
+            // 41-60 Interrogative (Questions)
+            { q: "___ you play cricket? (Do/Does)", a: "Do", hint: "You takes Do" },
+            { q: "___ she live here? (Do/Does)", a: "Does", hint: "She takes Does" },
+            { q: "___ they come yesterday? (Do/Did)", a: "Did", hint: "Yesterday means Did" },
+            { q: "___ he a doctor? (Is/Are)", a: "Is", hint: "He takes Is" },
+            { q: "___ you listening to me? (Is/Are)", a: "Are", hint: "You takes Are" },
+            { q: "___ I late? (Am/Is)", a: "Am", hint: "I takes Am" },
+            { q: "___ she finished her work? (Has/Have)", a: "Has", hint: "She takes Has" },
+            { q: "___ we go now? (Can/Has)", a: "Can", hint: "Modal for permission" },
+            { q: "___ they playing football? (Were/Did)", a: "Were", hint: "Playing (ing) needs Were" },
+            { q: "___ you seen the Taj Mahal? (Have/Did)", a: "Have", hint: "Seen (V3) needs Have" },
+            { q: "___ it raining outside? (Is/Do)", a: "Is", hint: "Raining (ing) needs Is" },
+            { q: "___ you help me? (Will/Are)", a: "Will", hint: "Future request" },
+            { q: "___ he speak English? (Does/Is)", a: "Does", hint: "Simple Present Question" },
+            { q: "___ you busy? (Are/Do)", a: "Are", hint: "State (Hona)" },
+            { q: "___ Ravi buy a car? (Did/Was)", a: "Did", hint: "Buy (V1) needs Did for past" },
+            { q: "___ I look good? (Do/Am)", a: "Do", hint: "Simple Present Question" },
+            { q: "___ they have money? (Do/Are)", a: "Do", hint: "Main verb is have, helper is Do" },
+            { q: "___ she cooking? (Is/Does)", a: "Is", hint: "Cooking (ing) needs Is" },
+            { q: "___ you swim? (Can/Are)", a: "Can", hint: "Ability" },
+            { q: "___ we meet tomorrow? (Shall/Have)", a: "Shall", hint: "Future suggestion" }
+        ];
+
+        /* --- GENERATE QUIZ --- */
+        const quizContainer = document.getElementById('quiz-container');
+
+        quizData.forEach((item, index) => {
+            let sectionTitle = "";
+            if(index === 0) sectionTitle = '<div class="quiz-section-title" style="background:#10b981;">A. Affirmative Sentences</div>';
+            if(index === 20) sectionTitle = '<div class="quiz-section-title" style="background:#f59e0b;">B. Negative Sentences</div>';
+            if(index === 40) sectionTitle = '<div class="quiz-section-title" style="background:#2563eb;">C. Interrogative Sentences</div>';
+
+            const card = document.createElement('div');
+            card.innerHTML = `
+                ${sectionTitle}
+                <div class="question-card">
+                    <label class="q-label">Q${index + 1}: ${item.q}</label>
+                    <div class="input-group">
+                        <input type="text" id="ans-${index}" placeholder="Type answer here..." autocomplete="off">
+                        <button class="check-btn" onclick="checkAnswer(${index}, '${item.a}', '${item.hint}')">Check</button>
+                    </div>
+                    <div id="feed-${index}" class="feedback"></div>
+                </div>
+            `;
+            quizContainer.appendChild(card);
+        });
+
+        /* --- CHECK ANSWER FUNCTION --- */
+        function checkAnswer(id, correctAns, hint) {
+            const input = document.getElementById(`ans-${id}`);
+            const feedback = document.getElementById(`feed-${id}`);
+            const userVal = input.value.trim();
+
+            if (!userVal) {
+                feedback.className = "feedback";
+                feedback.style.display = "block";
+                feedback.style.backgroundColor = "#f3f4f6";
+                feedback.style.color = "#333";
+                feedback.style.border = "1px solid #ddd";
+                feedback.innerText = "Please type an answer first.";
+                return;
+            }
+
+            if (userVal.toLowerCase() === correctAns.toLowerCase()) {
+                // Correct
+                feedback.className = "feedback correct";
+                feedback.innerHTML = `<strong>✔ Correct!</strong> Well done.`;
+                input.style.borderColor = "#10b981";
+            } else {
+                // Wrong
+                feedback.className = "feedback wrong";
+                feedback.innerHTML = `<strong>❌ Wrong.</strong><br>Correct answer: <strong>${correctAns}</strong><br><small>Reason: ${hint}</small>`;
+                input.style.borderColor = "#ef4444";
+            }
+        }
+
+    </script>
+</body>
+</html>
