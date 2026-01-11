@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active & Passive Voice - Grammar Learning Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .section-title {
+            color: #4a5568;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .table tr:hover {
+            background-color: #f7fafc;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        .example-box {
+            background: #e6fffa;
+            border-left: 4px solid #38b2ac;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .mistake-box {
+            background: #fff5f5;
+            border-left: 4px solid #f56565;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .practice-question {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px solid #e2e8f0;
+        }
+
+        .question-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 16px;
+            margin: 10px 0;
+            transition: border-color 0.3s ease;
+        }
+
+        .question-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+        }
+
+        .check-btn:active {
+            transform: translateY(0);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .feedback.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feedback.correct {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+
+        .feedback.incorrect {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #fc8181;
+        }
+
+        .progress-bar {
+            background: #e2e8f0;
+            border-radius: 10px;
+            padding: 5px;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            height: 30px;
+            border-radius: 8px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(66, 153, 225, 0.4);
+        }
+
+        .hinglish {
+            background: #fffaf0;
+            border-left: 4px solid #ed8936;
+            padding: 10px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #744210;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .table {
+                font-size: 14px;
+            }
+            
+            .table th, .table td {
+                padding: 10px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+            
+            .download-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Active & Passive Voice</h1>
+            <p>Master the art of voice transformation with comprehensive examples and practice</p>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="card">
+            <h2 class="section-title">📚 Introduction</h2>
+            
+            <h3>What is Active Voice?</h3>
+            <p>In Active Voice, the subject performs the action. The sentence follows the pattern: <strong>Subject + Verb + Object</strong></p>
+            <div class="hinglish">Active voice mein subject kaam karta hai. Subject verb se pehle aata hai.</div>
+            <div class="example-box">
+                <strong>Example:</strong> Ram eats an apple. (Ram is doing the action of eating)
+            </div>
+
+            <h3>What is Passive Voice?</h3>
+            <p>In Passive Voice, the subject receives the action. The object becomes the subject, and we use a form of "be" + past participle.</p>
+            <div class="hinglish">Passive voice mein subject kaam receive karta hai. Object subject ban jata hai.</div>
+            <div class="example-box">
+                <strong>Example:</strong> An apple is eaten by Ram. (Apple is receiving the action)
+            </div>
+        </div>
+
+        <!-- Difference Table -->
+        <div class="card">
+            <h2 class="section-title">🔍 Key Differences</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Active Voice</th>
+                        <th>Passive Voice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Subject Position</strong></td>
+                        <td>At the beginning</td>
+                        <td>At the end (with 'by') or omitted</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Object Position</strong></td>
+                        <td>At the end</td>
+                        <td>At the beginning</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Verb Form</strong></td>
+                        <td>Simple verb form</td>
+                        <td>Be + Past Participle</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Focus</strong></td>
+                        <td>On the doer</td>
+                        <td>On the action/recipient</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Structure</strong></td>
+                        <td>Subject + Verb + Object</td>
+                        <td>Object + Be + PP + (by + Subject)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Rules & Formulas -->
+        <div class="card">
+            <h2 class="section-title">📏 Rules & Formulas for All Tenses</h2>
+
+            <!-- Present Tenses -->
+            <h3>🟢 Present Tenses</h3>
+            
+            <h4>Simple Present</h4>
+            <div class="formula-box">
+                Active: Subject + V1/V5 + Object<br>
+                Passive: Object + is/am/are + V3 + (by + Subject)
+            </div>
+            <div class="example-box">
+                <strong>Active:</strong> She writes a letter.<br>
+                <strong>Passive:</strong> A letter is written by her.
+            </div>
+
+            <h4>Present Continuous</h4>
+            <div class="formula-box">
+                Active: Subject + is/am/are + V1+ing + Object<br>
+                Passive: Object + is/am/are + being + V3 + (by + Subject)
+            </div>
+            <div class="example-box">
+                <strong>Active:</strong> They are playing cricket.<br>
+                <strong>Passive:</strong> Cricket is being played by them.
+            </div>
+
+            <h4>Present Perfect</h4>
+            <div class="formula-box">
+                Active: Subject + has/have + V3 + Object<br>
+                Passive: Object + has/have + been + V3 + (by + Subject)
+            </div>
+            <div class="example-box">
+                <strong>Active:</strong> I have completed the work.<br>
+                <strong>Passive:</strong> The work has been completed by me.
+            </div>
+
+            <h4>Present Perfect Continuous</h4>
+            <div class="mistake-box">
+                <strong>⚠️ No Passive Form:</strong> This tense cannot be converted to passive voice because it emphasizes duration of ongoing action.
+            </div>
+
+            <!-- Past Tenses -->
+            <h3>🔵 Past Tenses</h3>
+            
+            <h4>Simple Past</h4>
+            <div class="formula-box">
+                Active: Subject + V2 + Object<br>
+                Passive: Object + was/were + V3 + (by + Subject)
+            </div>
+            <div class="example-box">
+                <strong>Active:</strong> He cooked dinner.<br>
+                <strong>Passive:</strong> Dinner was cooked by him.
+            </div>
+
+            <h4>Past Continuous</h4>
+            <div class="formula-box">
+                Active: Subject + was/were + V1+ing + Object<br>
+                Passive: Object + was/were + being + V3 + (by + Subject)
+            </div>
+            <div class="example-box">
+                <strong>Active:</strong> She was reading a book.<br>
+                <strong>Passive:</strong> A book was being read by her.
+            </div>
+
+            <h4>Past Perfect</h4>
+            <div class="formula-box">
+                Active: Subject + had + V3 + Object<br>
+                Passive: Object + had + been + V3 + (by + Subject)
+            </div>
+            <div class="example-box">
+                <strong>Active:</strong> They had finished the project.<br>
+                <strong>Passive:</strong> The project had been finished by them.
+            </div>
+
+            <h4>Past Perfect Continuous</h4>
+            <div class="mistake-box">
+                <strong>⚠️ No Passive Form:</strong> This tense emphasizes duration and cannot be passivized.
+            </div>
+
+            <!-- Future Tenses -->
+            <h3>🟡 Future Tenses</h3>
+            
+            <h4>Simple Future</h4>
+            <div class="formula-box">
+                Active: Subject + will/shall + V1 + Object<br>
+                Passive: Object + will/shall + be + V3 + (by + Subject)
+            </div>
+            <div class="example-box">
+                <strong>Active:</strong> I will send the email.<br>
+                <strong>Passive:</strong> The email will be sent by me.
+            </div>
+
+            <h4>Future Continuous</h4>
+            <div class="mistake-box">
+                <strong>⚠️ No Passive Form:</strong> Future continuous is rarely used in passive voice.
+            </div>
+
+            <h4>Future Perfect</h4>
+            <div class="formula-box">
+                Active: Subject + will/shall + have + V3 + Object<br>
+                Passive: Object + will/shall + have + been + V3 + (by + Subject)
+            </div>
+            <div class="example-box">
+                <strong>Active:</strong> She will have completed the task.<br>
+                <strong>Passive:</strong> The task will have been completed by her.
+            </div>
+
+            <h4>Future Perfect Continuous</h4>
+            <div class="mistake-box">
+                <strong>⚠️ No Passive Form:</strong> This tense is not used in passive voice.
+            </div>
+        </div>
+
+        <!-- Step-by-Step Transformation -->
+        <div class="card">
+            <h2 class="section-title">📝 Step-by-Step Transformation</h2>
+            
+            <h3>How to Convert Active to Passive:</h3>
+            <ol style="line-height: 2; margin-left: 20px;">
+                <li><strong>Identify the object</strong> in the active sentence</li>
+                <li><strong>Make the object the new subject</strong> of the passive sentence</li>
+                <li><strong>Change the verb</strong> to appropriate tense of "be" + past participle</li>
+                <li><strong>Add "by" + original subject</strong> at the end (if necessary)</li>
+                <li><strong>Remove "by whom"</strong> when the doer is unknown or unimportant</li>
+            </ol>
+
+            <div class="example-box">
+                <strong>Example Transformation:</strong><br>
+                <strong>Active:</strong> The teacher explains the lesson.<br>
+                <strong>Step 1:</strong> Object = "the lesson"<br>
+                <strong>Step 2:</strong> New subject = "The lesson"<br>
+                <strong>Step 3:</strong> Verb = "is explained" (Simple Present)<br>
+                <strong>Step 4:</strong> Add "by the teacher"<br>
+                <strong>Passive:</strong> The lesson is explained by the teacher.
+            </div>
+        </div>
+
+        <!-- Common Mistakes -->
+        <div class="card">
+            <h2 class="section-title">❌ Common Mistakes</h2>
+            
+            <div class="mistake-box">
+                <h4>1. Wrong Verb Form</h4>
+                <p><strong>Wrong:</strong> The letter is wrote by her.</p>
+                <p><strong>Correct:</strong> The letter is written by her.</p>
+                <p><strong>Why:</strong> Use past participle (V3) form, not base form.</p>
+            </div>
+
+            <div class="mistake-box">
+                <h4>2. Forgetting "by"</h4>
+                <p><strong>Wrong:</strong> The cake was baked Mary.</p>
+                <p><strong>Correct:</strong> The cake was baked by Mary.</p>
+                <p><strong>Why:</strong> "By" is necessary to show the doer of the action.</p>
+            </div>
+
+            <div class="mistake-box">
+                <h4>3. Wrong Tense Conversion</h4>
+                <p><strong>Wrong:</strong> The work is completed by him. (for past action)</p>
+                <p><strong>Correct:</strong> The work was completed by him.</p>
+                <p><strong>Why:</strong> Match the tense with the original active sentence.</p>
+            </div>
+
+            <div class="mistake-box">
+                <h4>4. Trying to Passive Non-passive Tenses</h4>
+                <p><strong>Wrong:</strong> The food was being cooked by her for two hours.</p>
+                <p><strong>Correct:</strong> She had been cooking food for two hours. (Keep active)</p>
+                <p><strong>Why:</strong> Perfect continuous tenses don't have passive forms.</p>
+            </div>
+        </div>
+
+        <!-- Practice Section -->
+        <div class="card">
+            <h2 class="section-title">✍️ Practice Section</h2>
+            
+            <!-- Progress Stats -->
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="attempted">0</div>
+                    <div>Attempted</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="correct">0</div>
+                    <div>Correct</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="wrong">0</div>
+                    <div>Wrong</div>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress" style="width: 0%">0%</div>
+            </div>
+
+            <!-- Active to Passive Questions -->
+            <h3>🔄 Active to Passive (20 Questions)</h3>
+            <div id="active-to-passive"></div>
+
+            <!-- Passive to Active Questions -->
+            <h3>🔄 Passive to Active (20 Questions)</h3>
+            <div id="passive-to-active"></div>
+
+            <!-- Identify Voice Questions -->
+            <h3>🔍 Identify Voice & Correct (20 Questions)</h3>
+            <div id="identify-voice"></div>
+        </div>
+
+        <!-- Download Button -->
+        <div class="card" style="text-align: center;">
+            <button class="download-btn" onclick="window.print()">
+                📄 Download / Print Chapter
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; color: white; margin-top: 30px;">
+            <p style="font-size: 1.2rem; margin-bottom: 10px;">Created by Shrishant Yadav</p>
+            <p style="font-size: 1rem;">Grammar Learning Hub - Your Complete Grammar Resource</p>
+        </div>
+    </div>
+
+    <script>
+        // Practice Questions Data
+        const questions = {
+            activeToPassive: [
+                {q: "She writes a letter.", a: "a letter is written by her"},
+                {q: "They are playing cricket.", a: "cricket is being played by them"},
+                {q: "He has completed the work.", a: "the work has been completed by him"},
+                {q: "The teacher explained the lesson.", a: "the lesson was explained by the teacher"},
+                {q: "She was reading a book.", a: "a book was being read by her"},
+                {q: "They had finished the project.", a: "the project had been finished by them"},
+                {q: "I will send the email.", a: "the email will be sent by me"},
+                {q: "She will have completed the task.", a: "the task will have been completed by her"},
+                {q: "The chef cooks delicious food.", a: "delicious food is cooked by the chef"},
+                {q: "Students are studying English.", a: "english is being studied by students"},
+                {q: "He has solved the problem.", a: "the problem has been solved by him"},
+                {q: "The dog chased the cat.", a: "the cat was chased by the dog"},
+                {q: "They were building a house.", a: "a house was being built by them"},
+                {q: "She had prepared dinner.", a: "dinner had been prepared by her"},
+                {q: "We will finish the work.", a: "the work will be finished by us"},
+                {q: "He will have written the report.", a: "the report will have been written by him"},
+                {q: "The manager approves the budget.", a: "the budget is approved by the manager"},
+                {q: "Children are eating ice cream.", a: "ice cream is being eaten by children"},
+                {q: "I have read this book.", a: "this book has been read by me"},
+                {q: "The team won the match.", a: "the match was won by the team"}
+            ],
+            passiveToActive: [
+                {q: "The letter is written by her.", a: "she writes the letter"},
+                {q: "Cricket is being played by them.", a: "they are playing cricket"},
+                {q: "The work has been completed by him.", a: "he has completed the work"},
+                {q: "The lesson was explained by the teacher.", a: "the teacher explained the lesson"},
+                {q: "A book was being read by her.", a: "she was reading a book"},
+                {q: "The project had been finished by them.", a: "they had finished the project"},
+                {q: "The email will be sent by me.", a: "i will send the email"},
+                {q: "The task will have been completed by her.", a: "she will have completed the task"},
+                {q: "Delicious food is cooked by the chef.", a: "the chef cooks delicious food"},
+                {q: "English is being studied by students.", a: "students are studying english"},
+                {q: "The problem has been solved by him.", a: "he has solved the problem"},
+                {q: "The cat was chased by the dog.", a: "the dog chased the cat"},
+                {q: "A house was being built by them.", a: "they were building a house"},
+                {q: "Dinner had been prepared by her.", a: "she had prepared dinner"},
+                {q: "The work will be finished by us.", a: "we will finish the work"},
+                {q: "The report will have been written by him.", a: "he will have written the report"},
+                {q: "The budget is approved by the manager.", a: "the manager approves the budget"},
+                {q: "Ice cream is being eaten by children.", a: "children are eating ice cream"},
+                {q: "This book has been read by me.", a: "i have read this book"},
+                {q: "The match was won by the team.", a: "the team won the match"}
+            ],
+            identifyVoice: [
+                {q: "She writes a letter. (Identify voice and convert to passive)", a: "active, a letter is written by her"},
+                {q: "The food is being cooked by mother. (Identify voice and convert to active)", a: "passive, mother is cooking the food"},
+                {q: "They have completed the project. (Identify voice and convert to passive)", a: "active, the project has been completed by them"},
+                {q: "The window was broken by the children. (Identify voice and convert to active)", a: "passive, the children broke the window"},
+                {q: "He is reading a newspaper. (Identify voice and convert to passive)", a: "active, a newspaper is being read by him"},
+                {q: "The cake has been eaten by John. (Identify voice and convert to active)", a: "passive, john has eaten the cake"},
+                {q: "We will finish the work tomorrow. (Identify voice and convert to passive)", a: "active, the work will be finished by us tomorrow"},
+                {q: "The letter was posted by Mary. (Identify voice and convert to active)", a: "passive, mary posted the letter"},
+                {q: "She teaches English. (Identify voice and convert to passive)", a: "active, english is taught by her"},
+                {q: "The car is being repaired by the mechanic. (Identify voice and convert to active)", a: "passive, the mechanic is repairing the car"},
+                {q: "I have seen this movie. (Identify voice and convert to passive)", a: "active, this movie has been seen by me"},
+                {q: "The documents were signed by the manager. (Identify voice and convert to active)", a: "passive, the manager signed the documents"},
+                {q: "They are building a new house. (Identify voice and convert to passive)", a: "active, a new house is being built by them"},
+                {q: "The homework has been completed by students. (Identify voice and convert to active)", a: "passive, students have completed the homework"},
+                {q: "He will announce the results. (Identify voice and convert to passive)", a: "active, the results will be announced by him"},
+                {q: "The book was written by a famous author. (Identify voice and convert to active)", a: "passive, a famous author wrote the book"},
+                {q: "She is painting a picture. (Identify voice and convert to passive)", a: "active, a picture is being painted by her"},
+                {q: "The tickets have been booked by agents. (Identify voice and convert to active)", a: "passive, agents have booked the tickets"},
+                {q: "We will celebrate his birthday. (Identify voice and convert to passive)", a: "active, his birthday will be celebrated by us"},
+                {q: "The speech was delivered by the president. (Identify voice and convert to active)", a: "passive, the president delivered the speech"}
+            ]
+        };
+
+        // Global variables
+        let attempted = 0;
+        let correct = 0;
+        let wrong = 0;
+
+        // Utility function to normalize answers
+        function normalizeAnswer(answer) {
+            return answer.toLowerCase()
+                        .replace(/[.,!?;:]/g, '')
+                        .replace(/\s+/g, ' ')
+                        .trim();
+        }
+
+        // Create question HTML
+        function createQuestionHTML(question, index, type) {
+            return `
+                <div class="practice-question" id="${type}-${index}">
+                    <p><strong>Question ${index + 1}:</strong> ${question.q}</p>
+                    <input type="text" class="question-input" placeholder="Type your answer here..." id="${type}-input-${index}">
+                    <button class="check-btn" onclick="checkAnswer('${type}', ${index})">Check Answer</button>
+                    <div class="feedback" id="${type}-feedback-${index}"></div>
+                </div>
+            `;
+        }
+
+        // Check answer function
+        function checkAnswer(type, index) {
+            const input = document.getElementById(`${type}-input-${index}`);
+            const feedback = document.getElementById(`${type}-feedback-${index}`);
+            const userAnswer = normalizeAnswer(input.value);
+            const correctAnswer = normalizeAnswer(questions[type][index].a);
+            
+            attempted++;
+            
+            if (userAnswer === correctAnswer) {
+                correct++;
+                feedback.className = 'feedback correct show';
+                feedback.innerHTML = '✔ Correct! Well done!';
+                input.style.borderColor = '#48bb78';
+            } else {
+                wrong++;
+                feedback.className = 'feedback incorrect show';
+                feedback.innerHTML = `
+                    ❌ Your answer is wrong<br>
+                    ✅ Correct answer: ${questions[type][index].a}<br>
+                    📘 Why: Check the verb form and structure carefully
+                `;
+                input.style.borderColor = '#f56565';
+            }
+            
+            input.disabled = true;
+            document.querySelector(`#${type}-${index} .check-btn`).disabled = true;
+            
+            updateStats();
+        }
+
+        // Update statistics
+        function updateStats() {
+            document.getElementById('attempted').textContent = attempted;
+            document.getElementById('correct').textContent = correct;
+            document.getElementById('wrong').textContent = wrong;
+            
+            const percentage = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+            document.getElementById('progress').style.width = percentage + '%';
+            document.getElementById('progress').textContent = percentage + '%';
+        }
+
+        // Initialize practice questions
+        function initializePractice() {
+            // Active to Passive
+            const atpContainer = document.getElementById('active-to-passive');
+            questions.activeToPassive.forEach((q, i) => {
+                atpContainer.innerHTML += createQuestionHTML(q, i, 'activeToPassive');
+            });
+
+            // Passive to Active
+            const ptaContainer = document.getElementById('passive-to-active');
+            questions.passiveToActive.forEach((q, i) => {
+                ptaContainer.innerHTML += createQuestionHTML(q, i, 'passiveToActive');
+            });
+
+            // Identify Voice
+            const ivContainer = document.getElementById('identify-voice');
+            questions.identifyVoice.forEach((q, i) => {
+                ivContainer.innerHTML += createQuestionHTML(q, i, 'identifyVoice');
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initializePractice);
+    </script>
+</body>
+</html>

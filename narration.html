@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Chapter: NARRATION</title>
+    <style>
+        :root {
+            /* Premium Educational Palette */
+            --primary-color: #4338ca; /* Indigo 700 */
+            --secondary-color: #4f46e5; /* Indigo 600 */
+            --accent-color: #fbbf24; /* Amber 400 */
+            --bg-color: #f3f4f6;
+            --white: #ffffff;
+            --text-main: #1f2937;
+            --text-light: #6b7280;
+            --success: #10b981;
+            --danger: #ef4444;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        header .tagline {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 900px;
+            margin: -2rem auto 2rem;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ACCORDION STYLES */
+        .accordion {
+            background-color: var(--white);
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 1.25rem;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #e5e7eb;
+            border-radius: var(--border-radius);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--box-shadow);
+        }
+
+        .accordion:hover {
+            background-color: #f9fafb;
+            transform: translateY(-2px);
+        }
+
+        .accordion.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-bottom: none;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        .accordion::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .accordion.active::after {
+            content: '-';
+            color: var(--white);
+        }
+
+        .panel {
+            padding: 0 1.25rem;
+            background-color: var(--white);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-bottom: 10px;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .panel-content {
+            padding: 20px 0;
+        }
+
+        /* CONTENT STYLING */
+        h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 0.8rem 0;
+            font-size: 1.3rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        p { margin-bottom: 12px; }
+
+        .hinglish {
+            background-color: #fffbeb;
+            border: 1px solid #fcd34d;
+            color: #92400e;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-style: italic;
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .highlight-box {
+            background-color: #e0e7ff;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .highlight-box strong { color: var(--primary-color); }
+
+        ul { list-style-position: inside; margin-bottom: 15px; }
+        li { margin-bottom: 8px; }
+
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) { background-color: #f9fafb; }
+        tr:hover { background-color: #f3f4f6; }
+
+        /* QUIZ SECTION */
+        .quiz-section { margin-top: 20px; }
+        
+        .quiz-header {
+            background: var(--text-main);
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .quiz-item {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-question {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .quiz-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .quiz-input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.2s;
+            min-width: 200px;
+        }
+
+        .quiz-input:focus { border-color: var(--secondary-color); }
+
+        .check-btn {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .check-btn:hover { background-color: var(--secondary-color); }
+
+        .feedback-area {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            padding: 8px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .feedback-correct {
+            background-color: #d1fae5;
+            color: #065f46;
+            display: block;
+            border-left: 4px solid var(--success);
+        }
+
+        .feedback-wrong {
+            background-color: #fee2e2;
+            color: #991b1b;
+            display: block;
+            border-left: 4px solid var(--danger);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: var(--primary-color);
+            color: rgba(255,255,255,0.8);
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+
+        footer strong { color: var(--white); }
+
+        /* RESPONSIVE */
+        @media (max-width: 640px) {
+            header h1 { font-size: 1.8rem; }
+            .accordion { font-size: 1rem; padding: 1rem; }
+            .quiz-controls { flex-direction: column; }
+            .check-btn { width: 100%; }
+            th, td { font-size: 0.85rem; padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DIRECT & INDIRECT SPEECH</h1>
+        <div class="subtitle">Complete Narration Chapter for Competitive Exams</div>
+        <div class="tagline">Learn • Revise • Practice</div>
+    </header>
+
+    <div class="container">
+
+        <button class="accordion">1. WHAT IS DIRECT & INDIRECT SPEECH?</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p><strong>Narration</strong> means the art of reporting the words of a speaker. There are two ways to do this:</p>
+                
+                <div class="highlight-box">
+                    <strong>1. Direct Speech:</strong><br>
+                    We quote the actual words of the speaker using inverted commas (" ").<br>
+                    <em>Example:</em> He said, "I am busy."
+                </div>
+
+                <div class="highlight-box">
+                    <strong>2. Indirect Speech (Reported Speech):</strong><br>
+                    We report what the speaker said without using his exact words. The meaning remains same, but structure changes.<br>
+                    <em>Example:</em> He said that he was busy.
+                </div>
+
+                <div class="hinglish">
+                    Hinglish Explanation: <br>
+                    <strong>Direct:</strong> Jab hum kisi ki baat ko bilkul waisa hi bolte hain jaisa usne kaha tha.<br>
+                    <strong>Indirect:</strong> Jab hum kisi ki baat ko apne shabdon mein badal kar batate hain.
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion">2. IDENTIFICATION TRICK (PAHCHAN)</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p>In exams, you need to identify the parts of the sentence to change them correctly.</p>
+
+                <div class="hinglish">
+                    Trick: "Commas wala part 'Reported Speech' hota hai aur Commas ke bahar wala part 'Reporting Verb' hota hai."
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Part</th>
+                            <th>Identity Trick</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Reporting Verb</strong></td>
+                            <td>Outside the quotes (" "). Tells WHO said it.</td>
+                            <td><strong>She said to me</strong>, "..."</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reported Speech</strong></td>
+                            <td>Inside the quotes (" "). The ACTUAL dialogue.</td>
+                            <td>She said, <strong>"I am happy."</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <button class="accordion">3. BASIC TERMS (VERY IMPORTANT)</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p>Before learning rules, understand these 4 terms:</p>
+                <ul>
+                    <li><strong>Reporter:</strong> The person who speaks (Subject).</li>
+                    <li><strong>Reporting Verb (RV):</strong> The verb outside commas (e.g., said, told, asks).</li>
+                    <li><strong>Reported Speech (RS):</strong> The sentence inside inverted commas.</li>
+                    <li><strong>Verb of RS:</strong> The main verb inside the commas.</li>
+                </ul>
+
+                <div class="highlight-box">
+                    Example Breakdown:<br>
+                    <strong>He</strong> (Reporter) <strong>said to</strong> (Reporting Verb) <strong>me</strong> (Object), <strong>"I am playing."</strong> (Reported Speech)
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion">4. RULES OF DIRECT → INDIRECT SPEECH</button>
+        <div class="panel">
+            <div class="panel-content">
+                
+                <h3>A. CHANGE OF TENSE (If Reporting Verb is Past)</h3>
+                <div class="hinglish">
+                    Rule: Agar bahar "Said" (Past) hai, to andar ka Tense badal jayega.
+                </div>
+                <table>
+                    <tr><th>Direct Speech Tense</th><th>Indirect Speech Tense</th></tr>
+                    <tr><td>Simple Present (V1/do/does)</td><td>Simple Past (V2/did)</td></tr>
+                    <tr><td>Present Continuous (is/am/are)</td><td>Past Continuous (was/were)</td></tr>
+                    <tr><td>Present Perfect (has/have)</td><td>Past Perfect (had)</td></tr>
+                    <tr><td>Simple Past (V2)</td><td>Past Perfect (had + V3)</td></tr>
+                    <tr><td>Past Continuous (was/were)</td><td>Past Perfect Continuous (had been)</td></tr>
+                    <tr><td>Past Perfect (had)</td><td>No Change</td></tr>
+                    <tr><td>Will / Shall</td><td>Would / Should</td></tr>
+                    <tr><td>Can / May</td><td>Could / Might</td></tr>
+                </table>
+
+                <h3>B. CHANGE OF PRONOUN (SON Rule)</h3>
+                <div class="hinglish">
+                    Formula: 123 / SON<br>
+                    1 (First Person) → S (Subject ke hisab se)<br>
+                    2 (Second Person) → O (Object ke hisab se)<br>
+                    3 (Third Person) → N (No Change)
+                </div>
+                <table>
+                    <tr><th>Person</th><th>Pronouns</th><th>Changes According to</th></tr>
+                    <tr><td>1st Person</td><td>I, We, My, Our, Me, Us</td><td><strong>Subject</strong> of Reporting Verb</td></tr>
+                    <tr><td>2nd Person</td><td>You, Your</td><td><strong>Object</strong> of Reporting Verb</td></tr>
+                    <tr><td>3rd Person</td><td>He, She, It, They, Names</td><td><strong>No Change</strong></td></tr>
+                </table>
+
+                <h3>C. CHANGE OF TIME & PLACE</h3>
+                <div class="hinglish">Nikat wale shabdon ko door wale shabdon mein badalte hain.</div>
+                <table>
+                    <tr><th>Direct</th><th>Indirect</th><th>Direct</th><th>Indirect</th></tr>
+                    <tr><td>Now</td><td>Then</td><td>Here</td><td>There</td></tr>
+                    <tr><td>This</td><td>That</td><td>These</td><td>Those</td></tr>
+                    <tr><td>Today</td><td>That day</td><td>Tonight</td><td>That night</td></tr>
+                    <tr><td>Yesterday</td><td>The previous day</td><td>Tomorrow</td><td>The next day</td></tr>
+                    <tr><td>Ago</td><td>Before</td><td>Last night</td><td>The previous night</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <button class="accordion">5. TYPES OF SENTENCES IN NARRATION</button>
+        <div class="panel">
+            <div class="panel-content">
+                
+                <h3>A. ASSERTIVE SENTENCES (Simple Statements)</h3>
+                <ul>
+                    <li><strong>Connector:</strong> Use 'that'.</li>
+                    <li><strong>Reporting Verb:</strong> 
+                        <br>Said to → Told
+                        <br>Said → Said (No Change if no object)
+                    </li>
+                </ul>
+                <div class="highlight-box">
+                    Direct: He said to me, "I work hard."<br>
+                    Indirect: He <strong>told</strong> me <strong>that</strong> he <strong>worked</strong> hard.
+                </div>
+
+                <h3>B. INTERROGATIVE SENTENCES (Questions)</h3>
+                <ul>
+                    <li><strong>Connector:</strong>
+                        <br>Yes/No Question → Use 'if' or 'whether'.
+                        <br>Wh- Question (What, Why) → Use the SAME Wh-word.
+                    </li>
+                    <li><strong>Reporting Verb:</strong> Said to → Asked / Enquired.</li>
+                    <li><strong>Structure:</strong> Question becomes a Statement (Subject comes before Verb).</li>
+                </ul>
+                <div class="highlight-box">
+                    Direct: He said to me, "Are you ill?"<br>
+                    Indirect: He <strong>asked</strong> me <strong>if</strong> I was ill. (Not 'was I ill')<br><br>
+                    Direct: He said, "What are you doing?"<br>
+                    Indirect: He asked <strong>what</strong> I was doing.
+                </div>
+
+                <h3>C. IMPERATIVE SENTENCES (Order, Request, Advice)</h3>
+                <ul>
+                    <li><strong>Connector:</strong> Use 'to'. (For negative use 'not to').</li>
+                    <li><strong>Reporting Verb:</strong> Ordered, Requested, Advised, Forbidden.</li>
+                </ul>
+                <div class="highlight-box">
+                    Direct: The teacher said, "Sit down."<br>
+                    Indirect: The teacher <strong>ordered</strong> the students <strong>to</strong> sit down.
+                </div>
+
+                <h3>D. EXCLAMATORY SENTENCES (Strong Feelings)</h3>
+                <ul>
+                    <li><strong>Connector:</strong> Use 'that'.</li>
+                    <li><strong>Reporting Verb:</strong> Exclaimed with joy / sorrow / surprise.</li>
+                    <li><strong>Words Removed:</strong> Hurrah, Alas, Wow, Oh.</li>
+                </ul>
+                <div class="highlight-box">
+                    Direct: He said, "Hurrah! We won."<br>
+                    Indirect: He <strong>exclaimed with joy that</strong> they had won.
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion">6. SPECIAL CASES & EXAM TRAPS</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p>SSC and Banking exams often trick students with these exceptions.</p>
+
+                <h3>1. Universal Truth / Habitual Action</h3>
+                <p>If the reported speech is a universal truth, <strong>NO TENSE CHANGE</strong> happens.</p>
+                <div class="highlight-box">
+                    Direct: He said, "The sun rises in the east."<br>
+                    Indirect: He said that the sun <strong>rises</strong> in the east. (Not 'rose')
+                </div>
+
+                <h3>2. Reporting Verb in Present/Future</h3>
+                <p>If outside verb is 'Says' or 'Will say', <strong>NO TENSE CHANGE</strong> inside.</p>
+                <div class="highlight-box">
+                    Direct: He <strong>says</strong>, "I am busy."<br>
+                    Indirect: He says that he <strong>is</strong> busy. (Not 'was')
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Wrong ❌</th>
+                            <th>Correct ✔</th>
+                            <th>Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>He asked me that if I was ready.</td>
+                            <td>He asked me if I was ready.</td>
+                            <td>Never use double connectors ('that' + 'if').</td>
+                        </tr>
+                        <tr>
+                            <td>He told to me that...</td>
+                            <td>He told me that...</td>
+                            <td>'Told' never takes 'to'. 'Said to' becomes 'Told'.</td>
+                        </tr>
+                        <tr>
+                            <td>He asked where was I going.</td>
+                            <td>He asked where I was going.</td>
+                            <td>In indirect, Question becomes Statement (Subj + Verb).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <button class="accordion">7. STEP-BY-STEP CONVERSION METHOD</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p>Follow these 5 steps to solve any narration question:</p>
+                <ol style="margin-left: 20px;">
+                    <li><strong>Identify Type:</strong> Is it Assertive, Interrogative, or Imperative?</li>
+                    <li><strong>Change RV:</strong> Change 'said to' → told/asked/ordered.</li>
+                    <li><strong>Add Connector:</strong> Add that/if/to/wh-word.</li>
+                    <li><strong>Apply SON Rule:</strong> Change Pronouns (I→He, You→Me etc).</li>
+                    <li><strong>Change Tense & Time:</strong> Present→Past, Now→Then.</li>
+                </ol>
+                <div class="hinglish">
+                    Bas ye 5 steps dimag mein rakho, question kabhi galat nahi hoga.
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion">8. PRACTICE SECTION – 60 QUESTIONS (MANDATORY)</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p>Type the correct Indirect/Direct form. Punctuation matters (End with full stop).</p>
+
+                <div class="quiz-header">A. Direct → Indirect (Assertive & Interrogative)</div>
+                <div id="quiz-container-a"></div>
+
+                <div class="quiz-header">B. Indirect → Direct (Reverse Logic)</div>
+                <div id="quiz-container-b"></div>
+
+                <div class="quiz-header">C. Correct the Sentence (Find Error)</div>
+                <div id="quiz-container-c"></div>
+
+            </div>
+        </div>
+
+        <button class="accordion">9. COMMON MISTAKES SECTION</button>
+        <div class="panel">
+            <div class="panel-content">
+                <ul>
+                    <li><strong>Mistake:</strong> He suggested <strong>to</strong> me. (Correct: Suggested takes 'to').</li>
+                    <li><strong>Mistake:</strong> He told <strong>to</strong> me. (Wrong: Told takes NO preposition).</li>
+                    <li><strong>Mistake:</strong> He ordered <strong>to</strong> his servant. (Wrong: Ordered takes direct object).</li>
+                    <li><strong>Mistake:</strong> Changing Tense when RV is Present (He says...). (Wrong: No change).</li>
+                    <li><strong>Mistake:</strong> Forgetting to change 'Tomorrow' to 'The next day'.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Created by <strong>SHRISHANT YADAV</strong></p>
+        <p>For Educational Purpose Only</p>
+    </footer>
+
+    <script>
+        /* ----------------------------------------------------
+           1. ACCORDION FUNCTIONALITY
+           ---------------------------------------------------- */
+        const acc = document.getElementsByClassName("accordion");
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                const panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+        /* ----------------------------------------------------
+           2. QUIZ DATA & LOGIC
+           ---------------------------------------------------- */
+        
+        // Helper to generate quiz HTML
+        function renderQuiz(questions, containerId, prefix) {
+            const container = document.getElementById(containerId);
+            questions.forEach((q, index) => {
+                const item = document.createElement('div');
+                item.className = 'quiz-item';
+                item.innerHTML = `
+                    <div class="quiz-question">${index + 1}. ${q.question}</div>
+                    <div class="quiz-controls">
+                        <input type="text" class="quiz-input" id="in-${prefix}-${index}" placeholder="Type your answer...">
+                        <button class="check-btn" onclick="checkAnswer('${prefix}', ${index})">Check Answer</button>
+                    </div>
+                    <div class="feedback-area" id="fb-${prefix}-${index}"></div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        // Data Arrays
+        const questionsA = [
+            { question: "He said, \"I am busy.\"", answer: "he said that he was busy" },
+            { question: "She said to me, \"You are my friend.\"", answer: "she told me that i was her friend" },
+            { question: "Ram said, \"I will go.\"", answer: "ram said that he would go" },
+            { question: "He said, \"I came yesterday.\"", answer: "he said that he had come the previous day" },
+            { question: "She said, \"Can you help me?\"", answer: "she asked if i could help her" },
+            { question: "Father said, \"The sun rises in the east.\"", answer: "father said that the sun rises in the east" },
+            { question: "He said to her, \"Where do you live?\"", answer: "he asked her where she lived" },
+            { question: "The teacher said, \"Sit down.\"", answer: "the teacher ordered to sit down" },
+            { question: "He said, \"Alas! I am ruined.\"", answer: "he exclaimed with sorrow that he was ruined" },
+            { question: "She says, \"I am happy.\"", answer: "she says that she is happy" },
+            { question: "He said, \"I have done my work.\"", answer: "he said that he had done his work" },
+            { question: "Rahul said, \"I may buy a car.\"", answer: "rahul said that he might buy a car" },
+            { question: "He said, \"Let us go out.\"", answer: "he suggested that they should go out" },
+            { question: "She said to him, \"Are you crazy?\"", answer: "she asked him if he was crazy" },
+            { question: "He said, \"I must go.\"", answer: "he said that he must go" }, 
+            // Note: 'must' can stay 'must' or become 'had to'. We'll accept basic conversion.
+            { question: "He said, \"I saw him two days ago.\"", answer: "he said that he had seen him two days before" },
+            { question: "She said, \"Please help me.\"", answer: "she requested to help her" },
+            { question: "He said, \"What a beautiful scene!\"", answer: "he exclaimed with joy that it was a very beautiful scene" },
+            { question: "My friend said to me, \"Do not go there.\"", answer: "my friend forbade me to go there" },
+            { question: "He said, \"I am playing now.\"", answer: "he said that he was playing then" }
+        ];
+
+        const questionsB = [
+            { question: "He told me that he was ill.", answer: "he said to me, \"i am ill.\"" },
+            { question: "She said that she wrote a letter.", answer: "she said, \"i write a letter.\"" },
+            { question: "Ram asked me if I was ready.", answer: "ram said to me, \"are you ready?\"" },
+            { question: "He requested me to wait there.", answer: "he said to me, \"please wait here.\"" },
+            { question: "She exclaimed with joy that she had won.", answer: "she said, \"hurrah! i have won.\"" },
+            { question: "He said that he would come.", answer: "he said, \"i will come.\"" },
+            { question: "The teacher ordered him to stand up.", answer: "the teacher said to him, \"stand up.\"" },
+            { question: "He asked where I was going.", answer: "he said, \"where are you going?\"" },
+            { question: "She said that she could swim.", answer: "she said, \"i can swim.\"" },
+            { question: "He said that man is mortal.", answer: "he said, \"man is mortal.\"" },
+            { question: "He told her that he loved her.", answer: "he said to her, \"i love you.\"" },
+            { question: "She asked if I liked coffee.", answer: "she said, \"do you like coffee?\"" },
+            { question: "He bade me goodbye.", answer: "he said, \"goodbye.\"" },
+            { question: "He wished that I might live long.", answer: "he said, \"may you live long!\"" },
+            { question: "She said that she had been reading.", answer: "she said, \"i have been reading.\"" },
+            { question: "He proposed that we should dance.", answer: "he said, \"let us dance.\"" },
+            { question: "I asked him what his name was.", answer: "i said to him, \"what is your name?\"" },
+            { question: "He said that he had done it.", answer: "he said, \"i did it.\"" },
+            { question: "She told me that she was my sister.", answer: "she said to me, \"i am your sister.\"" },
+            { question: "He said that he wanted to go.", answer: "he said, \"i want to go.\"" }
+        ];
+
+        const questionsC = [
+            { question: "Correct: He told to me that he was busy.", answer: "he told me that he was busy" },
+            { question: "Correct: She asked that if I was ill.", answer: "she asked if i was ill" },
+            { question: "Correct: He said that the sun rose in the east.", answer: "he said that the sun rises in the east" },
+            { question: "Correct: He asked where was I going.", answer: "he asked where i was going" },
+            { question: "Correct: She suggested me to go.", answer: "she suggested to me to go" },
+            { question: "Correct: He ordered to his servant.", answer: "he ordered his servant" },
+            { question: "Correct: He says that he was ready.", answer: "he says that he is ready" },
+            { question: "Correct: He requested me please help him.", answer: "he requested me to help him" },
+            { question: "Correct: She said that she come yesterday.", answer: "she said that she had come the previous day" },
+            { question: "Correct: Ram asked why was she crying.", answer: "ram asked why she was crying" },
+            { question: "Correct: The teacher forbade not to make noise.", answer: "the teacher forbade to make noise" },
+            { question: "Correct: He exclaimed that it is a beautiful flower.", answer: "he exclaimed that it was a beautiful flower" },
+            { question: "Correct: She asked me if I can help.", answer: "she asked me if i could help" },
+            { question: "Correct: He said that this was his book.", answer: "he said that that was his book" },
+            { question: "Correct: I asked him that who he was.", answer: "i asked him who he was" },
+            { question: "Correct: He told that he is fine.", answer: "he said that he was fine" }, 
+            // 'He told' requires object usually, if no object use Said. But commonly 'told that' is corrected to 'said that' OR 'told me that'. Here we assume 'said that' or 'told me'. Let's stick to 'he said that he was fine' as safer correction for 'he told that'.
+            { question: "Correct: She said she will go.", answer: "she said she would go" },
+            { question: "Correct: He requested to not smoke.", answer: "he requested not to smoke" },
+            { question: "Correct: He said that he saw her.", answer: "he said that he had seen her" },
+            { question: "Correct: He asked if I am happy.", answer: "he asked if i was happy" }
+        ];
+
+        // Render sections
+        renderQuiz(questionsA, 'quiz-container-a', 'A');
+        renderQuiz(questionsB, 'quiz-container-b', 'B');
+        renderQuiz(questionsC, 'quiz-container-c', 'C');
+
+        // Check Answer Function
+        function checkAnswer(prefix, index) {
+            const inputId = `in-${prefix}-${index}`;
+            const feedbackId = `fb-${prefix}-${index}`;
+            const inputEl = document.getElementById(inputId);
+            const feedbackEl = document.getElementById(feedbackId);
+            
+            let dataset;
+            if(prefix === 'A') dataset = questionsA;
+            else if(prefix === 'B') dataset = questionsB;
+            else dataset = questionsC;
+
+            // Normalize User Input
+            // Remove punctuation at end, lowercase, trim, remove extra spaces
+            let userVal = inputEl.value.toLowerCase().trim().replace(/[.,!?;]+$/, "").replace(/\s+/g, " ");
+            
+            // Normalize Correct Answer
+            let correctVal = dataset[index].answer.toLowerCase().trim().replace(/[.,!?;]+$/, "").replace(/\s+/g, " ");
+
+            // Flexible logic for C16 (He told vs He said)
+            // We just check strict equality for simplicity in this implementation, 
+            // but for complex cases, we can add alternate answers in dataset.
+            
+            if (userVal === "") {
+                feedbackEl.className = "feedback-area feedback-wrong";
+                feedbackEl.innerHTML = "Please type an answer first.";
+                return;
+            }
+
+            if (userVal === correctVal) {
+                feedbackEl.className = "feedback-area feedback-correct";
+                feedbackEl.innerHTML = "<strong>✔ Correct!</strong> Well done.";
+            } else {
+                feedbackEl.className = "feedback-area feedback-wrong";
+                feedbackEl.innerHTML = `<strong>❌ Wrong.</strong><br>Correct Answer: <em>${dataset[index].answer}</em>`;
+            }
+        }
+
+    </script>
+
+</body>
+</html>
