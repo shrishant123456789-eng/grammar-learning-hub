@@ -1,213 +1,661 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Grammar Learning Hub - Sentence</title>
-<style>
-body{
-    font-family: Arial, sans-serif;
-    margin:0;
-    background:#f4f6f8;
-}
-header{
-    background:#1976d2;
-    color:white;
-    padding:15px;
-    position:relative;
-}
-.creator{
-    position:absolute;
-    right:15px;
-    top:18px;
-    font-size:14px;
-}
-.container{
-    padding:20px;
-    max-width: 800px;
-    margin:auto;
-}
-h3{
-    margin-top:25px;
-}
-input{
-    width:95%;
-    padding:8px;
-    margin:8px 0 15px 0;
-    border:1px solid #ccc;
-    border-radius:4px;
-}
-button{
-    padding:12px 20px;
-    background:#1976d2;
-    color:white;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-}
-#result{
-    margin-top:15px;
-    font-weight:bold;
-    font-size:18px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence – Complete Grammar Chapter</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #f59e0b;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --border: #e2e8f0;
+            --success: #16a34a;
+            --error: #dc2626;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f1f5f9;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Content Area */
+        .content {
+            padding: 20px;
+        }
+
+        /* Accordion Style */
+        .accordion {
+            background-color: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background-color: #fff;
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--secondary);
+            border-left: 5px solid var(--primary);
+            transition: background-color 0.3s;
+        }
+
+        .accordion-header:hover {
+            background-color: var(--bg-light);
+        }
+
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .accordion.active .accordion-header::after {
+            content: '-';
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 25px;
+            background-color: #fff;
+        }
+
+        .accordion.active .accordion-body {
+            max-height: 5000px; /* Large enough to fit content */
+            padding: 20px 25px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Typography & Components inside Accordion */
+        h3 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 8px;
+            margin-top: 25px;
+        }
+
+        .hinglish-note {
+            background-color: #fffbeb; /* Yellow tint */
+            border-left: 4px solid var(--accent);
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        .example-box {
+            background-color: #f0f9ff; /* Blue tint */
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border: 1px solid #bae6fd;
+        }
+
+        .example-item {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .example-item::before {
+            content: '➤';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+
+        /* Quiz Styles */
+        .quiz-group {
+            margin-bottom: 30px;
+        }
+
+        .quiz-item {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-question {
+            font-weight: 500;
+            flex-grow: 1;
+            min-width: 250px;
+        }
+
+        .quiz-input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 150px;
+        }
+
+        .check-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .check-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .feedback {
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: none;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .feedback.correct {
+            display: block;
+            color: var(--success);
+        }
+
+        .feedback.wrong {
+            display: block;
+            color: var(--error);
+        }
+
+        .hint-text {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-left: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e293b;
+            color: #94a3b8;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .accordion-header { padding: 15px; font-size: 1rem; }
+            th, td { padding: 8px; font-size: 0.85rem; }
+            .quiz-item { flex-direction: column; align-items: flex-start; }
+            .quiz-input { width: 100%; }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-<h2>Sentence</h2>
-<div class="creator">Created by Shrishant Yadav</div>
-</header>
-
 <div class="container">
+    <header>
+        <h1>SENTENCE</h1>
+        <p>Complete Grammar Chapter for Competitive Exams</p>
+    </header>
 
-<!-- Chapter Introduction -->
-<p>
-A sentence is a group of words that expresses a complete thought.  
-A sentence must have a subject and a predicate.  
-Sentences begin with a capital letter and end with a full stop (.), question mark (?), or exclamation mark (!).  
-In this chapter, you will practice forming, completing, and correcting sentences from basic to advanced level.
-</p>
+    <div class="content">
 
-<h3>Practice Questions (30)</h3>
+        <div class="accordion active">
+            <div class="accordion-header" onclick="toggleAccordion(this)">1. WHAT IS A SENTENCE?</div>
+            <div class="accordion-body">
+                <p><strong>Definition:</strong> A group of words that makes complete sense and expresses a complete thought is called a Sentence.</p>
+                
+                <div class="hinglish-note">
+                    <strong>Hinglish:</strong> Shabdon ka aisa group jiska pura arth (complete meaning) nikle, use Sentence kahte hain. Agar meaning complete nahi hai, to wo sentence nahi hai.
+                </div>
 
-<!-- Questions 1-30 -->
-<p>1. He ___ playing football.</p>
-<input type="text" id="q1">
+                <div class="example-box">
+                    <p><strong>Formula:</strong> Subject + Verb + Object/Complement</p>
+                    <div class="example-item"><strong>Right:</strong> Ram goes to the market. (Complete sense)</div>
+                    <div class="example-item"><strong>Wrong:</strong> Market to goes Ram. (No sense)</div>
+                    <div class="example-item"><strong>Wrong:</strong> In the garden. (Incomplete sense)</div>
+                </div>
 
-<p>2. She ___ a teacher.</p>
-<input type="text" id="q2">
+                <h3>Key Elements:</h3>
+                <ul>
+                    <li>It must begin with a <strong>Capital Letter</strong>.</li>
+                    <li>It must end with a <strong>Full Stop (.)</strong>, <strong>Question Mark (?)</strong>, or <strong>Exclamation Mark (!)</strong>.</li>
+                    <li>It must have at least one <strong>Subject</strong> and one <strong>Verb</strong>.</li>
+                </ul>
+            </div>
+        </div>
 
-<p>3. They ___ happy today.</p>
-<input type="text" id="q3">
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">2. IDENTIFICATION TRICK (PAHCHAN)</div>
+            <div class="accordion-body">
+                <p>Exam mein sentence identify karne ke liye sabse pehle <strong>Verb</strong> dhundhe aur puche "Kaun kar raha hai?" (Subject).</p>
+                
+                <div class="hinglish-note">
+                    <strong>Trick:</strong> Kya ye line padhne ke baad aapke dimaag mein ek puri picture ban rahi hai? Agar haan, to ye sentence hai. Agar sawaal bacha rah jaye, to ye sentence nahi hai.
+                </div>
 
-<p>4. I ___ a student.</p>
-<input type="text" id="q4">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Group of Words</th>
+                            <th>Question to ask</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Playing cricket.</td>
+                            <td>Who is playing? (Answer nahi mila)</td>
+                            <td>❌ Not a Sentence</td>
+                        </tr>
+                        <tr>
+                            <td>He is playing cricket.</td>
+                            <td>Who? (He). What doing? (Playing).</td>
+                            <td>✔ Sentence</td>
+                        </tr>
+                        <tr>
+                            <td>Because it was raining.</td>
+                            <td>To kya hua? (Incomplete thought)</td>
+                            <td>❌ Not a Sentence</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-<p>5. We ___ going home.</p>
-<input type="text" id="q5">
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">3. TYPES OF SENTENCE (BY PURPOSE)</div>
+            <div class="accordion-body">
+                <p>There are 4 main types of sentences based on what they do (Purpose).</p>
 
-<p>6. The cat ___ on the roof.</p>
-<input type="text" id="q6">
+                <h3>A. Assertive / Declarative Sentence</h3>
+                <p>These sentences state a fact, opinion, or idea. They simply declare something.</p>
+                <div class="hinglish-note">Ye simple waakya hote hain jo koi jaankari dete hain. Ye hamesha Full Stop (.) par khatam hote hain.</div>
+                <div class="example-box">
+                    <div class="example-item">The sun rises in the east. (Fact)</div>
+                    <div class="example-item">Rohit is a good player. (Opinion)</div>
+                </div>
 
-<p>7. You ___ very kind.</p>
-<input type="text" id="q7">
+                <h3>B. Interrogative Sentence</h3>
+                <p>These sentences ask a question.</p>
+                <div class="hinglish-note">Inmein koi sawaal pucha jata hai. Last mein Question Mark (?) lagana zaroori hai.</div>
+                <div class="example-box">
+                    <div class="example-item">Where do you live?</div>
+                    <div class="example-item">Are you hungry?</div>
+                </div>
 
-<p>8. My father ___ working in a bank.</p>
-<input type="text" id="q8">
+                <h3>C. Imperative Sentence</h3>
+                <p>These sentences express a command, request, advice, or suggestion.</p>
+                <div class="hinglish-note">Isme Subject 'You' aksar chupa (hidden) hota hai. Jaise "Sit down" ka matlab hai "(You) sit down".</div>
+                <div class="example-box">
+                    <div class="example-item">Shut the door. (Order)</div>
+                    <div class="example-item">Please help me. (Request)</div>
+                    <div class="example-item">Take medicine on time. (Advice)</div>
+                </div>
 
-<p>9. The birds ___ singing in the morning.</p>
-<input type="text" id="q9">
+                <h3>D. Exclamatory Sentence</h3>
+                <p>These sentences express strong emotion (joy, sorrow, surprise, anger).</p>
+                <div class="hinglish-note">Achanak nikli hui feelings ko batane ke liye use hota hai. Exclamation Mark (!) zaroori hai.</div>
+                <div class="example-box">
+                    <div class="example-item">What a beautiful flower!</div>
+                    <div class="example-item">Hurrah! We won the match.</div>
+                </div>
+            </div>
+        </div>
 
-<p>10. She ___ reading a book now.</p>
-<input type="text" id="q10">
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">4. TYPES OF SENTENCE (BY STRUCTURE)</div>
+            <div class="accordion-body">
+                <p>Structure (banawat) ke aadhar par sentences 3 tarah ke hote hain.</p>
 
-<p>11. Complete the sentence:<br>
-We ___ to the market yesterday.</p>
-<input type="text" id="q11">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Definition</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Simple Sentence</strong></td>
+                            <td>One Subject + One Finite Verb.<br><em>(Sirf ek baat kahi gayi ho).</em></td>
+                            <td><strong>Birds</strong> fly in the sky.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Compound Sentence</strong></td>
+                            <td>Two independent clauses joined by Conjunctions (FANBOYS: For, And, Nor, But, Or, Yet, So).<br><em>(Do barabar ke waakya jude ho).</em></td>
+                            <td>I like tea <strong>but</strong> my brother likes coffee.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Complex Sentence</strong></td>
+                            <td>One Independent clause + One or more Dependent clauses.<br><em>(Ek main baat, aur dusri uspar nirbhar).</em></td>
+                            <td>I know <strong>that he is honest.</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-<p>12. Fill in the blank:<br>
-He ___ his homework every day.</p>
-<input type="text" id="q12">
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">5. AFFIRMATIVE, NEGATIVE & INTERROGATIVE RULES</div>
+            <div class="accordion-body">
+                <h3>Conversion Rules (Badalne ke niyam)</h3>
+                
+                <p><strong>1. Affirmative to Negative:</strong> Add 'not' after the helping verb. If no helping verb, use Do/Does/Did.</p>
+                <div class="hinglish-note">Simple Present mein 'Does not/Do not' aur Simple Past mein 'Did not' lagayein.</div>
+                
+                <div class="example-box">
+                    <div class="example-item">She is playing. &rarr; She is <strong>not</strong> playing.</div>
+                    <div class="example-item">He likes apples. &rarr; He <strong>does not</strong> like apples. (Note: 'likes' becomes 'like')</div>
+                    <div class="example-item">They went home. &rarr; They <strong>did not</strong> go home. (Note: 'went' becomes 'go')</div>
+                </div>
 
-<p>13. Choose the correct word:<br>
-The dog ___ barking loudly.</p>
-<input type="text" id="q13">
+                <p><strong>2. Affirmative to Interrogative:</strong> Bring the Helping Verb to the front.</p>
+                <div class="example-box">
+                    <div class="example-item">He is happy. &rarr; <strong>Is</strong> he happy?</div>
+                    <div class="example-item">You play cricket. &rarr; <strong>Do</strong> you play cricket?</div>
+                </div>
+            </div>
+        </div>
 
-<p>14. Fill in the blank:<br>
-I ___ never been to London.</p>
-<input type="text" id="q14">
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">6. SUBJECT & PREDICATE</div>
+            <div class="accordion-body">
+                <p>Every complete sentence has two parts:</p>
+                
+                <p><strong>1. Subject (Uddeshya):</strong> The person or thing we are talking about. (Doer of the action).</p>
+                <p><strong>2. Predicate (Vidhey):</strong> What is said about the Subject. It always contains the Verb.</p>
 
-<p>15. Complete the sentence:<br>
-She ___ working here since 2010.</p>
-<input type="text" id="q15">
+                <div class="hinglish-note">Sentence mein "Kaun" (Who) lagane se Subject milta hai, baaki bacha hua hissa Predicate hota hai.</div>
 
-<p>16. Correct the sentence:<br>
-him go to school.</p>
-<input type="text" id="q16">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sentence</th>
+                            <th>Subject (Who/What?)</th>
+                            <th>Predicate (What happened?)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>The dog barks loudly.</td>
+                            <td>The dog</td>
+                            <td>barks loudly.</td>
+                        </tr>
+                        <tr>
+                            <td>My best friend is coming.</td>
+                            <td>My best friend</td>
+                            <td>is coming.</td>
+                        </tr>
+                        <tr>
+                            <td>On the top of the hill lives a hermit.</td>
+                            <td>A hermit <br><em>(Sometimes subject comes last)</em></td>
+                            <td>lives on the top of the hill.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-<p>17. Correct the sentence:<br>
-She do not like apples.</p>
-<input type="text" id="q17">
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">7. COMMON ERRORS & MISTAKES</div>
+            <div class="accordion-body">
+                <p>Competitive exams mein aane wali common galtiyan:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>❌ Wrong Sentence</th>
+                            <th>✔ Correct Sentence</th>
+                            <th>Reason (Kyun?)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>He does not <strong>goes</strong> to school.</td>
+                            <td>He does not <strong>go</strong> to school.</td>
+                            <td>Do/Does/Did ke baad hamesha Verb ki 1st form aati hai (s/es nahi lagta).</td>
+                        </tr>
+                        <tr>
+                            <td>I <strong>no</strong> have money.</td>
+                            <td>I <strong>do not</strong> have money. / I have <strong>no</strong> money.</td>
+                            <td>Verb se pehle 'no' nahi, 'do not' lagta hai.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Why you are</strong> crying?</td>
+                            <td><strong>Why are you</strong> crying?</td>
+                            <td>Question mein Helping verb (are) Subject (you) se pehle aani chahiye.</td>
+                        </tr>
+                        <tr>
+                            <td>She <strong>did not wrote</strong> a letter.</td>
+                            <td>She <strong>did not write</strong> a letter.</td>
+                            <td>Did ke saath V2 nahi, V1 use hota hai.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-<p>18. Fill in the blank:<br>
-If it ___ raining, we will go outside.</p>
-<input type="text" id="q18">
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">8. PRACTICE SECTION (60 QUESTIONS)</div>
+            <div class="accordion-body">
+                <p style="text-align:center; color: var(--primary);"><strong>Test Your Knowledge</strong><br>Type the missing word or correct form.</p>
 
-<p>19. Fill in the blank:<br>
-I wish I ___ taller.</p>
-<input type="text" id="q19">
+                <h3>A. Affirmative Sentences (Fill/Correct)</h3>
+                <div id="quiz-set-a"></div>
 
-<p>20. Choose the correct form:<br>
-She asked me where I ___.</p>
-<input type="text" id="q20">
+                <h3>B. Negative Sentences (Use not/do not/did not)</h3>
+                <div id="quiz-set-b"></div>
 
-<p>21. Complete the sentence:<br>
-Had I known, I ___ prepared better.</p>
-<input type="text" id="q21">
+                <h3>C. Interrogative Sentences (Use Do/Does/Is/Wh-words)</h3>
+                <div id="quiz-set-c"></div>
+            </div>
+        </div>
 
-<p>22. Correct the sentence:<br>
-He don't knows the answer.</p>
-<input type="text" id="q22">
+    </div>
 
-<p>23. Fill in the blank:<br>
-By the time he arrives, we ___ finished.</p>
-<input type="text" id="q23">
-
-<p>24. Choose the correct word:<br>
-Neither of them ___ guilty.</p>
-<input type="text" id="q24">
-
-<p>25. Complete the sentence:<br>
-Hardly ___ I reached home than it started raining.</p>
-<input type="text" id="q25">
-
-<p>26. Fill in the blank:<br>
-I prefer tea ___ coffee.</p>
-<input type="text" id="q26">
-
-<p>27. Correct the sentence:<br>
-Everyone have finished their work.</p>
-<input type="text" id="q27">
-
-<p>28. Complete the sentence:<br>
-No sooner ___ the teacher entered the class than the students stood up.</p>
-<input type="text" id="q28">
-
-<p>29. Fill in the blank:<br>
-She speaks English better ___ her brother.</p>
-<input type="text" id="q29">
-
-<p>30. Choose the correct word:<br>
-It is high time we ___ going.</p>
-<input type="text" id="q30">
-
-<!-- Check Answers Button -->
-<button onclick="checkAnswers()">Check Answers</button>
-<p id="result"></p>
-
+    <footer>
+        <p>Created by <strong>SHRISHANT YADAV</strong><br>For Educational Purpose Only</p>
+    </footer>
 </div>
 
-<!-- JS inside same file -->
 <script>
-function checkAnswers(){
-    let score=0;
-    const answers = {
-        q1:"is", q2:"is", q3:"are", q4:"am", q5:"are",
-        q6:"is", q7:"are", q8:"is", q9:"are", q10:"is",
-        q11:"went", q12:"does", q13:"is", q14:"have",
-        q15:"has been", q16:"He goes", q17:"does not",
-        q18:"is", q19:"were", q20:"was", q21:"would have",
-        q22:"does not know", q23:"will have", q24:"is", q25:"had",
-        q26:"than", q27:"has", q28:"had", q29:"than", q30:"were"
-    };
-
-    for(let i=1;i<=30;i++){
-        let ans=document.getElementById("q"+i).value.trim().toLowerCase();
-        if(ans===answers["q"+i].toLowerCase()) score++;
+    // Accordion Logic
+    function toggleAccordion(header) {
+        const item = header.parentElement;
+        item.classList.toggle('active');
     }
 
-    document.getElementById("result").innerText="Your Score: "+score+" / 30";
-}
+    // Quiz Data
+    const questionsA = [
+        { q: "The sun ____ in the east.", a: "rises", h: "Universal truth (s/es)" },
+        { q: "They ____ playing football now.", a: "are", h: "Present Continuous helper" },
+        { q: "She ____ a beautiful song yesterday.", a: "sang", h: "Past tense of sing" },
+        { q: "I ____ a student.", a: "am", h: "Helper for 'I'" },
+        { q: "We ____ to the market daily.", a: "go", h: "Simple present (plural)" },
+        { q: "He ____ completed his work.", a: "has", h: "Present Perfect helper" },
+        { q: "Cats ____ milk.", a: "like", h: "Plural subject, V1" },
+        { q: "My father ____ in a bank.", a: "works", h: "Singular subject (s/es)" },
+        { q: "You ____ my best friend.", a: "are", h: "Helper for 'You'" },
+        { q: "It ____ raining heavily.", a: "is", h: "Singular helper" },
+        { q: "Birds ____ in the sky.", a: "fly", h: "Plural subject V1" },
+        { q: "She ____ written a letter.", a: "has", h: "V3 form needs Has/Have" },
+        { q: "I ____ watching TV when he came.", a: "was", h: "Past Continuous (Singular)" },
+        { q: "They ____ been living here since 2010.", a: "have", h: "Perfect Continuous" },
+        { q: "He ____ run very fast.", a: "can", h: "Modal for ability" },
+        { q: "Water ____ at 100 degrees Celsius.", a: "boils", h: "Scientific fact" },
+        { q: "We ____ respect our elders.", a: "should", h: "Modal for duty" },
+        { q: "The train ____ arrived.", a: "has", h: "Just completed action" },
+        { q: "Ram and Shyam ____ brothers.", a: "are", h: "Plural subject" },
+        { q: "She ____ to visit the Taj Mahal.", a: "wants", h: "Simple present singular" }
+    ];
+
+    const questionsB = [
+        { q: "She does ____ like coffee.", a: "not", h: "Negative marker" },
+        { q: "I ____ not go to school yesterday.", a: "did", h: "Past negative helper" },
+        { q: "He ____ not have a car.", a: "does", h: "Present singular helper" },
+        { q: "They ____ not playing well.", a: "are", h: "Continuous negative" },
+        { q: "We do ____ tell lies.", a: "not", h: "Negative marker" },
+        { q: "He has ____ seen the movie.", a: "never", h: "Meaning 'kabhi nahi'" },
+        { q: "Don't ____ noise.", a: "make", h: "V1 after Don't" },
+        { q: "She cannot ____ the box.", a: "lift", h: "V1 after Modal" },
+        { q: "I have ____ money left.", a: "no", h: "Used before noun" },
+        { q: "You should ____ abuse others.", a: "not", h: "Modal negative" },
+        { q: "He did not ____ the answer.", a: "know", h: "V1 after Did" },
+        { q: "They have ____ finished the work yet.", a: "not", h: "Present Perfect negative" },
+        { q: "I am ____ feeling well.", a: "not", h: "Negative with 'am'" },
+        { q: "Ram ____ not come to the party.", a: "did", h: "Past event" },
+        { q: "She was ____ sleeping.", a: "not", h: "Past continuous negative" },
+        { q: "It is ____ cold today.", a: "not", h: "Simple negative" },
+        { q: "We shall ____ surrender.", a: "never", h: "Strong negative" },
+        { q: "He does not ____ cricket.", a: "play", h: "V1 after Does" },
+        { q: "Do ____ disturb me.", a: "not", h: "Imperative negative" },
+        { q: "I ____ nothing to say.", a: "have", h: "Possession" }
+    ];
+
+    const questionsC = [
+        { q: "____ you playing cricket?", a: "are", h: "Helper for You/Continuous" },
+        { q: "____ is your name?", a: "what", h: "Asking for information" },
+        { q: "____ he go to school?", a: "does", h: "Simple present singular" },
+        { q: "____ you live in Delhi?", a: "do", h: "Simple present plural" },
+        { q: "____ are you late?", a: "why", h: "Asking reason" },
+        { q: "____ she finish her work?", a: "did", h: "Past tense question" },
+        { q: "____ can solve this?", a: "who", h: "Asking for person" },
+        { q: "____ have you been?", a: "where", h: "Asking place" },
+        { q: "____ this your pen?", a: "is", h: "Simple query" },
+        { q: "____ I come in, sir?", a: "may", h: "Formal permission" },
+        { q: "____ you help me?", a: "can", h: "Request/Ability" },
+        { q: "____ book is yours?", a: "which", h: "Choice" },
+        { q: "____ old are you?", a: "how", h: "Asking age" },
+        { q: "____ they arrived?", a: "have", h: "Perfect tense plural" },
+        { q: "____ was she crying?", a: "why", h: "Reason" },
+        { q: "____ you seen the Taj?", a: "have", h: "Experience" },
+        { q: "____ does the movie start?", a: "when", h: "Asking time" },
+        { q: "____ he a doctor?", a: "is", h: "Status check" },
+        { q: "____ we go now?", a: "shall", h: "Suggestion" },
+        { q: "____ much does it cost?", a: "how", h: "Asking quantity" }
+    ];
+
+    // Function to render questions
+    function renderQuiz(questions, containerId, prefix) {
+        const container = document.getElementById(containerId);
+        questions.forEach((item, index) => {
+            const id = `${prefix}-${index}`;
+            const html = `
+                <div class="quiz-item">
+                    <span class="quiz-question">${index + 1}. ${item.q.replace('____', '<span style="text-decoration:underline; font-weight:bold;">____</span>')}</span>
+                    <input type="text" class="quiz-input" id="in-${id}" placeholder="Answer">
+                    <button class="check-btn" onclick="checkAns('${id}', '${item.a}')">Check</button>
+                    <div class="feedback" id="fb-${id}"></div>
+                    <div class="hint-text" style="display:none;" id="hint-${id}">Hint: ${item.h}</div>
+                </div>
+            `;
+            container.innerHTML += html;
+        });
+    }
+
+    // Function to check answer
+    function checkAns(id, correct) {
+        const input = document.getElementById(`in-${id}`);
+        const feedback = document.getElementById(`fb-${id}`);
+        const hint = document.getElementById(`hint-${id}`);
+        const userVal = input.value.trim().toLowerCase();
+        
+        if (userVal === correct.toLowerCase()) {
+            feedback.innerHTML = "✔ Correct! Well done.";
+            feedback.className = "feedback correct";
+            input.style.borderColor = "var(--success)";
+            hint.style.display = "none";
+        } else {
+            feedback.innerHTML = `❌ Wrong. Try again!`;
+            feedback.className = "feedback wrong";
+            input.style.borderColor = "var(--error)";
+            hint.style.display = "block";
+        }
+    }
+
+    // Initialize Quiz
+    renderQuiz(questionsA, 'quiz-set-a', 'qa');
+    renderQuiz(questionsB, 'quiz-set-b', 'qb');
+    renderQuiz(questionsC, 'quiz-set-c', 'qc');
+
 </script>
 
 </body>

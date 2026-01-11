@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Chapter: ADVERBS</title>
+    <style>
+        :root {
+            --primary-color: #005f73; /* Deep Teal */
+            --secondary-color: #0a9396; /* Lighter Teal */
+            --accent-color: #94d2bd; /* Soft Green */
+            --highlight: #e9d8a6; /* Sand/Gold for Hinglish */
+            --danger: #ae2012;
+            --success: #2a9d8f;
+            --white: #ffffff;
+            --bg-color: #f1f5f9;
+            --text-color: #2b2d42;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        header .tagline {
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.15);
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* ACCORDION */
+        .accordion {
+            background-color: var(--white);
+            color: var(--primary-color);
+            cursor: pointer;
+            padding: 1.2rem;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.15rem;
+            font-weight: 700;
+            transition: 0.3s;
+            border-bottom: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .accordion:hover, .active {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .accordion:after {
+            content: '\002B'; /* Plus */
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .active:after {
+            content: "\2212"; /* Minus */
+        }
+
+        /* PANEL CONTENT */
+        .panel {
+            padding: 0 1.2rem;
+            background-color: var(--white);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-bottom: 10px;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .panel-content {
+            padding: 20px 0;
+        }
+
+        /* TYPOGRAPHY & ELEMENTS */
+        h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 0.8rem 0;
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 10px;
+            font-size: 1.3rem;
+        }
+
+        p { margin-bottom: 12px; }
+
+        .hinglish {
+            font-style: italic;
+            color: #444;
+            background-color: var(--highlight);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px 0 15px 0;
+            font-weight: 500;
+            border: 1px solid #d4c085;
+        }
+
+        .example-box {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--secondary-color);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .example-box ul {
+            list-style-type: none;
+            margin-left: 10px;
+        }
+
+        .example-box li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .example-box li::before {
+            content: "➤";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+            top: 4px;
+        }
+
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) { background-color: #f9f9f9; }
+
+        /* QUIZ STYLES */
+        .quiz-section-title {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px;
+            margin-top: 25px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .quiz-item {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-item p {
+            width: 100%;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .quiz-input {
+            padding: 10px;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            flex: 1;
+            min-width: 150px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .quiz-input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .check-btn {
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .check-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .feedback {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-left: 5px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .correct { color: var(--success-color); background: #e6fffa; }
+        .wrong { color: var(--danger); background: #fff5f5; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            .accordion { font-size: 1rem; padding: 15px; }
+            .quiz-item { flex-direction: column; align-items: stretch; }
+            .check-btn { width: 100%; }
+            th, td { font-size: 0.85rem; padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ADVERBS</h1>
+        <div class="subtitle">Complete Grammar Chapter for Competitive Exams</div>
+        <div class="tagline">Learn • Revise • Practice</div>
+    </header>
+
+    <div class="container">
+
+        <button class="accordion">1. WHAT IS AN ADVERB?</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p><strong>Definition:</strong> An Adverb is a word that modifies (adds meaning to) a <strong>Verb</strong>, an <strong>Adjective</strong>, or another <strong>Adverb</strong>.</p>
+                
+                <div class="hinglish">
+                    Hinglish: Wo shabd jo Verb (kriya), Adjective (visheshan) ya kisi dusre Adverb ki visheshta bataye ya usme extra jankari jode.
+                </div>
+
+                <h3>Key Concept:</h3>
+                <p>It answers questions like: <strong>How? When? Where? How often? To what extent?</strong></p>
+
+                <div class="example-box">
+                    <strong>Examples:</strong>
+                    <ul>
+                        <li>He runs <strong>fast</strong>. (Modifies Verb 'runs')</li>
+                        <li>She is <strong>very</strong> beautiful. (Modifies Adjective 'beautiful')</li>
+                        <li>He works <strong>quite</strong> efficiently. (Modifies Adverb 'efficiently')</li>
+                        <li>They arrived <strong>yesterday</strong>. (Time)</li>
+                        <li>Please come <strong>here</strong>. (Place)</li>
+                        <li>I <strong>always</strong> speak the truth. (Frequency)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion">2. IDENTIFICATION TRICK (PAHCHAN)</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p>In exams, ask the verb questions to find the adverb.</p>
+                
+                <div class="hinglish">
+                    Trick: Agar sentence mein Verb se pucho "Kaise?", "Kab?", "Kahan?", "Kitni baar?" - jo jawab mile wo Adverb hai.
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sentence</th>
+                            <th>Question Asked</th>
+                            <th>Adverb Found</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>She sings <strong>sweetly</strong>.</td>
+                            <td>How does she sing? (Kaise?)</td>
+                            <td>Sweetly</td>
+                        </tr>
+                        <tr>
+                            <td>He came <strong>late</strong>.</td>
+                            <td>When did he come? (Kab?)</td>
+                            <td>Late</td>
+                        </tr>
+                        <tr>
+                            <td>Look <strong>up</strong>.</td>
+                            <td>Where to look? (Kahan?)</td>
+                            <td>Up</td>
+                        </tr>
+                        <tr>
+                            <td>He <strong>often</strong> visits us.</td>
+                            <td>How often? (Kitni baar?)</td>
+                            <td>Often</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <button class="accordion">3. TYPES OF ADVERBS (VERY IMPORTANT)</button>
+        <div class="panel">
+            <div class="panel-content">
+                
+                <h3>A. Adverb of Manner (How?)</h3>
+                <p>Shows how an action is done. Usually ends in '-ly'.</p>
+                <div class="hinglish">Kaam karne ka tarika batata hai.</div>
+                <ul>
+                    <li>Examples: Slowly, Quickly, Bravely, Hard, Fast, Well.</li>
+                    <li><em>Example:</em> He fought <strong>bravely</strong>.</li>
+                </ul>
+
+                <h3>B. Adverb of Place (Where?)</h3>
+                <p>Shows the place of action.</p>
+                <div class="hinglish">Jagah ke baare mein batata hai.</div>
+                <ul>
+                    <li>Examples: Here, There, Up, Down, Everywhere, Near, Far.</li>
+                    <li><em>Example:</em> God is <strong>everywhere</strong>.</li>
+                </ul>
+
+                <h3>C. Adverb of Time (When?)</h3>
+                <p>Shows the time of action.</p>
+                <div class="hinglish">Samay batata hai.</div>
+                <ul>
+                    <li>Examples: Now, Then, Today, Yesterday, Tomorrow, Soon, Late.</li>
+                    <li><em>Example:</em> I will call you <strong>soon</strong>.</li>
+                </ul>
+
+                <h3>D. Adverb of Frequency (How often?)</h3>
+                <p>Shows how many times an action occurs.</p>
+                <div class="hinglish">Kaam kitni baar hota hai.</div>
+                <ul>
+                    <li>Examples: Always, Never, Often, Seldom, Usually, Once.</li>
+                    <li><em>Example:</em> She <strong>never</strong> tells a lie.</li>
+                </ul>
+
+                <h3>E. Adverb of Degree (How much?)</h3>
+                <p>Shows the intensity or degree.</p>
+                <div class="hinglish">Matra ya teevrata batata hai.</div>
+                <ul>
+                    <li>Examples: Very, Too, Quite, Almost, Enough, So.</li>
+                    <li><em>Example:</em> The tea is <strong>too</strong> hot.</li>
+                </ul>
+
+                <h3>F. Interrogative Adverbs</h3>
+                <p>Used to ask questions.</p>
+                <ul>
+                    <li>Examples: When, Where, How, Why.</li>
+                    <li><em>Example:</em> <strong>Where</strong> do you live?</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="accordion">4. POSITION OF ADVERBS (EXAM FAVORITE)</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p>Correct placement of adverbs is crucial for Spotting Errors.</p>
+
+                <h3>Rule 1: M-P-T Rule</h3>
+                <p>If Manner, Place, and Time adverbs come together, follow this order: <strong>Manner → Place → Time</strong>.</p>
+                <div class="example-box">
+                    Correct: She danced <strong>beautifully</strong> (M) <strong>at the party</strong> (P) <strong>yesterday</strong> (T).<br>
+                    Incorrect: She danced yesterday at the party beautifully. ❌
+                </div>
+
+                <h3>Rule 2: Adverbs of Frequency</h3>
+                <p>Place them <strong>before</strong> the Main Verb but <strong>after</strong> the Helping Verb.</p>
+                <table>
+                    <tr>
+                        <th>Context</th>
+                        <th>Example Sentence</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td>Main Verb only</td>
+                        <td>He <strong>always</strong> <u>comes</u> late.</td>
+                        <td>Before Main Verb (comes)</td>
+                    </tr>
+                    <tr>
+                        <td>Helping + Main</td>
+                        <td>He <u>has</u> <strong>never</strong> <u>seen</u> the Taj.</td>
+                        <td>After Helping (has), Before Main (seen)</td>
+                    </tr>
+                    <tr>
+                        <td>Verb 'to be' (is/am/are)</td>
+                        <td>He <u>is</u> <strong>always</strong> happy.</td>
+                        <td>After 'is/am/are/was/were'</td>
+                    </tr>
+                </table>
+
+                <h3>Rule 3: 'Enough'</h3>
+                <p>Adjective + Enough (Adjective comes before Enough).</p>
+                <p>Enough + Noun (Noun comes after Enough).</p>
+                <div class="example-box">
+                    <ul>
+                        <li>He is <strong>smart enough</strong> to solve this. (Smart = Adj) ✔</li>
+                        <li>He has <strong>enough money</strong>. (Money = Noun) ✔</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion">5. COMPARISON OF ADVERBS</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p>Like Adjectives, Adverbs also have degrees of comparison.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Positive</th>
+                            <th>Comparative</th>
+                            <th>Superlative</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fast</td>
+                            <td>Faster</td>
+                            <td>Fastest</td>
+                        </tr>
+                        <tr>
+                            <td>Hard</td>
+                            <td>Harder</td>
+                            <td>Hardest</td>
+                        </tr>
+                        <tr>
+                            <td>Carefully</td>
+                            <td>More carefully</td>
+                            <td>Most carefully</td>
+                        </tr>
+                        <tr>
+                            <td>Beautifully</td>
+                            <td>More beautifully</td>
+                            <td>Most beautifully</td>
+                        </tr>
+                        <tr>
+                            <td>Well</td>
+                            <td>Better</td>
+                            <td>Best</td>
+                        </tr>
+                        <tr>
+                            <td>Badly</td>
+                            <td>Worse</td>
+                            <td>Worst</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <button class="accordion">6. ADJECTIVE vs ADVERB (CONFUSION AREA)</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p>Many students confuse Adjectives and Adverbs.</p>
+                <div class="hinglish">Adjective Noun/Pronoun ke liye hota hai, Adverb Verb ke liye.</div>
+
+                <h3>Common Pairs:</h3>
+                
+                <p><strong>1. Good vs. Well</strong></p>
+                <ul>
+                    <li><strong>Good</strong> is an Adjective. <em>(He is a good boy.)</em></li>
+                    <li><strong>Well</strong> is an Adverb. <em>(He sings well.)</em></li>
+                </ul>
+
+                <p><strong>2. Hard vs. Hardly (Exam Trap)</strong></p>
+                <ul>
+                    <li><strong>Hard:</strong> With effort/solid. <em>(He works hard.)</em> - Positive meaning.</li>
+                    <li><strong>Hardly:</strong> Scarcely/Almost not. <em>(He hardly works.)</em> - Negative meaning.</li>
+                </ul>
+
+                <p><strong>3. Fast</strong></p>
+                <ul>
+                    <li>There is <strong>NO</strong> word like "Fastly".</li>
+                    <li>Adj: He is a fast runner.</li>
+                    <li>Adv: He runs fast.</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="accordion">7. COMMON ERRORS & EXAM TRAPS</button>
+        <div class="panel">
+            <div class="panel-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Wrong ❌</th>
+                            <th>Correct ✔</th>
+                            <th>Explanation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>He runs <strong>fastly</strong>.</td>
+                            <td>He runs <strong>fast</strong>.</td>
+                            <td>'Fastly' does not exist in English.</td>
+                        </tr>
+                        <tr>
+                            <td>I am <strong>too</strong> happy.</td>
+                            <td>I am <strong>very</strong> happy.</td>
+                            <td>'Too' has a negative sense (more than required). Use 'Very' for positive.</td>
+                        </tr>
+                        <tr>
+                            <td>He plays <strong>good</strong>.</td>
+                            <td>He plays <strong>well</strong>.</td>
+                            <td>'Play' is a verb, needs Adverb 'Well'.</td>
+                        </tr>
+                        <tr>
+                            <td>He came <strong>directly</strong> from school.</td>
+                            <td>He came <strong>direct</strong> from school.</td>
+                            <td>Direct = Straight; Directly = Immediately/Soon.</td>
+                        </tr>
+                        <tr>
+                            <td>I <strong>seldom or ever</strong> go there.</td>
+                            <td>I <strong>seldom or never</strong> go there.</td>
+                            <td>Pair is 'Seldom or never' or 'Seldom if ever'.</td>
+                        </tr>
+                        <tr>
+                            <td>He is <strong>enough rich</strong> to buy a car.</td>
+                            <td>He is <strong>rich enough</strong> to buy a car.</td>
+                            <td>Adj comes BEFORE enough.</td>
+                        </tr>
+                        <tr>
+                            <td>She only solved two questions.</td>
+                            <td>She solved <strong>only</strong> two questions.</td>
+                            <td>Place 'only' before the word it modifies.</td>
+                        </tr>
+                        <tr>
+                            <td>I <strong>hardly not</strong> know him.</td>
+                            <td>I <strong>hardly</strong> know him.</td>
+                            <td>'Hardly' is negative, don't use 'not' with it.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <button class="accordion">8. PRACTICE SECTION – 60 QUESTIONS (MANDATORY)</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p>Test your understanding. Type the answer and check.</p>
+
+                <div class="quiz-section-title">A. Fill in the correct Adverb form</div>
+                <div id="quiz-container-a"></div>
+
+                <div class="quiz-section-title">B. Choose Correct Word (Adj vs Adv / Confusing Words)</div>
+                <div id="quiz-container-b"></div>
+
+                <div class="quiz-section-title">C. Identify Adverb / Correct Position</div>
+                <div id="quiz-container-c"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Created by SHRISHANT YADAV</p>
+        <p>For Educational Purpose Only</p>
+    </footer>
+
+    <script>
+        // 1. Accordion Logic
+        const acc = document.getElementsByClassName("accordion");
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                const panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+        // 2. Quiz Data
+        const questionsA = [
+            { q: "He runs ___. (fast/fastly)", a: "fast" },
+            { q: "She sings ___. (sweet/sweetly)", a: "sweetly" },
+            { q: "He works ___. (hard/hardly)", a: "hard" },
+            { q: "The train arrived ___. (late/lately)", a: "late" },
+            { q: "She speaks English ___. (fluent/fluently)", a: "fluently" },
+            { q: "He drove ___. (careful/carefully)", a: "carefully" },
+            { q: "He treated me ___. (bad/badly)", a: "badly" },
+            { q: "Come ___. (here/hear)", a: "here" },
+            { q: "I ___ go there. (never/ever)", a: "never" },
+            { q: "It is ___ hot today. (very/much)", a: "very" },
+            { q: "He fought ___. (brave/bravely)", a: "bravely" },
+            { q: "She looks ___ today. (happy/happily)", a: "happy" },
+            { q: "He did it ___. (easy/easily)", a: "easily" },
+            { q: "They played ___. (good/well)", a: "well" },
+            { q: "She is ___ smart. (so/too/very)", a: "very" },
+            { q: "Wait ___. (out/outside)", a: "outside" },
+            { q: "I met him ___. (yesterday/tomorrow)", a: "yesterday" },
+            { q: "He is ___ right. (quite/quiet)", a: "quite" },
+            { q: "Speak ___. (loud/loudly)", a: "loudly" },
+            { q: "I am ___ glad to see you. (very/too)", a: "very" }
+        ];
+
+        const questionsB = [
+            { q: "He is ___ enough to lift this. (strong/strongly)", a: "strong" },
+            { q: "He has ___ money. (enough/too)", a: "enough" },
+            { q: "I ___ know him. (hard/hardly)", a: "hardly" },
+            { q: "He feels ___. (sad/sadly)", a: "sad" },
+            { q: "The soup tastes ___. (delicious/deliciously)", a: "delicious" },
+            { q: "He came ___ from Delhi. (direct/directly)", a: "direct" },
+            { q: "We ___ see a lion. (seldom/seldomly)", a: "seldom" },
+            { q: "This is ___ better. (much/very)", a: "much" },
+            { q: "She is the ___ best girl. (very/much)", a: "very" },
+            { q: "He is ___ weak to walk. (too/very)", a: "too" },
+            { q: "He worked ___. (sincere/sincerely)", a: "sincerely" },
+            { q: "It is raining ___. (heavy/heavily)", a: "heavily" },
+            { q: "He is ___ better today. (fairly/rather)", a: "fairly" },
+            { q: "The movie was ___ boring. (rather/fairly)", a: "rather" },
+            { q: "She acted ___. (wise/wisely)", a: "wisely" },
+            { q: "He is ___ a doctor. (also/too)", a: "also" },
+            { q: "I like it ___. (too/very)", a: "very" },
+            { q: "He ran ___. (quick/quickly)", a: "quickly" },
+            { q: "Please write ___. (neat/neatly)", a: "neatly" },
+            { q: "The flowers smell ___. (sweet/sweetly)", a: "sweet" }
+        ];
+
+        const questionsC = [
+            { q: "Identify Adverb: He walks slowly.", a: "slowly" },
+            { q: "Identify Adverb: She is very tall.", a: "very" },
+            { q: "Identify Adverb: He never lies.", a: "never" },
+            { q: "Identify Adverb: Look up.", a: "up" },
+            { q: "Correct Position: I (always) go there.", a: "i always go there" },
+            { q: "Correct Position: He (often) visits us.", a: "he often visits us" },
+            { q: "Identify Adverb: Go away.", a: "away" },
+            { q: "Identify Adverb: It is quite cold.", a: "quite" },
+            { q: "Identify Adverb: Come soon.", a: "soon" },
+            { q: "Identify Adverb: He runs fast.", a: "fast" },
+            { q: "Identify Adverb: I surely know.", a: "surely" },
+            { q: "Identify Adverb: Therefore, I left.", a: "therefore" },
+            { q: "Correct Order: M-P-T. (beautifully/yesterday/there)", a: "beautifully there yesterday" },
+            { q: "Identify Adverb: Where do you live?", a: "where" },
+            { q: "Identify Adverb: Why are you sad?", a: "why" },
+            { q: "Identify Adverb: He almost fell.", a: "almost" },
+            { q: "Identify Adverb: You are absolutely right.", a: "absolutely" },
+            { q: "Identify Adverb: I was born then.", a: "then" },
+            { q: "Identify Adverb: He works hard.", a: "hard" },
+            { q: "Identify Adverb: She sang nicely.", a: "nicely" }
+        ];
+
+        // 3. Render Quiz Function
+        function renderQuiz(data, containerId, prefix) {
+            const container = document.getElementById(containerId);
+            data.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-item';
+                
+                // Determine placeholder based on question type
+                let placeholder = "Type answer here";
+                if(prefix === 'qc' && index > 3 && index < 6) placeholder = "Type full sentence";
+                else if(prefix === 'qc' && index === 12) placeholder = "Type ordered words";
+
+                div.innerHTML = `
+                    <p>${index + 1}. ${item.q}</p>
+                    <input type="text" class="quiz-input" id="${prefix}-in-${index}" placeholder="${placeholder}" autocomplete="off">
+                    <button class="check-btn" onclick="checkAnswer('${prefix}-in-${index}', '${item.a}')">Check</button>
+                    <span id="${prefix}-msg-${index}" class="feedback"></span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        renderQuiz(questionsA, 'quiz-container-a', 'qa');
+        renderQuiz(questionsB, 'quiz-container-b', 'qb');
+        renderQuiz(questionsC, 'quiz-container-c', 'qc');
+
+        // 4. Check Logic
+        function checkAnswer(inputId, validAnswer) {
+            const input = document.getElementById(inputId);
+            const msg = document.getElementById(inputId.replace('in', 'msg'));
+            
+            // Normalize inputs: remove extra spaces, convert to lowercase, remove punctuation for sentence checks
+            const userVal = input.value.trim().toLowerCase().replace(/[.]/g, '');
+            const correctVal = validAnswer.trim().toLowerCase().replace(/[.]/g, '');
+
+            if (userVal === "") {
+                msg.textContent = "Please type something.";
+                msg.className = "feedback wrong";
+                return;
+            }
+
+            if (userVal === correctVal) {
+                msg.textContent = "Correct! ✔";
+                msg.className = "feedback correct";
+                input.style.borderColor = "var(--success-color)";
+            } else {
+                msg.textContent = "Wrong! Ans: " + validAnswer;
+                msg.className = "feedback wrong";
+                input.style.borderColor = "var(--danger)";
+            }
+        }
+    </script>
+</body>
+</html>

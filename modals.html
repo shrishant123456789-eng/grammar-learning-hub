@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Chapter: MODALS</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --white: #ffffff;
+            --light-gray: #ecf0f1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        header .tagline {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* ACCORDION STYLES */
+        .accordion {
+            background-color: var(--white);
+            color: var(--primary-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: 0.4s;
+            border-bottom: 1px solid var(--light-gray);
+            border-radius: 5px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .accordion:hover, .active {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .accordion:after {
+            content: '\002B'; /* Plus sign */
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .active:after {
+            content: "\2212"; /* Minus sign */
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: var(--white);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-bottom: 10px;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .panel-content {
+            padding: 20px 0;
+        }
+
+        /* TEXT HIGHLIGHTS & TABLES */
+        h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 0.5rem 0;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .hinglish {
+            font-style: italic;
+            color: #555;
+            background-color: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-left: 3px solid #ffc107;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .rule-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .example-list li {
+            margin-bottom: 8px;
+            list-style-type: none;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .example-list li::before {
+            content: "➤";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+
+        /* QUIZ STYLES */
+        .quiz-section {
+            margin-bottom: 30px;
+        }
+        
+        .quiz-group-title {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .quiz-item {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-item p {
+            width: 100%;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .quiz-input {
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .check-btn {
+            padding: 8px 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .check-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .feedback {
+            font-weight: bold;
+            margin-left: 10px;
+            font-size: 0.9rem;
+        }
+
+        .correct { color: var(--success-color); }
+        .wrong { color: var(--accent-color); }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .accordion { font-size: 1rem; padding: 15px; }
+            .quiz-item { flex-direction: column; align-items: stretch; }
+            th, td { padding: 8px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MODALS</h1>
+        <div class="subtitle">Complete Grammar Chapter for Competitive Exams</div>
+        <div class="tagline">Learn • Revise • Practice</div>
+    </header>
+
+    <div class="container">
+
+        <button class="accordion">1. WHAT ARE MODALS?</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p><strong>Definition:</strong> Modals (or Modal Verbs) are helper verbs that express the <strong>mood</strong> or <strong>attitude</strong> of the speaker. They do not work as a main verb alone.</p>
+                
+                <div class="hinglish">
+                    Hinglish: Ye wo verbs hote hain jo speaker ka mood (bhaav) ya attitude dikhate hain. Jaise ability, permission, request, ya duty.
+                </div>
+
+                <h3>List of Modals:</h3>
+                <p>Can, Could, May, Might, Will, Would, Shall, Should, Must, Ought to, Need, Dare, Used to.</p>
+
+                <div class="rule-box">
+                    <strong>GOLDEN RULE:</strong><br>
+                    Subject + <strong>Modal</strong> + <strong>V1</strong> (Base Form of Verb)<br>
+                    <small>Example: He <u>can</u> <u>go</u>. (Not 'goes', not 'going')</small>
+                </div>
+
+                <h3>Examples:</h3>
+                <ul class="example-list">
+                    <li>I <strong>can</strong> lift this box. (Ability)</li>
+                    <li>It <strong>may</strong> rain today. (Possibility)</li>
+                    <li>You <strong>should</strong> work hard. (Advice)</li>
+                    <li>He <strong>must</strong> apologize. (Compulsion)</li>
+                    <li><strong>May</strong> I come in? (Permission)</li>
+                    <li>I <strong>will</strong> help you. (Promise)</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="accordion">2. IDENTIFICATION TRICK (PAHCHAN)</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p>How to identify if a word is a Modal or a Normal Verb?</p>
+
+                <div class="hinglish">
+                    TRICK: Agar kisi verb ke baad kabhi 's/es', 'ing', ya 'ed' nahi lagta, to wo MODAL hai.
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Sentence</th>
+                        <th>Modal</th>
+                        <th>Meaning / Use</th>
+                    </tr>
+                    <tr>
+                        <td>I <strong>can</strong> swim.</td>
+                        <td>Can</td>
+                        <td>Mental/Physical Ability</td>
+                    </tr>
+                    <tr>
+                        <td>You <strong>must</strong> go.</td>
+                        <td>Must</td>
+                        <td>Strong Compulsion (Zaroori)</td>
+                    </tr>
+                    <tr>
+                        <td>It <strong>might</strong> rain.</td>
+                        <td>Might</td>
+                        <td>Low Possibility (Kam sambhavna)</td>
+                    </tr>
+                </table>
+                <p><strong>Note:</strong> We never say "Canning", "Musted", or "Cans". This is the easiest way to identify them.</p>
+            </div>
+        </div>
+
+        <button class="accordion">3. TYPES OF MODALS (Detailed Use)</button>
+        <div class="panel">
+            <div class="panel-content">
+                
+                <h3>A. CAN</h3>
+                <p><strong>Uses:</strong> Ability (Shamta), Permission (Informal), Possibility.</p>
+                <ul class="example-list">
+                    <li>I <strong>can</strong> speak English. (Ability)</li>
+                    <li><strong>Can</strong> I take your pen? (Informal Permission - Friends/Family)</li>
+                    <li>Fire <strong>can</strong> be dangerous. (General Possibility)</li>
+                </ul>
+
+                <h3>B. COULD</h3>
+                <p><strong>Uses:</strong> Past Ability, Polite Request, Possibility.</p>
+                <ul class="example-list">
+                    <li>I <strong>could</strong> run fast when I was young. (Past Ability)</li>
+                    <li><strong>Could</strong> you help me, please? (Very Polite Request)</li>
+                    <li>He <strong>could</strong> be at home. (Possibility)</li>
+                </ul>
+
+                <h3>C. MAY</h3>
+                <p><strong>Uses:</strong> Permission (Formal), Strong Possibility, Wish/Blessing.</p>
+                <ul class="example-list">
+                    <li><strong>May</strong> I come in, Sir? (Formal Permission)</li>
+                    <li>It <strong>may</strong> rain today. (High chance - 50%+)</li>
+                    <li><strong>May</strong> God bless you! (Wish)</li>
+                </ul>
+
+                <h3>D. MIGHT</h3>
+                <p><strong>Uses:</strong> Weak Possibility (Kam sambhavna).</p>
+                <ul class="example-list">
+                    <li>He <strong>might</strong> come, but I am not sure. (Low chance - 20%)</li>
+                    <li>I <strong>might</strong> buy a car next year.</li>
+                </ul>
+
+                <h3>E. WILL</h3>
+                <p><strong>Uses:</strong> Future, Promise, Determination, Instant Decision.</p>
+                <ul class="example-list">
+                    <li>I <strong>will</strong> call you. (Future)</li>
+                    <li>I <strong>will</strong> clear the exam this time. (Determination)</li>
+                </ul>
+
+                <h3>F. WOULD</h3>
+                <p><strong>Uses:</strong> Polite Request, Past Habit, Imaginary situation.</p>
+                <ul class="example-list">
+                    <li><strong>Would</strong> you like some tea? (Offer/Request)</li>
+                    <li>He <strong>would</strong> go for a walk daily. (Past Habit)</li>
+                    <li>If I were a bird, I <strong>would</strong> fly. (Imaginary)</li>
+                </ul>
+
+                <h3>G. SHALL</h3>
+                <p><strong>Uses:</strong> Suggestion, Offer (Used mostly with I/We in questions).</p>
+                <ul class="example-list">
+                    <li><strong>Shall</strong> we go now? (Suggestion)</li>
+                    <li><strong>Shall</strong> I carry your bag? (Offer)</li>
+                </ul>
+
+                <h3>H. SHOULD</h3>
+                <p><strong>Uses:</strong> Advice, Duty, Moral Obligation.</p>
+                <ul class="example-list">
+                    <li>You <strong>should</strong> study hard. (Advice)</li>
+                    <li>We <strong>should</strong> respect our elders. (Moral Duty)</li>
+                </ul>
+
+                <h3>I. MUST</h3>
+                <p><strong>Uses:</strong> Strong Obligation, Compulsion, Logical Assumption.</p>
+                <ul class="example-list">
+                    <li>You <strong>must</strong> wear a helmet. (Compulsion/Law)</li>
+                    <li>He has a big car; he <strong>must</strong> be rich. (Assumption)</li>
+                </ul>
+
+                <h3>J. OUGHT TO</h3>
+                <p><strong>Uses:</strong> Moral Duty (Similar to Should but more formal).</p>
+                <ul class="example-list">
+                    <li>We <strong>ought to</strong> love our country.</li>
+                    <li>You <strong>ought to</strong> help the poor.</li>
+                </ul>
+
+            </div>
+        </div>
+
+        <button class="accordion">4. MODALS – IMPORTANT RULES</button>
+        <div class="panel">
+            <div class="panel-content">
+                
+                <div class="rule-box">
+                    <strong>Rule 1:</strong> Always use V1 (Base form) after Modals.<br>
+                    <strong>Rule 2:</strong> Do not use "to" after Modals (Except 'Ought to' & 'Used to').
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Wrong ❌</th>
+                        <th>Correct ✔</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tr>
+                        <td>He <strong>can goes</strong> there.</td>
+                        <td>He <strong>can go</strong> there.</td>
+                        <td>Modals don't take s/es.</td>
+                    </tr>
+                    <tr>
+                        <td>She <strong>will coming</strong> soon.</td>
+                        <td>She <strong>will come</strong> soon.</td>
+                        <td>Modals don't take 'ing'.</td>
+                    </tr>
+                    <tr>
+                        <td>You <strong>should to</strong> study.</td>
+                        <td>You <strong>should</strong> study.</td>
+                        <td>No 'to' after should.</td>
+                    </tr>
+                    <tr>
+                        <td>He <strong>cann't</strong> do it.</td>
+                        <td>He <strong>cannot / can't</strong> do it.</td>
+                        <td>Spelling error.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <button class="accordion">5. MODALS IN NEGATIVE SENTENCES</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p><strong>Structure:</strong> Subject + Modal + NOT + V1</p>
+                
+                <div class="hinglish">
+                    Hinglish: Modal ke turant baad 'NOT' lagana hai, aur fir V1.
+                </div>
+
+                <p><strong>Short Forms (Contractions):</strong></p>
+                <ul>
+                    <li>Cannot → Can't</li>
+                    <li>Will not → Won't (Important)</li>
+                    <li>Shall not → Shan't</li>
+                    <li>Must not → Mustn't</li>
+                    <li>Should not → Shouldn't</li>
+                </ul>
+
+                <br>
+                <div class="rule-box">
+                    <strong>Example:</strong><br>
+                    You <strong>should not</strong> (shouldn't) smoke.<br>
+                    She <strong>will not</strong> (won't) come today.
+                </div>
+            </div>
+        </div>
+
+        <button class="accordion">6. MODALS IN INTERROGATIVE SENTENCES</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p><strong>Structure:</strong> Modal + Subject + V1 + ...?</p>
+
+                <div class="hinglish">
+                    Hinglish: Sawal puchne ke liye Modal ko Subject se pehle rakhte hain.
+                </div>
+
+                <ul class="example-list">
+                    <li><strong>Can</strong> you drive a car?</li>
+                    <li><strong>May</strong> I use your phone?</li>
+                    <li><strong>Should</strong> I call him?</li>
+                    <li><strong>Will</strong> you marry me?</li>
+                    <li><strong>Could</strong> you pass the salt?</li>
+                    <li><strong>Must</strong> we go there?</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="accordion">7. COMMON ERRORS & EXAM TRAPS</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p>These are the most common mistakes asked in SSC and Banking exams.</p>
+
+                <table>
+                    <tr>
+                        <th>Wrong ❌</th>
+                        <th>Correct ✔</th>
+                        <th>Explanation</th>
+                    </tr>
+                    <tr>
+                        <td>He <strong>can able to</strong> do this.</td>
+                        <td>He <strong>can</strong> do this. / He is <strong>able to</strong> do this.</td>
+                        <td>'Can' and 'Able to' both mean ability. Don't use together (Superfluous).</td>
+                    </tr>
+                    <tr>
+                        <td>You <strong>should to</strong> go.</td>
+                        <td>You <strong>should</strong> go.</td>
+                        <td>'To' comes only with 'Ought' and 'Used'.</td>
+                    </tr>
+                    <tr>
+                        <td>He <strong>needs work</strong> hard.</td>
+                        <td>He <strong>needs to work</strong> hard.</td>
+                        <td>Here 'Needs' is a main verb, not modal.</td>
+                    </tr>
+                    <tr>
+                        <td>If it will rain, I will not come.</td>
+                        <td>If it <strong>rains</strong>, I will not come.</td>
+                        <td>Double Future is wrong. 1st part Present Indefinite.</td>
+                    </tr>
+                    <tr>
+                        <td>She <strong>must has</strong> done it.</td>
+                        <td>She <strong>must have</strong> done it.</td>
+                        <td>After Modal, always use base form 'Have', never 'Has'.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <button class="accordion">8. PRACTICE SECTION – 60 QUESTIONS (IMP)</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p>Test your knowledge. Type the correct modal and click 'Check'.</p>
+                <p><em>(Accepts multiple correct answers if context allows, e.g., may/might)</em></p>
+
+                <div class="quiz-group-title">A. Affirmative Sentences (Fill in the blanks)</div>
+                <div id="quiz-container-a"></div>
+
+                <div class="quiz-group-title">B. Negative Sentences (Use Modal + Not / Short form)</div>
+                <div id="quiz-container-b"></div>
+
+                <div class="quiz-group-title">C. Interrogative Sentences (Questions)</div>
+                <div id="quiz-container-c"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Created by SHRISHANT YADAV</p>
+        <p>For Educational Purpose Only</p>
+    </footer>
+
+    <script>
+        // 1. Accordion Logic
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+        // 2. Quiz Data Generation
+        const questionsA = [
+            { q: "I ___ lift this heavy box. (Ability)", a: ["can"] },
+            { q: "It ___ rain today, look at the clouds. (Possibility)", a: ["may", "might"] },
+            { q: "You ___ work hard to pass. (Advice)", a: ["should", "ought to"] },
+            { q: "He ___ swim when he was young. (Past Ability)", a: ["could"] },
+            { q: "We ___ respect our flag. (Moral Duty)", a: ["must", "ought to", "should"] },
+            { q: "___ God bless you. (Wish)", a: ["may"] },
+            { q: "I ___ definitely call you tomorrow. (Promise)", a: ["will"] },
+            { q: "He ___ be at home now. (Assumption/Possibility)", a: ["must", "may", "might"] },
+            { q: "You ___ to follow the traffic rules. (Obligation)", a: ["ought", "have"] },
+            { q: "If I were a bird, I ___ fly. (Imagination)", a: ["would"] },
+            { q: "___ I come in, Sir? (Formal Permission)", a: ["may"] },
+            { q: "I ___ speak three languages. (Ability)", a: ["can"] },
+            { q: "Soldiers ___ obey orders. (Compulsion)", a: ["must"] },
+            { q: "She ___ help you if you ask. (Future/Willingness)", a: ["will"] },
+            { q: "___ you please pass the salt? (Polite Request)", a: ["could", "would"] },
+            { q: "We ___ to pay our taxes. (Moral Duty - with 'to')", a: ["ought"] },
+            { q: "I ___ read without glasses last year. (Past Ability)", a: ["could"] },
+            { q: "You ___ see a doctor immediately. (Strong Advice)", a: ["must"] },
+            { q: "It is late, I ___ go now. (Decision)", a: ["must", "will"] },
+            { q: "___ I carry your bag? (Offer)", a: ["shall", "may"] }
+        ];
+
+        const questionsB = [
+            { q: "You ___ smoke here. (Prohibition - strict)", a: ["must not", "mustn't"] },
+            { q: "I ___ speak French. (Lack of Ability)", a: ["cannot", "can't"] },
+            { q: "He ___ come today. (Low possibility - negative)", a: ["might not", "may not"] },
+            { q: "You ___ worry about it. (No necessity)", a: ["need not", "needn't"] },
+            { q: "She ___ lie to her parents. (Advice - negative)", a: ["should not", "shouldn't"] },
+            { q: "I ___ tolerate this behavior. (Refusal)", a: ["will not", "won't"] },
+            { q: "We ___ disrespect elders. (Moral Duty - negative)", a: ["ought not", "should not"] },
+            { q: "They ___ attend the meeting. (Past inability)", a: ["could not", "couldn't"] },
+            { q: "You ___ touch that wire. (Danger/Prohibition)", a: ["must not", "mustn't"] },
+            { q: "It ___ be true. (Impossibility)", a: ["cannot", "can't"] },
+            { q: "I ___ go to the party. (Decision - negative)", a: ["will not", "won't", "shan't"] },
+            { q: "You ___ to have done that. (Regret/Advice - negative with 'to')", a: ["ought not"] },
+            { q: "She ___ drive a car yet. (Inability)", a: ["cannot", "can't"] },
+            { q: "We ___ waste water. (Advice - negative)", a: ["should not", "shouldn't"] },
+            { q: "He ___ enter without permission. (Prohibition)", a: ["must not", "mustn't", "cannot"] },
+            { q: "I ___ believe my eyes! (Surprise/Inability)", a: ["could not", "couldn't"] },
+            { q: "They ___ be at home. (Possibility - negative)", a: ["may not", "might not"] },
+            { q: "You ___ make noise in the library. (Rule)", a: ["must not", "mustn't"] },
+            { q: "He ___ dare to ask her. (Courage - negative)", a: ["dare not", "daren't", "does not"] },
+            { q: "I ___ like to go there. (Refusal/Polite)", a: ["would not", "wouldn't"] }
+        ];
+
+        const questionsC = [
+            { q: "___ I go out? (Permission - Informal)", a: ["can"] },
+            { q: "___ I come in, Sir? (Permission - Formal)", a: ["may"] },
+            { q: "___ you help me? (Polite Request)", a: ["could", "would"] },
+            { q: "___ we go for a movie? (Suggestion - I/We)", a: ["shall"] },
+            { q: "___ you lift this box? (Ability)", a: ["can"] },
+            { q: "___ you like some coffee? (Offer)", a: ["would"] },
+            { q: "___ I wear a tie? (Necessity)", a: ["must", "should", "need"] },
+            { q: "___ it rain today? (Possibility)", a: ["will", "may", "might"] },
+            { q: "___ you please open the door? (Request)", a: ["could", "would", "can"] },
+            { q: "___ we start the work now? (Suggestion)", a: ["shall", "should"] },
+            { q: "___ I call a doctor? (Offer/Advice)", a: ["should", "shall"] },
+            { q: "___ you mind moving a bit? (Polite)", a: ["would"] },
+            { q: "___ she swim? (Ability)", a: ["can"] },
+            { q: "___ I assist you? (Formal Offer)", a: ["may", "shall"] },
+            { q: "How ___ you say that? (Dare/Courage)", a: ["dare", "could", "can"] },
+            { q: "___ we meet tomorrow? (Future plan)", a: ["shall", "will", "can"] },
+            { q: "___ you be quiet, please? (Request/Order)", a: ["will", "would", "can"] },
+            { q: "___ I use your pen? (Formal)", a: ["may"] },
+            { q: "___ he pass the exam? (Prediction)", a: ["will"] },
+            { q: "___ you lend me some money? (Request)", a: ["can", "could", "would"] }
+        ];
+
+        // 3. Render Quiz
+        function renderQuiz(data, containerId, prefix) {
+            const container = document.getElementById(containerId);
+            data.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-item';
+                div.innerHTML = `
+                    <p>${index + 1}. ${item.q}</p>
+                    <input type="text" class="quiz-input" id="${prefix}-in-${index}" placeholder="Type answer">
+                    <button class="check-btn" onclick="checkAnswer('${prefix}-in-${index}', '${item.a.join(',')}')">Check</button>
+                    <span id="${prefix}-msg-${index}" class="feedback"></span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        renderQuiz(questionsA, 'quiz-container-a', 'qa');
+        renderQuiz(questionsB, 'quiz-container-b', 'qb');
+        renderQuiz(questionsC, 'quiz-container-c', 'qc');
+
+        // 4. Check Answer Logic
+        function checkAnswer(inputId, validAnswersString) {
+            const input = document.getElementById(inputId);
+            const msg = document.getElementById(inputId.replace('in', 'msg'));
+            const userVal = input.value.trim().toLowerCase();
+            const validAnswers = validAnswersString.split(',');
+
+            if (userVal === "") {
+                msg.textContent = "Please type an answer.";
+                msg.className = "feedback wrong";
+                return;
+            }
+
+            if (validAnswers.includes(userVal)) {
+                msg.textContent = "Correct! ✔";
+                msg.className = "feedback correct";
+                input.style.borderColor = "var(--success-color)";
+            } else {
+                msg.textContent = "Wrong! Correct: " + validAnswers.join(" / ");
+                msg.className = "feedback wrong";
+                input.style.borderColor = "var(--accent-color)";
+            }
+        }
+    </script>
+
+</body>
+</html>
