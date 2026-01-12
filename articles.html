@@ -1,244 +1,1486 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Articles – A, An, The</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARTICLES (A, AN, THE) - Complete Grammar Chapter | Grammar Learning Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-body{
-  margin:0;
-  font-family:Segoe UI, Arial, sans-serif;
-  background:#f4f6fb;
-  line-height:1.7;
-}
-header{
-  background:linear-gradient(90deg,#000,#1e40af,#facc15);
-  color:white;
-  padding:24px;
-  text-align:center;
-  animation:slideDown 0.8s ease;
-}
-section{padding:18px}
-.card{
-  background:white;
-  margin-bottom:20px;
-  padding:18px;
-  border-radius:16px;
-  box-shadow:0 8px 18px rgba(0,0,0,0.12);
-  animation:fadeUp 0.7s ease;
-}
-h2{color:#1e3a8a}
-.rule{
-  background:#ecfeff;
-  border-left:6px solid #06b6d4;
-  padding:14px;
-  margin:12px 0;
-}
-.example{
-  background:#fefce8;
-  border-left:6px solid #facc15;
-  padding:10px;
-  margin-top:8px;
-}
-.question{
-  margin-top:14px;
-}
-input{
-  padding:7px;
-  width:170px;
-  border-radius:6px;
-  border:1px solid #ccc;
-}
-.check-btn{
-  margin-left:6px;
-  padding:7px 12px;
-  background:#16a34a;
-  color:white;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-}
-.check-btn:hover{background:#15803d}
-.feedback{
-  margin-top:6px;
-  font-weight:600;
-}
-.correct{color:green}
-.wrong{color:#dc2626}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
 
-.download-btn{
-  margin-top:18px;
-  padding:10px 18px;
-  background:#1d4ed8;
-  color:white;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-}
-.download-btn:hover{background:#1e40af}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
 
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(25px)}
-  to{opacity:1;transform:translateY(0)}
-}
-@keyframes slideDown{
-  from{opacity:0;transform:translateY(-25px)}
-  to{opacity:1;transform:translateY(0)}
-}
-</style>
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .definition-box {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.3);
+        }
+
+        .hinglish-box {
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(253, 121, 168, 0.3);
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .example-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .example-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .correct {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .incorrect {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .accordion {
+            margin: 1.5rem 0;
+        }
+
+        .accordion-item {
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #636e72 0%, #2d3436 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+        }
+
+        .accordion-header::after {
+            content: '▼';
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            background: white;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 2000px;
+            padding: 1.5rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        th {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .rule-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .mistake-box {
+            background: #fff5f5;
+            border-left: 4px solid #e74c3c;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .practice-section {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .question {
+            background: white;
+            color: #333;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .question h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid #ecf0f1;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .score-panel {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .score-panel h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .score-item {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .score-percentage {
+            font-size: 2rem;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .controls {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #fdcb6e;
+        }
+
+        .exam-tip::before {
+            content: "💡 SSC TIP: ";
+            font-weight: bold;
+            color: #e17055;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 1rem;
+            }
+            
+            .score-panel {
+                position: static;
+                transform: none;
+                margin: 2rem auto;
+                max-width: 300px;
+            }
+            
+            .example-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <header class="header">
+            <h1>ARTICLES (A, AN, THE)</h1>
+            <p>Complete Grammar Chapter with Practice & Tests</p>
+        </header>
 
-<header>
-<h1>Articles – A, An, The</h1>
-<p>Basic to Advanced | Clear Rules | Practice with Explanation</p>
-</header>
+        <main class="content">
+            <!-- What are Articles -->
+            <section class="section">
+                <h2>① WHAT ARE ARTICLES?</h2>
+                
+                <div class="definition-box">
+                    <h3>📚 Definition</h3>
+                    <p>Articles are words that define a noun as specific or unspecific. They come before nouns to show whether we are referring to something specific or general.</p>
+                </div>
 
-<section>
+                <div class="hinglish-box">
+                    <h3>🇮🇳 Hinglish Explanation</h3>
+                    <p>Articles wo shabd hote hain jo noun ke pehle aate hain aur batate hain ki wo noun general hai ya specific. Hindi mein iska koi direct equivalent nahin hai, lekin ye "ek" ya "wo" ke jaise kaam karte hain.</p>
+                </div>
 
-<div class="card">
-<h2>📘 What is an Article?</h2>
-<p>
-An article is a word used before a noun to show whether the noun is general or specific.
-</p>
-</div>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <h4>✅ Correct Examples</h4>
+                        <p><span class="highlight">A</span> boy is playing. (General - koi bhi ladka)</p>
+                        <p><span class="highlight">An</span> apple is red. (General - koi bhi apple)</p>
+                        <p><span class="highlight">The</span> sun is hot. (Specific - hum sab jaante hain kaun sa sun)</p>
+                        <p>I saw <span class="highlight">a</span> dog. (General - koi bhi dog)</p>
+                        <p><span class="highlight">The</span> dog was black. (Specific - jo dog maine dekha)</p>
+                    </div>
+                    <div class="example-card">
+                        <h4>❌ Wrong Examples</h4>
+                        <p><span class="incorrect">✗ I want a water.</span> (Wrong because water uncountable hai)</p>
+                        <p><span class="incorrect">✗ She is a honest girl.</span> (Wrong because 'honest' vowel sound se shuru hota hai)</p>
+                        <p><span class="incorrect">✗ I went to the Delhi.</span> (Wrong because city names ke saath 'the' nahin lagta)</p>
+                    </div>
+                </div>
+            </section>
 
-<div class="card">
-<h2>📗 Types of Articles</h2>
+            <!-- Accordion Structure -->
+            <div class="accordion">
+                <!-- Types of Articles -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>② TYPES OF ARTICLES</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="example-grid">
+                            <div class="example-card">
+                                <h4>🔍 Indefinite Articles</h4>
+                                <p><strong>A / An</strong></p>
+                                <p>Use: Jab hum kisi general cheez ki baat karte hain</p>
+                                <p>Example: A boy, An apple</p>
+                            </div>
+                            <div class="example-card">
+                                <h4>📍 Definite Article</h4>
+                                <p><strong>The</strong></p>
+                                <p>Use: Jab hum kisi specific cheez ki baat karte hain</p>
+                                <p>Example: The sun, The book I read</p>
+                            </div>
+                            <div class="example-card">
+                                <h4>❌ Zero Article</h4>
+                                <p><strong>No article</strong></p>
+                                <p>Use: Kuch specific cases mein article lagana wrong hota hai</p>
+                                <p>Example: I love music (not 'the music')</p>
+                            </div>
+                        </div>
 
-<div class="rule">
-<b>1. A</b><br>
-Used before a word beginning with a <b>consonant sound</b>.
-<div class="example">
-a boy, a pen, a university
-</div>
-</div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>When to Use</th>
+                                        <th>Examples</th>
+                                        <th>Hindi Meaning</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>A</strong></td>
+                                        <td>Consonant sound ke pehle</td>
+                                        <td>a boy, a cat, a university</td>
+                                        <td>Ek (general)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>An</strong></td>
+                                        <td>Vowel sound ke pehle</td>
+                                        <td>an apple, an hour, an honest man</td>
+                                        <td>Ek (general)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>The</strong></td>
+                                        <td>Specific things ke liye</td>
+                                        <td>the sun, the book, the Ganga</td>
+                                        <td>Wo specific</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Zero</strong></td>
+                                        <td>Proper nouns, abstract nouns</td>
+                                        <td>Delhi, love, music</td>
+                                        <td>Bina article</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-<div class="rule">
-<b>2. An</b><br>
-Used before a word beginning with a <b>vowel sound</b>.
-<div class="example">
-an apple, an hour, an honest man
-</div>
-</div>
+                <!-- A - Detailed Rules -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>③ A – DETAILED RULES</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="rule-box">
+                            <h4>Rule 1: Before Consonant Sound</h4>
+                            <p><strong>✔ Correct:</strong> A boy, A cat, A dog, A pen</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "A apple" (wrong because apple starts with vowel sound)</p>
+                                <p><strong>✔ Correct:</strong> "An apple"</p>
+                                <p><strong>Why wrong:</strong> Hum alphabet dekh kar decide nahin karte, sound sun kar karte hain!</p>
+                            </div>
+                        </div>
 
-<div class="rule">
-<b>3. The</b><br>
-Used to refer to a <b>particular or specific</b> person or thing.
-<div class="example">
-the sun, the Taj Mahal, the boy you met
-</div>
-</div>
+                        <div class="rule-box">
+                            <h4>Rule 2: Before Words Like University, European, One</h4>
+                            <p><strong>✔ Correct:</strong> A university, A European, A one-way street</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "An university" (kyunki university 'u' se shuru hota hai)</p>
+                                <p><strong>✔ Correct:</strong> "A university"</p>
+                                <p><strong>Why:</strong> University ka pronunciation "Yuniversity" hota hai - 'Y' consonant sound hai!</p>
+                            </div>
+                        </div>
 
-</div>
+                        <div class="rule-box">
+                            <h4>Rule 3: Before Singular Countable Nouns</h4>
+                            <p><strong>✔ Correct:</strong> I need a pen. She bought a dress.</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "I need pen" (article missing)</p>
+                                <p><strong>✔ Correct:</strong> "I need a pen"</p>
+                                <p><strong>Why:</strong> Singular countable noun ke sahe hamesha article lagta hai!</p>
+                            </div>
+                        </div>
 
-<div class="card">
-<h2>📙 Important Rules (Exam Focus)</h2>
+                        <div class="rule-box">
+                            <h4>Rule 4: With Professions</h4>
+                            <p><strong>✔ Correct:</strong> He is a doctor. She wants to be a teacher.</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "He is doctor"</p>
+                                <p><strong>✔ Correct:</strong> "He is a doctor"</p>
+                                <p><strong>Why:</strong> Profession batate waqt hamesha 'a' lagate hain!</p>
+                            </div>
+                        </div>
 
-<div class="rule">
-• Use <b>a / an</b> for first mention, <b>the</b> for second mention.
-</div>
+                        <div class="exam-tip">
+                            <strong>SSC TIP:</strong> "A" ka matlab hai "ek" - general sense mein. Jab aap kisi specific cheez ki baat nahin kar rahe, use "a"!
+                        </div>
+                    </div>
+                </div>
 
-<div class="rule">
-• Use <b>an</b> with vowel sound, not vowel letter.
-</div>
+                <!-- An - Detailed Rules -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>④ AN – DETAILED RULES</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="rule-box">
+                            <h4>Rule 1: Before Vowel Sound (A, E, I, O, U)</h4>
+                            <p><strong>✔ Correct:</strong> An apple, An elephant, An ice-cream, An orange, An umbrella</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "A apple"</p>
+                                <p><strong>✔ Correct:</strong> "An apple"</p>
+                                <p><strong>Why wrong:</strong> Apple vowel sound se shuru hota hai - 'an' lagna chahiye!</p>
+                            </div>
+                        </div>
 
-<div class="rule">
-• Use <b>the</b> with unique things, rivers, seas, mountains.
-</div>
+                        <div class="rule-box">
+                            <h4>Rule 2: Before Words Like Honest, Hour, Heir</h4>
+                            <p><strong>✔ Correct:</strong> An honest man, An hour, An heir</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "A honest man" (kyunki 'h' consonant hai)</p>
+                                <p><strong>✔ Correct:</strong> "An honest man"</p>
+                                <p><strong>Why:</strong> In words mein 'h' silent hota hai - sound 'o' se shuru hota hai!</p>
+                            </div>
+                        </div>
 
-<div class="rule">
-• No article before plural or abstract nouns when used generally.
-</div>
+                        <div class="rule-box">
+                            <h4>Rule 3: Before Abbreviations (MBA, FIR, MLA)</h4>
+                            <p><strong>✔ Correct:</strong> An MBA degree, An FIR, An MLA</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "A MBA degree"</p>
+                                <p><strong>✔ Correct:</strong> "An MBA degree"</p>
+                                <p><strong>Why:</strong> MBA ka pronunciation "Em-Bee-A" hota hai - 'Em' vowel sound hai!</p>
+                            </div>
+                        </div>
 
-</div>
+                        <div class="rule-box">
+                            <h4>Rule 4: With 'H' Words Where H is Silent</h4>
+                            <p><strong>✔ Correct:</strong> An hour, An honest boy, An heir, An honor</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "A hour"</p>
+                                <p><strong>✔ Correct:</strong> "An hour"</p>
+                                <p><strong>Why:</strong> Hour ka pronunciation "our" hota hai - 'o' vowel sound hai!</p>
+                            </div>
+                        </div>
 
-<div class="card">
-<h2>📝 Practice Questions (30)</h2>
-<div id="quiz"></div>
+                        <div class="exam-tip">
+                            <strong>SSC TIP:</strong> Sound pe dhyaan do, letter pe nahin! "An honest" lekin "A house" (kyunki house mein 'h' bolte hain)!
+                        </div>
+                    </div>
+                </div>
 
-<button class="download-btn" onclick="downloadNotes()">Download Notes</button>
-</div>
+                <!-- The - Detailed Rules -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>⑤ THE – DETAILED RULES</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="rule-box">
+                            <h4>Rule 1: Unique Things in the World</h4>
+                            <p><strong>✔ Correct:</strong> The sun, The moon, The earth, The sky, The world</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "Sun is hot"</p>
+                                <p><strong>✔ Correct:</strong> "The sun is hot"</p>
+                                <p><strong>Why:</strong> Sun ek hi hai duniya mein - unique hai!</p>
+                            </div>
+                        </div>
 
-</section>
+                        <div class="rule-box">
+                            <h4>Rule 2: Rivers, Seas, Oceans</h4>
+                            <p><strong>✔ Correct:</strong> The Ganga, The Yamuna, The Pacific Ocean, The Red Sea</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "I swam in Ganga"</p>
+                                <p><strong>✔ Correct:</strong> "I swam in the Ganga"</p>
+                                <p><strong>Why:</strong> Rivers ke saath hamesha 'the' lagta hai!</p>
+                            </div>
+                        </div>
 
-<script>
-const questions = [
-{q:"___ boy is playing.",a:"a",why:"Boy starts with a consonant sound."},
-{q:"She ate ___ apple.",a:"an",why:"Apple starts with a vowel sound."},
-{q:"___ sun rises in the east.",a:"the",why:"Sun is a unique object."},
-{q:"He is ___ honest man.",a:"an",why:"Honest starts with a vowel sound."},
-{q:"I saw ___ elephant.",a:"an",why:"Elephant starts with a vowel sound."},
+                        <div class="rule-box">
+                            <h4>Rule 3: Mountain Ranges</h4>
+                            <p><strong>✔ Correct:</strong> The Himalayas, The Alps, The Andes</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "I visited Himalayas"</p>
+                                <p><strong>✔ Correct:</strong> "I visited the Himalayas"</p>
+                                <p><strong>Why:</strong> Mountain ranges (plural) ke saath 'the' lagta hai!</p>
+                            </div>
+                        </div>
 
-{q:"She bought ___ pen.",a:"a",why:"Pen starts with consonant sound."},
-{q:"___ Ganga is a holy river.",a:"the",why:"Rivers take 'the'."},
-{q:"He is ___ European.",a:"a",why:"European starts with 'you' sound."},
-{q:"This is ___ best book.",a:"the",why:"Superlative degree uses 'the'."},
-{q:"___ owl is a bird.",a:"an",why:"Owl starts with vowel sound."},
+                        <div class="rule-box">
+                            <h4>Rule 4: Superlatives</h4>
+                            <p><strong>✔ Correct:</strong> The best, The tallest, The most beautiful</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "She is best student"</p>
+                                <p><strong>✔ Correct:</strong> "She is the best student"</p>
+                                <p><strong>Why:</strong> Superlative degree ke saath hamesha 'the' lagta hai!</p>
+                            </div>
+                        </div>
 
-{q:"He has ___ umbrella.",a:"an",why:"Umbrella starts with vowel sound."},
-{q:"___ students are playing.",a:"",why:"No article before plural noun used generally."},
-{q:"She likes ___ music.",a:"",why:"Abstract noun used generally."},
-{q:"___ Taj Mahal is beautiful.",a:"the",why:"Name of a famous monument."},
-{q:"He is ___ MLA.",a:"an",why:"M is pronounced 'em'."},
+                        <div class="rule-box">
+                            <h4>Rule 5: Musical Instruments</h4>
+                            <p><strong>✔ Correct:</strong> I play the guitar, She learns the piano</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "I play guitar"</p>
+                                <p><strong>✔ Correct:</strong> "I play the guitar"</p>
+                                <p><strong>Why:</strong> Musical instruments ke saath 'the' lagta hai!</p>
+                            </div>
+                        </div>
 
-{q:"I saw ___ one-eyed man.",a:"a",why:"One starts with 'w' sound."},
-{q:"She is ___ tallest girl.",a:"the",why:"Superlative degree."},
-{q:"___ honesty is the best policy.",a:"",why:"Abstract noun used generally."},
-{q:"He found ___ old coin.",a:"an",why:"Old starts with vowel sound."},
-{q:"___ milk is good for health.",a:"",why:"Material noun used generally."},
+                        <div class="rule-box">
+                            <h4>Rule 6: Newspapers</h4>
+                            <p><strong>✔ Correct:</strong> The Times of India, The Hindu, The Indian Express</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "I read Times of India"</p>
+                                <p><strong>✔ Correct:</strong> "I read the Times of India"</p>
+                                <p><strong>Why:</strong> Newspapers ke names ke saath 'the' lagta hai!</p>
+                            </div>
+                        </div>
 
-{q:"She read ___ interesting story.",a:"an",why:"Interesting starts with vowel sound."},
-{q:"___ Earth moves round the sun.",a:"the",why:"Earth is unique."},
-{q:"He wants ___ job.",a:"a",why:"Job starts with consonant sound."},
-{q:"___ poor need help.",a:"the",why:"'The' used for a class of people."},
-{q:"He bought ___ pair of shoes.",a:"a",why:"Pair is singular."},
+                        <div class="rule-box">
+                            <h4>Rule 7: Historical Buildings</h4>
+                            <p><strong>✔ Correct:</strong> The Taj Mahal, The Red Fort, The Qutub Minar</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "I visited Taj Mahal"</p>
+                                <p><strong>✔ Correct:</strong> "I visited the Taj Mahal"</p>
+                                <p><strong>Why:</strong> Famous buildings ke saath 'the' lagta hai!</p>
+                            </div>
+                        </div>
 
-{q:"She has ___ MBA degree.",a:"an",why:"M is pronounced 'em'."},
-{q:"___ honesty of the boy impressed me.",a:"the",why:"Specific honesty is referred."},
-{q:"He is ___ university student.",a:"a",why:"University starts with 'you' sound."},
-{q:"___ Himalayas are very high.",a:"the",why:"Mountain ranges take 'the'."},
-{q:"___ gold is precious.",a:"",why:"Material noun used generally."}
-];
+                        <div class="rule-box">
+                            <h4>Rule 8: Before Adjective (the poor, the rich)</h4>
+                            <p><strong>✔ Correct:</strong> The poor, The rich, The unemployed, The disabled</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "Poor need help"</p>
+                                <p><strong>✔ Correct:</strong> "The poor need help"</p>
+                                <p><strong>Why:</strong> Adjective ke saath 'the' lagane se group of people indicate hota hai!</p>
+                            </div>
+                        </div>
 
-const quiz = document.getElementById("quiz");
+                        <div class="exam-tip">
+                            <strong>SSC TIP:</strong> "The" ka matlab hai "wo specific" - jo hum dono jaante hain! Jab uniqueness ho, use "the"!
+                        </div>
+                    </div>
+                </div>
 
-questions.forEach((item,i)=>{
- quiz.innerHTML += `
- <div class="question">
- ${i+1}. ${item.q}<br>
- <input id="ans${i}" type="text" placeholder="a / an / the / blank">
- <button class="check-btn" onclick="checkAnswer(${i})">Check</button>
- <div id="fb${i}" class="feedback"></div>
- </div>`;
-});
+                <!-- Zero Article -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>⑥ ZERO ARTICLE</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="rule-box">
+                            <h4>Rule 1: Before Plural Nouns (General Sense)</h4>
+                            <p><strong>✔ Correct:</strong> Dogs are loyal. Cats are cute. Birds fly.</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "The dogs are loyal" (jab general baat kar rahe ho)</p>
+                                <p><strong>✔ Correct:</strong> "Dogs are loyal" (general statement)</p>
+                                <p><strong>Why:</strong> General statements mein plural nouns ke saath koi article nahin lagta!</p>
+                            </div>
+                        </div>
 
-function checkAnswer(i){
- const user = document.getElementById("ans"+i).value.trim().toLowerCase();
- const correct = questions[i].a;
- const fb = document.getElementById("fb"+i);
+                        <div class="rule-box">
+                            <h4>Rule 2: Before Abstract Nouns</h4>
+                            <p><strong>✔ Correct:</strong> Love is blind. Honesty is best. Life is beautiful.</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "The love is blind"</p>
+                                <p><strong>✔ Correct:</strong> "Love is blind"</p>
+                                <p><strong>Why:</strong> Abstract nouns ke saath generally koi article nahin lagta!</p>
+                            </div>
+                        </div>
 
- if(user === correct){
-   fb.innerHTML = "✔ Correct";
-   fb.className = "feedback correct";
- }else{
-   fb.innerHTML = "❌ Wrong<br><b>Correct Answer:</b> "+(correct==""?"No Article":correct)+
-   "<br><b>Why:</b> "+questions[i].why;
-   fb.className = "feedback wrong";
- }
-}
+                        <div class="rule-box">
+                            <h4>Rule 3: Before Languages</h4>
+                            <p><strong>✔ Correct:</strong> I speak Hindi. She learns English. They know French.</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "I speak the Hindi"</p>
+                                <p><strong>✔ Correct:</strong> "I speak Hindi"</p>
+                                <p><strong>Why:</strong> Languages ke saath koi article nahin lagta!</p>
+                            </div>
+                        </div>
 
-function downloadNotes(){
- const text = document.body.innerText;
- const blob = new Blob([text], {type:"text/plain"});
- const link = document.createElement("a");
- link.href = URL.createObjectURL(blob);
- link.download = "Articles-A-An-The-Notes.txt";
- link.click();
-}
-</script>
+                        <div class="rule-box">
+                            <h4>Rule 4: Before Meals</h4>
+                            <p><strong>✔ Correct:</strong> I eat breakfast. Let's have lunch. Dinner is ready.</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "I eat the breakfast"</p>
+                                <p><strong>✔ Correct:</strong> "I eat breakfast"</p>
+                                <p><strong>Why:</strong> Meals ke saath generally koi article nahin lagta!</p>
+                            </div>
+                        </div>
 
+                        <div class="rule-box">
+                            <h4>Rule 5: Before Proper Nouns</h4>
+                            <p><strong>✔ Correct:</strong> I live in Delhi. She goes to Mumbai. Rahul is my friend.</p>
+                            <div class="mistake-box">
+                                <p><strong>❌ Common Mistake:</strong> "I live in the Delhi"</p>
+                                <p><strong>✔ Correct:</strong> "I live in Delhi"</p>
+                                <p><strong>Why:</strong> City names, person names ke saath koi article nahin lagta!</p>
+                            </div>
+                        </div>
+
+                        <div class="exam-tip">
+                            <strong>SSC TIP:</strong> Zero article ka matlab hai "kuch bhi nahin"! Jab general baat ho, abstract cheez ho, ya proper noun ho - kuch nahin lagana!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Common Errors -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>⑦ COMMON ERRORS & EXAM TRAPS</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="table-responsive">
+                            <table class="error-table">
+                                <thead>
+                                    <tr>
+                                        <th>❌ Wrong</th>
+                                        <th>✔ Correct</th>
+                                        <th>Why Wrong?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="wrong">A honest man</td>
+                                        <td class="correct">An honest man</td>
+                                        <td>Honest mein 'h' silent hai, sound 'o' se shuru hota hai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">A university</td>
+                                        <td class="correct">A university</td>
+                                        <td>University ka pronunciation "Yuniversity" hai - 'Y' consonant sound</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">The Delhi</td>
+                                        <td class="correct">Delhi</td>
+                                        <td>City names ke saath 'the' nahin lagta</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">I speak the Hindi</td>
+                                        <td class="correct">I speak Hindi</td>
+                                        <td>Languages ke saath koi article nahin lagta</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">The love is blind</td>
+                                        <td class="correct">Love is blind</td>
+                                        <td>Abstract nouns ke saath generally koi article nahin</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">A hour</td>
+                                        <td class="correct">An hour</td>
+                                        <td>Hour mein 'h' silent hai, pronunciation "our" hai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">The sun is bright</td>
+                                        <td class="correct">The sun is bright</td>
+                                        <td>Ye sahi hai - sun unique hai, 'the' lagta hai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">She is best student</td>
+                                        <td class="correct">She is the best student</td>
+                                        <td>Superlative degree ke saath hamesha 'the' lagta hai</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="exam-tip">
+                            <strong>SSC EXAM TRAP:</strong> Sound pe dhyaan do, letter pe nahin! "An MBA" lekin "A European" - pronunciation matters!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice Test -->
+            <section class="practice-section">
+                <h2>⑧ PRACTICE TEST – LIVE SCORE SYSTEM</h2>
+                <p><strong>Total Questions: 60</strong> | A/An: 20 | The: 20 | Mixed: 20</p>
+                
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="resetTest()">🔄 Reset Test</button>
+                    <button class="btn btn-success" onclick="window.print()">🖨️ Print/Download</button>
+                </div>
+
+                <div id="questions-container">
+                    <!-- Questions will be generated by JavaScript -->
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="checkAllAnswers()">✅ Check All Answers</button>
+                </div>
+
+                <div id="final-score" style="margin-top: 2rem; padding: 1.5rem; background: white; color: #333; border-radius: 10px; text-align: center; display: none;">
+                    <h3>🎉 Your Final Score</h3>
+                    <div style="font-size: 3rem; color: #3498db; margin: 1rem 0;" id="final-score-percentage"></div>
+                    <p id="final-score-details"></p>
+                </div>
+            </section>
+        </main>
+
+        <div class="score-panel" id="scorePanel">
+            <h3>📊 LIVE SCORE</h3>
+            <div class="score-item">
+                <div>✅ Attempted</div>
+                <div id="attempted">0</div>
+            </div>
+            <div class="score-item">
+                <div>✔ Correct</div>
+                <div id="correct">0</div>
+            </div>
+            <div class="score-item">
+                <div>❌ Wrong</div>
+                <div id="wrong">0</div>
+            </div>
+            <div class="score-item">
+                <div>🎯 Accuracy</div>
+                <div id="accuracy" class="score-percentage">0%</div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p><strong>Created by SHRISHANT YADAV</strong></p>
+            <p>Grammar Learning Hub | Educational Purpose Only</p>
+            <p>© 2024 All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        // Question database - 60 questions
+        const questions = [
+            // A/An Questions (1-20)
+            {
+                type: "a-an",
+                question: "Fill in: I saw ___ elephant in the zoo.",
+                answer: "an",
+                explanation: "Elephant starts with vowel sound 'e' - use 'an'"
+            },
+            {
+                type: "a-an",
+                question: "Complete: She wants to be ___ doctor.",
+                answer: "a",
+                explanation: "Doctor starts with consonant sound 'd' - use 'a'"
+            },
+            {
+                type: "a-an",
+                question: "Fill: He is ___ honest man.",
+                answer: "an",
+                explanation: "Honest starts with vowel sound 'o' (h is silent) - use 'an'"
+            },
+            {
+                type: "a-an",
+                question: "Complete: I need ___ umbrella.",
+                answer: "an",
+                explanation: "Umbrella starts with vowel sound 'u' - use 'an'"
+            },
+            {
+                type: "a-an",
+                question: "Fill in: She bought ___ new dress.",
+                answer: "a",
+                explanation: "New starts with consonant sound 'n' - use 'a'"
+            },
+            {
+                type: "a-an",
+                question: "Complete: He ate ___ apple.",
+                answer: "an",
+                explanation: "Apple starts with vowel sound 'a' - use 'an'"
+            },
+            {
+                type: "a-an",
+                question: "Fill: This is ___ European country.",
+                answer: "a",
+                explanation: "European starts with consonant sound 'y' - use 'a'"
+            },
+            {
+                type: "a-an",
+                question: "Complete: I waited for ___ hour.",
+                answer: "an",
+                explanation: "Hour starts with vowel sound 'o' (h is silent) - use 'an'"
+            },
+            {
+                type: "a-an",
+                question: "Fill in: She has ___ MBA degree.",
+                answer: "an",
+                explanation: "MBA starts with vowel sound 'em' - use 'an'"
+            },
+            {
+                type: "a-an",
+                question: "Complete: He is ___ teacher.",
+                answer: "a",
+                explanation: "Teacher starts with consonant sound 't' - use 'a'"
+            },
+            {
+                type: "a-an",
+                question: "Fill: I saw ___ owl in the tree.",
+                answer: "an",
+                explanation: "Owl starts with vowel sound 'o' - use 'an'"
+            },
+            {
+                type: "a-an",
+                question: "Complete: She wants ___ ice-cream.",
+                answer: "an",
+                explanation: "Ice-cream starts with vowel sound 'i' - use 'an'"
+            },
+            {
+                type: "a-an",
+                question: "Fill in: This is ___ one-way street.",
+                answer: "a",
+                explanation: "One-way starts with consonant sound 'w' - use 'a'"
+            },
+            {
+                type: "a-an",
+                question: "Complete: He is ___ Indian.",
+                answer: "an",
+                explanation: "Indian starts with vowel sound 'i' - use 'an'"
+            },
+            {
+                type: "a-an",
+                question: "Fill: I need ___ pen.",
+                answer: "a",
+                explanation: "Pen starts with consonant sound 'p' - use 'a'"
+            },
+            {
+                type: "a-an",
+                question: "Complete: She is ___ artist.",
+                answer: "an",
+                explanation: "Artist starts with vowel sound 'a' - use 'an'"
+            },
+            {
+                type: "a-an",
+                question: "Fill in: This is ___ useful book.",
+                answer: "a",
+                explanation: "Useful starts with consonant sound 'y' - use 'a'"
+            },
+            {
+                type: "a-an",
+                question: "Complete: I met ___ old man.",
+                answer: "an",
+                explanation: "Old starts with vowel sound 'o' - use 'an'"
+            },
+            {
+                type: "a-an",
+                question: "Fill: He wants to be ___ engineer.",
+                answer: "an",
+                explanation: "Engineer starts with vowel sound 'e' - use 'an'"
+            },
+            {
+                type: "a-an",
+                question: "Complete: She bought ___ orange.",
+                answer: "an",
+                explanation: "Orange starts with vowel sound 'o' - use 'an'"
+            },
+
+            // The Questions (21-40)
+            {
+                type: "the",
+                question: "Fill in: ___ sun rises in the east.",
+                answer: "the",
+                explanation: "Sun is unique - use 'the'"
+            },
+            {
+                type: "the",
+                question: "Complete: I live in ___ same building.",
+                answer: "the",
+                explanation: "Same ke pehle hamesha 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Fill: ___ Ganga is a sacred river.",
+                answer: "the",
+                explanation: "Rivers ke saath hamesha 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Complete: She is ___ best student in class.",
+                answer: "the",
+                explanation: "Superlative degree ke saath hamesha 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Fill in: I play ___ guitar.",
+                answer: "the",
+                explanation: "Musical instruments ke saath 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Complete: ___ rich should help ___ poor.",
+                answer: "the, the",
+                explanation: "Adjectives as noun ke saath 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Fill: We went to ___ Taj Mahal.",
+                answer: "the",
+                explanation: "Famous buildings ke saath 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Complete: ___ earth revolves around ___ sun.",
+                answer: "the, the",
+                explanation: "Unique things ke saath 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Fill in: I read ___ Times of India daily.",
+                answer: "the",
+                explanation: "Newspapers ke names ke saath 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Complete: ___ Himalayas are in the north.",
+                answer: "the",
+                explanation: "Mountain ranges ke saath 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Fill: She is ___ most intelligent girl I know.",
+                answer: "the",
+                explanation: "Most + adjective ke saath 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Complete: We crossed ___ Red Sea.",
+                answer: "the",
+                explanation: "Seas ke saath 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Fill in: ___ younger brother is taller.",
+                answer: "the",
+                explanation: "Comparative degree mein comparison clear karne ke liye 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Complete: ___ Pacific Ocean is vast.",
+                answer: "the",
+                explanation: "Oceans ke saat hamesha 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Fill: I met ___ Principal yesterday.",
+                answer: "the",
+                explanation: "Specific position/person ke liye 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Complete: ___ old are wise.",
+                answer: "the",
+                explanation: "The + adjective = group of people"
+            },
+            {
+                type: "the",
+                question: "Fill in: This is ___ same pen I lost.",
+                answer: "the",
+                explanation: "Same ke pehle hamesha 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Complete: ___ Andes are in South America.",
+                answer: "the",
+                explanation: "Mountain ranges ke saath 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Fill: She plays ___ piano beautifully.",
+                answer: "the",
+                explanation: "Musical instruments ke saath 'the' lagta hai"
+            },
+            {
+                type: "the",
+                question: "Complete: ___ unemployed need help.",
+                answer: "the",
+                explanation: "The + adjective = group of people"
+            },
+
+            // Mixed Questions (41-60)
+            {
+                type: "mixed",
+                question: "Fill in: I speak ___ Hindi fluently.",
+                answer: "",
+                explanation: "Languages ke saath koi article nahin lagta"
+            },
+            {
+                type: "mixed",
+                question: "Complete: Let's have ___ lunch together.",
+                answer: "",
+                explanation: "Meals ke saat generally koi article nahin lagta"
+            },
+            {
+                type: "mixed",
+                question: "Fill: ___ dogs are loyal animals.",
+                answer: "",
+                explanation: "Plural nouns general sense mein - no article"
+            },
+            {
+                type: "mixed",
+                question: "Complete: I live in ___ Delhi.",
+                answer: "",
+                explanation: "City names ke saat koi article nahin lagta"
+            },
+            {
+                type: "mixed",
+                question: "Fill in: ___ honesty is the best policy.",
+                answer: "",
+                explanation: "Abstract nouns ke saat generally koi article nahin lagta"
+            },
+            {
+                type: "mixed",
+                question: "Complete: She is ___ UNICEF ambassador.",
+                answer: "a",
+                explanation: "UNICEF ka pronunciation 'Yunisef' hai - consonant sound"
+            },
+            {
+                type: "mixed",
+                question: "Fill: I need ___ advice.",
+                answer: "",
+                explanation: "Advice uncountable hai - generally no article"
+            },
+            {
+                type: "mixed",
+                question: "Complete: ___ water is essential for life.",
+                answer: "",
+                explanation: "General sense mein uncountable nouns - no article"
+            },
+            {
+                type: "mixed",
+                question: "Fill in: He gave me ___ useful gift.",
+                answer: "a",
+                explanation: "Useful ka pronunciation 'Yoosful' hai - consonant sound"
+            },
+            {
+                type: "mixed",
+                question: "Complete: ___ beauty lies in simplicity.",
+                answer: "",
+                explanation: "Abstract nouns general sense mein - no article"
+            },
+            {
+                type: "mixed",
+                question: "Fill: She is ___ MP.",
+                answer: "an",
+                explanation: "MP ka pronunciation 'Em-Pee' hai - vowel sound"
+            },
+            {
+                type: "mixed",
+                question: "Complete: I love ___ music.",
+                answer: "",
+                explanation: "General sense mein uncountable nouns - no article"
+            },
+            {
+                type: "mixed",
+                question: "Fill in: This is ___ one-time offer.",
+                answer: "a",
+                explanation: "One-time ka pronunciation 'Wun-time' hai - consonant sound"
+            },
+            {
+                type: "mixed",
+                question: "Complete: ___ children need love.",
+                answer: "",
+                explanation: "Plural nouns general sense mein - no article"
+            },
+            {
+                type: "mixed",
+                question: "Fill: He is ___ unique person.",
+                answer: "a",
+                explanation: "Unique ka pronunciation 'Yunik' hai - consonant sound"
+            },
+            {
+                type: "mixed",
+                question: "Complete: ___ knowledge is power.",
+                answer: "",
+                explanation: "Abstract nouns general sense mein - no article"
+            },
+            {
+                type: "mixed",
+                question: "Fill in: She works for ___ NGO.",
+                answer: "an",
+                explanation: "NGO ka pronunciation 'En-Jee-Oh' hai - vowel sound"
+            },
+            {
+                type: "mixed",
+                question: "Complete: I enjoy ___ poetry.",
+                answer: "",
+                explanation: "General sense mein uncountable nouns - no article"
+            },
+            {
+                type: "mixed",
+                question: "Fill: This is ___ European tradition.",
+                answer: "a",
+                explanation: "European ka pronunciation 'Yuropean' hai - consonant sound"
+            },
+            {
+                type: "mixed",
+                question: "Complete: ___ wisdom comes with age.",
+                answer: "",
+                explanation: "Abstract nouns general sense mein - no article"
+            }
+        ];
+
+        let attempted = 0;
+        let correct = 0;
+        let wrong = 0;
+
+        // Initialize the test
+        function initializeTest() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+            
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <h4>Question ${index + 1} - ${getTypeText(q.type)}</h4>
+                    <p>${q.question}</p>
+                    <div class="input-group">
+                        <input type="text" id="answer-${index}" placeholder="Type your answer (a/an/the or leave blank)..." 
+                               onkeypress="if(event.key==='Enter') checkAnswer(${index})">
+                        <button class="btn btn-primary" onclick="checkAnswer(${index})">Check Answer</button>
+                    </div>
+                    <div id="feedback-${index}"></div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function getTypeText(type) {
+            switch(type) {
+                case 'a-an': return '🔤 A/AN Usage';
+                case 'the': return '📍 THE Usage';
+                case 'mixed': return '🔄 Mixed Articles';
+                default: return '❓ Question';
+            }
+        }
+
+        // Check individual answer
+        function checkAnswer(index) {
+            const userAnswer = document.getElementById(`answer-${index}`).value.trim().toLowerCase();
+            const correctAnswer = questions[index].answer.toLowerCase();
+            const feedbackDiv = document.getElementById(`feedback-${index}`);
+            
+            if (userAnswer === '' && correctAnswer !== '') return;
+            if (userAnswer === '' && correctAnswer === '') {
+                // For zero article questions, empty is correct
+                userAnswer = '';
+            }
+            
+            attempted++;
+            
+            if (userAnswer === correctAnswer) {
+                correct++;
+                feedbackDiv.className = 'feedback correct';
+                feedbackDiv.innerHTML = `
+                    <div>✅ Correct! Well done!</div>
+                    <div><strong>Explanation:</strong> ${questions[index].explanation}</div>
+                `;
+            } else {
+                wrong++;
+                feedbackDiv.className = 'feedback incorrect';
+                const displayAnswer = correctAnswer === '' ? '(no article - leave blank)' : correctAnswer;
+                feedbackDiv.innerHTML = `
+                    <div>❌ Wrong!</div>
+                    <div><strong>Correct Answer:</strong> ${displayAnswer}</div>
+                    <div><strong>Why your answer is wrong:</strong> Your answer doesn't follow the article rule.</div>
+                    <div><strong>Rule:</strong> ${questions[index].explanation}</div>
+                `;
+            }
+            
+            updateScore();
+        }
+
+        // Check all answers
+        function checkAllAnswers() {
+            questions.forEach((q, index) => {
+                const answerInput = document.getElementById(`answer-${index}`);
+                if ((answerInput.value.trim() !== '' || q.answer === '') && !document.getElementById(`feedback-${index}`).innerHTML) {
+                    checkAnswer(index);
+                }
+            });
+            
+            // Show final score
+            setTimeout(showFinalScore, 1000);
+        }
+
+        // Update score panel
+        function updateScore() {
+            document.getElementById('attempted').textContent = attempted;
+            document.getElementById('correct').textContent = correct;
+            document.getElementById('wrong').textContent = wrong;
+            
+            const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+            document.getElementById('accuracy').textContent = accuracy + '%';
+            
+            // Add animation
+            const accuracyElement = document.getElementById('accuracy');
+            accuracyElement.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                accuracyElement.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        // Show final score
+        function showFinalScore() {
+            const finalScoreDiv = document.getElementById('final-score');
+            const finalScorePercentage = document.getElementById('final-score-percentage');
+            const finalScoreDetails = document.getElementById('final-score-details');
+            
+            const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+            
+            finalScorePercentage.textContent = accuracy + '%';
+            finalScoreDetails.innerHTML = `
+                <p>Total Questions: 60</p>
+                <p>Attempted: ${attempted}</p>
+                <p>Correct: ${correct}</p>
+                <p>Wrong: ${wrong}</p>
+            `;
+            
+            finalScoreDiv.style.display = 'block';
+            finalScoreDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Reset test
+        function resetTest() {
+            if (confirm('Are you sure you want to reset the test? All your answers will be cleared.')) {
+                attempted = 0;
+                correct = 0;
+                wrong = 0;
+                updateScore();
+                initializeTest();
+                document.getElementById('final-score').style.display = 'none';
+            }
+        }
+
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTest();
+            
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                
+                header.addEventListener('click', () => {
+                    // Close all other items
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+
+        // Auto-save functionality
+        window.addEventListener('beforeunload', function() {
+            const answers = {};
+            questions.forEach((q, index) => {
+                const input = document.getElementById(`answer-${index}`);
+                if (input && input.value) {
+                    answers[index] = input.value;
+                }
+            });
+            localStorage.setItem('articlesTestAnswers', JSON.stringify(answers));
+        });
+
+        // Load saved answers
+        window.addEventListener('load', function() {
+            const saved = localStorage.getItem('articlesTestAnswers');
+            if (saved) {
+                const answers = JSON.parse(saved);
+                Object.keys(answers).forEach(index => {
+                    const input = document.getElementById(`answer-${index}`);
+                    if (input) {
+                        input.value = answers[index];
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

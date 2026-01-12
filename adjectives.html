@@ -1,255 +1,1814 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Adjectives</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADJECTIVE - Complete Grammar Chapter | Grammar Learning Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-body{
-  margin:0;
-  font-family:Segoe UI, Arial, sans-serif;
-  background:#eef2ff;
-  line-height:1.7;
-}
-header{
-  background:linear-gradient(90deg,#000,#1e40af,#16a34a,#facc15);
-  color:white;
-  padding:28px;
-  text-align:center;
-  animation:slideDown 0.9s ease;
-}
-section{padding:18px}
-.card{
-  background:white;
-  margin-bottom:22px;
-  padding:18px;
-  border-radius:20px;
-  box-shadow:0 12px 22px rgba(0,0,0,0.12);
-  animation:fadeUp 0.8s ease;
-}
-h2{color:#1e40af}
-.type{
-  background:#ecfeff;
-  border-left:7px solid #06b6d4;
-  padding:14px;
-  margin:14px 0;
-}
-.example{
-  background:#fefce8;
-  border-left:7px solid #facc15;
-  padding:10px;
-  margin-top:8px;
-}
-.question{
-  margin-top:16px;
-}
-input{
-  padding:9px;
-  width:200px;
-  border-radius:10px;
-  border:1px solid #ccc;
-}
-.check-btn{
-  margin-left:8px;
-  padding:9px 16px;
-  background:linear-gradient(90deg,#16a34a,#22c55e);
-  color:white;
-  border:none;
-  border-radius:12px;
-  cursor:pointer;
-  transition:all 0.3s ease;
-}
-.check-btn:hover{
-  transform:scale(1.12) rotate(-1deg);
-  background:linear-gradient(90deg,#15803d,#16a34a);
-}
-.feedback{
-  margin-top:6px;
-  font-weight:600;
-  animation:fadeUp 0.4s ease;
-}
-.correct{color:green}
-.wrong{color:#dc2626}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
 
-.download-btn{
-  margin-top:22px;
-  padding:12px 22px;
-  background:linear-gradient(90deg,#1d4ed8,#2563eb);
-  color:white;
-  border:none;
-  border-radius:14px;
-  cursor:pointer;
-  transition:0.3s;
-}
-.download-btn:hover{
-  transform:scale(1.06);
-  background:#1e40af;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
 
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
-}
-@keyframes slideDown{
-  from{opacity:0;transform:translateY(-30px)}
-  to{opacity:1;transform:translateY(0)}
-}
-</style>
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .definition-box {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.3);
+        }
+
+        .hinglish-box {
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(253, 121, 168, 0.3);
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .example-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .example-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .correct {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .incorrect {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .accordion {
+            margin: 1.5rem 0;
+        }
+
+        .accordion-item {
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #636e72 0%, #2d3436 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+        }
+
+        .accordion-header::after {
+            content: '▼';
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            background: white;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 2000px;
+            padding: 1.5rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        th {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .rule-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .mistake-box {
+            background: #fff5f5;
+            border-left: 4px solid #e74c3c;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .comparison-table {
+            background: #f0f8ff;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .comparison-table h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .practice-section {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .question {
+            background: white;
+            color: #333;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .question h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid #ecf0f1;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .score-panel {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .score-panel h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .score-item {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .score-percentage {
+            font-size: 2rem;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .controls {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #fdcb6e;
+        }
+
+        .exam-tip::before {
+            content: "💡 SSC TIP: ";
+            font-weight: bold;
+            color: #e17055;
+        }
+
+        .osascomp-box {
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 1rem;
+            }
+            
+            .score-panel {
+                position: static;
+                transform: none;
+                margin: 2rem auto;
+                max-width: 300px;
+            }
+            
+            .example-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <header class="header">
+            <h1>ADJECTIVE</h1>
+            <p>Complete Grammar Chapter with Practice & Live Score</p>
+        </header>
 
-<header>
-<h1>Adjectives</h1>
-<p>Clear Notes + Practice (Basic to Advanced)</p>
-</header>
+        <main class="content">
+            <!-- What is an Adjective -->
+            <section class="section">
+                <h2>① WHAT IS AN ADJECTIVE?</h2>
+                
+                <div class="definition-box">
+                    <h3>📚 Definition</h3>
+                    <p>An adjective is a word that describes or modifies a noun or pronoun. It tells us more about a person, place, thing, or idea.</p>
+                </div>
 
-<section>
+                <div class="hinglish-box">
+                    <h3>🇮🇳 Hinglish Explanation</h3>
+                    <p>Adjective wo shabd hota hai jo noun ya pronoun ke baare mein adhik jaankari deta hai. Ye batata hai ki koi cheez kaisi hai, kitni hai, ya kaunsi hai.</p>
+                </div>
 
-<div class="card">
-<h2>📘 What is an Adjective?</h2>
-<p>
-An adjective is a word that describes or qualifies a noun or a pronoun.
-</p>
-<div class="example">
-a tall boy, a red pen, five apples
-</div>
-</div>
+                <div class="formula-box">
+                    <h3>🧮 Formula</h3>
+                    <p style="font-size: 1.5rem; font-weight: bold;">Adjective → Describes Noun / Pronoun</p>
+                </div>
 
-<div class="card">
-<h2>📗 Types of Adjectives</h2>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <h4>✅ Correct Examples</h4>
+                        <p><span class="highlight">Beautiful</span> girl (Kaisi ladki?)</p>
+                        <p><span class="highlight">Five</span> books (Kitni books?)</p>
+                        <p><span class="highlight">This</span> pen (Kaunsi pen?)</p>
+                        <p><span class="highlight">Tall</span> building (Kaisa building?)</p>
+                        <p><span class="highlight">Indian</span> food (Kaisa food?)</p>
+                    </div>
+                    <div class="example-card">
+                        <h4>❌ Wrong Examples</h4>
+                        <p><span class="incorrect">✗ Beautiful quickly ran.</span> (Adjective verb ko modify kar raha - wrong!)</p>
+                        <p><span class="incorrect">✗ She is beautifully.</span> (Adjective adverb ki jagah - wrong!)</p>
+                        <p><span class="incorrect">✗ Very beautiful girl.</span> (Very adverb hai, adjective nahin!)</p>
+                    </div>
+                </div>
+            </section>
 
-<div class="type">
-<b>1. Adjective of Quality</b><br>
-Shows the kind or quality.
-<div class="example">honest man, beautiful girl</div>
-</div>
+            <!-- Identification Trick -->
+            <section class="section">
+                <h2>② IDENTIFICATION TRICK (पहचान)</h2>
+                
+                <div class="definition-box">
+                    <h3>🔍 Test Questions</h3>
+                    <p>Adjective pahchanne ke liye ye sawal pucho:</p>
+                    <ul>
+                        <li><strong>कैसा?</strong> (Kaisa?) - Quality</li>
+                        <li><strong>कितना?</strong> (Kitna?) - Quantity</li>
+                        <li><strong>कौनसा?</strong> (Kaunsa?) - Demonstrative</li>
+                        <li><strong>कितने?</strong> (Kitne?) - Number</li>
+                    </ul>
+                </div>
 
-<div class="type">
-<b>2. Adjective of Quantity</b><br>
-Shows amount.
-<div class="example">some milk, little sugar</div>
-</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sentence</th>
+                                <th>Test Question</th>
+                                <th>Adjective</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Beautiful girl</td>
+                                <td>कैसी लड़की?</td>
+                                <td>Beautiful</td>
+                                <td>Quality</td>
+                            </tr>
+                            <tr>
+                                <td>Five books</td>
+                                <td>कितनी किताबें?</td>
+                                <td>Five</td>
+                                <td>Number</td>
+                            </tr>
+                            <tr>
+                                <td>This pen</td>
+                                <td>कौनसी कलम?</td>
+                                <td>This</td>
+                                <td>Demonstrative</td>
+                            </tr>
+                            <tr>
+                                <td>Much water</td>
+                                <td>कितना पानी?</td>
+                                <td>Much</td>
+                                <td>Quantity</td>
+                            </tr>
+                            <tr>
+                                <td>Indian food</td>
+                                <td>कैसा खाना?</td>
+                                <td>Indian</td>
+                                <td>Quality</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-<div class="type">
-<b>3. Adjective of Number</b><br>
-Shows number or order.
-<div class="example">five books, first prize</div>
-</div>
+                <div class="exam-tip">
+                    <strong>SSC TIP:</strong> Agar koi word inme se koi bhi sawal ka jawab de, to wo adjective hai!
+                </div>
+            </section>
 
-<div class="type">
-<b>4. Demonstrative Adjective</b><br>
-Points out nouns.
-<div class="example">this pen, those boys</div>
-</div>
+            <!-- Accordion Structure -->
+            <div class="accordion">
+                <!-- Kinds Overview -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>③ KINDS OF ADJECTIVES (OVERVIEW)</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Purpose</th>
+                                        <th>Examples</th>
+                                        <th>Question</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Quality</strong></td>
+                                        <td>Nature ya quality batata hai</td>
+                                        <td>beautiful, tall, honest</td>
+                                        <td>कैसा?</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Quantity</strong></td>
+                                        <td>Amount batata hai</td>
+                                        <td>some, much, little</td>
+                                        <td>कितना?</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Number</strong></td>
+                                        <td>Exact count batata hai</td>
+                                        <td>five, many, several</td>
+                                        <td>कितने?</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Demonstrative</strong></td>
+                                        <td>Near/far point karta hai</td>
+                                        <td>this, that, these</td>
+                                        <td>कौनसा?</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Possessive</strong></td>
+                                        <td>Ownership dikhata hai</td>
+                                        <td>my, your, his</td>
+                                        <td>किसका?</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Interrogative</strong></td>
+                                        <td>Sawal puchta hai</td>
+                                        <td>which, what, whose</td>
+                                        <td>सवाल?</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Distributive</strong></td>
+                                        <td>Individual distribution</td>
+                                        <td>each, every, either</td>
+                                        <td>हर एक?</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-<div class="type">
-<b>5. Possessive Adjective</b><br>
-Shows possession.
-<div class="example">my book, her bag</div>
-</div>
+                <!-- Adjective of Quality -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>④ ADJECTIVE OF QUALITY</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="definition-box">
+                            <h4>📖 Definition</h4>
+                            <p>Adjectives of quality describe the nature, kind, or characteristic of a noun or pronoun. They tell us what kind of person or thing it is.</p>
+                        </div>
 
-<div class="type">
-<b>6. Interrogative Adjective</b><br>
-Used with nouns to ask questions.
-<div class="example">which book? whose pen?</div>
-</div>
+                        <div class="hinglish-box">
+                            <h4>🇮🇳 Hinglish Explanation</h4>
+                            <p>Quality ke adjectives noun ya pronoun ki quality, nature ya characteristic batate hain. Ye dikhate hain ki wo kaisa hai.</p>
+                        </div>
 
-</div>
+                        <div class="rule-box">
+                            <h4>✅ Key Rules</h4>
+                            <ul>
+                                <li>Answer the question "कैसा?" (Kaisa?)</li>
+                                <li>Can be opinion (beautiful, ugly) or fact (round, square)</li>
+                                <li>Can have degrees (big, bigger, biggest)</li>
+                                <li>Most common type of adjective</li>
+                            </ul>
+                        </div>
 
-<div class="card">
-<h2>📙 Degrees of Comparison</h2>
+                        <div class="example-grid">
+                            <div class="example-card">
+                                <h4>✅ Examples</h4>
+                                <p><span class="highlight">Beautiful</span> girl</p>
+                                <p><span class="highlight">Tall</span> building</p>
+                                <p><span class="highlight">Honest</span> man</p>
+                                <p><span class="highlight">Red</span> car</p>
+                                <p><span class="highlight">Indian</span> food</p>
+                                <p><span class="highlight">Round</span> table</p>
+                            </div>
+                        </div>
 
-<div class="type">
-<b>Positive:</b> tall<br>
-<b>Comparative:</b> taller<br>
-<b>Superlative:</b> tallest
-</div>
+                        <div class="mistake-box">
+                            <h4>❌ Common Mistakes</h4>
+                            <p><strong>Wrong:</strong> She is beautiful girl. (Article missing)</p>
+                            <p><strong>Right:</strong> She is a beautiful girl.</p>
+                            <p><strong>Why wrong:</strong> Singular countable noun ke sahe hamesha article lagta hai!</p>
+                            
+                            <p><strong>Wrong:</strong> He is very honest man. (Article missing)</p>
+                            <p><strong>Right:</strong> He is a very honest man.</p>
+                            <p><strong>Why wrong:</strong> Adjective ke baad bhi noun ke rules follow karne hote hain!</p>
+                        </div>
 
-</div>
+                        <div class="exam-tip">
+                            <strong>SSC TIP:</strong> Quality adjectives hamesha "कैसा?" ka jawab dete hain. Ye sabse common hote hain!
+                        </div>
+                    </div>
+                </div>
 
-<div class="card">
-<h2>📝 Practice Questions (30)</h2>
-<div id="quiz"></div>
+                <!-- Adjective of Quantity -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>⑤ ADJECTIVE OF QUANTITY</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="definition-box">
+                            <h4>📖 Definition</h4>
+                            <p>Adjectives of quantity show how much or how many of something there is. They are used with uncountable nouns.</p>
+                        </div>
 
-<button class="download-btn" onclick="downloadNotes()">Download Notes</button>
-</div>
+                        <div class="hinglish-box">
+                            <h4>🇮🇳 Hinglish Explanation</h4>
+                            <p>Quantity ke adjectives batate hain ki kisi cheez ki kitni matra hai. Ye uncountable nouns ke saath use hote hain.</p>
+                        </div>
 
-</section>
+                        <div class="rule-box">
+                            <h4>✅ Key Rules</h4>
+                            <ul>
+                                <li>Answer the question "कितना?" (Kitna?)</li>
+                                <li>Used with uncountable nouns (water, rice, money)</li>
+                                <li>Much vs Many: Much = uncountable, Many = countable</li>
+                                <li>Little/A little/The little have different meanings</li>
+                            </ul>
+                        </div>
 
-<script>
-const questions=[
-{q:"He is a ___ boy. (honest)",a:"honest",why:"Adjective of quality."},
-{q:"I have ___ money.",a:"little",why:"Shows quantity."},
-{q:"She bought ___ books.",a:"five",why:"Shows number."},
-{q:"___ pen is mine.",a:"this",why:"Demonstrative adjective."},
-{q:"That is ___ house.",a:"my",why:"Possessive adjective."},
+                        <div class="example-grid">
+                            <div class="example-card">
+                                <h4>✅ Much vs Many</h4>
+                                <p><span class="highlight">Much</span> water (uncountable)</p>
+                                <p><span class="highlight">Many</span> books (countable)</p>
+                                <p><span class="highlight">Some</span> rice (positive)</p>
+                                <p><span class="highlight">Any</span> sugar (question/negative)</p>
+                            </div>
+                            <div class="example-card">
+                                <h4>✅ Little Usage</h4>
+                                <p><span class="highlight">Little</span> water (almost none - negative)</p>
+                                <p><span class="highlight">A little</span> water (some - positive)</p>
+                                <p><span class="highlight">The little</span> water (jo thoda hai wo)</p>
+                            </div>
+                        </div>
 
-{q:"___ boy won the race.",a:"first",why:"Adjective of number (order)."},
-{q:"She is ___ than her sister. (tall)",a:"taller",why:"Comparative degree."},
-{q:"This is the ___ building. (high)",a:"highest",why:"Superlative degree."},
-{q:"He drank ___ water.",a:"some",why:"Adjective of quantity."},
-{q:"___ book do you want?",a:"which",why:"Interrogative adjective."},
+                        <div class="mistake-box">
+                            <h4>❌ Common Mistakes</h4>
+                            <p><strong>Wrong:</strong> I have much books. (Much with countable)</p>
+                            <p><strong>Right:</strong> I have many books.</p>
+                            <p><strong>Why wrong:</strong> 'Books' countable hai - 'many' use karna chahiye!</p>
+                            
+                            <p><strong>Wrong:</strong> She has many money. (Many with uncountable)</p>
+                            <p><strong>Right:</strong> She has much money.</p>
+                            <p><strong>Why wrong:</strong> 'Money' uncountable hai - 'much' ya 'a lot of' use karein!</p>
+                            
+                            <p><strong>Wrong:</strong> I don't have some money. (Some in negative)</p>
+                            <p><strong>Right:</strong> I don't have any money.</p>
+                            <p><strong>Why:</strong> Negative sentences mein 'any' use karte hain, 'some' nahin!</p>
+                        </div>
 
-{q:"She has ___ friends.",a:"many",why:"Shows quantity."},
-{q:"That was a ___ movie.",a:"boring",why:"Adjective of quality."},
-{q:"He solved the ___ question.",a:"difficult",why:"Describes noun."},
-{q:"___ boys are playing.",a:"those",why:"Demonstrative adjective."},
-{q:"This is ___ bag.",a:"her",why:"Possessive adjective."},
+                        <div class="exam-tip">
+                            <strong>SSC TIP:</strong> Much = uncountable, Many = countable. Negative mein 'any' positive mein 'some'!
+                        </div>
+                    </div>
+                </div>
 
-{q:"He is the ___ player. (good)",a:"best",why:"Superlative degree."},
-{q:"She is ___ than me. (smart)",a:"smarter",why:"Comparative degree."},
-{q:"I have ___ time.",a:"enough",why:"Adjective of quantity."},
-{q:"___ shirt is dirty.",a:"your",why:"Possessive adjective."},
-{q:"He ate ___ apples.",a:"two",why:"Adjective of number."},
+                <!-- Adjective of Number -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>⑥ ADJECTIVE OF NUMBER</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="definition-box">
+                            <h4>📖 Definition</h4>
+                            <p>Adjectives of number show how many persons or things there are. They are used with countable nouns.</p>
+                        </div>
 
-{q:"This is a ___ story.",a:"true",why:"Adjective of quality."},
-{q:"She lives in a ___ house.",a:"big",why:"Describes noun."},
-{q:"___ student passed the exam.",a:"every",why:"Adjective of number."},
-{q:"That was the ___ day. (bad)",a:"worst",why:"Superlative degree."},
-{q:"He is ___ than his brother. (strong)",a:"stronger",why:"Comparative degree."},
-{q:"She has ___ patience.",a:"much",why:"Quantity adjective."},
-{q:"___ car is faster.",a:"this",why:"Demonstrative adjective."},
-{q:"It is a ___ question.",a:"simple",why:"Adjective of quality."},
-{q:"___ house is on the corner.",a:"whose",why:"Interrogative adjective."},
-{q:"She wore a ___ dress.",a:"beautiful",why:"Adjective of quality."}
-];
+                        <div class="hinglish-box">
+                            <h4>🇮🇳 Hinglish Explanation</h4>
+                            <p>Number ke adjectives batate hain ki kitne log ya cheezein hain. Ye countable nouns ke saath use hote hain.</p>
+                        </div>
 
-const quiz=document.getElementById("quiz");
+                        <div class="rule-box">
+                            <h4>✅ Key Rules</h4>
+                            <ul>
+                                <li>Answer the question "कितने?" (Kitne?)</li>
+                                <li>Used with countable nouns (books, students, chairs)</li>
+                                <li>Few/A few/The few have different meanings</li>
+                                <li>Definite numbers: one, two, three, first, second</li>
+                                <li>Indefinite numbers: some, many, several, all</li>
+                            </ul>
+                        </div>
 
-questions.forEach((item,i)=>{
- quiz.innerHTML+=`
- <div class="question">
- ${i+1}. ${item.q}<br>
- <input id="ans${i}" type="text">
- <button class="check-btn" onclick="check(${i})">Check</button>
- <div id="fb${i}" class="feedback"></div>
- </div>`;
-});
+                        <div class="example-grid">
+                            <div class="example-card">
+                                <h4>✅ Definite Numbers</h4>
+                                <p><span class="highlight">Five</span> students</p>
+                                <p><span class="highlight">Third</span> chapter</p>
+                                <p><span class="highlight">Both</span> boys</p>
+                                <p><span class="highlight">All</span> members</p>
+                            </div>
+                            <div class="example-card">
+                                <h4>✅ Few Usage</h4>
+                                <p><span class="highlight">Few</span> students (almost none - negative)</p>
+                                <p><span class="highlight">A few</span> students (some - positive)</p>
+                                <p><span class="highlight">The few</span> students (jo kuch hain wo)</p>
+                                <p><span class="highlight">Several</span> people (undefined number)</p>
+                            </div>
+                        </div>
 
-function check(i){
- const user=document.getElementById("ans"+i).value.trim().toLowerCase();
- const fb=document.getElementById("fb"+i);
- if(user===questions[i].a){
-   fb.innerHTML="✔ Correct";
-   fb.className="feedback correct";
- }else{
-   fb.innerHTML="❌ Wrong<br><b>Correct:</b> "+questions[i].a+
-   "<br><b>Why:</b> "+questions[i].why;
-   fb.className="feedback wrong";
- }
-}
+                        <div class="mistake-box">
+                            <h4>❌ Common Mistakes</h4>
+                            <p><strong>Wrong:</strong> I have few money. (Few with uncountable)</p>
+                            <p><strong>Right:</strong> I have little money.</p>
+                            <p><strong>Why wrong:</strong> 'Money' uncountable hai - 'little' use karna chahiye!</p>
+                            
+                            <p><strong>Wrong:</strong> She has a few water. (A few with uncountable)</p>
+                            <p><strong>Right:</strong> She has a little water.</p>
+                            <p><strong>Why wrong:</strong> Uncountable nouns ke sahe 'little' family use karte hain!</p>
+                            
+                            <p><strong>Wrong:</strong> Both of them is coming. (Wrong verb)</p>
+                            <p><strong>Right:</strong> Both of them are coming.</p>
+                            <p><strong>Why:</strong> 'Both' hamesha plural concept hota hai - plural verb!</p>
+                        </div>
 
-function downloadNotes(){
- const text=document.body.innerText;
- const blob=new Blob([text],{type:"text/plain"});
- const a=document.createElement("a");
- a.href=URL.createObjectURL(blob);
- a.download="Adjectives-Notes.txt";
- a.click();
-}
-</script>
+                        <div class="exam-tip">
+                            <strong>SSC TIP:</strong> Few = countable, Little = uncountable. 'Both' hamesha plural verb ke saath aata hai!
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Demonstrative Adjectives -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>⑦ DEMONSTRATIVE ADJECTIVES</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="definition-box">
+                            <h4>📖 Definition</h4>
+                            <p>Demonstrative adjectives point out which person or thing is meant. They show distance in space or time.</p>
+                        </div>
+
+                        <div class="hinglish-box">
+                            <h4>🇮🇳 Hinglish Explanation</h4>
+                            <p>Demonstrative adjectives batate hain ki kaunsi person ya thing ki baat ho rahi hai. Ye space ya time mein distance dikhate hain.</p>
+                        </div>
+
+                        <div class="rule-box">
+                            <h4>✅ Key Rules</h4>
+                            <ul>
+                                <li><strong>This:</strong> Near, singular (ye - paas, ek)</li>
+                                <li><strong>That:</strong> Far, singular (wo - door, ek)</li>
+                                <li><strong>These:</strong> Near, plural (ye - paas, bahut)</li>
+                                <li><strong>Those:</strong> Far, plural (wo - door, bahut)</li>
+                                <li>Hamesha noun ke pehle aate hain</li>
+                                <li>Distance physical ya time dono ho sakti hai</li>
+                            </ul>
+                        </div>
+
+                        <div class="example-grid">
+                            <div class="example-card">
+                                <h4>✅ Distance Examples</h4>
+                                <p><span class="highlight">This</span> book is mine. (Paas)</p>
+                                <p><span class="highlight">That</span> building is tall. (Door)</p>
+                                <p><span class="highlight">These</span> shoes are new. (Paas, bahut)</p>
+                                <p><span class="highlight">Those</span> mountains are high. (Door, bahut)</p>
+                            </div>
+                            <div class="example-card">
+                                <h4>✅ Time Examples</h4>
+                                <p><span class="highlight">This</span> week is busy. (Current)</p>
+                                <p><span class="highlight">That</span> day was special. (Past)</p>
+                                <p><span class="highlight">These</span> days are hard. (Current days)</p>
+                                <p><span class="highlight">Those</span> were the days! (Past days)</p>
+                            </div>
+                        </div>
+
+                        <div class="mistake-box">
+                            <h4>❌ Common Mistakes</h4>
+                            <p><strong>Wrong:</strong> This books are new. (Singular adjective with plural noun)</p>
+                            <p><strong>Right:</strong> These books are new.</p>
+                            <p><strong>Why wrong:</strong> Adjective aur noun ka number match karna important hai!</p>
+                            
+                            <p><strong>Wrong:</strong> Those is my friend. (Plural adjective with singular noun)</p>
+                            <p><strong>Right:</strong> That is my friend.</p>
+                            <p><strong>Why wrong:</strong> 'Those' plural hai, 'friend' singular - mismatch!</p>
+                            
+                            <p><strong>Wrong:</strong> This are my shoes. (Wrong verb)</p>
+                            <p><strong>Right:</strong> These are my shoes.</p>
+                            <p><strong>Why:</strong> Adjective, noun, aur verb teenon ka number match hona chahiye!</p>
+                        </div>
+
+                        <div class="exam-tip">
+                            <strong>SSC TIP:</strong> This/That = singular, These/Those = plural. Aur hamesha noun ke pehle aate hain!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Possessive Adjectives -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>⑧ POSSESSIVE ADJECTIVES</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="definition-box">
+                            <h4>📖 Definition</h4>
+                            <p>Possessive adjectives show ownership or possession. They always come before a noun.</p>
+                        </div>
+
+                        <div class="hinglish-box">
+                            <h4>🇮🇳 Hinglish Explanation</h4>
+                            <p>Possessive adjectives ownership ya kabza dikhate hain. Ye hamesha noun ke pehle aate hain.</p>
+                        </div>
+
+                        <div class="rule-box">
+                            <h4>✅ Key Rules</h4>
+                            <ul>
+                                <li>Hamesha noun ke pehle aate hain</li>
+                                <li>My, your, his, her, its, our, their</li>
+                                <li>Its vs It's: "Its" = possessive, "It's" = it is</li>
+                                <li>His - dono adjective aur pronoun ka kaam kar sakta hai</li>
+                                <li>Her - adjective (possessive) aur pronoun (object) dono</li>
+                            </ul>
+                        </div>
+
+                        <div class="example-grid">
+                            <div class="example-card">
+                                <h4>✅ Possessive Adjectives</h4>
+                                <p><span class="highlight">My</span> book</p>
+                                <p><span class="highlight">Your</span> pen</p>
+                                <p><span class="highlight">His</span> car</p>
+                                <p><span class="highlight">Her</span> dress</p>
+                                <p><span class="highlight">Its</span> color</p>
+                                <p><span class="highlight">Their</span> house</p>
+                            </div>
+                            <div class="example-card">
+                                <h4>✅ vs Possessive Pronouns</h4>
+                                <p><span class="highlight">My</span> book (Adjective)</p>
+                                <p><span class="highlight">Mine</span> (Pronoun)</p>
+                                <p><span class="highlight">Your</span> pen (Adjective)</p>
+                                <p><span class="highlight">Yours</span> (Pronoun)</p>
+                                <p><span class="highlight">His</span> car (Both)</p>
+                                <p><span class="highlight">Hers</span> (Pronoun)</p>
+                            </div>
+                        </div>
+
+                        <div class="mistake-box">
+                            <h4>❌ Common Mistakes</h4>
+                            <p><strong>Wrong:</strong> Its a nice day. (Confusion between its and it's)</p>
+                            <p><strong>Right:</strong> It's a nice day.</p>
+                            <p><strong>Why wrong:</strong> "It's" = "It is", "Its" = possessive form!</p>
+                            
+                            <p><strong>Wrong:</strong> This is yours book. (Double possession)</p>
+                            <p><strong>Right:</strong> This is your book. OR This book is yours.</p>
+                            <p><strong>Why wrong:</strong> 'Yours' mein already possessive meaning hai!</p>
+                            
+                            <p><strong>Wrong:</strong> There book is new. (Wrong word)</p>
+                            <p><strong>Right:</strong> Their book is new.</p>
+                            <p><strong>Why:</strong> 'There' = place, 'Their' = possession!</p>
+                        </div>
+
+                        <div class="exam-tip">
+                            <strong>SSC TIP:</strong> Possessive adjectives hamesha noun ke pehle aate hain. Agar noun nahin hai to possessive pronoun use karo!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Degrees of Comparison -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>⑨ DEGREES OF COMPARISON</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="definition-box">
+                            <h4>📖 Definition</h4>
+                            <p>Degrees of comparison show the relative quality of things. There are three degrees: Positive, Comparative, and Superlative.</p>
+                        </div>
+
+                        <div class="hinglish-box">
+                            <h4>🇮🇳 Hinglish Explanation</h4>
+                            <p>Comparison ke degrees cheezon ki relative quality dikhate hain. Teen degrees hote hain: Positive, Comparative, aur Superlative.</p>
+                        </div>
+
+                        <div class="comparison-table">
+                            <h4>📊 Degrees of Comparison</h4>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Degree</th>
+                                            <th>Use</th>
+                                            <th>Example</th>
+                                            <th>Rule</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Positive</strong></td>
+                                            <td>Simple quality</td>
+                                            <td>Tall, Big, Good</td>
+                                            <td>No comparison</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Comparative</strong></td>
+                                            <td>Two things compare</td>
+                                            <td>Taller, Bigger, Better</td>
+                                            <td>+er or More</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Superlative</strong></td>
+                                            <td>More than two</td>
+                                            <td>Tallest, Biggest, Best</td>
+                                            <td>+est or Most</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="rule-box">
+                            <h4>✅ Formation Rules</h4>
+                            <ul>
+                                <li><strong>Regular:</strong> Tall → Taller → Tallest</li>
+                                <li><strong>+er/+est:</strong> Short words (1-2 syllables)</li>
+                                <li><strong>More/Most:</strong> Long words (3+ syllables)</li>
+                                <li><strong>Irregular:</strong> Good → Better → Best</li>
+                                <li><strong>Double forms:</strong> Clever → Cleverer/More clever</li>
+                            </ul>
+                        </div>
+
+                        <div class="example-grid">
+                            <div class="example-card">
+                                <h4>✅ Regular Examples</h4>
+                                <p>Big → Bigger → Biggest</p>
+                                <p>Small → Smaller → Smallest</p>
+                                <p>Fast → Faster → Fastest</p>
+                                <p>Large → Larger → Largest</p>
+                            </div>
+                            <div class="example-card">
+                                <h4>✅ More/Most Examples</h4>
+                                <p>Beautiful → More beautiful → Most beautiful</p>
+                                <p>Intelligent → More intelligent → Most intelligent</p>
+                                <p>Expensive → More expensive → Most expensive</p>
+                            </div>
+                            <div class="example-card">
+                                <h4>✅ Irregular Examples</h4>
+                                <p>Good → Better → Best</p>
+                                <p>Bad → Worse → Worst</p>
+                                <p>Little → Less → Least</p>
+                                <p>Much → More → Most</p>
+                            </div>
+                        </div>
+
+                        <div class="mistake-box">
+                            <h4>❌ Common Mistakes</h4>
+                            <p><strong>Wrong:</strong> He is more taller than me. (Double comparison)</p>
+                            <p><strong>Right:</strong> He is taller than me.</p>
+                            <p><strong>Why wrong:</strong> Double comparison nahin karte - ya to '-er' ya 'more'!</p>
+                            
+                            <p><strong>Wrong:</strong> This is most best option. (Double superlative)</p>
+                            <p><strong>Right:</strong> This is the best option.</p>
+                            <p><strong>Why wrong:</strong> 'Most' aur 'best' dono superlative hain - sirf ek use karo!</p>
+                            
+                            <p><strong>Wrong:</strong> She is beautifuler than her sister. (Wrong formation)</p>
+                            <p><strong>Right:</strong> She is more beautiful than her sister.</p>
+                            <p><strong>Why:</strong> 3+ syllable words mein 'more'/'most' use karte hain!</p>
+                        </div>
+
+                        <div class="exam-tip">
+                            <strong>SSC TIP:</strong> Never use double comparison! Ya to -er/-est ya more/most, kabhi dono nahin!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Position of Adjective -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>⑩ POSITION OF ADJECTIVE (ORDER RULE)</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="definition-box">
+                            <h4>📖 Definition</h4>
+                            <p>When we use multiple adjectives before a noun, they follow a specific order. This is called the OSASCOMP rule.</p>
+                        </div>
+
+                        <div class="hinglish-box">
+                            <h4>🇮🇳 Hinglish Explanation</h4>
+                            <p>Jab hum ek se zyada adjectives noun ke pehle use karte hain, to ye specific order mein aate hain. Ise OSASCOMP rule kehte hain.</p>
+                        </div>
+
+                        <div class="osascomp-box">
+                            <h4>🔤 OSASCOMP Rule</h4>
+                            <p><strong>O</strong> - Opinion (beautiful, ugly)</p>
+                            <p><strong>S</strong> - Size (big, small)</p>
+                            <p><strong>A</strong> - Age (old, young)</p>
+                            <p><strong>S</strong> - Shape (round, square)</p>
+                            <p><strong>C</strong> - Color (red, blue)</p>
+                            <p><strong>O</strong> - Origin (Indian, American)</p>
+                            <p><strong>M</strong> - Material (wooden, metal)</p>
+                            <p><strong>P</strong> - Purpose (sleeping, running)</p>
+                        </div>
+
+                        <div class="example-grid">
+                            <div class="example-card">
+                                <h4>✅ Correct Order</h4>
+                                <p>A <span class="highlight">beautiful small old round red Indian wooden sleeping</span> bed</p>
+                                <p>An <span class="highlight">ugly big new square blue American metal running</span> shoe</p>
+                                <p>The <span class="highlight">lovely little ancient oval black Chinese silk wedding</span> dress</p>
+                            </div>
+                            <div class="example-card">
+                                <h4>✅ Simple Examples</h4>
+                                <p>Big red ball (Size + Color)</p>
+                                <p>Old Indian man (Age + Origin)</p>
+                                <p>Beautiful young girl (Opinion + Age)</p>
+                                <p>Small round table (Size + Shape)</p>
+                            </div>
+                        </div>
+
+                        <div class="mistake-box">
+                            <h4>❌ Common Mistakes</h4>
+                            <p><strong>Wrong:</strong> Red big ball (Color before size)</p>
+                            <p><strong>Right:</strong> Big red ball (Size before color)</p>
+                            <p><strong>Why wrong:</strong> Size hamesha color ke pehle aata hai!</p>
+                            
+                            <p><strong>Wrong:</strong> Indian old man (Origin before age)</p>
+                            <p><strong>Right:</strong> Old Indian man (Age before origin)</p>
+                            <p><strong>Why wrong:</strong> Age origin ke pehle aata hai!</p>
+                            
+                            <p><strong>Wrong:</strong> Wooden beautiful table (Material before opinion)</p>
+                            <p><strong>Right:</strong> Beautiful wooden table (Opinion before material)</p>
+                            <p><strong>Why:</strong> Opinion hamesha sabse pehle aata hai!</p>
+                        </div>
+
+                        <div class="exam-tip">
+                            <strong>SSC TIP:</strong> Opinion sabse pehle, purpose sabse aakhir! Yaad rakho: "A beautiful big old round red Indian wooden sleeping bed"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Common Errors -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>⑪ COMMON ERRORS & EXAM TRAPS</h3>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="table-responsive">
+                            <table class="error-table">
+                                <thead>
+                                    <tr>
+                                        <th>❌ Wrong</th>
+                                        <th>✔ Correct</th>
+                                        <th>Why Wrong?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="wrong">He is more taller</td>
+                                        <td class="correct">He is taller</td>
+                                        <td>Double comparison - ya to -er ya more</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">This is most best</td>
+                                        <td class="correct">This is the best</td>
+                                        <td>Double superlative - sirf 'best' use karo</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">She is beautifuler</td>
+                                        <td class="correct">She is more beautiful</td>
+                                        <td>3+ syllables mein 'more' use karo</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">I have much books</td>
+                                        <td class="correct">I have many books</td>
+                                        <td>Much = uncountable, Many = countable</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">These book is new</td>
+                                        <td class="correct">This book is new</td>
+                                        <td>Number mismatch - adjective aur noun match karo</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">Between you and I</td>
+                                        <td class="correct">Between you and me</td>
+                                        <td>Preposition ke baad object pronoun</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">Each students are</td>
+                                        <td class="correct">Each student is</td>
+                                        <td>Each singular hai - singular noun aur verb</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="wrong">Red big ball</td>
+                                        <td class="correct">Big red ball</td>
+                                        <td>Wrong adjective order - size before color</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="exam-tip">
+                            <strong>SSC EXAM TRAP:</strong> Much/Many confusion, double comparison, adjective order, number mismatch - ye top 4 mistakes hain!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice Test -->
+            <section class="practice-section">
+                <h2>⑫ PRACTICE TEST – LIVE SCORE SYSTEM</h2>
+                <p><strong>Total Questions: 60</strong> | Fill in blanks: 20 | Error Detection: 20 | Sentence Improvement: 20</p>
+                
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="resetTest()">🔄 Reset Test</button>
+                    <button class="btn btn-success" onclick="window.print()">🖨️ Print/Download</button>
+                </div>
+
+                <div id="questions-container">
+                    <!-- Questions will be generated by JavaScript -->
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="checkAllAnswers()">✅ Check All Answers</button>
+                </div>
+
+                <div id="final-score" style="margin-top: 2rem; padding: 1.5rem; background: white; color: #333; border-radius: 10px; text-align: center; display: none;">
+                    <h3>🎉 Your Final Score</h3>
+                    <div style="font-size: 3rem; color: #3498db; margin: 1rem 0;" id="final-score-percentage"></div>
+                    <p id="final-score-details"></p>
+                </div>
+            </section>
+        </main>
+
+        <div class="score-panel" id="scorePanel">
+            <h3>📊 LIVE SCORE</h3>
+            <div class="score-item">
+                <div>📋 Total</div>
+                <div>60</div>
+            </div>
+            <div class="score-item">
+                <div>✅ Attempted</div>
+                <div id="attempted">0</div>
+            </div>
+            <div class="score-item">
+                <div>✔ Correct</div>
+                <div id="correct">0</div>
+            </div>
+            <div class="score-item">
+                <div>❌ Wrong</div>
+                <div id="wrong">0</div>
+            </div>
+            <div class="score-item">
+                <div>🎯 Accuracy</div>
+                <div id="accuracy" class="score-percentage">0%</div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p><strong>Created by SHRISHANT YADAV</strong></p>
+            <p>Grammar Learning Hub | Educational Purpose Only</p>
+            <p>© 2024 All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        // Question database - 60 questions
+        const questions = [
+            // Fill in the blanks (1-20)
+            {
+                type: "fill",
+                question: "Fill in: She is a ___ girl. (beautiful)",
+                answer: "beautiful",
+                explanation: "Quality adjective 'beautiful' describes the noun 'girl'"
+            },
+            {
+                type: "fill",
+                question: "Complete: I have ___ books. (five)",
+                answer: "five",
+                explanation: "Number adjective 'five' shows the count of books"
+            },
+            {
+                type: "fill",
+                question: "Fill: There isn't ___ water in the bottle. (much)",
+                answer: "much",
+                explanation: "Quantity adjective 'much' is used with uncountable nouns like 'water'"
+            },
+            {
+                type: "fill",
+                question: "Complete: ___ students are present today. (many)",
+                answer: "many",
+                explanation: "Number adjective 'many' is used with countable plural nouns"
+            },
+            {
+                type: "fill",
+                question: "Fill in: This is ___ pen I bought yesterday. (the)",
+                answer: "the",
+                explanation: "Definite article 'the' is used when referring to something specific"
+            },
+            {
+                type: "fill",
+                question: "Complete: She has ___ money than me. (more)",
+                answer: "more",
+                explanation: "Comparative form 'more' is used for comparing quantities"
+            },
+            {
+                type: "fill",
+                question: "Fill: He is the ___ boy in the class. (tallest)",
+                answer: "tallest",
+                explanation: "Superlative form 'tallest' is used when comparing more than two"
+            },
+            {
+                type: "fill",
+                question: "Complete: I need ___ sugar in my tea. (some)",
+                answer: "some",
+                explanation: "Quantity adjective 'some' is used in positive statements"
+            },
+            {
+                type: "fill",
+                question: "Fill in: Do you have ___ brothers or sisters? (any)",
+                answer: "any",
+                explanation: "'Any' is used in questions with countable nouns"
+            },
+            {
+                type: "fill",
+                question: "Complete: ___ people came to the party. (several)",
+                answer: "several",
+                explanation: "Indefinite number adjective 'several' means more than two but not many"
+            },
+            {
+                type: "fill",
+                question: "Fill: This building is ___ than that one. (bigger)",
+                answer: "bigger",
+                explanation: "Comparative form 'bigger' is used for comparing two things"
+            },
+            {
+                type: "fill",
+                question: "Complete: She is ___ intelligent than her brother. (more)",
+                answer: "more",
+                explanation: "For adjectives with 3+ syllables, use 'more' for comparative"
+            },
+            {
+                type: "fill",
+                question: "Fill in: There are ___ apples on the table. (these)",
+                answer: "these",
+                explanation: "Demonstrative adjective 'these' is used for plural near objects"
+            },
+            {
+                type: "fill",
+                question: "Complete: ___ of the students passed the exam. (all)",
+                answer: "all",
+                explanation: "Distributive adjective 'all' refers to the entire group"
+            },
+            {
+                type: "fill",
+                question: "Fill: I have very ___ work to do. (little)",
+                answer: "little",
+                explanation: "Quantity adjective 'little' is used with uncountable nouns"
+            },
+            {
+                type: "fill",
+                question: "Complete: Each ___ has its own room. (student)",
+                answer: "student",
+                explanation: "'Each' is followed by singular noun"
+            },
+            {
+                type: "fill",
+                question: "Fill in: ___ boy in the class is present. (every)",
+                answer: "every",
+                explanation: "Distributive adjective 'every' refers to all members of a group"
+            },
+            {
+                type: "fill",
+                question: "Complete: This is the ___ movie I have ever seen. (best)",
+                answer: "best",
+                explanation: "Superlative form 'best' is used for comparing more than two"
+            },
+            {
+                type: "fill",
+                question: "Fill: She has ___ friends than me. (fewer)",
+                answer: "fewer",
+                explanation: "Comparative form 'fewer' is used with countable nouns"
+            },
+            {
+                type: "fill",
+                question: "Complete: There isn't ___ milk left. (any)",
+                answer: "any",
+                explanation: "'Any' is used in negative sentences"
+            },
+
+            // Error Detection (21-40)
+            {
+                type: "error",
+                question: "Find the error: He is more taller than his brother.",
+                answer: "he is taller",
+                explanation: "Double comparison - use either 'more' or '-er', not both"
+            },
+            {
+                type: "error",
+                question: "Correct: This is the most best movie I have seen.",
+                answer: "this is the best",
+                explanation: "Double superlative - 'most' and 'best' both are superlative forms"
+            },
+            {
+                type: "error",
+                question: "Find the error: She has much books in her library.",
+                answer: "she has many books",
+                explanation: "'Much' is for uncountable nouns, 'many' for countable plural nouns"
+            },
+            {
+                type: "error",
+                question: "Correct: I have less friends than you.",
+                answer: "i have fewer friends",
+                explanation: "'Less' for uncountable, 'fewer' for countable plural nouns"
+            },
+            {
+                type: "error",
+                question: "Find the error: These car is very expensive.",
+                answer: "this car is",
+                explanation: "Number agreement - 'These' plural, 'car' singular"
+            },
+            {
+                type: "error",
+                question: "Correct: Each students have their own books.",
+                answer: "each student has",
+                explanation: "'Each' takes singular noun and singular verb"
+            },
+            {
+                type: "error",
+                question: "Find the error: There is less people in the room.",
+                answer: "there are fewer people",
+                explanation: "'People' is countable plural - use 'fewer' not 'less'"
+            },
+            {
+                type: "error",
+                question: "Correct: This books belong to me.",
+                answer: "these books belong",
+                explanation: "Demonstrative adjective must agree with noun in number"
+            },
+            {
+                type: "error",
+                question: "Find the error: He is intelligenter than me.",
+                answer: "he is more intelligent",
+                explanation": "Adjectives with 3+ syllables use 'more' for comparative, not '-er'"
+            },
+            {
+                type: "error",
+                question: "Correct: She is beautifuler than her sister.",
+                answer: "she is more beautiful",
+                explanation": "Long adjectives (3+ syllables) use 'more' for comparative form"
+            },
+            {
+                type: "error",
+                question": "Find the error: I don't have some money.",
+                answer": "i don't have any",
+                explanation": "Negative sentences use 'any', not 'some'"
+            },
+            {
+                type": "error",
+                question": "Correct: All the student passed the exam.",
+                answer": "all the students",
+                explanation": "'All' with plural noun takes plural form"
+            },
+            {
+                type": "error",
+                question": "Find the error: Whom is at the door?",
+                answer": "who is at",
+                explanation": "'Who' for subject, 'Whom' for object"
+            },
+            {
+                type": "error",
+                question": "Correct: Between you and I, he's wrong.",
+                answer": "between you and me",
+                explanation": "Preposition takes object pronoun - 'me' not 'I'"
+            },
+            {
+                type": "error",
+                question": "Find the error: None of them is ready.",
+                answer": "none of them are",
+                explanation": "'None of + plural' takes plural verb in modern usage"
+            },
+            {
+                type": "error",
+                question": "Correct: The man which came yesterday is my uncle.",
+                answer": "the man who came",
+                explanation": "'Who' for people, 'which' for things"
+            },
+            {
+                type": "error",
+                question": "Find the error: Myself will do the work.",
+                answer": "i myself will",
+                explanation": "Reflexive pronoun cannot be subject - needs proper subject 'I'"
+            },
+            {
+                type": "error",
+                question": "Correct: This is yours book.",
+                answer": "this is your book",
+                explanation": "Possessive adjective 'your' before noun, not pronoun 'yours'"
+            },
+            {
+                type": "error",
+                question": "Find the error: Everyone are happy.",
+                answer": "everyone is happy",
+                explanation": "'Everyone' is singular indefinite pronoun - takes singular verb"
+            },
+            {
+                type": "error",
+                question": "Correct: The news are shocking.",
+                answer": "the news is shocking",
+                explanation": "'News' is uncountable and takes singular verb"
+            },
+
+            // Sentence Improvement (41-60)
+            {
+                type: "improvement",
+                question": "Improve: She is more better than her sister.",
+                answer": "she is better",
+                explanation": "Remove double comparison - use either 'more' or '-er', not both"
+            },
+            {
+                type: "improvement",
+                question": "Improve: This is the most unique design.",
+                answer": "this is unique",
+                explanation": "'Unique' is absolute - no degrees of comparison needed"
+            },
+            {
+                type": "improvement",
+                question": "Improve: I have less friends than you.",
+                answer": "i have fewer friends",
+                explanation": "'Friends' is countable - use 'fewer' instead of 'less'"
+            },
+            {
+                type": "improvement",
+                question": "Improve: He is tallest boy in the class.",
+                answer": "he is the tallest boy",
+                explanation": "Superlative needs definite article 'the'"
+            },
+            {
+                type": "improvement",
+                question": "Improve: These kind of movies are boring.",
+                answer": "this kind of movies",
+                explanation": "'Kind' is singular - use 'this' not 'these'"
+            },
+            {
+                type": "improvement",
+                question": "Improve: She is beautifuler than me.",
+                answer": "she is more beautiful",
+                explanation": "Long adjectives use 'more' for comparative, not '-er'"
+            },
+            {
+                type": "improvement",
+                question": "Improve: I don't have some time.",
+                answer": "i don't have any time",
+                explanation": "Negative sentences use 'any', not 'some'"
+            },
+            {
+                type": "improvement",
+                question": "Improve: Much people came to the concert.",
+                answer": "many people came",
+                explanation": "'People' is countable plural - use 'many' not 'much'"
+            },
+            {
+                type": "improvement",
+                question": "Improve: Each students have a book.",
+                answer": "each student has",
+                explanation": "'Each' takes singular noun and verb"
+            },
+            {
+                type": "improvement",
+                question": "Improve: This books are interesting.",
+                answer": "these books are",
+                explanation": "Demonstrative adjective must agree with noun in number"
+            },
+            {
+                type": "improvement",
+                question": "Improve: He is more intelligent than her.",
+                answer": "he is more intelligent than she",
+                explanation": "Complete comparison: 'than she is'"
+            },
+            {
+                type": "improvement",
+                question": "Improve: Between you and I, he's right.",
+                answer": "between you and me",
+                explanation": "Preposition takes object pronoun 'me'"
+            },
+            {
+                type": "improvement",
+                question": "Improve: The man which lives here is kind.",
+                answer": "the man who lives",
+                explanation": "Use 'who' for people, 'which' for things"
+            },
+            {
+                type": "improvement",
+                question": "Improve: Myself will handle this matter.",
+                answer": "i myself will handle",
+                explanation": "Reflexive needs proper subject 'I'"
+            },
+            {
+                type": "improvement",
+                question": "Improve: None of them is ready.",
+                answer": "none of them are",
+                explanation": "Modern usage prefers plural verb with 'none of + plural'"
+            },
+            {
+                type": "improvement",
+                question": "Improve: Whom did you meet yesterday?",
+                answer": "who did you meet",
+                explanation": "In spoken English, 'who' is acceptable for object in questions"
+            },
+            {
+                type": "improvement",
+                question": "Improve: Everyone are excited about the trip.",
+                answer": "everyone is excited",
+                explanation": "'Everyone' takes singular verb 'is'"
+            },
+            {
+                type": "improvement",
+                question": "Improve: This is yours pen.",
+                answer": "this is your pen",
+                explanation": "Use possessive adjective 'your' before noun"
+            },
+            {
+                type": "improvement",
+                question": "Improve: The news are good today.",
+                answer": "the news is good",
+                explanation": "'News' is uncountable and takes singular verb"
+            }
+        ];
+
+        let attempted = 0;
+        let correct = 0;
+        let wrong = 0;
+
+        // Initialize the test
+        function initializeTest() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+            
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <h4>Question ${index + 1} - ${getTypeText(q.type)}</h4>
+                    <p>${q.question}</p>
+                    <div class="input-group">
+                        <input type="text" id="answer-${index}" placeholder="Type your answer here..." 
+                               onkeypress="if(event.key==='Enter') checkAnswer(${index})">
+                        <button class="btn btn-primary" onclick="checkAnswer(${index})">Check Answer</button>
+                    </div>
+                    <div id="feedback-${index}"></div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function getTypeText(type) {
+            switch(type) {
+                case 'fill': return '📝 Fill in the Blanks';
+                case 'error': return '🔍 Error Detection';
+                case 'improvement': return '✨ Sentence Improvement';
+                default: return '❓ Question';
+            }
+        }
+
+        // Check individual answer
+        function checkAnswer(index) {
+            const userAnswer = document.getElementById(`answer-${index}`).value.trim().toLowerCase();
+            const correctAnswer = questions[index].answer.toLowerCase();
+            const feedbackDiv = document.getElementById(`feedback-${index}`);
+            
+            if (userAnswer === '') return;
+            
+            attempted++;
+            
+            // Flexible checking - allow partial matches and variations
+            const isCorrect = userAnswer === correctAnswer || 
+                             correctAnswer.includes(userAnswer) || 
+                             userAnswer.includes(correctAnswer.split(' ')[0]) ||
+                             (correctAnswer.split(' ').length > 1 && userAnswer.includes(correctAnswer.split(' ')[1]));
+            
+            if (isCorrect) {
+                correct++;
+                feedbackDiv.className = 'feedback correct';
+                feedbackDiv.innerHTML = `
+                    <div>✅ Correct! Well done!</div>
+                    <div><strong>Explanation:</strong> ${questions[index].explanation}</div>
+                `;
+            } else {
+                wrong++;
+                feedbackDiv.className = 'feedback incorrect';
+                feedbackDiv.innerHTML = `
+                    <div>❌ Wrong!</div>
+                    <div><strong>Correct Answer:</strong> ${questions[index].answer}</div>
+                    <div><strong>Why your answer is wrong:</strong> Your answer doesn't follow the adjective rule.</div>
+                    <div><strong>Rule:</strong> ${questions[index].explanation}</div>
+                `;
+            }
+            
+            updateScore();
+        }
+
+        // Check all answers
+        function checkAllAnswers() {
+            questions.forEach((q, index) => {
+                const answerInput = document.getElementById(`answer-${index}`);
+                if (answerInput.value.trim() !== '' && !document.getElementById(`feedback-${index}`).innerHTML) {
+                    checkAnswer(index);
+                }
+            });
+            
+            // Show final score
+            setTimeout(showFinalScore, 1000);
+        }
+
+        // Update score panel
+        function updateScore() {
+            document.getElementById('attempted').textContent = attempted;
+            document.getElementById('correct').textContent = correct;
+            document.getElementById('wrong').textContent = wrong;
+            
+            const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+            document.getElementById('accuracy').textContent = accuracy + '%';
+            
+            // Add animation
+            const accuracyElement = document.getElementById('accuracy');
+            accuracyElement.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                accuracyElement.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        // Show final score
+        function showFinalScore() {
+            const finalScoreDiv = document.getElementById('final-score');
+            const finalScorePercentage = document.getElementById('final-score-percentage');
+            const finalScoreDetails = document.getElementById('final-score-details');
+            
+            const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+            
+            finalScorePercentage.textContent = accuracy + '%';
+            finalScoreDetails.innerHTML = `
+                <p>Total Questions: 60</p>
+                <p>Attempted: ${attempted}</p>
+                <p>Correct: ${correct}</p>
+                <p>Wrong: ${wrong}</p>
+            `;
+            
+            finalScoreDiv.style.display = 'block';
+            finalScoreDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Reset test
+        function resetTest() {
+            if (confirm('Are you sure you want to reset the test? All your answers will be cleared.')) {
+                attempted = 0;
+                correct = 0;
+                wrong = 0;
+                updateScore();
+                initializeTest();
+                document.getElementById('final-score').style.display = 'none';
+            }
+        }
+
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTest();
+            
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                
+                header.addEventListener('click', () => {
+                    // Close all other items
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+
+        // Auto-save functionality
+        window.addEventListener('beforeunload', function() {
+            const answers = {};
+            questions.forEach((q, index) => {
+                const input = document.getElementById(`answer-${index}`);
+                if (input && input.value) {
+                    answers[index] = input.value;
+                }
+            });
+            localStorage.setItem('adjectiveTestAnswers', JSON.stringify(answers));
+        });
+
+        // Load saved answers
+        window.addEventListener('load', function() {
+            const saved = localStorage.getItem('adjectiveTestAnswers');
+            if (saved) {
+                const answers = JSON.parse(saved);
+                Object.keys(answers).forEach(index => {
+                    const input = document.getElementById(`answer-${index}`);
+                    if (input) {
+                        input.value = answers[index];
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

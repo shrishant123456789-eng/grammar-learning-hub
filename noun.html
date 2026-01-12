@@ -1,133 +1,1633 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Chapter 2: Noun</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOUN – Complete Grammar Chapter | Grammar Learning Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-menu {
+            background: #34495e;
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-menu a:hover {
+            background: #2c3e50;
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .definition-box {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.3);
+        }
+
+        .hinglish-box {
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(253, 121, 168, 0.3);
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .example-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .example-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .correct {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .incorrect {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .accordion {
+            margin: 1.5rem 0;
+        }
+
+        .accordion-item {
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #636e72 0%, #2d3436 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+        }
+
+        .accordion-header::after {
+            content: '▼';
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            background: white;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 1000px;
+            padding: 1.5rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        th {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .error-table {
+            font-size: 0.9rem;
+        }
+
+        .error-table .wrong {
+            background: #ffe6e6;
+            color: #c0392b;
+        }
+
+        .error-table .correct {
+            background: #e8f5e8;
+            color: #27ae60;
+        }
+
+        .practice-section {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .question {
+            background: white;
+            color: #333;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .question h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid #ecf0f1;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .score-panel {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .score-panel h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .score-item {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .score-percentage {
+            font-size: 2rem;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .controls {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-menu a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+            
+            .content {
+                padding: 1rem;
+            }
+            
+            .score-panel {
+                position: static;
+                transform: none;
+                margin: 2rem auto;
+                max-width: 300px;
+            }
+            
+            .example-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .exam-tip {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #fdcb6e;
+        }
+
+        .exam-tip::before {
+            content: "💡 SSC TIP: ";
+            font-weight: bold;
+            color: #e17055;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header class="header">
+            <h1>NOUN – Complete Grammar Chapter</h1>
+            <p>Master English Grammar with Confidence</p>
+        </header>
 
-<header>
-  <h1>Chapter 2: NOUN</h1>
-  <p>Complete Notes + Practice (Basic to Advanced)</p>
-</header>
+        <nav class="nav-menu">
+            <a href="#introduction">Introduction</a>
+            <a href="#types">Types</a>
+            <a href="#countable">Countable</a>
+            <a href="#gender">Gender</a>
+            <a href="#number">Number</a>
+            <a href="#possession">Possession</a>
+            <a href="#errors">Common Errors</a>
+            <a href="#practice">Practice Test</a>
+        </nav>
 
-<main>
+        <main class="content">
+            <!-- Introduction Section -->
+            <section id="introduction" class="section">
+                <h2>1️⃣ WHAT IS A NOUN?</h2>
+                
+                <div class="definition-box">
+                    <h3>📚 Definition (Simple English)</h3>
+                    <p>A noun is the name of a person, place, thing, or idea.</p>
+                </div>
 
-<!-- ================= NOTES ================= -->
-<section style="background:#e8f5ff;padding:15px;border-radius:10px;">
-<h2 style="color:#0b3c5d;">📘 What is a Noun?</h2>
-<p>
-A <b>Noun</b> is a word used as the name of a <b>person, place, animal, thing, or idea</b>.
-</p>
+                <div class="hinglish-box">
+                    <h3>🇮🇳 Hinglish Explanation</h3>
+                    <p>Noun wo shabd hota hai jo kisi naam ko batata hai — jaise insaan, jagah, cheez ya feeling.</p>
+                </div>
 
-<h3 style="color:#1faa59;">Examples:</h3>
-<ul>
-  <li>Person: Ram, Sita, Teacher</li>
-  <li>Place: Delhi, School, India</li>
-  <li>Thing: Book, Table, Phone</li>
-  <li>Animal: Dog, Cow, Lion</li>
-  <li>Idea: Honesty, Love, Happiness</li>
-</ul>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <h4>👤 Person</h4>
+                        <p><span class="highlight">Rahul</span> is my friend.</p>
+                        <p>The <span class="highlight">teacher</span> is kind.</p>
+                    </div>
+                    <div class="example-card">
+                        <h4>📍 Place</h4>
+                        <p>I live in <span class="highlight">Delhi</span>.</p>
+                        <p>The <span class="highlight">school</span> is big.</p>
+                    </div>
+                    <div class="example-card">
+                        <h4>🎒 Thing</h4>
+                        <p>My <span class="highlight">book</span> is new.</p>
+                        <p>The <span class="highlight">car</span> is fast.</p>
+                    </div>
+                    <div class="example-card">
+                        <h4>💡 Idea</h4>
+                        <p><span class="highlight">Love</span> is important.</p>
+                        <p><span class="highlight">Freedom</span> is precious.</p>
+                    </div>
+                </div>
 
-<h2 style="color:#0b3c5d;">📗 Kinds of Nouns</h2>
+                <div class="exam-tip">
+                    <strong>Identification Trick (Naam Test):</strong> Kisi bhi shabd ko test karne ke liye pucho "Kya ye kisi naam ko batata hai?" If YES → Noun!
+                </div>
 
-<p><b>1. Proper Noun:</b> Special name of a person or place.<br>
-<i>Example: Ram, Delhi</i></p>
+                <div class="example-card">
+                    <h4>✅ Right vs Wrong Examples</h4>
+                    <p><span class="correct">✓ The boy runs fast.</span> (Boy = person = Noun)</p>
+                    <p><span class="incorrect">✗ The runs fast boy.</span> (Wrong word order)</p>
+                    <p><span class="correct">✓ Mumbai is a big city.</span> (Mumbai = place = Noun)</p>
+                    <p><span class="incorrect">✗ Mumbai are a big city.</span> (Wrong verb)</p>
+                </div>
+            </section>
 
-<p><b>2. Common Noun:</b> General name of a person or place.<br>
-<i>Example: boy, city</i></p>
+            <!-- Types of Nouns -->
+            <section id="types" class="section">
+                <h2>2️⃣ TYPES OF NOUN (FULLY DETAILED)</h2>
+                
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>A. Proper Noun (व्यक्तिवाचक संज्ञा)</h3>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Definition:</strong> A proper noun is the specific name of a particular person, place, or thing. It always begins with a capital letter.</p>
+                            <p><strong>Hinglish:</strong> Proper noun kisi vishest vyakti, sthan ya vastu ka naam hota hai. Hamesha bada letter se shuru hota hai.</p>
+                            
+                            <div class="exam-tip">
+                                <strong>Identification Trick:</strong> Agar naam kisi ek hi cheez ko indicate karta hai (unique) → Proper Noun
+                            </div>
 
-<p><b>3. Collective Noun:</b> Name of a group.<br>
-<i>Example: team, class</i></p>
+                            <h4>Examples:</h4>
+                            <div class="example-grid">
+                                <div class="example-card">
+                                    <p><span class="highlight">India</span> is my country.</p>
+                                    <p><span class="highlight">Delhi</span> is the capital.</p>
+                                    <p><span class="highlight">Narendra Modi</span> is the PM.</p>
+                                    <p><span class="highlight">Monday</span> is holiday.</p>
+                                </div>
+                                <div class="example-card">
+                                    <p><span class="highlight">Taj Mahal</span> is beautiful.</p>
+                                    <p><span class="highlight">Ganga</span> is sacred.</p>
+                                    <p><span class="highlight">Himalaya</span> is tall.</p>
+                                    <p><span class="highlight">January</span> is cold.</p>
+                                </div>
+                            </div>
 
-<p><b>4. Abstract Noun:</b> Name of a quality or idea.<br>
-<i>Example: honesty, bravery</i></p>
+                            <div class="exam-tip">
+                                <strong>SSC Warning:</strong> Days, months, festivals, languages, religions — sab proper noun hain!
+                            </div>
+                        </div>
+                    </div>
 
-<p><b>5. Material Noun:</b> Name of material or substance.<br>
-<i>Example: gold, water</i></p>
-</section>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>B. Common Noun (जातिवाचक संज्ञा)</h3>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Definition:</strong> A common noun is a general name for a person, place, or thing of the same class or kind.</p>
+                            <p><strong>Hinglish:</strong> Common noun kisi samuh ya jaati ka saadharan naam hota hai.</p>
 
-<hr>
+                            <div class="exam-tip">
+                                <strong>Identification Trick:</strong> Agar naam general hai aur kai cheezon ke liye use ho sakta hai → Common Noun
+                            </div>
 
-<!-- ================= PRACTICE ================= -->
-<h2 style="color:#ff9800;">📝 Practice Questions (30)</h2>
+                            <h4>Examples:</h4>
+                            <div class="example-grid">
+                                <div class="example-card">
+                                    <p>The <span class="highlight">boy</span> is playing.</p>
+                                    <p>A <span class="highlight">city</span> is big.</p>
+                                    <p>The <span class="highlight">river</span> is long.</p>
+                                    <p>My <span class="highlight">school</span> is good.</p>
+                                </div>
+                                <div class="example-card">
+                                    <p>The <span class="highlight">doctor</span> came.</p>
+                                    <p>A <span class="highlight">book</span> is on table.</p>
+                                    <p>The <span class="highlight">car</span> is fast.</p>
+                                    <p>That <span class="highlight">building</span> is tall.</p>
+                                </div>
+                            </div>
 
-<div id="questions">
+                            <div class="exam-tip">
+                                <strong>Common Confusion:</strong> Boy (common) vs Rahul (proper), City (common) vs Delhi (proper)
+                            </div>
+                        </div>
+                    </div>
 
-<!-- Questions will be shown one by one -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>C. Collective Noun (समूहवाचक संज्ञा)</h3>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Definition:</strong> A collective noun is the name of a group or collection of persons or things taken together.</p>
+                            <p><strong>Hinglish:</strong> Collective noun kisi samuh ya group ka naam hota hai.</p>
 
-<script>
-const questions = [
-{q:"Identify the noun: The boy is running.", a:"boy", w:"'Boy' is the name of a person."},
-{q:"Identify the noun: She lives in Delhi.", a:"Delhi", w:"'Delhi' is the name of a place."},
-{q:"Find the noun: Honesty is the best policy.", a:"honesty", w:"'Honesty' is an abstract idea."},
-{q:"Which word is a noun: run, blue, cat, quickly?", a:"cat", w:"'Cat' is the name of an animal."},
-{q:"Identify the noun: The team won the match.", a:"team", w:"'Team' is a collective noun."},
-{q:"Find the noun: Gold is a precious metal.", a:"gold", w:"'Gold' is a material noun."},
-{q:"Which is a proper noun: city, boy, Ram, pen?", a:"ram", w:"'Ram' is a specific name."},
-{q:"Find the noun: The teacher is kind.", a:"teacher", w:"'Teacher' is the name of a person."},
-{q:"Identify the noun: We love freedom.", a:"freedom", w:"'Freedom' is an abstract noun."},
-{q:"Which word is a noun: eat, apple, quickly, run?", a:"apple", w:"'Apple' is a thing."},
+                            <div class="exam-tip">
+                                <strong>Identification Trick:</strong> Agar ek shabd puri team/group ko indicate karta hai → Collective Noun
+                            </div>
 
-{q:"Identify the noun: The cow gives milk.", a:"cow", w:"'Cow' is an animal."},
-{q:"Find the noun: The class is silent.", a:"class", w:"'Class' is a group."},
-{q:"Which is a noun: beauty, beautiful, beautify?", a:"beauty", w:"'Beauty' is an idea."},
-{q:"Identify the noun: My brother is tall.", a:"brother", w:"'Brother' is a person."},
-{q:"Find the noun: Water is essential.", a:"water", w:"'Water' is a substance."},
-{q:"Which is a proper noun: river, ganga, water?", a:"ganga", w:"'Ganga' is a specific river."},
-{q:"Identify the noun: The lion is strong.", a:"lion", w:"'Lion' is an animal."},
-{q:"Find the noun: We need courage.", a:"courage", w:"'Courage' is an abstract noun."},
-{q:"Which is a noun: teacher, teach, teaching?", a:"teacher", w:"'Teacher' is a person."},
-{q:"Identify the noun: Books are useful.", a:"books", w:"'Books' are things."},
+                            <h4>Examples:</h4>
+                            <div class="example-grid">
+                                <div class="example-card">
+                                    <p>A <span class="highlight">team</span> of players</p>
+                                    <p>A <span class="highlight">flock</span> of birds</p>
+                                    <p>A <span class="highlight">herd</span> of cattle</p>
+                                    <p>A <span class="highlight">crowd</span> of people</p>
+                                </div>
+                                <div class="example-card">
+                                    <p>A <span class="highlight">class</span> of students</p>
+                                    <p>A <span class="highlight">army</span> of soldiers</p>
+                                    <p>A <span class="highlight">bunch</span> of keys</p>
+                                    <p>A <span class="highlight">fleet</span> of ships</p>
+                                </div>
+                            </div>
 
-{q:"Find the noun: The sky is blue.", a:"sky", w:"'Sky' is a thing."},
-{q:"Which word is a noun: quickly, honesty, fast?", a:"honesty", w:"'Honesty' is an idea."},
-{q:"Identify the noun: The child is happy.", a:"child", w:"'Child' is a person."},
-{q:"Find the noun: Milk is healthy.", a:"milk", w:"'Milk' is a substance."},
-{q:"Which is a collective noun: crowd, man, city?", a:"crowd", w:"'Crowd' means group."},
-{q:"Identify the noun: India is my country.", a:"india", w:"'India' is a proper noun."},
-{q:"Find the noun: He bought a pen.", a:"pen", w:"'Pen' is a thing."},
-{q:"Which is an abstract noun: fear, dog, table?", a:"fear", w:"'Fear' is a feeling."},
-{q:"Identify the noun: The police arrived.", a:"police", w:"'Police' refers to a group."},
-{q:"Find the noun: Knowledge is power.", a:"knowledge", w:"'Knowledge' is an idea."}
-];
+                            <div class="exam-tip">
+                                <strong>SSC Exam Note:</strong> Collective noun ke saadharan examples yaad rakho - team, flock, herd, crowd, class, army
+                            </div>
+                        </div>
+                    </div>
 
-let html="";
-questions.forEach((item,i)=>{
-html+=`
-<div style="background:#f9fff1;margin:15px;padding:15px;border-radius:10px;">
-<p><b>Q${i+1}.</b> ${item.q}</p>
-<input type="text" id="a${i}" placeholder="Your answer">
-<button onclick="check(${i})">Check Answer</button>
-<p id="r${i}"></p>
-</div>`;
-});
-document.write(html);
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>D. Material Noun (पदार्थवाचक संज्ञा)</h3>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Definition:</strong> A material noun is the name of a material or substance of which things are made.</p>
+                            <p><strong>Hinglish:</strong> Material noun kisi padaarth ya substance ka naam hota hai jis se cheezein banti hain.</p>
 
-function check(i){
-let user=document.getElementById("a"+i).value.trim().toLowerCase();
-let r=document.getElementById("r"+i);
-if(user===questions[i].a){
-r.innerHTML="✅ Correct!<br><b>Why:</b> "+questions[i].w;
-r.style.color="green";
-}else{
-r.innerHTML="❌ Wrong!<br><b>Correct Answer:</b> "+questions[i].a+
-"<br><b>Why wrong:</b> "+questions[i].w;
-r.style.color="red";
-}
-}
-</script>
+                            <div class="exam-tip">
+                                <strong>Identification Trick:</strong> Agar naam kisi raw material ko indicate karta hai → Material Noun
+                            </div>
 
-</div>
+                            <h4>Examples:</h4>
+                            <div class="example-grid">
+                                <div class="example-card">
+                                    <p><span class="highlight">Gold</span> is precious.</p>
+                                    <p><span class="highlight">Water</span> is essential.</p>
+                                    <p><span class="highlight">Iron</span> is strong.</p>
+                                    <p><span class="highlight">Cotton</span> is soft.</p>
+                                </div>
+                                <div class="example-card">
+                                    <p><span class="highlight">Wood</span> comes from trees.</p>
+                                    <p><span class="highlight">Plastic</span> is light.</p>
+                                    <p><span class="highlight">Glass</span> is transparent.</p>
+                                    <p><span class="highlight">Milk</span> is nutritious.</p>
+                                </div>
+                            </div>
 
-<a href="index.html">⬅ Back to Home</a>
+                            <div class="exam-tip">
+                                <strong>Important:</strong> Material nouns hamesha singular hote hain aur inka plural nahin hota!
+                            </div>
+                        </div>
+                    </div>
 
-</main>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>E. Abstract Noun (भाववाचक संज्ञा)</h3>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Definition:</strong> An abstract noun is the name of a quality, state, or action that we can only think of or feel.</p>
+                            <p><strong>Hinglish:</strong> Abstract noun kisi guna, avastha ya kriya ka naam hota hai jo sirf mehsoos ki ja sakti hai, chhooi nahin.</p>
 
-<footer>
-<p>Grammar Learning Hub | Founder: <b>Shrishant Yadav</b></p>
-</footer>
+                            <div class="exam-tip">
+                                <strong>Identification Trick:</strong> Agar naam kisi feeling, idea, quality ya state ko indicate karta hai → Abstract Noun
+                            </div>
 
+                            <h4>Examples:</h4>
+                            <div class="example-grid">
+                                <div class="example-card">
+                                    <p><span class="highlight">Love</span> is blind.</p>
+                                    <p><span class="highlight">Honesty</span> is best.</p>
+                                    <p><span class="highlight">Happiness</span> matters.</p>
+                                    <p><span class="highlight">Courage</span> is needed.</p>
+                                </div>
+                                <div class="example-card">
+                                    <p><span class="highlight">Childhood</span> is golden.</p>
+                                    <p><span class="highlight">Freedom</span> is precious.</p>
+                                    <p><span class="highlight">Wisdom</span> comes with age.</p>
+                                    <p><span class="highlight">Sleep</span> is necessary.</p>
+                                </div>
+                            </div>
+
+                            <div class="exam-tip">
+                                <strong>SSC Focus:</strong> -ness, -hood, -ity, -tion endings wale words usually abstract nouns hote hain!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Countable & Uncountable -->
+            <section id="countable" class="section">
+                <h2>3️⃣ COUNTABLE & UNCOUNTABLE NOUNS</h2>
+                
+                <div class="definition-box">
+                    <h3>📊 Countable Nouns</h3>
+                    <p>Nouns that can be counted (have singular and plural forms)</p>
+                    <p><strong>Hinglish:</strong> Aise nouns jinko ginna ja sakta hai</p>
+                </div>
+
+                <div class="definition-box">
+                    <h3>📊 Uncountable Nouns</h3>
+                    <p>Nouns that cannot be counted (only singular form)</p>
+                    <p><strong>Hinglish:</strong> Aise nouns jinko nahin ginna ja sakta</p>
+                </div>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Countable</th>
+                                <th>Uncountable</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Examples</strong></td>
+                                <td>book, apple, boy, car</td>
+                                <td>water, rice, love, information</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Articles</strong></td>
+                                <td>a/an for singular</td>
+                                <td>no a/an</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Plural</strong></td>
+                                <td>books, apples</td>
+                                <td>no plural</td>
+                            </tr>
+                            <tr>
+                                <td><strong>How many/much</strong></td>
+                                <td>How many books?</td>
+                                <td>How much water?</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Some/Any</strong></td>
+                                <td>some books, any apples</td>
+                                <td>some water, any information</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="example-card">
+                    <h4>❌ Wrong vs ✔ Correct Examples</h4>
+                    <p><span class="incorrect">❌ I need an information.</span></p>
+                    <p><span class="correct">✔ I need some information.</span></p>
+                    <p><span class="incorrect">❌ How many money do you have?</span></p>
+                    <p><span class="correct">✔ How much money do you have?</span></p>
+                    <p><span class="incorrect">❌ She gave me a good advice.</span></p>
+                    <p><span class="correct">✔ She gave me good advice.</span></p>
+                </div>
+
+                <div class="exam-tip">
+                    <strong>Hinglish Rule:</strong> Much = uncountable, Many = countable. Yaad rakho: "Much money, Many friends"
+                </div>
+            </section>
+
+            <!-- Gender of Noun -->
+            <section id="gender" class="section">
+                <h2>4️⃣ GENDER OF NOUN</h2>
+                
+                <div class="example-grid">
+                    <div class="example-card">
+                        <h4>👨 Masculine Gender</h4>
+                        <p>Indicates male</p>
+                        <p><span class="highlight">boy, man, father, king, hero, actor, lion</span></p>
+                    </div>
+                    <div class="example-card">
+                        <h4>👩 Feminine Gender</h4>
+                        <p>Indicates female</p>
+                        <p><span class="highlight">girl, woman, mother, queen, heroine, actress, lioness</span></p>
+                    </div>
+                    <div class="example-card">
+                        <h4>🤝 Common Gender</h4>
+                        <p>Can be male or female</p>
+                        <p><span class="highlight">teacher, student, friend, doctor, child, person</span></p>
+                    </div>
+                    <div class="example-card">
+                        <h4>⚡ Neuter Gender</h4>
+                        <p>Non-living things</p>
+                        <p><span class="highlight">book, table, pen, car, house, computer</span></p>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Masculine</th>
+                                <th>Feminine</th>
+                                <th>Rule</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>actor</td>
+                                <td>actress</td>
+                                <td>+ess</td>
+                            </tr>
+                            <tr>
+                                <td>hero</td>
+                                <td>heroine</td>
+                                <td>+ine</td>
+                            </tr>
+                            <tr>
+                                <td>prince</td>
+                                <td>princess</td>
+                                <td>+ess</td>
+                            </tr>
+                            <tr>
+                                <td>waiter</td>
+                                <td>waitress</td>
+                                <td>+ess</td>
+                            </tr>
+                            <tr>
+                                <td>lion</td>
+                                <td>lioness</td>
+                                <td>+ess</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="exam-tip">
+                    <strong>Real Exam Example:</strong> "The lioness protected her cubs." → lioness = feminine gender
+                </div>
+            </section>
+
+            <!-- Number (Singular & Plural) -->
+            <section id="number" class="section">
+                <h2>5️⃣ NUMBER (SINGULAR & PLURAL)</h2>
+                
+                <h3>Regular Plurals</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rule</th>
+                                <th>Singular</th>
+                                <th>Plural</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Add -s</td>
+                                <td>book</td>
+                                <td>books</td>
+                                <td>Most nouns</td>
+                            </tr>
+                            <tr>
+                                <td>Add -es</td>
+                                <td>box</td>
+                                <td>boxes</td>
+                                <td>Ends in -s, -sh, -ch, -x, -z</td>
+                            </tr>
+                            <tr>
+                                <td>Change -y to -ies</td>
+                                <td>city</td>
+                                <td>cities</td>
+                                <td>Consonant + y</td>
+                            </tr>
+                            <tr>
+                                <td>Add -s</td>
+                                <td>boy</td>
+                                <td>boys</td>
+                                <td>Vowel + y</td>
+                            </tr>
+                            <tr>
+                                <td>Change -f/-fe to -ves</td>
+                                <td>knife</td>
+                                <td>knives</td>
+                                <td>Most -f endings</td>
+                            </tr>
+                            <tr>
+                                <td>Add -es</td>
+                                <td>potato</td>
+                                <td>potatoes</td>
+                                <td>Consonant + o</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Irregular Plurals</h3>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <p><span class="highlight">man → men</span></p>
+                        <p><span class="highlight">woman → women</span></p>
+                        <p><span class="highlight">child → children</span></p>
+                        <p><span class="highlight">foot → feet</span></p>
+                    </div>
+                    <div class="example-card">
+                        <p><span class="highlight">tooth → teeth</span></p>
+                        <p><span class="highlight">mouse → mice</span></p>
+                        <p><span class="highlight">goose → geese</span></p>
+                        <p><span class="highlight">ox → oxen</span></p>
+                    </div>
+                </div>
+
+                <h3>Unchanging Nouns</h3>
+                <div class="example-card">
+                    <p><span class="highlight">sheep → sheep</span></p>
+                    <p><span class="highlight">deer → deer</span></p>
+                    <p><span class="highlight">fish → fish</span></p>
+                    <p><span class="highlight">aircraft → aircraft</span></p>
+                </div>
+
+                <div class="exam-tip">
+                    <strong>Common Exam Trap:</strong> "The sheep is grazing" vs "The sheep are grazing" — dono sahi hain depending on context!
+                </div>
+            </section>
+
+            <!-- Possession -->
+            <section id="possession" class="section">
+                <h2>6️⃣ POSSESSION ('s / of)</h2>
+                
+                <div class="definition-box">
+                    <h3>📖 Apostrophe Rules</h3>
+                    <p><strong>Living things:</strong> Use 's or s'</p>
+                    <p><strong>Non-living things:</strong> Use "of"</p>
+                </div>
+
+                <div class="example-grid">
+                    <div class="example-card">
+                        <h4>🧑‍🤝‍🧑 Living Things ('s)</h4>
+                        <p><span class="highlight">Rahul's book</span></p>
+                        <p><span class="highlight">The boy's toy</span></p>
+                        <p><span class="highlight">My sister's dress</span></p>
+                        <p><span class="highlight">The cat's tail</span></p>
+                    </div>
+                    <div class="example-card">
+                        <h4>📚 Non-living Things (of)</h4>
+                        <p><span class="highlight">The roof of the house</span></p>
+                        <p><span class="highlight">The leg of the table</span></p>
+                        <p><span class="highlight">The door of the car</span></p>
+                        <p><span class="highlight">The cover of the book</span></p>
+                    </div>
+                </div>
+
+                <h3>Special Rules</h3>
+                <div class="example-card">
+                    <h4>Plural ending in -s → Add only apostrophe (')</h4>
+                    <p><span class="correct">✔ The boys' school</span> (many boys)</p>
+                    <p><span class="correct">✔ The girls' hostel</span> (many girls)</p>
+                    
+                    <h4>Compound possession</h4>
+                    <p><span class="correct">✔ Rahul and Priya's house</span> (joint ownership)</p>
+                    <p><span class="correct">✔ Rahul's and Priya's books</span> (separate ownership)</p>
+                </div>
+
+                <div class="exam-tip">
+                    <strong>Hinglish Explanation:</strong> Jinda cheezon ke liye 's lagao, bina jaan ke liye "of" ka use karo!
+                </div>
+            </section>
+
+            <!-- Common Errors -->
+            <section id="errors" class="section">
+                <h2>7️⃣ COMMON ERRORS & MISTAKES</h2>
+                
+                <div class="table-responsive">
+                    <table class="error-table">
+                        <thead>
+                            <tr>
+                                <th>❌ Wrong Sentence</th>
+                                <th>✔ Correct Sentence</th>
+                                <th>Why Wrong?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="wrong">The sceneries are beautiful.</td>
+                                <td class="correct">The scenery is beautiful.</td>
+                                <td>Scenery is uncountable, no plural</td>
+                            </tr>
+                            <tr>
+                                <td class="wrong">He gave me an advice.</td>
+                                <td class="correct">He gave me advice.</td>
+                                <td>Advice is uncountable</td>
+                            </tr>
+                            <tr>
+                                <td class="wrong">The furnitures are new.</td>
+                                <td class="correct">The furniture is new.</td>
+                                <td>Furniture is uncountable</td>
+                            </tr>
+                            <tr>
+                                <td class="wrong">I have many money.</td>
+                                <td class="correct">I have much money.</td>
+                                <td>Money is uncountable, use 'much'</td>
+                            </tr>
+                            <tr>
+                                <td class="wrong">The news are good.</td>
+                                <td class="correct">The news is good.</td>
+                                <td>News is uncountable, takes singular verb</td>
+                            </tr>
+                            <tr>
+                                <td class="wrong">Sheeps are grazing.</td>
+                                <td class="correct">Sheep are grazing.</td>
+                                <td>Sheep plural is sheep</td>
+                            </tr>
+                            <tr>
+                                <td class="wrong">The childrens are playing.</td>
+                                <td class="correct">The children are playing.</td>
+                                <td>Child plural is children</td>
+                            </tr>
+                            <tr>
+                                <td class="wrong">This is Priya's and Rahul's house.</td>
+                                <td class="correct">This is Priya and Rahul's house.</td>
+                                <td>Joint possession - only last name gets 's</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Practice Test -->
+            <section id="practice" class="practice-section">
+                <h2>📝 PRACTICE TEST – LIVE SYSTEM</h2>
+                <p><strong>Total Questions: 60</strong> | Identification: 20 | Error Correction: 20 | Fill in blanks: 20</p>
+                
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="resetTest()">🔄 Reset Test</button>
+                    <button class="btn btn-success" onclick="window.print()">🖨️ Print/Download</button>
+                </div>
+
+                <div id="questions-container">
+                    <!-- Questions will be generated by JavaScript -->
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="checkAllAnswers()">✅ Check All Answers</button>
+                </div>
+            </section>
+        </main>
+
+        <div class="score-panel" id="scorePanel">
+            <h3>📊 LIVE SCORE</h3>
+            <div class="score-item">
+                <div>✅ Attempted</div>
+                <div id="attempted">0</div>
+            </div>
+            <div class="score-item">
+                <div>✔ Correct</div>
+                <div id="correct">0</div>
+            </div>
+            <div class="score-item">
+                <div>❌ Wrong</div>
+                <div id="wrong">0</div>
+            </div>
+            <div class="score-item">
+                <div>🎯 Accuracy</div>
+                <div id="accuracy" class="score-percentage">0%</div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p><strong>Created by Shrishant Yadav</strong></p>
+            <p>Grammar Learning Hub | For Educational Purpose Only</p>
+            <p>© 2024 All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        // Question database
+        const questions = [
+            // Identification Questions (1-20)
+            {
+                type: "identification",
+                question: "Identify the noun in: 'The beautiful girl sings well.'",
+                answer: "girl",
+                explanation: "Girl is a noun because it's the name of a person."
+            },
+            {
+                type: "identification",
+                question: "Find all nouns: 'Delhi is a big city with many people.'",
+                answer: "delhi, city, people",
+                explanation: "Delhi (place), city (place), people (persons) are all nouns."
+            },
+            {
+                type: "identification",
+                question: "What type of noun is 'Honesty'?",
+                answer: "abstract",
+                explanation: "Honesty is an abstract noun as it names a quality."
+            },
+            {
+                type: "identification",
+                question: "Is 'water' countable or uncountable?",
+                answer: "uncountable",
+                explanation: "Water cannot be counted, so it's uncountable."
+            },
+            {
+                type: "identification",
+                question: "Identify: 'The team won the match.'",
+                answer: "team, match",
+                explanation: "Team (collective noun), match (common noun) are both nouns."
+            },
+            {
+                type: "identification",
+                question: "What gender is 'actress'?",
+                answer: "feminine",
+                explanation: "Actress is the feminine form of actor."
+            },
+            {
+                type: "identification",
+                question: "Find the proper noun: 'Mumbai is hotter than Delhi.'",
+                answer: "mumbai, delhi",
+                explanation: "Both Mumbai and Delhi are specific place names."
+            },
+            {
+                type: "identification",
+                question: "What type: 'A flock of birds flew overhead.'",
+                answer: "collective",
+                explanation: "Flock is a collective noun for birds."
+            },
+            {
+                type: "identification",
+                question: "Is 'furniture' singular or plural?",
+                answer: "singular",
+                explanation: "Furniture is uncountable and always singular."
+            },
+            {
+                type: "identification",
+                question: "Identify material noun: 'The table is made of wood.'",
+                answer: "wood",
+                explanation: "Wood is a material noun (substance)."
+            },
+            {
+                type: "identification",
+                question: "What type: 'Childhood memories are precious.'",
+                answer: "abstract",
+                explanation: "Childhood is an abstract noun (state of being)."
+            },
+            {
+                type: "identification",
+                question: "Find common nouns: 'The boy gave a book to his teacher.'",
+                answer: "boy, book, teacher",
+                explanation: "All are general names, not specific."
+            },
+            {
+                type: "identification",
+                question: "Gender of 'nurse'?",
+                answer: "common",
+                explanation: "Nurse can be male or female - common gender."
+            },
+            {
+                type: "identification",
+                question: "Countable or uncountable: 'information'?",
+                answer: "uncountable",
+                explanation: "Information cannot be counted."
+            },
+            {
+                type: "identification",
+                question: "Type of noun: 'Gold is expensive.'",
+                answer: "material",
+                explanation: "Gold is a material/substance."
+            },
+            {
+                type: "identification",
+                question: "Find the neuter gender noun: 'The computer is fast.'",
+                answer: "computer",
+                explanation: "Computer is a non-living thing - neuter gender."
+            },
+            {
+                type: "identification",
+                question: "What type: 'The Ganga is sacred.'",
+                answer: "proper",
+                explanation: "Ganga is a specific river name."
+            },
+            {
+                type: "identification",
+                question: "Plural form identification: 'The mice ran away.'",
+                answer: "mice",
+                explanation: "Mice is the plural of mouse (irregular)."
+            },
+            {
+                type: "identification",
+                question: "Abstract noun in: 'Love conquers all.'",
+                answer: "love",
+                explanation: "Love is a feeling - abstract noun."
+            },
+            {
+                type: "identification",
+                question: "Collective noun: 'The army marched forward.'",
+                answer: "army",
+                explanation: "Army is a group of soldiers - collective noun."
+            },
+
+            // Error Correction Questions (21-40)
+            {
+                type: "error",
+                question: "Correct the error: 'The sceneries are beautiful.'",
+                answer: "the scenery is beautiful",
+                explanation: "Scenery is uncountable - no plural form."
+            },
+            {
+                type: "error",
+                question: "Fix: 'He gave me an advice.'",
+                answer: "he gave me advice",
+                explanation: "Advice is uncountable - no article 'an' needed."
+            },
+            {
+                type: "error",
+                question: "Correct: 'Sheeps are grazing in the field.'",
+                answer: "sheep are grazing in the field",
+                explanation: "Sheep plural is sheep (no change)."
+            },
+            {
+                type: "error",
+                question: "Fix: 'I have many money in my pocket.'",
+                answer: "i have much money in my pocket",
+                explanation: "Money is uncountable - use 'much' not 'many'."
+            },
+            {
+                type: "error",
+                question: "Correct: 'The news are very exciting.'",
+                answer: "the news is very exciting",
+                explanation: "News is uncountable - takes singular verb."
+            },
+            {
+                type: "error",
+                question: "Fix: 'The furnitures are expensive.'",
+                answer: "the furniture is expensive",
+                explanation: "Furniture is uncountable - singular verb."
+            },
+            {
+                type: "error",
+                question: "Correct: 'This is Priya's and Rahul's house.'",
+                answer: "this is priya and rahul's house",
+                explanation: "Joint possession - only last name gets 's."
+            },
+            {
+                type: "error",
+                question: "Fix: 'The childrens are playing outside.'",
+                answer: "the children are playing outside",
+                explanation: "Children is already plural of child."
+            },
+            {
+                type: "error",
+                question: "Correct: 'I need some informations.'",
+                answer: "i need some information",
+                explanation: "Information is uncountable - no plural."
+            },
+            {
+                type: "error",
+                question: "Fix: 'How many water do you drink?'",
+                answer: "how much water do you drink",
+                explanation: "Water is uncountable - use 'much' not 'many'."
+            },
+            {
+                type: "error",
+                question: "Correct: 'The team are winning.'",
+                answer: "the team is winning",
+                explanation: "Team is singular collective noun."
+            },
+            {
+                type: "error",
+                question: "Fix: 'He has much friends.'",
+                answer: "he has many friends",
+                explanation: "Friends is countable - use 'many' not 'much'."
+            },
+            {
+                type: "error",
+                question: "Correct: 'The womens are talking.'",
+                answer: "the women are talking",
+                explanation: "Women is already plural of woman."
+            },
+            {
+                type: "error",
+                question: "Fix: 'I have a luggage to carry.'",
+                answer: "i have luggage to carry",
+                explanation: "Luggage is uncountable - no article 'a' needed."
+            },
+            {
+                type: "error",
+                question: "Correct: 'The mouses are running.'",
+                answer: "the mice are running",
+                explanation: "Mice is plural of mouse (irregular)."
+            },
+            {
+                type: "error",
+                question: "Fix: 'The trouser is blue.'",
+                answer: "the trousers are blue",
+                explanation: "Trousers is always plural."
+            },
+            {
+                type: "error",
+                question: "Correct: 'Mathematics are difficult.'",
+                answer: "mathematics is difficult",
+                explanation: "Mathematics is uncountable - singular verb."
+            },
+            {
+                type: "error",
+                question: "Fix: 'The police is coming.'",
+                answer: "the police are coming",
+                explanation: "Police is always plural."
+            },
+            {
+                type: "error",
+                question: "Correct: 'This is a good news.'",
+                answer: "this is good news",
+                explanation: "News is uncountable - no article 'a' needed."
+            },
+            {
+                type: "error",
+                question: "Fix: 'The peoples are happy.'",
+                answer: "the people are happy",
+                explanation: "People is already plural of person."
+            },
+
+            // Fill in the blanks (41-60)
+            {
+                type: "fill",
+                question: "Fill in: 'The ___ (boy/boys) is playing cricket.'",
+                answer: "boy",
+                explanation: "Use singular 'boy' because verb 'is' is singular."
+            },
+            {
+                type: "fill",
+                question: "Complete: 'I saw a ___ (flock/herd) of birds.'",
+                answer: "flock",
+                explanation: "Flock is the collective noun for birds."
+            },
+            {
+                type: "fill",
+                question: "Fill: '___ (Much/Many) people came to the party.'",
+                answer: "many",
+                explanation: "People is countable - use 'many' not 'much'."
+            },
+            {
+                type: "fill",
+                question: "Complete: 'The ___ (child/children) are singing.'",
+                answer: "children",
+                explanation: "Use plural 'children' because verb 'are' is plural."
+            },
+            {
+                type: "fill",
+                question: "Fill in: 'Gold is a ___ (material/proper) noun.'",
+                answer: "material",
+                explanation: "Gold is a substance/material - material noun."
+            },
+            {
+                type: "fill",
+                question: "Complete: 'Honesty is an ___ (abstract/material) noun.'",
+                answer: "abstract",
+                explanation: "Honesty is a quality - abstract noun."
+            },
+            {
+                type: "fill",
+                question: "Fill: 'Delhi is a ___ (common/proper) noun.'",
+                answer: "proper",
+                explanation: "Delhi is a specific place name - proper noun."
+            },
+            {
+                type: "fill",
+                question: "Complete: 'The ___ (scenery/sceneries) is beautiful.'",
+                answer: "scenery",
+                explanation: "Scenery is uncountable - no plural form."
+            },
+            {
+                type: "fill",
+                question: "Fill in: 'I need ___ (some/an) advice.'",
+                answer: "some",
+                explanation: "Advice is uncountable - use 'some' not 'an'."
+            },
+            {
+                type: "fill",
+                question: "Complete: 'The ___ (sheeps/sheep) are grazing.'",
+                answer: "sheep",
+                explanation: "Sheep plural is same as singular."
+            },
+            {
+                type: "fill",
+                question: "Fill: 'This is ___ (Rahul's/Rahuls') book.'",
+                answer: "rahul's",
+                explanation: "Singular possession - use 'Rahul's'."
+            },
+            {
+                type: "fill",
+                question: "Complete: '___ (How much/How many) sugar do you need?'",
+                answer: "how much",
+                explanation: "Sugar is uncountable - use 'how much'."
+            },
+            {
+                type: "fill",
+                question: "Fill in: 'The ___ (news/newses) is shocking.'",
+                answer: "news",
+                explanation: "News is uncountable - no plural form."
+            },
+            {
+                type: "fill",
+                question: "Complete: 'A ___ (team/crowd) of players.'",
+                answer: "team",
+                explanation: "Team is the collective noun for players."
+            },
+            {
+                type: "fill",
+                question: "Fill: '___ (Much/Many) water is wasted.'",
+                answer: "much",
+                explanation: "Water is uncountable - use 'much' not 'many'."
+            },
+            {
+                type: "fill",
+                question: "Complete: 'The ___ (women/woman) are working.'",
+                answer: "women",
+                explanation: "Use plural 'women' because verb 'are' is plural."
+            },
+            {
+                type: "fill",
+                question: "Fill in: 'Love is an ___ (abstract/proper) noun.'",
+                answer: "abstract",
+                explanation: "Love is a feeling - abstract noun."
+            },
+            {
+                type: "fill",
+                question: "Complete: 'The ___ (mouses/mice) are small.'",
+                answer: "mice",
+                explanation: "Mice is the plural of mouse."
+            },
+            {
+                type: "fill",
+                question: "Fill: 'This is the ___ (boy's/boys') playground.'",
+                answer: "boys'",
+                explanation: "Plural possession - many boys → boys'."
+            },
+            {
+                type: "fill",
+                question: "Complete: '___ (Some/Any) people are coming.'",
+                answer: "some",
+                explanation: "In positive sentences, use 'some' with countable plural."
+            }
+        ];
+
+        let attempted = 0;
+        let correct = 0;
+        let wrong = 0;
+
+        // Initialize the test
+        function initializeTest() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+            
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <h4>Question ${index + 1} - ${getTypeText(q.type)}</h4>
+                    <p>${q.question}</p>
+                    <div class="input-group">
+                        <input type="text" id="answer-${index}" placeholder="Type your answer here...">
+                        <button class="btn btn-primary" onclick="checkAnswer(${index})">Check Answer</button>
+                    </div>
+                    <div id="feedback-${index}"></div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function getTypeText(type) {
+            switch(type) {
+                case 'identification': return '🔍 Identification';
+                case 'error': return '✏️ Error Correction';
+                case 'fill': return '📝 Fill in the blanks';
+                default: return '❓ Question';
+            }
+        }
+
+        // Check individual answer
+        function checkAnswer(index) {
+            const userAnswer = document.getElementById(`answer-${index}`).value.trim().toLowerCase();
+            const correctAnswer = questions[index].answer.toLowerCase();
+            const feedbackDiv = document.getElementById(`feedback-${index}`);
+            
+            if (userAnswer === '') return;
+            
+            attempted++;
+            
+            if (userAnswer === correctAnswer || 
+                (correctAnswer.includes(',') && correctAnswer.split(',').map(a => a.trim()).includes(userAnswer)) ||
+                (correctAnswer.includes('/') && correctAnswer.split('/').map(a => a.trim()).includes(userAnswer))) {
+                correct++;
+                feedbackDiv.className = 'feedback correct';
+                feedbackDiv.innerHTML = `
+                    <div>✅ Correct! Well done!</div>
+                    <div><strong>Explanation:</strong> ${questions[index].explanation}</div>
+                `;
+            } else {
+                wrong++;
+                feedbackDiv.className = 'feedback incorrect';
+                feedbackDiv.innerHTML = `
+                    <div>❌ Wrong!</div>
+                    <div><strong>Correct Answer:</strong> ${questions[index].answer}</div>
+                    <div><strong>Why your answer is wrong:</strong> Your answer doesn't match the grammatical rule.</div>
+                    <div><strong>Rule:</strong> ${questions[index].explanation}</div>
+                `;
+            }
+            
+            updateScore();
+        }
+
+        // Check all answers
+        function checkAllAnswers() {
+            questions.forEach((q, index) => {
+                const answerInput = document.getElementById(`answer-${index}`);
+                if (answerInput.value.trim() !== '' && !document.getElementById(`feedback-${index}`).innerHTML) {
+                    checkAnswer(index);
+                }
+            });
+        }
+
+        // Update score panel
+        function updateScore() {
+            document.getElementById('attempted').textContent = attempted;
+            document.getElementById('correct').textContent = correct;
+            document.getElementById('wrong').textContent = wrong;
+            
+            const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+            document.getElementById('accuracy').textContent = accuracy + '%';
+            
+            // Add animation
+            const accuracyElement = document.getElementById('accuracy');
+            accuracyElement.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                accuracyElement.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        // Reset test
+        function resetTest() {
+            if (confirm('Are you sure you want to reset the test? All your answers will be cleared.')) {
+                attempted = 0;
+                correct = 0;
+                wrong = 0;
+                updateScore();
+                initializeTest();
+            }
+        }
+
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTest();
+            
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                
+                header.addEventListener('click', () => {
+                    // Close all other items
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Smooth scrolling for navigation
+            document.querySelectorAll('.nav-menu a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Auto-save functionality
+        window.addEventListener('beforeunload', function() {
+            const answers = {};
+            questions.forEach((q, index) => {
+                const input = document.getElementById(`answer-${index}`);
+                if (input && input.value) {
+                    answers[index] = input.value;
+                }
+            });
+            localStorage.setItem('nounTestAnswers', JSON.stringify(answers));
+        });
+
+        // Load saved answers
+        window.addEventListener('load', function() {
+            const saved = localStorage.getItem('nounTestAnswers');
+            if (saved) {
+                const answers = JSON.parse(saved);
+                Object.keys(answers).forEach(index => {
+                    const input = document.getElementById(`answer-${index}`);
+                    if (input) {
+                        input.value = answers[index];
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
