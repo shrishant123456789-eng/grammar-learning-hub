@@ -90,6 +90,8 @@ main{
   text-decoration:none;
   color:var(--primary);
   font-weight:600;
+  display: block;
+  width: 100%;
 }
 
 .topic.active{
@@ -232,22 +234,26 @@ const chapters = {
 };
 
 for(let phase in chapters){
-  let container=document.getElementById(phase);
-  chapters[phase].forEach(ch=>{
-    fetch(ch.file,{method:"HEAD"})
-    .then(res=>{
+  let container = document.getElementById(phase);
+  
+  chapters[phase].forEach(ch => {
+    // Create element immediately to maintain order
+    let itemDiv = document.createElement('div');
+    itemDiv.className = "topic"; 
+    container.appendChild(itemDiv);
+
+    fetch(ch.file, {method:"HEAD"})
+    .then(res => {
       if(res.ok){
-        container.innerHTML+=`
-        <div class="topic active">
-          <a href="${ch.file}">${ch.name}</a>
-        </div>`;
-      }else{throw"NF";}
+        itemDiv.classList.add("active");
+        itemDiv.innerHTML = `<a href="${ch.file}">${ch.name}</a>`;
+      } else {
+        throw "NF";
+      }
     })
-    .catch(()=>{
-      container.innerHTML+=`
-      <div class="topic coming">
-        ${ch.name} (Coming Soon)
-      </div>`;
+    .catch(() => {
+      itemDiv.classList.add("coming");
+      itemDiv.textContent = `${ch.name} (Coming Soon)`;
     });
   });
 }
