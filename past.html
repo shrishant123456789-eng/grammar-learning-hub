@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Tense Masterclass - Grammar Learning Hub</title>
+    <style>
+        :root {
+            --primary: #2c3e50; /* Deep Navy */
+            --secondary: #34495e;
+            --accent: #3498db; /* Bright Blue */
+            --light: #ecf0f1;
+            --white: #ffffff;
+            --success: #27ae60;
+            --error: #c0392b;
+            --text: #333333;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        header .author {
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* LIVE SCORE PANEL (STICKY) */
+        .score-panel {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .score-item span {
+            display: block;
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .score-val {
+            font-size: 1.2rem;
+        }
+        .s-green { color: var(--success); }
+        .s-red { color: var(--error); }
+        .s-blue { color: var(--accent); }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* ACCORDION STYLES */
+        .accordion {
+            background-color: var(--white);
+            color: var(--primary);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            transition: 0.4s;
+            border-radius: var(--border-radius);
+            margin-bottom: 10px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .accordion:hover, .accordion.active {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .accordion:after {
+            content: '\002B'; /* Plus sign */
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .accordion.active:after {
+            content: "\2212"; /* Minus sign */
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-bottom: 10px;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+
+        .panel-content {
+            padding: 20px 0;
+        }
+
+        /* CONTENT STYLING */
+        h3 {
+            color: var(--primary);
+            border-left: 5px solid var(--accent);
+            padding-left: 10px;
+            margin: 20px 0 10px 0;
+        }
+
+        .hinglish-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid #2980b9;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .formula-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .example-list li {
+            margin-bottom: 8px;
+            list-style-type: none;
+        }
+        .example-list li:before {
+            content: "➤ ";
+            color: var(--accent);
+        }
+
+        /* MISTAKES SECTION */
+        .mistake-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        @media(min-width: 600px) {
+            .mistake-grid { grid-template-columns: 1fr 1fr 1fr; }
+        }
+
+        .mistake-card {
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 5px;
+            background: #fff;
+        }
+        .wrong { color: var(--error); text-decoration: line-through; }
+        .right { color: var(--success); font-weight: bold; }
+        .reason { font-size: 0.9em; color: #666; margin-top: 5px; display: block; }
+
+        /* PRACTICE SECTION STYLES */
+        .practice-container {
+            margin-top: 20px;
+        }
+        
+        .question-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .q-text {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent);
+            outline: none;
+        }
+
+        button.check-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button.check-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        button.check-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            font-size: 0.95rem;
+        }
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .set-title {
+            background: var(--light);
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Past Tense Masterclass</h1>
+        <div class="subtitle">Simple Past • Past Continuous • Past Perfect • Past Perfect Continuous</div>
+        <div class="author">Created by Shrishant Yadav</div>
+    </header>
+
+    <div class="score-panel">
+        <div class="score-item">
+            <span>Attempted</span>
+            <div id="score-attempted" class="score-val s-blue">0</div>
+        </div>
+        <div class="score-item">
+            <span>Correct</span>
+            <div id="score-correct" class="score-val s-green">0</div>
+        </div>
+        <div class="score-item">
+            <span>Wrong</span>
+            <div id="score-wrong" class="score-val s-red">0</div>
+        </div>
+        <div class="score-item">
+            <span>Score</span>
+            <div id="score-percentage" class="score-val">0%</div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <button class="accordion">1. Simple Past Tense</button>
+        <div class="panel">
+            <div class="panel-content">
+                <h3>Definition</h3>
+                <p>We use the Simple Past Tense for actions that started and finished at a specific time in the past.</p>
+                
+                <div class="hinglish-box">
+                    <strong>Hinglish Explanation:</strong><br>
+                    Hum Simple Past ka use tab karte hain jab koi kaam past me poora ho chuka ho aur uska time pata ho (jaise kal, pichle saal, subah). Isme kaam khatam ho chuka hota hai.
+                </div>
+
+                <h3>Structure / Formula</h3>
+                <div class="formula-box">
+                    <strong>Affirmative:</strong> Subject + V2 (2nd form of verb) + Object<br>
+                    <strong>Negative:</strong> Subject + did not + V1 + Object<br>
+                    <strong>Interrogative:</strong> Did + Subject + V1 + Object?
+                </div>
+
+                <h3>Helping Verbs & Signal Words</h3>
+                <p><strong>Helping Verb:</strong> 'Did' (only in Negative & Interrogative sentences).</p>
+                <p><strong>Signal Words:</strong> Yesterday, ago, last night, in 2010, last week, once upon a time.</p>
+
+                <h3>Examples</h3>
+                <ul class="example-list">
+                    <li>I <strong>played</strong> cricket yesterday. (Basic)</li>
+                    <li>She <strong>did not go</strong> to school last Monday. (Negative)</li>
+                    <li><strong>Did</strong> you <strong>watch</strong> the movie? (Interrogative)</li>
+                    <li>They <strong>lived</strong> in London for five years. (Medium)</li>
+                    <li>The ancient Romans <strong>built</strong> these roads. (Advanced)</li>
+                </ul>
+
+                <h3>Common Mistakes</h3>
+                <div class="mistake-grid">
+                    <div class="mistake-card">
+                        <div class="wrong">❌ I did not went there.</div>
+                        <div class="right">✔ I did not go there.</div>
+                        <span class="reason">👉 After 'did', always use V1 (Base Form).</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ She sleeped late.</div>
+                        <div class="right">✔ She slept late.</div>
+                        <span class="reason">👉 'Sleep' is an irregular verb. V2 is 'slept'.</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ I have seen him yesterday.</div>
+                        <div class="right">✔ I saw him yesterday.</div>
+                        <span class="reason">👉 'Yesterday' specifies time, so use Simple Past, not Present Perfect.</span>
+                    </div>
+                </div>
+
+                <h3>Mini Practice (Simple Past)</h3>
+                <div id="practice-simple-past" class="practice-container">
+                    </div>
+            </div>
+        </div>
+
+        <button class="accordion">2. Past Continuous Tense</button>
+        <div class="panel">
+            <div class="panel-content">
+                <h3>Definition</h3>
+                <p>Used to describe actions that were going on (in progress) at a specific time in the past.</p>
+
+                <div class="hinglish-box">
+                    <strong>Hinglish Explanation:</strong><br>
+                    Jab past me koi kaam chal raha tha (jaise "woh khel raha tha", "hum padh rahe the"), tab hum Past Continuous use karte hain.
+                </div>
+
+                <h3>Structure / Formula</h3>
+                <div class="formula-box">
+                    <strong>Affirmative:</strong> Subject + was/were + V1 + ing + Object<br>
+                    <strong>Negative:</strong> Subject + was/were + not + V1 + ing...<br>
+                    <strong>Interrogative:</strong> Was/Were + Subject + V1 + ing...?
+                </div>
+
+                <h3>Helping Verbs</h3>
+                <p><strong>Was:</strong> I, He, She, It, Singular Noun.<br>
+                <strong>Were:</strong> You, We, They, Plural Noun.</p>
+
+                <h3>Examples</h3>
+                <ul class="example-list">
+                    <li>I <strong>was reading</strong> a book when you called.</li>
+                    <li>They <strong>were playing</strong> football in the rain.</li>
+                    <li>She <strong>was not listening</strong> to the teacher.</li>
+                    <li><strong>Were</strong> you <strong>sleeping</strong> at 10 PM?</li>
+                    <li>The wind <strong>was blowing</strong> fiercely last night.</li>
+                </ul>
+
+                <h3>Common Mistakes</h3>
+                <div class="mistake-grid">
+                    <div class="mistake-card">
+                        <div class="wrong">❌ They was going.</div>
+                        <div class="right">✔ They were going.</div>
+                        <span class="reason">👉 'They' is plural, so use 'were'.</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ I were happy.</div>
+                        <div class="right">✔ I was happy.</div>
+                        <span class="reason">👉 'I' takes 'was' in standard grammar.</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ She was cook food.</div>
+                        <div class="right">✔ She was cooking food.</div>
+                        <span class="reason">👉 Continuous tense always needs 'ing'.</span>
+                    </div>
+                </div>
+
+                <h3>Mini Practice (Past Continuous)</h3>
+                <div id="practice-past-cont" class="practice-container"></div>
+            </div>
+        </div>
+
+        <button class="accordion">3. Past Perfect Tense</button>
+        <div class="panel">
+            <div class="panel-content">
+                <h3>Definition</h3>
+                <p>Used for an action that was completed before another action took place in the past.</p>
+
+                <div class="hinglish-box">
+                    <strong>Hinglish Explanation:</strong><br>
+                    Jab past me do kaam hue hon, to jo kaam <strong>pehle</strong> khatam hua uske liye Past Perfect (Had + V3) aur jo baad me hua uske liye Simple Past (V2) use karte hain. Eg: "Doctor ke aane se pehle mareez mar chuka tha."
+                </div>
+
+                <h3>Structure / Formula</h3>
+                <div class="formula-box">
+                    <strong>Formula:</strong> Subject + had + V3 (3rd form) + Object<br>
+                    <strong>Key Words:</strong> already, before, after, by the time.
+                </div>
+
+                <h3>Examples</h3>
+                <ul class="example-list">
+                    <li>She <strong>had left</strong> before I arrived.</li>
+                    <li>I <strong>had</strong> never <strong>seen</strong> such a beautiful car before.</li>
+                    <li>The train <strong>had departed</strong> when we reached the station.</li>
+                    <li>He realized that he <strong>had lost</strong> his wallet.</li>
+                </ul>
+
+                <h3>Common Mistakes</h3>
+                <div class="mistake-grid">
+                    <div class="mistake-card">
+                        <div class="wrong">❌ I had went to school.</div>
+                        <div class="right">✔ I had gone to school.</div>
+                        <span class="reason">👉 After 'had', always use V3 (Gone), not V2 (Went).</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ She had ate food.</div>
+                        <div class="right">✔ She had eaten food.</div>
+                        <span class="reason">👉 V3 of 'eat' is 'eaten'.</span>
+                    </div>
+                </div>
+
+                <h3>Mini Practice (Past Perfect)</h3>
+                <div id="practice-past-perf" class="practice-container"></div>
+            </div>
+        </div>
+
+        <button class="accordion">4. Past Perfect Continuous</button>
+        <div class="panel">
+            <div class="panel-content">
+                <h3>Definition</h3>
+                <p>Used to show that an action started in the past and continued up until another time in the past.</p>
+
+                <div class="hinglish-box">
+                    <strong>Hinglish Explanation:</strong><br>
+                    Jab koi kaam past me shuru hua aur past me hi kisi khaas samay tak chalta raha. Isme 'time' (since/for) ka use hota hai. Eg: "Woh 2 ghante se padh raha tha."
+                </div>
+
+                <h3>Structure / Formula</h3>
+                <div class="formula-box">
+                    <strong>Formula:</strong> Subject + had been + V1 + ing + Object + (Since/For + Time)
+                </div>
+
+                <h3>Since vs For</h3>
+                <p><strong>Since:</strong> Point of time (2 PM, Monday, 1990).<br>
+                <strong>For:</strong> Duration of time (2 hours, 5 years, a long time).</p>
+
+                <h3>Examples</h3>
+                <ul class="example-list">
+                    <li>He <strong>had been waiting</strong> for two hours when she finally arrived.</li>
+                    <li>They <strong>had been playing</strong> cricket since morning.</li>
+                    <li>She <strong>had been working</strong> at that company for 10 years before she quit.</li>
+                </ul>
+
+                <h3>Common Mistakes</h3>
+                <div class="mistake-grid">
+                    <div class="mistake-card">
+                        <div class="wrong">❌ He was playing for 2 hours.</div>
+                        <div class="right">✔ He had been playing for 2 hours.</div>
+                        <span class="reason">👉 If duration is given, avoid Past Continuous; use Past Perfect Continuous.</span>
+                    </div>
+                </div>
+
+                <h3>Mini Practice (Past Perfect Cont.)</h3>
+                <div id="practice-past-perf-cont" class="practice-container"></div>
+            </div>
+        </div>
+
+        <button class="accordion">5. Master Practice (100 Questions)</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p style="text-align: center; margin-bottom: 20px;">Test your mastery over all past tenses. Questions range from Beginner to Advanced.</p>
+                
+                <div class="set-title">SET 1: The Basics (Mixed)</div>
+                <div id="master-set-1" class="practice-container"></div>
+
+                <div class="set-title">SET 2: Intermediate Challenge</div>
+                <div id="master-set-2" class="practice-container"></div>
+
+                <div class="set-title">SET 3: Tricky Situations</div>
+                <div id="master-set-3" class="practice-container"></div>
+
+                <div class="set-title">SET 4: Advanced Application</div>
+                <div id="master-set-4" class="practice-container"></div>
+
+                <div class="set-title">SET 5: Expert Level</div>
+                <div id="master-set-5" class="practice-container"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <h3>Grammar Learning Hub</h3>
+        <p>Created by Shrishant Yadav</p>
+        <p><small>Education Purpose Only &copy; 2024</small></p>
+    </footer>
+
+    <script>
+        // --- DATA OBJECTS (QUESTIONS) ---
+        
+        // Helper to create question object
+        function q(id, text, answer, hint) {
+            return { id: id, text: text, answer: answer, hint: hint, solved: false };
+        }
+
+        // 1. Mini Practice: Simple Past
+        const simplePastQs = [
+            q('sp1', 'I ___ (play) football yesterday.', 'played', 'Add -ed for regular verbs.'),
+            q('sp2', 'She ___ (go) to the market last night.', 'went', 'Irregular V2 of go.'),
+            q('sp3', 'We ___ (visit) the Taj Mahal in 2018.', 'visited', 'Regular verb.'),
+            q('sp4', 'He ___ (buy) a new car last month.', 'bought', 'V2 of buy is bought.'),
+            q('sp5', '___ you see the bird? (Do/Did)', 'did', 'Helping verb for past is Did.'),
+            q('sp6', 'They ___ (not/eat) lunch.', 'did not eat', 'Negative: Did not + V1.'),
+            q('sp7', 'The rain ___ (stop) an hour ago.', 'stopped', 'Double P + ed.'),
+            q('sp8', 'I ___ (write) a letter to my friend.', 'wrote', 'V2 of write.'),
+            q('sp9', '___ she call you? (Did/Does)', 'did', 'Past interrogative starts with Did.'),
+            q('sp10', 'Columbus ___ (discover) America.', 'discovered', 'Historical fact = Simple Past.')
+        ];
+
+        // 2. Mini Practice: Past Continuous
+        const pastContQs = [
+            q('pc1', 'I ___ (read) when you came.', 'was reading', 'I + was + ing.'),
+            q('pc2', 'They ___ (play) in the park.', 'were playing', 'They + were + ing.'),
+            q('pc3', 'She ___ (not/sleep) well.', 'was not sleeping', 'Negative continuous.'),
+            q('pc4', '___ you watching TV?', 'were', 'You takes Were.'),
+            q('pc5', 'The birds ___ (chirp) in the morning.', 'were chirping', 'Plural subject.'),
+            q('pc6', 'It ___ (rain) heavily last night.', 'was raining', 'It takes Was.'),
+            q('pc7', 'We ___ (have) dinner when the bell rang.', 'were having', 'Action in progress.'),
+            q('pc8', 'What ___ he doing?', 'was', 'He takes Was.'),
+            q('pc9', 'The baby ___ (cry) loudly.', 'was crying', 'Singular subject.'),
+            q('pc10', 'Men ___ (work) on the road.', 'were working', 'Men (plural) takes Were.')
+        ];
+
+        // 3. Mini Practice: Past Perfect
+        const pastPerfQs = [
+            q('pp1', 'The train ___ (leave) before I reached.', 'had left', 'Action completed before another.'),
+            q('pp2', 'She said she ___ (finish) her work.', 'had finished', 'Reported speech past.'),
+            q('pp3', 'I ___ (not/see) him before.', 'had not seen', 'Had + V3.'),
+            q('pp4', 'They ___ (eat) dinner by 8 PM.', 'had eaten', 'V3 of eat.'),
+            q('pp5', 'The movie ___ (start) when we entered.', 'had started', 'Earlier action.'),
+            q('pp6', 'He realized he ___ (forget) his keys.', 'had forgotten', 'Forgot before realizing.'),
+            q('pp7', 'We ___ (live) there for years before moving.', 'had lived', 'Duration before past point.'),
+            q('pp8', 'After I ___ (complete) work, I went out.', 'had completed', 'First action.'),
+            q('pp9', 'The thief ___ (escape) before police came.', 'had escaped', 'Earlier action.'),
+            q('pp10', '___ you ever visited London before 2010?', 'had', 'Auxiliary for Past Perfect.')
+        ];
+
+        // 4. Mini Practice: Past Perfect Continuous
+        const pastPerfContQs = [
+            q('ppc1', 'I ___ (wait) for 2 hours when he came.', 'had been waiting', 'Duration in past.'),
+            q('ppc2', 'She ___ (cry) since morning.', 'had been crying', 'Started in past, cont in past.'),
+            q('ppc3', 'They ___ (play) cricket for 3 hours.', 'had been playing', 'Duration (for).'),
+            q('ppc4', 'He ___ (work) there since 1990.', 'had been working', 'Time point (since).'),
+            q('ppc5', 'It ___ (rain) all night.', 'had been raining', 'Continuous past duration.'),
+            q('ppc6', 'We ___ (sleep) for 10 hours.', 'had been sleeping', 'Duration.'),
+            q('ppc7', 'How long ___ you ___ (wait)?', 'had you been waiting', 'Interrogative structure.'),
+            q('ppc8', 'The child ___ (watch) TV all day.', 'had been watching', 'Duration.'),
+            q('ppc9', 'They were tired because they ___ (run).', 'had been running', 'Reason for past state.'),
+            q('ppc10', 'She ___ (learn) English for 6 months.', 'had been learning', 'Duration.')
+        ];
+
+        // 5. MASTER SET (100 Questions)
+        // Generating distinct questions for practice sets
+        
+        const set1 = [
+            q('m1', 'I ___ (see) a lion yesterday.', 'saw', 'Simple Past V2'),
+            q('m2', 'She ___ (cook) when I called.', 'was cooking', 'Past Cont'),
+            q('m3', 'They ___ (leave) already.', 'had left', 'Past Perfect'),
+            q('m4', 'We ___ (watch) TV for 2 hours.', 'had been watching', 'Past Perf Cont'),
+            q('m5', '___ you go to school?', 'did', 'Simple Past Q'),
+            q('m6', 'He ___ (not/like) the food.', 'did not like', 'Simple Past Neg'),
+            q('m7', 'The sun ___ (shine) brightly.', 'was shining', 'Past Cont'),
+            q('m8', 'I ___ (visit) Paris in 2015.', 'visited', 'Specific time'),
+            q('m9', 'She ___ (wash) her car.', 'washed', 'Completed action'),
+            q('m10', 'They ___ (not/playing) well.', 'were not playing', 'Past Cont Neg'),
+            q('m11', 'The teacher ___ (teach) the lesson.', 'taught', 'V2 of teach'),
+            q('m12', 'I ___ (drive) when it rained.', 'was driving', 'Interrupted action'),
+            q('m13', 'He ___ (finish) the task.', 'had finished', 'Completed before now'),
+            q('m14', 'She ___ (dance) since 2 PM.', 'had been dancing', 'Duration'),
+            q('m15', 'We ___ (buy) a house.', 'bought', 'V2'),
+            q('m16', 'It ___ (snow) yesterday.', 'snowed', 'Weather event'),
+            q('m17', 'Who ___ (break) the glass?', 'broke', 'Simple Past'),
+            q('m18', 'I ___ (think) about you.', 'was thinking', 'Continuous thought'),
+            q('m19', 'They ___ (go) home.', 'went', 'V2'),
+            q('m20', 'The baby ___ (sleep).', 'was sleeping', 'State in past')
+        ];
+
+        const set2 = [
+            q('m21', 'When I arrived, they ___ (eat).', 'were eating', 'Action in progress'),
+            q('m22', 'She ___ (study) before the test.', 'had studied', 'Past Perfect'),
+            q('m23', 'I ___ (lose) my phone.', 'lost', 'Simple Past'),
+            q('m24', 'He ___ (run) for an hour.', 'had been running', 'Duration'),
+            q('m25', 'We ___ (fly) to London.', 'flew', 'V2 of fly'),
+            q('m26', 'She ___ (write) a poem.', 'wrote', 'V2'),
+            q('m27', 'The phone ___ (ring) while I cooked.', 'rang', 'Interruption'),
+            q('m28', 'They ___ (build) a house.', 'built', 'V2'),
+            q('m29', 'I ___ (read) this book before.', 'had read', 'Past Perfect'),
+            q('m30', 'It ___ (rain) since Monday.', 'had been raining', 'Duration'),
+            q('m31', 'He ___ (not/know) the answer.', 'did not know', 'Negative'),
+            q('m32', '___ she looking at you?', 'was', 'Helping verb'),
+            q('m33', 'We ___ (meet) last year.', 'met', 'Simple Past'),
+            q('m34', 'The water ___ (boil) when I came.', 'was boiling', 'In progress'),
+            q('m35', 'She ___ (live) there for long.', 'had lived', 'Past Perfect state'),
+            q('m36', 'I ___ (try) to call you.', 'was trying', 'Continuous effort'),
+            q('m37', 'They ___ (sell) their car.', 'sold', 'V2'),
+            q('m38', 'He ___ (fall) down.', 'fell', 'V2'),
+            q('m39', 'We ___ (wait) for the bus.', 'were waiting', 'In progress'),
+            q('m40', 'She ___ (sing) a song.', 'sang', 'V2')
+        ];
+
+        const set3 = [
+            q('m41', 'By the time I reached, he ___ (leave).', 'had left', 'Sequence of events'),
+            q('m42', 'I ___ (walk) down the street when I fell.', 'was walking', 'Background action'),
+            q('m43', 'She was tired because she ___ (work).', 'had been working', 'Cause of past state'),
+            q('m44', 'Before he came, I ___ (clean) the room.', 'had cleaned', 'Sequence'),
+            q('m45', 'While I ___ (sleep), you called.', 'was sleeping', 'Simultaneous'),
+            q('m46', 'They ___ (fight) when police arrived.', 'were fighting', 'In progress'),
+            q('m47', 'I wish I ___ (know) the truth.', 'knew', 'Subjunctive/Past wish'),
+            q('m48', 'If I ___ (be) you, I would go.', 'were', 'Condition'),
+            q('m49', 'He ___ (teach) since 2010.', 'had been teaching', 'Long duration'),
+            q('m50', 'The light ___ (go) out while reading.', 'went', 'Interruption'),
+            q('m51', 'I ___ (understand) the lesson.', 'understood', 'Mental state V2'),
+            q('m52', 'She ___ (wear) a red dress.', 'was wearing', 'Description'),
+            q('m53', 'We ___ (never/see) such a thing.', 'had never seen', 'Past Perfect experience'),
+            q('m54', 'The road ___ (be) blocked.', 'was', 'State'),
+            q('m55', 'I ___ (forget) his name.', 'forgot', 'Simple Past'),
+            q('m56', 'She ___ (cry) because she failed.', 'was crying', 'Action/Result'),
+            q('m57', 'They ___ (plan) this for weeks.', 'had been planning', 'Duration'),
+            q('m58', 'I ___ (catch) the ball.', 'caught', 'V2'),
+            q('m59', 'He ___ (bring) gifts.', 'brought', 'V2'),
+            q('m60', 'We ___ (choose) the best one.', 'chose', 'V2')
+        ];
+
+        const set4 = [
+            q('m61', 'Hardly had I reached when it ___ (rain).', 'rained', 'Inversion structure'),
+            q('m62', 'No sooner did he see me than he ___ (run).', 'ran', 'Sequence'),
+            q('m63', 'It was the first time I ___ (eat) sushi.', 'had eaten', 'Experience'),
+            q('m64', 'I asked him what he ___ (do).', 'was doing', 'Reported speech'),
+            q('m65', 'She told me she ___ (visit) Paris.', 'had visited', 'Reported speech'),
+            q('m66', 'He ___ (be) ill for a week.', 'had been', 'Past perfect of be'),
+            q('m67', 'I ___ (hope) to see you.', 'hoped', 'State'),
+            q('m68', 'The house ___ (burn) down.', 'burned', 'Event'),
+            q('m69', 'While she cooked, he ___ (clean).', 'was cleaning', 'Parallel actions'),
+            q('m70', 'I ___ (pay) the bill.', 'paid', 'V2'),
+            q('m71', 'He ___ (stand) up.', 'stood', 'V2'),
+            q('m72', 'We ___ (swim) in the river.', 'swam', 'V2'),
+            q('m73', 'The wind ___ (blow) hard.', 'blew', 'V2'),
+            q('m74', 'I ___ (dream) of you.', 'dreamt', 'V2'),
+            q('m75', 'She ___ (feel) sad.', 'felt', 'State'),
+            q('m76', 'They ___ (keep) the promise.', 'kept', 'V2'),
+            q('m77', 'I ___ (know) him for years.', 'had known', 'Stative verb duration'),
+            q('m78', 'He ___ (own) that car since 2000.', 'had owned', 'Stative verb duration'),
+            q('m79', 'The movie ___ (end).', 'ended', 'Event'),
+            q('m80', 'We ___ (begin) the work.', 'began', 'V2')
+        ];
+
+        const set5 = [
+            q('m81', 'The ancient city ___ (destroy) by fire.', 'was destroyed', 'Passive Past'),
+            q('m82', 'The letter ___ (write) by him.', 'was written', 'Passive Past'),
+            q('m83', 'I ___ (used to) play tennis.', 'used to', 'Past habit'),
+            q('m84', 'He ___ (would) always smile.', 'would', 'Past habit'),
+            q('m85', 'The cake ___ (eat) by the dog.', 'was eaten', 'Passive'),
+            q('m86', 'We saw the bird ___ (fly) away.', 'fly', 'Sensory verb structure'),
+            q('m87', 'He denied that he ___ (steal) it.', 'had stolen', 'Past Perfect'),
+            q('m88', 'She found the bag she ___ (lose).', 'had lost', 'Past Perfect'),
+            q('m89', 'I ___ (drink) coffee.', 'drank', 'V2'),
+            q('m90', 'He ___ (draw) a picture.', 'drew', 'V2'),
+            q('m91', 'We ___ (hide) behind the tree.', 'hid', 'V2'),
+            q('m92', 'She ___ (hold) the baby.', 'held', 'V2'),
+            q('m93', 'They ___ (lead) the team.', 'led', 'V2'),
+            q('m94', 'I ___ (make) a mistake.', 'made', 'V2'),
+            q('m95', 'He ___ (ride) a bike.', 'rode', 'V2'),
+            q('m96', 'We ___ (rise) early.', 'rose', 'V2'),
+            q('m97', 'She ___ (seek) advice.', 'sought', 'V2'),
+            q('m98', 'They ___ (shake) hands.', 'shook', 'V2'),
+            q('m99', 'I ___ (tear) the paper.', 'tore', 'V2'),
+            q('m100', 'He ___ (throw) the ball.', 'threw', 'V2')
+        ];
+
+        // --- RENDER FUNCTIONS ---
+
+        function renderQuestions(questions, containerId) {
+            const container = document.getElementById(containerId);
+            let html = '';
+            questions.forEach(q => {
+                html += `
+                    <div class="question-card" id="card-${q.id}">
+                        <label class="q-text">Q. ${q.text}</label>
+                        <div class="input-group">
+                            <input type="text" id="input-${q.id}" placeholder="Type your answer here...">
+                            <button class="check-btn" onclick="checkAnswer('${q.id}')">Check Answer</button>
+                        </div>
+                        <div id="feedback-${q.id}" class="feedback"></div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Initialize content
+        window.onload = function() {
+            renderQuestions(simplePastQs, 'practice-simple-past');
+            renderQuestions(pastContQs, 'practice-past-cont');
+            renderQuestions(pastPerfQs, 'practice-past-perf');
+            renderQuestions(pastPerfContQs, 'practice-past-perf-cont');
+            
+            renderQuestions(set1, 'master-set-1');
+            renderQuestions(set2, 'master-set-2');
+            renderQuestions(set3, 'master-set-3');
+            renderQuestions(set4, 'master-set-4');
+            renderQuestions(set5, 'master-set-5');
+        };
+
+        // --- ACCORDION LOGIC ---
+        const acc = document.getElementsByClassName("accordion");
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+        // --- SCORING SYSTEM ---
+        let attempted = 0;
+        let correct = 0;
+        let wrong = 0;
+        
+        // Map all questions to a single lookup object for easy access
+        const allQuestions = [
+            ...simplePastQs, ...pastContQs, ...pastPerfQs, ...pastPerfContQs,
+            ...set1, ...set2, ...set3, ...set4, ...set5
+        ];
+        
+        const questionMap = {};
+        allQuestions.forEach(q => { questionMap[q.id] = q; });
+
+        function updateScoreboard() {
+            document.getElementById('score-attempted').innerText = attempted;
+            document.getElementById('score-correct').innerText = correct;
+            document.getElementById('score-wrong').innerText = wrong;
+            
+            let percentage = 0;
+            if (attempted > 0) {
+                percentage = Math.round((correct / attempted) * 100);
+            }
+            document.getElementById('score-percentage').innerText = percentage + "%";
+        }
+
+        function checkAnswer(id) {
+            const qObj = questionMap[id];
+            const inputElem = document.getElementById(`input-${id}`);
+            const feedbackElem = document.getElementById(`feedback-${id}`);
+            const btn = document.querySelector(`#card-${id} button`);
+
+            // Prevent multiple attempts
+            if (qObj.solved) return;
+
+            let userAns = inputElem.value.trim().toLowerCase();
+            // Remove extra punctuation for loose checking
+            userAns = userAns.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ");
+            let correctAns = qObj.answer.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+
+            // Logic to check answer
+            if (!userAns) {
+                alert("Please type an answer first.");
+                return;
+            }
+
+            attempted++;
+            qObj.solved = true;
+            inputElem.disabled = true;
+            btn.disabled = true;
+            btn.innerText = "Checked";
+
+            if (userAns === correctAns) {
+                correct++;
+                feedbackElem.className = "feedback correct";
+                feedbackElem.innerHTML = `<strong>✔ Correct!</strong> Well done.`;
+            } else {
+                wrong++;
+                feedbackElem.className = "feedback incorrect";
+                feedbackElem.innerHTML = `<strong>❌ Incorrect.</strong><br>Correct Answer: <strong>${qObj.answer}</strong><br><em>Reason: ${qObj.hint}</em>`;
+            }
+
+            updateScoreboard();
+        }
+
+    </script>
+</body>
+</html>

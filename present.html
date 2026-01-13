@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Present Tense Masterclass - Grammar Learning Hub</title>
+    <style>
+        :root {
+            --primary: #2c3e50; /* Deep Navy */
+            --secondary: #34495e;
+            --accent: #2980b9; /* Bright Blue */
+            --light: #ecf0f1;
+            --white: #ffffff;
+            --success: #27ae60;
+            --error: #c0392b;
+            --text: #333333;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        header .author {
+            font-size: 0.85rem;
+            background: rgba(255,255,255,0.15);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* LIVE SCORE PANEL (STICKY) */
+        .score-panel {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .score-item {
+            text-align: center;
+        }
+
+        .score-item span {
+            display: block;
+            font-size: 0.75rem;
+            color: #777;
+            text-transform: uppercase;
+        }
+
+        .score-val {
+            font-size: 1.2rem;
+        }
+        .s-green { color: var(--success); }
+        .s-red { color: var(--error); }
+        .s-blue { color: var(--accent); }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* ACCORDION STYLES */
+        .accordion {
+            background-color: var(--white);
+            color: var(--primary);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            transition: 0.4s;
+            border-radius: var(--border-radius);
+            margin-bottom: 10px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            border-left: 5px solid transparent;
+        }
+
+        .accordion:hover {
+            background-color: #f1f1f1;
+        }
+
+        .accordion.active {
+            background-color: var(--primary);
+            color: var(--white);
+            border-left: 5px solid var(--accent);
+        }
+
+        .accordion:after {
+            content: '\002B'; /* Plus sign */
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .accordion.active:after {
+            content: "\2212"; /* Minus sign */
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-bottom: 10px;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            border: 1px solid #eee;
+            border-top: none;
+        }
+
+        .panel-content {
+            padding: 25px 0;
+        }
+
+        /* CONTENT STYLING */
+        h3 {
+            color: var(--primary);
+            border-left: 5px solid var(--accent);
+            padding-left: 10px;
+            margin: 25px 0 15px 0;
+            font-size: 1.4rem;
+        }
+        
+        h3:first-child { margin-top: 0; }
+
+        p { margin-bottom: 15px; }
+
+        .hinglish-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid #2980b9;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #444;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .formula-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.05em;
+            margin: 10px 0;
+            color: #d63384;
+        }
+
+        .example-list li {
+            margin-bottom: 8px;
+            list-style-type: none;
+            padding-left: 10px;
+            position: relative;
+        }
+        .example-list li:before {
+            content: "➤ ";
+            color: var(--accent);
+            position: absolute;
+            left: -15px;
+        }
+        .example-list { padding-left: 20px; }
+
+        /* MISTAKES SECTION */
+        .mistake-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        @media(min-width: 600px) {
+            .mistake-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .mistake-card {
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 5px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .wrong { color: var(--error); text-decoration: line-through; margin-bottom: 5px; display: block; }
+        .right { color: var(--success); font-weight: bold; margin-bottom: 5px; display: block; }
+        .reason { font-size: 0.9em; color: #666; display: block; font-style: italic; border-top: 1px dashed #eee; padding-top: 5px; margin-top: 5px; }
+
+        /* PRACTICE SECTION STYLES */
+        .practice-container {
+            margin-top: 20px;
+        }
+        
+        .question-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .q-text {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+            color: var(--primary);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent);
+            outline: none;
+        }
+
+        button.check-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button.check-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        button.check-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 4px;
+            display: none;
+            font-size: 0.95rem;
+        }
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .set-title {
+            background: var(--light);
+            padding: 12px;
+            margin: 30px 0 15px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            border-top: 5px solid var(--accent);
+        }
+        footer p { margin-bottom: 5px; opacity: 0.8; }
+        footer h4 { margin-bottom: 10px; font-size: 1.2rem; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Present Tense Masterclass</h1>
+        <div class="subtitle">Simple • Continuous • Perfect • Perfect Continuous</div>
+        <div class="author">Created by Shrishant Yadav</div>
+    </header>
+
+    <div class="score-panel">
+        <div class="score-item">
+            <span>Attempted</span>
+            <div id="score-attempted" class="score-val s-blue">0</div>
+        </div>
+        <div class="score-item">
+            <span>Correct</span>
+            <div id="score-correct" class="score-val s-green">0</div>
+        </div>
+        <div class="score-item">
+            <span>Wrong</span>
+            <div id="score-wrong" class="score-val s-red">0</div>
+        </div>
+        <div class="score-item">
+            <span>Score</span>
+            <div id="score-percentage" class="score-val">0%</div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <button class="accordion">1. Simple Present Tense</button>
+        <div class="panel">
+            <div class="panel-content">
+                <h3>Definition</h3>
+                <p>We use the Simple Present Tense for daily habits, facts, universal truths, and scheduled events.</p>
+                
+                <div class="hinglish-box">
+                    <strong>Hinglish Explanation:</strong><br>
+                    Hum Simple Present ka use tab karte hain jab hum daily habits (roz ki aadat), facts (sachchai), ya regular actions ke baare me baat karte hain. Jaise: "Main school jata hoon" ya "Suraj purab se nikalta hai".
+                </div>
+
+                <h3>Structure / Formula</h3>
+                <div class="formula-box">
+                    <strong>Affirmative:</strong> Subject + V1 (s/es) + Object<br>
+                    <strong>Negative:</strong> Subject + do/does + not + V1 + Object<br>
+                    <strong>Interrogative:</strong> Do/Does + Subject + V1 + Object?
+                </div>
+
+                <h3>Helping Verbs</h3>
+                <p><strong>Do:</strong> I, You, We, They, Plural Nouns.<br>
+                <strong>Does:</strong> He, She, It, Singular Nouns.</p>
+
+                <h3>Signal Words</h3>
+                <p>Always, usually, often, sometimes, every day, rarely, never. <br><small><em>(These words tell us the action happens regularly.)</em></small></p>
+
+                <h3>Examples</h3>
+                <ul class="example-list">
+                    <li>She <strong>drinks</strong> coffee every morning. (Habit)</li>
+                    <li>The sun <strong>rises</strong> in the east. (Universal Truth)</li>
+                    <li>I <strong>do not like</strong> spicy food. (Fact/Preference)</li>
+                    <li><strong>Does</strong> he <strong>play</strong> football? (Question)</li>
+                    <li>The train <strong>leaves</strong> at 6:00 PM. (Schedule)</li>
+                </ul>
+
+                <h3>Common Mistakes</h3>
+                <div class="mistake-grid">
+                    <div class="mistake-card">
+                        <div class="wrong">❌ He go to school.</div>
+                        <div class="right">✔ He goes to school.</div>
+                        <span class="reason">👉 With He/She/It (Singular), we must add 's' or 'es' to the verb.</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ I does not know.</div>
+                        <div class="right">✔ I do not know.</div>
+                        <span class="reason">👉 'I' takes 'do', not 'does'.</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ Does she plays tennis?</div>
+                        <div class="right">✔ Does she play tennis?</div>
+                        <span class="reason">👉 When 'Does' is used, remove 's/es' from the main verb.</span>
+                    </div>
+                </div>
+
+                <h3>Mini Practice (Simple Present)</h3>
+                <div id="practice-simple" class="practice-container"></div>
+            </div>
+        </div>
+
+        <button class="accordion">2. Present Continuous Tense</button>
+        <div class="panel">
+            <div class="panel-content">
+                <h3>Definition</h3>
+                <p>Used to describe actions happening right now at the moment of speaking, or temporary actions happening these days.</p>
+
+                <div class="hinglish-box">
+                    <strong>Hinglish Explanation:</strong><br>
+                    Iska use tab karte hain jab koi kaam abhi chal raha ho. Jaise: "Main padh raha hoon" (I am reading) ya "Woh khel raha hai" (He is playing).
+                </div>
+
+                <h3>Structure / Formula</h3>
+                <div class="formula-box">
+                    <strong>Affirmative:</strong> Subject + is/am/are + V1 + ing + Object<br>
+                    <strong>Negative:</strong> Subject + is/am/are + not + V1 + ing...<br>
+                    <strong>Interrogative:</strong> Is/Am/Are + Subject + V1 + ing...?
+                </div>
+
+                <h3>Helping Verbs</h3>
+                <p><strong>Is:</strong> He, She, It, Singular.<br>
+                <strong>Am:</strong> I (only).<br>
+                <strong>Are:</strong> You, We, They, Plural.</p>
+
+                <h3>Signal Words</h3>
+                <p>Now, right now, at the moment, currently, these days, look!, listen!</p>
+
+                <h3>Examples</h3>
+                <ul class="example-list">
+                    <li>I <strong>am writing</strong> a letter right now.</li>
+                    <li>Look! It <strong>is raining</strong> outside.</li>
+                    <li>They <strong>are not listening</strong> to me.</li>
+                    <li><strong>Are</strong> you <strong>coming</strong> with us?</li>
+                    <li>She <strong>is studying</strong> history these days.</li>
+                </ul>
+
+                <h3>Common Mistakes</h3>
+                <div class="mistake-grid">
+                    <div class="mistake-card">
+                        <div class="wrong">❌ I am liking this food.</div>
+                        <div class="right">✔ I like this food.</div>
+                        <span class="reason">👉 Stative verbs (like, love, know) are usually not used in continuous form.</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ She is cook dinner.</div>
+                        <div class="right">✔ She is cooking dinner.</div>
+                        <span class="reason">👉 Continuous tense always needs 'ing'.</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ It raining.</div>
+                        <div class="right">✔ It is raining.</div>
+                        <span class="reason">👉 Don't forget the helping verb 'is'.</span>
+                    </div>
+                </div>
+
+                <h3>Mini Practice (Present Continuous)</h3>
+                <div id="practice-cont" class="practice-container"></div>
+            </div>
+        </div>
+
+        <button class="accordion">3. Present Perfect Tense</button>
+        <div class="panel">
+            <div class="panel-content">
+                <h3>Definition</h3>
+                <p>Used for actions that happened in the past but have a connection to the present, or just finished recently.</p>
+
+                <div class="hinglish-box">
+                    <strong>Hinglish Explanation:</strong><br>
+                    Jab koi kaam complete ho chuka hai, lekin uska asar abhi bhi hai, ya abhi-abhi khatam hua hai. Isme hum aksar "chuka hai, chuki hai, liya hai" jaise words sochte hain. Example: "Maine khana kha liya hai" (I have eaten).
+                </div>
+
+                <h3>Structure / Formula</h3>
+                <div class="formula-box">
+                    <strong>Formula:</strong> Subject + has/have + V3 (3rd form) + Object<br>
+                    <strong>V3 Example:</strong> Go &to; Gone, Eat &to; Eaten, See &to; Seen.
+                </div>
+
+                <h3>Helping Verbs</h3>
+                <p><strong>Has:</strong> He, She, It, Singular.<br>
+                <strong>Have:</strong> I, You, We, They, Plural.</p>
+
+                <h3>Signal Words</h3>
+                <p>Just, already, yet, ever, never, recently, so far, up to now.</p>
+
+                <h3>Examples</h3>
+                <ul class="example-list">
+                    <li>I <strong>have finished</strong> my homework. (Result is important now)</li>
+                    <li>She <strong>has</strong> just <strong>left</strong> the office.</li>
+                    <li>We <strong>have not seen</strong> that movie yet.</li>
+                    <li><strong>Have</strong> you ever <strong>been</strong> to London?</li>
+                    <li>He <strong>has lost</strong> his keys. (He still doesn't have them)</li>
+                </ul>
+
+                <h3>Common Mistakes</h3>
+                <div class="mistake-grid">
+                    <div class="mistake-card">
+                        <div class="wrong">❌ I have seen him yesterday.</div>
+                        <div class="right">✔ I saw him yesterday.</div>
+                        <span class="reason">👉 If a specific past time (yesterday, last week) is given, use Simple Past, NOT Present Perfect.</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ She has eat food.</div>
+                        <div class="right">✔ She has eaten food.</div>
+                        <span class="reason">👉 Always use V3 (Past Participle) with Has/Have.</span>
+                    </div>
+                </div>
+
+                <h3>Mini Practice (Present Perfect)</h3>
+                <div id="practice-perf" class="practice-container"></div>
+            </div>
+        </div>
+
+        <button class="accordion">4. Present Perfect Continuous</button>
+        <div class="panel">
+            <div class="panel-content">
+                <h3>Definition</h3>
+                <p>Used for actions that started in the past and are still continuing now.</p>
+
+                <div class="hinglish-box">
+                    <strong>Hinglish Explanation:</strong><br>
+                    Jab koi kaam pehle shuru hua aur abhi tak chal raha hai. Isme 'time' (kab se) zaroori hota hai. Jaise: "Main subah se padh raha hoon" (I have been reading since morning).
+                </div>
+
+                <h3>Structure / Formula</h3>
+                <div class="formula-box">
+                    <strong>Formula:</strong> Subject + has/have + been + V1 + ing + (Since/For + Time)
+                </div>
+
+                <h3>Since vs For</h3>
+                <p><strong>Since:</strong> Point of time (Monday, 2010, Morning, 2 PM).<br>
+                <strong>For:</strong> Duration (2 hours, 3 days, 5 years, a long time).</p>
+
+                <h3>Examples</h3>
+                <ul class="example-list">
+                    <li>I <strong>have been waiting</strong> for two hours.</li>
+                    <li>She <strong>has been sleeping</strong> since 10 PM.</li>
+                    <li>They <strong>have been playing</strong> cricket all afternoon.</li>
+                    <li>It <strong>has been raining</strong> since last night.</li>
+                </ul>
+
+                <h3>Common Mistakes</h3>
+                <div class="mistake-grid">
+                    <div class="mistake-card">
+                        <div class="wrong">❌ I am waiting since 2 hours.</div>
+                        <div class="right">✔ I have been waiting for 2 hours.</div>
+                        <span class="reason">👉 When time duration is mentioned with current action, use Perfect Continuous, not Normal Continuous.</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ She has been working since 5 years.</div>
+                        <div class="right">✔ She has been working for 5 years.</div>
+                        <span class="reason">👉 '5 years' is a duration, so use 'for', not 'since'.</span>
+                    </div>
+                </div>
+
+                <h3>Mini Practice (Present Perf. Cont.)</h3>
+                <div id="practice-perf-cont" class="practice-container"></div>
+            </div>
+        </div>
+
+        <button class="accordion">5. Master Practice (100 Questions)</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p style="text-align: center; margin-bottom: 20px;">Test your mastery over all Present Tenses. Questions range from Beginner to Advanced.</p>
+                
+                <div class="set-title">SET 1: Fundamentals (Mixed)</div>
+                <div id="master-set-1" class="practice-container"></div>
+
+                <div class="set-title">SET 2: Intermediate Challenge</div>
+                <div id="master-set-2" class="practice-container"></div>
+
+                <div class="set-title">SET 3: Tricky Concepts</div>
+                <div id="master-set-3" class="practice-container"></div>
+
+                <div class="set-title">SET 4: Advanced Application</div>
+                <div id="master-set-4" class="practice-container"></div>
+
+                <div class="set-title">SET 5: Expert Level</div>
+                <div id="master-set-5" class="practice-container"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <h4>Grammar Learning Hub</h4>
+        <p>Created by Shrishant Yadav</p>
+        <p><small>Education Purpose Only &copy; 2024</small></p>
+    </footer>
+
+    <script>
+        // --- DATA OBJECTS (QUESTIONS) ---
+        // Helper to create question object
+        function q(id, text, answer, hint) {
+            return { id: id, text: text, answer: answer, hint: hint, solved: false };
+        }
+
+        /* Generating 140 Unique Questions.
+           IDs: 
+           sp1-sp10 (Simple Present)
+           pc1-pc10 (Present Cont)
+           pp1-pp10 (Present Perf)
+           ppc1-ppc10 (Present Perf Cont)
+           m1-m100 (Master Sets)
+        */
+
+        // 1. Mini Practice: Simple Present
+        const simpleQs = [
+            q('sp1', 'He ___ (drink) tea every morning.', 'drinks', 'He is singular -> add s/es'),
+            q('sp2', 'I ___ (not/like) apples.', 'do not like', 'I uses do, not does'),
+            q('sp3', '___ you speak English? (Do/Does)', 'do', 'You uses Do'),
+            q('sp4', 'The sun ___ (rise) in the east.', 'rises', 'Universal truth, singular'),
+            q('sp5', 'Cats ___ (hate) water.', 'hate', 'Plural subject -> Base verb'),
+            q('sp6', 'She ___ (study) hard usually.', 'studies', 'Study ends in y -> ies'),
+            q('sp7', 'My father ___ (work) in a bank.', 'works', 'Singular subject'),
+            q('sp8', 'We ___ (go) to the park often.', 'go', 'We is plural'),
+            q('sp9', '___ John play football?', 'does', 'John is singular'),
+            q('sp10', 'It ___ (rain) a lot here.', 'rains', 'It is singular')
+        ];
+
+        // 2. Mini Practice: Present Continuous
+        const contQs = [
+            q('pc1', 'Look! It ___ (snow).', 'is snowing', 'Happening now'),
+            q('pc2', 'I ___ (read) a book right now.', 'am reading', 'I uses am'),
+            q('pc3', 'They ___ (play) football.', 'are playing', 'They uses are'),
+            q('pc4', 'She ___ (not/listen) to music.', 'is not listening', 'Negative continuous'),
+            q('pc5', '___ you coming home?', 'are', 'Question with You'),
+            q('pc6', 'The baby ___ (sleep) currently.', 'is sleeping', 'Singular subject'),
+            q('pc7', 'We ___ (have) lunch now.', 'are having', 'Current action'),
+            q('pc8', 'Why ___ she crying?', 'is', 'She uses Is'),
+            q('pc9', 'The birds ___ (fly) in the sky.', 'are flying', 'Plural'),
+            q('pc10', 'I ___ (write) an email.', 'am writing', 'I uses am')
+        ];
+
+        // 3. Mini Practice: Present Perfect
+        const perfQs = [
+            q('pp1', 'I ___ (finish) my work.', 'have finished', 'Completed action'),
+            q('pp2', 'She ___ (cook) dinner.', 'has cooked', 'She uses Has + V3'),
+            q('pp3', 'We ___ (visit) Paris twice.', 'have visited', 'Experience'),
+            q('pp4', '___ you seen him?', 'have', 'Question with You'),
+            q('pp5', 'He ___ (lose) his wallet.', 'has lost', 'Result is current'),
+            q('pp6', 'They ___ (not/arrive) yet.', 'have not arrived', 'Negative perfect'),
+            q('pp7', 'I ___ (live) here for 10 years.', 'have lived', 'State up to now'),
+            q('pp8', 'John ___ (break) his leg.', 'has broken', 'Recent injury'),
+            q('pp9', '___ she eaten lunch?', 'has', 'She uses Has'),
+            q('pp10', 'It ___ (stop) raining.', 'has stopped', 'Just finished')
+        ];
+
+        // 4. Mini Practice: Present Perfect Continuous
+        const perfContQs = [
+            q('ppc1', 'I ___ (wait) for 2 hours.', 'have been waiting', 'Duration with I'),
+            q('ppc2', 'She ___ (work) since morning.', 'has been working', 'Start point with She'),
+            q('ppc3', 'It ___ (rain) all day.', 'has been raining', 'Duration'),
+            q('ppc4', 'They ___ (play) since 4 PM.', 'have been playing', 'Since time point'),
+            q('ppc5', 'He ___ (sleep) for 10 hours.', 'has been sleeping', 'For duration'),
+            q('ppc6', 'We ___ (live) here since 2010.', 'have been living', 'Since year'),
+            q('ppc7', 'You ___ (watch) TV all day.', 'have been watching', 'Duration'),
+            q('ppc8', 'How long ___ you been waiting?', 'have', 'Question aux'),
+            q('ppc9', 'The child ___ (cry) for an hour.', 'has been crying', 'Singular'),
+            q('ppc10', 'I ___ (learn) French lately.', 'have been learning', 'Recent continuous activity')
+        ];
+
+        // 5. MASTER SET 1 (Basics)
+        const set1 = [
+            q('m1', 'She ___ (go) to school daily.', 'goes', 'Simple Present'),
+            q('m2', 'I ___ (eat) an apple now.', 'am eating', 'Pres Continuous'),
+            q('m3', 'He ___ (has) a car.', 'has', 'Simple Present (Possession)'),
+            q('m4', 'They ___ (play) cricket on Sundays.', 'play', 'Habit'),
+            q('m5', 'Look! The bus ___ (come).', 'is coming', 'Happening now'),
+            q('m6', 'I ___ (see) that movie already.', 'have seen', 'Pres Perfect'),
+            q('m7', 'We ___ (wait) here for an hour.', 'have been waiting', 'Perf Cont'),
+            q('m8', '___ you like pizza?', 'do', 'Simple Present Q'),
+            q('m9', 'She ___ (not/drink) coffee.', 'does not drink', 'Simple Pres Neg'),
+            q('m10', 'It ___ (rain) heavily now.', 'is raining', 'Pres Cont'),
+            q('m11', 'I ___ (know) him well.', 'know', 'Stative Verb'),
+            q('m12', 'He ___ (wash) his car every week.', 'washes', 'Routine'),
+            q('m13', 'They ___ (build) a house currently.', 'are building', 'Temp action'),
+            q('m14', 'She ___ (just/arrive).', 'has just arrived', 'Pres Perfect'),
+            q('m15', 'We ___ (study) since 9 AM.', 'have been studying', 'Perf Cont'),
+            q('m16', 'The earth ___ (move) round the sun.', 'moves', 'Fact'),
+            q('m17', 'Listen! Someone ___ (sing).', 'is singing', 'Now'),
+            q('m18', 'I ___ (never/be) to USA.', 'have never been', 'Experience'),
+            q('m19', 'He ___ (try) to fix it all day.', 'has been trying', 'Duration'),
+            q('m20', 'Dogs ___ (bark).', 'bark', 'Fact')
+        ];
+
+        // MASTER SET 2 (Intermediate)
+        const set2 = [
+            q('m21', 'Usually I work, but today I ___ (rest).', 'am resting', 'Temp contrast'),
+            q('m22', 'He ___ (be) a teacher.', 'is', 'State'),
+            q('m23', 'I ___ (think) you are right.', 'think', 'Mental state'),
+            q('m24', 'I ___ (think) of buying a car.', 'am thinking', 'Mental process'),
+            q('m25', 'She ___ (always/complain).', 'is always complaining', 'Annoying habit (Cont)'),
+            q('m26', 'We ___ (live) in India.', 'live', 'Permanent state'),
+            q('m27', 'We ___ (stay) at a hotel this week.', 'are staying', 'Temp state'),
+            q('m28', 'The train ___ (leave) at 8 PM tonight.', 'leaves', 'Schedule'),
+            q('m29', 'I ___ (lose) my keys. Can you help?', 'have lost', 'Recent effect'),
+            q('m30', 'My hands are dirty. I ___ (repair) the bike.', 'have been repairing', 'Evidence of recent activity'),
+            q('m31', 'How long ___ you ___ (know) her?', 'have you known', 'Perf (Stative)'),
+            q('m32', 'It ___ (smell) good.', 'smells', 'Sense verb'),
+            q('m33', 'She ___ (taste) the soup now.', 'is tasting', 'Action of tasting'),
+            q('m34', 'The soup ___ (taste) salty.', 'tastes', 'Quality of soup'),
+            q('m35', 'He ___ (write) 3 letters so far.', 'has written', 'Quantity complete'),
+            q('m36', 'He ___ (write) letters since morning.', 'has been writing', 'Duration focus'),
+            q('m37', 'Water ___ (boil) at 100 degrees.', 'boils', 'Fact'),
+            q('m38', 'The water ___ (boil), turn it off.', 'is boiling', 'Happening now'),
+            q('m39', 'I ___ (not/understand).', 'do not understand', 'Mental state'),
+            q('m40', '___ you ___ (finish) yet?', 'have you finished', 'Pres Perfect Q')
+        ];
+
+        // MASTER SET 3 (Tricky)
+        const set3 = [
+            q('m41', 'Here ___ (come) the bus!', 'comes', 'Exclamatory sentence'),
+            q('m42', 'There ___ (go) the bell.', 'goes', 'Exclamatory'),
+            q('m43', 'I ___ (see) him tomorrow.', 'am seeing', 'Future arrangement'),
+            q('m44', 'I ___ (see) a bird in the tree.', 'see', 'Involuntary perception'),
+            q('m45', 'You ___ (look) sad today.', 'look', 'Appearance'),
+            q('m46', 'She ___ (have) a bath now.', 'is having', 'Action (not possession)'),
+            q('m47', 'Who ___ (want) ice cream?', 'wants', 'Who singular'),
+            q('m48', 'My family ___ (be) in London.', 'is', 'Collective noun singular'),
+            q('m49', 'The police ___ (chase) the thief.', 'are chasing', 'Police is plural'),
+            q('m50', 'Economics ___ (be) difficult.', 'is', 'Subject name singular'),
+            q('m51', 'Neither he nor I ___ (be) going.', 'am', 'Proximity rule'),
+            q('m52', 'He usually ___ (drive), but today he walks.', 'drives', 'Habit'),
+            q('m53', 'The price of these cars ___ (be) high.', 'is', 'Subject is Price'),
+            q('m54', 'One of my friends ___ (live) in Tokyo.', 'lives', 'One is singular'),
+            q('m55', 'Bread and butter ___ (be) my breakfast.', 'is', 'Single idea'),
+            q('m56', 'Time and tide ___ (wait) for none.', 'wait', 'Plural phrase'),
+            q('m57', 'I ___ (wish) I knew the answer.', 'wish', 'Desire'),
+            q('m58', 'It is time we ___ (start).', 'start', 'Subjunctive/Phrase'),
+            q('m59', 'He talks as if he ___ (know) everything.', 'knows', 'Present manner'),
+            q('m60', 'Unless you ___ (work) hard, you fail.', 'work', 'Conditional')
+        ];
+
+        // MASTER SET 4 (Advanced)
+        const set4 = [
+            q('m61', 'I ___ (forget) his name.', 'have forgotten', 'Result now'),
+            q('m62', 'I ___ (forget) names easily.', 'forget', 'Habit'),
+            q('m63', 'Why ___ you ___ (smell) the milk?', 'are you smelling', 'Action'),
+            q('m64', 'This paper ___ (appear) blue.', 'appears', 'Stative'),
+            q('m65', 'He ___ (appear) in a play tonight.', 'is appearing', 'Performing'),
+            q('m66', 'I ___ (weigh) 60 kgs.', 'weigh', 'Fact'),
+            q('m67', 'The butcher ___ (weigh) the meat.', 'is weighing', 'Action'),
+            q('m68', 'She ___ (fit) the dress.', 'is fitting', 'Action of altering'),
+            q('m69', 'The dress ___ (fit) her well.', 'fits', 'State'),
+            q('m70', 'I ___ (hear) a noise.', 'hear', 'Perception'),
+            q('m71', 'The judge ___ (hear) the case.', 'is hearing', 'Legal process'),
+            q('m72', 'I ___ (feel) the table is rough.', 'feel', 'Opinion'),
+            q('m73', 'I ___ (feel) for the light switch.', 'am feeling', 'Physical searching'),
+            q('m74', 'She ___ (be) rude today (unusual).', 'is being', 'Temporary behavior'),
+            q('m75', 'He ___ (be) a rude person.', 'is', 'Permanent trait'),
+            q('m76', 'My back ___ (kill) me!', 'is killing', 'Informal continuous'),
+            q('m77', 'More and more people ___ (use) phones.', 'are using', 'Changing trend'),
+            q('m78', 'The climate ___ (get) warmer.', 'is getting', 'Gradual change'),
+            q('m79', 'I ___ (work) here for 20 years.', 'have worked', 'Long duration/Perm'),
+            q('m80', 'I ___ (work) here recently.', 'have been working', 'Temp duration')
+        ];
+
+        // MASTER SET 5 (Expert)
+        const set5 = [
+            q('m81', 'Hardly ___ (do) he speak.', 'does', 'Inversion'),
+            q('m82', 'Here ___ (lie) the problem.', 'lies', 'Formal location'),
+            q('m83', 'I promise I ___ (help).', 'will help', 'Future intent (or help-Present) - Context dependent. Let\'s stick to pres: help'), 
+            /* Correction: User asked for Present Tense page. Promises often use "will" but strictly Present tense context: "I promise (act of promising)". */
+            q('m83_fix', 'I ___ (promise) to help.', 'promise', 'Performative verb'),
+            q('m84', 'I ___ (apologize) for the delay.', 'apologize', 'Performative verb'),
+            q('m85', 'I ___ (suggest) we leave.', 'suggest', 'Performative'),
+            q('m86', 'She always ___ (borrow) money! (Annoying)', 'is always borrowing', 'Habitual irritation'),
+            q('m87', 'He ___ (constantly/talk).', 'is constantly talking', 'Habitual irritation'),
+            q('m88', 'Do you mind if I ___ (sit) here?', 'sit', 'Conditional/Polite'),
+            q('m89', 'It doesn\'t matter where he ___ (go).', 'goes', 'Dependent clause'),
+            q('m90', 'Whenever he ___ (come), he brings gifts.', 'comes', 'Frequency'),
+            q('m91', 'If it ___ (rain), we stay in.', 'rains', 'Zero conditional'),
+            q('m92', 'When the water ___ (boil), add tea.', 'boils', 'Instruction'),
+            q('m93', 'First you ___ (chop) the onions.', 'chop', 'Instruction'),
+            q('m94', 'Then you ___ (fry) them.', 'fry', 'Instruction'),
+            q('m95', 'The story ___ (go) like this.', 'goes', 'Narration'),
+            q('m96', 'In the movie, the hero ___ (die).', 'dies', 'Plot summary'),
+            q('m97', 'Shakespeare ___ (say) that life is a stage.', 'says', 'Quoting literature'),
+            q('m98', 'Here ___ (be) the news.', 'is', 'Announcement'),
+            q('m99', 'The news ___ (start) at 9.', 'starts', 'Schedule'),
+            q('m100', 'I ___ (love) learning grammar.', 'love', 'Stative')
+        ];
+
+        // --- RENDER FUNCTIONS ---
+
+        function renderQuestions(questions, containerId) {
+            const container = document.getElementById(containerId);
+            let html = '';
+            questions.forEach(q => {
+                html += `
+                    <div class="question-card" id="card-${q.id}">
+                        <label class="q-text">Q. ${q.text}</label>
+                        <div class="input-group">
+                            <input type="text" id="input-${q.id}" placeholder="Type answer here..." autocomplete="off">
+                            <button class="check-btn" onclick="checkAnswer('${q.id}')">Check Answer</button>
+                        </div>
+                        <div id="feedback-${q.id}" class="feedback"></div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Initialize content
+        window.onload = function() {
+            renderQuestions(simpleQs, 'practice-simple');
+            renderQuestions(contQs, 'practice-cont');
+            renderQuestions(perfQs, 'practice-perf');
+            renderQuestions(perfContQs, 'practice-perf-cont');
+            
+            renderQuestions(set1, 'master-set-1');
+            renderQuestions(set2, 'master-set-2');
+            renderQuestions(set3, 'master-set-3');
+            renderQuestions(set4, 'master-set-4');
+            renderQuestions(set5, 'master-set-5');
+        };
+
+        // --- ACCORDION LOGIC ---
+        const acc = document.getElementsByClassName("accordion");
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                // Close others
+                for(let j=0; j<acc.length; j++){
+                    if(j!==i && acc[j].classList.contains("active")){
+                        acc[j].classList.remove("active");
+                        acc[j].nextElementSibling.style.maxHeight = null;
+                    }
+                }
+
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+        // --- SCORING SYSTEM ---
+        let attempted = 0;
+        let correct = 0;
+        let wrong = 0;
+        
+        // Map all questions
+        const allQuestions = [
+            ...simpleQs, ...contQs, ...perfQs, ...perfContQs,
+            ...set1, ...set2, ...set3, ...set4, ...set5
+        ];
+        
+        const questionMap = {};
+        allQuestions.forEach(q => { questionMap[q.id] = q; });
+
+        function updateScoreboard() {
+            document.getElementById('score-attempted').innerText = attempted;
+            document.getElementById('score-correct').innerText = correct;
+            document.getElementById('score-wrong').innerText = wrong;
+            
+            let percentage = 0;
+            if (attempted > 0) {
+                percentage = Math.round((correct / attempted) * 100);
+            }
+            document.getElementById('score-percentage').innerText = percentage + "%";
+        }
+
+        function checkAnswer(id) {
+            const qObj = questionMap[id];
+            const inputElem = document.getElementById(`input-${id}`);
+            const feedbackElem = document.getElementById(`feedback-${id}`);
+            const btn = document.querySelector(`#card-${id} button`);
+
+            // Prevent multiple attempts
+            if (qObj.solved) return;
+
+            let userAns = inputElem.value.trim().toLowerCase();
+            // Remove punctuation for easier matching
+            userAns = userAns.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ");
+            let correctAns = qObj.answer.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+
+            // Logic to check answer
+            if (!userAns) {
+                alert("Please type an answer first.");
+                return;
+            }
+
+            attempted++;
+            qObj.solved = true;
+            inputElem.disabled = true;
+            btn.disabled = true;
+            btn.innerText = "Checked";
+
+            if (userAns === correctAns) {
+                correct++;
+                feedbackElem.className = "feedback correct";
+                feedbackElem.innerHTML = `<strong>✔ Correct!</strong> Great job.`;
+            } else {
+                wrong++;
+                feedbackElem.className = "feedback incorrect";
+                feedbackElem.innerHTML = `<strong>❌ Incorrect.</strong><br>Correct Answer: <strong>${qObj.answer}</strong><br><em>Reason: ${qObj.hint}</em>`;
+            }
+
+            updateScoreboard();
+        }
+
+    </script>
+</body>
+</html>

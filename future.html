@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Tense Masterclass - Grammar Learning Hub</title>
+    <style>
+        :root {
+            --primary: #2c3e50; /* Deep Navy */
+            --secondary: #34495e;
+            --accent: #007bff; /* Bright Blue */
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --success: #28a745;
+            --error: #dc3545;
+            --text: #333333;
+            --border-radius: 8px;
+            --shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #eef2f5;
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        header .author {
+            font-size: 0.85rem;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 18px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* LIVE SCORE PANEL (STICKY) */
+        .score-panel {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            padding: 12px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+            z-index: 1000;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .score-item {
+            text-align: center;
+        }
+
+        .score-item span {
+            display: block;
+            font-size: 0.7rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .score-val {
+            font-size: 1.3rem;
+        }
+        .s-green { color: var(--success); }
+        .s-red { color: var(--error); }
+        .s-blue { color: var(--accent); }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        /* ACCORDION STYLES */
+        .accordion {
+            background-color: var(--white);
+            color: var(--primary);
+            cursor: pointer;
+            padding: 20px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.25rem;
+            transition: 0.4s;
+            border-radius: var(--border-radius);
+            margin-bottom: 12px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 6px solid transparent;
+        }
+
+        .accordion:hover {
+            background-color: #f9f9f9;
+        }
+
+        .accordion.active {
+            background-color: var(--white);
+            color: var(--accent);
+            border-left: 6px solid var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .accordion:after {
+            content: '\002B'; /* Plus sign */
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #ccc;
+        }
+
+        .accordion.active:after {
+            content: "\2212"; /* Minus sign */
+            color: var(--accent);
+        }
+
+        .panel {
+            padding: 0 20px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-bottom: 15px;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            border: 1px solid #eee;
+            border-top: none;
+        }
+
+        .panel-content {
+            padding: 30px 0;
+        }
+
+        /* CONTENT STYLING */
+        h3 {
+            color: var(--primary);
+            border-left: 5px solid var(--accent);
+            padding-left: 12px;
+            margin: 30px 0 15px 0;
+            font-size: 1.5rem;
+        }
+        
+        h3:first-child { margin-top: 0; }
+
+        p { margin-bottom: 15px; font-size: 1.05rem; }
+
+        .hinglish-box {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #444;
+            border-radius: 0 8px 8px 0;
+            font-size: 1.05rem;
+        }
+
+        .formula-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 1.1em;
+            margin: 15px 0;
+            color: #c2185b;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.02);
+        }
+
+        .example-list li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            padding-left: 10px;
+            position: relative;
+        }
+        .example-list li:before {
+            content: "➤ ";
+            color: var(--accent);
+            position: absolute;
+            left: -20px;
+            font-weight: bold;
+        }
+        .example-list { padding-left: 25px; }
+
+        /* MISTAKES SECTION */
+        .mistake-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media(min-width: 768px) {
+            .mistake-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .mistake-card {
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .mistake-card:hover { transform: translateY(-2px); }
+
+        .wrong { color: var(--error); text-decoration: line-through; margin-bottom: 8px; display: block; font-weight: 500; }
+        .right { color: var(--success); font-weight: bold; margin-bottom: 8px; display: block; }
+        .reason { font-size: 0.9em; color: #666; display: block; border-top: 1px dashed #ddd; padding-top: 8px; margin-top: 8px; font-style: italic; }
+
+        /* PRACTICE SECTION STYLES */
+        .practice-container {
+            margin-top: 25px;
+        }
+        
+        .question-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .q-text {
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: block;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #dde1e6;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+        }
+
+        button.check-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        button.check-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-1px);
+        }
+
+        button.check-btn:disabled {
+            background-color: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+            font-size: 1rem;
+            animation: slideDown 0.3s ease-out;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .set-title {
+            background: linear-gradient(to right, #e9ecef, #f8f9fa);
+            padding: 15px;
+            margin: 40px 0 20px 0;
+            border-radius: 8px;
+            font-weight: 800;
+            color: var(--primary);
+            text-align: center;
+            border-left: 5px solid var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 5px solid var(--accent);
+        }
+        footer h4 { margin-bottom: 10px; font-size: 1.3rem; }
+        footer p { margin-bottom: 5px; opacity: 0.7; font-size: 0.9rem; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Future Tense Masterclass</h1>
+        <div class="subtitle">Simple • Continuous • Perfect • Perfect Continuous</div>
+        <div class="author">Created by Shrishant Yadav</div>
+    </header>
+
+    <div class="score-panel">
+        <div class="score-item">
+            <span>Attempted</span>
+            <div id="score-attempted" class="score-val s-blue">0</div>
+        </div>
+        <div class="score-item">
+            <span>Correct</span>
+            <div id="score-correct" class="score-val s-green">0</div>
+        </div>
+        <div class="score-item">
+            <span>Wrong</span>
+            <div id="score-wrong" class="score-val s-red">0</div>
+        </div>
+        <div class="score-item">
+            <span>Score</span>
+            <div id="score-percentage" class="score-val">0%</div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <button class="accordion">1. Simple Future Tense</button>
+        <div class="panel">
+            <div class="panel-content">
+                <h3>Definition</h3>
+                <p>We use the Simple Future Tense to talk about actions that will happen at a later time. It is used for predictions, promises, or instant decisions.</p>
+                
+                <div class="hinglish-box">
+                    <strong>Hinglish Explanation:</strong><br>
+                    Hum Simple Future ka use tab karte hain jab hum future me hone wale kisi kaam ke baare me baat karte hain. Jaise: "Main kal jaunga" ya "Woh aayega". Isme hum aksar "ga, ge, gi" wale sentences sochte hain.
+                </div>
+
+                <h3>Structure / Formula</h3>
+                <div class="formula-box">
+                    <strong>Affirmative:</strong> Subject + will + V1 (Base Form) + Object<br>
+                    <strong>Negative:</strong> Subject + will not (won't) + V1 + Object<br>
+                    <strong>Interrogative:</strong> Will + Subject + V1 + Object?
+                </div>
+
+                <h3>Helping Verbs</h3>
+                <p><strong>Will:</strong> Used with all subjects (I, You, He, She, It, We, They).<br>
+                <small><em>Note: 'Shall' is sometimes used with I/We in very formal English, but 'Will' is standard for everything now.</em></small></p>
+
+                <h3>Signal Words</h3>
+                <p>Tomorrow, next week, soon, later, in the future, tonight, in 2030.</p>
+
+                <h3>Examples</h3>
+                <ul class="example-list">
+                    <li>I <strong>will call</strong> you tomorrow. (Promise)</li>
+                    <li>She <strong>will help</strong> us with the project. (Prediction/Fact)</li>
+                    <li>They <strong>will not come</strong> to the party. (Negative)</li>
+                    <li><strong>Will</strong> you <strong>marry</strong> me? (Question)</li>
+                    <li>Wait, I <strong>will open</strong> the door. (Instant decision)</li>
+                </ul>
+
+                <h3>Common Mistakes</h3>
+                <div class="mistake-grid">
+                    <div class="mistake-card">
+                        <div class="wrong">❌ I will going to the market.</div>
+                        <div class="right">✔ I will go to the market.</div>
+                        <span class="reason">👉 After 'will', always use V1 (Base Form). Do not use 'ing' without 'be'.</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ She will goes to school.</div>
+                        <div class="right">✔ She will go to school.</div>
+                        <span class="reason">👉 Never add 's' or 'es' with the verb after 'will'.</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ I will to play cricket.</div>
+                        <div class="right">✔ I will play cricket.</div>
+                        <span class="reason">👉 Do not use 'to' after 'will'.</span>
+                    </div>
+                </div>
+
+                <h3>Mini Practice (Simple Future)</h3>
+                <div id="practice-simple" class="practice-container"></div>
+            </div>
+        </div>
+
+        <button class="accordion">2. Future Continuous Tense</button>
+        <div class="panel">
+            <div class="panel-content">
+                <h3>Definition</h3>
+                <p>Used to describe an action that will be in progress (happening) at a specific time in the future.</p>
+
+                <div class="hinglish-box">
+                    <strong>Hinglish Explanation:</strong><br>
+                    Iska use tab karte hain jab future me kisi khaas samay par koi kaam chal raha hoga. Jaise: "Kal is waqt main padh raha hounga" (I will be studying).
+                </div>
+
+                <h3>Structure / Formula</h3>
+                <div class="formula-box">
+                    <strong>Affirmative:</strong> Subject + will be + V1 + ing + Object<br>
+                    <strong>Negative:</strong> Subject + will not be + V1 + ing...<br>
+                    <strong>Interrogative:</strong> Will + Subject + be + V1 + ing...?
+                </div>
+
+                <h3>Examples</h3>
+                <ul class="example-list">
+                    <li>At 10 AM tomorrow, I <strong>will be sleeping</strong>.</li>
+                    <li>They <strong>will be playing</strong> football on Sunday evening.</li>
+                    <li>She <strong>will not be working</strong> next week.</li>
+                    <li><strong>Will</strong> you <strong>be coming</strong> with us?</li>
+                    <li>Don't call him now, he <strong>will be driving</strong>.</li>
+                </ul>
+
+                <h3>Common Mistakes</h3>
+                <div class="mistake-grid">
+                    <div class="mistake-card">
+                        <div class="wrong">❌ I will be sleep.</div>
+                        <div class="right">✔ I will be sleeping.</div>
+                        <span class="reason">👉 Continuous tense always needs 'ing'.</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ She will sleeping.</div>
+                        <div class="right">✔ She will be sleeping.</div>
+                        <span class="reason">👉 Don't forget 'be' after 'will' in continuous tense.</span>
+                    </div>
+                </div>
+
+                <h3>Mini Practice (Future Continuous)</h3>
+                <div id="practice-cont" class="practice-container"></div>
+            </div>
+        </div>
+
+        <button class="accordion">3. Future Perfect Tense</button>
+        <div class="panel">
+            <div class="panel-content">
+                <h3>Definition</h3>
+                <p>Used for actions that will be completed (finished) by a certain time in the future.</p>
+
+                <div class="hinglish-box">
+                    <strong>Hinglish Explanation:</strong><br>
+                    Jab humein batana ho ki future me kisi time tak koi kaam khatam ho chuka hoga. Isme aksar "by" (tak) ka use hota hai. Jaise: "Kal tak main apna kaam khatam kar chuka hounga."
+                </div>
+
+                <h3>Structure / Formula</h3>
+                <div class="formula-box">
+                    <strong>Formula:</strong> Subject + will have + V3 (Past Participle) + Object<br>
+                    <strong>V3 Example:</strong> Go → Gone, Finish → Finished.
+                </div>
+
+                <h3>Signal Words</h3>
+                <p>By tomorrow, by next week, by the time, by 2025.</p>
+
+                <h3>Examples</h3>
+                <ul class="example-list">
+                    <li>I <strong>will have finished</strong> this book by tomorrow.</li>
+                    <li>She <strong>will have left</strong> before you arrive.</li>
+                    <li>They <strong>will have graduated</strong> by next year.</li>
+                    <li>We <strong>will have eaten</strong> dinner by 8 PM.</li>
+                </ul>
+
+                <h3>Common Mistakes</h3>
+                <div class="mistake-grid">
+                    <div class="mistake-card">
+                        <div class="wrong">❌ He will has finished.</div>
+                        <div class="right">✔ He will have finished.</div>
+                        <span class="reason">👉 With 'will', we always use 'have', never 'has' (even for He/She).</span>
+                    </div>
+                    <div class="mistake-card">
+                        <div class="wrong">❌ I will have finish.</div>
+                        <div class="right">✔ I will have finished.</div>
+                        <span class="reason">👉 Always use V3 (3rd form) in Perfect Tenses.</span>
+                    </div>
+                </div>
+
+                <h3>Mini Practice (Future Perfect)</h3>
+                <div id="practice-perf" class="practice-container"></div>
+            </div>
+        </div>
+
+        <button class="accordion">4. Future Perfect Continuous</button>
+        <div class="panel">
+            <div class="panel-content">
+                <h3>Definition</h3>
+                <p>Used to describe an action that will continue up until a point in the future. It emphasizes duration.</p>
+
+                <div class="hinglish-box">
+                    <strong>Hinglish Explanation:</strong><br>
+                    Jab koi kaam pehle se chal raha ho aur future me kisi point tak chalta rahega. Isme hum duration (samay seema) par zor dete hain. Jaise: "Agley saal mujhe yahan kaam karte hue 10 saal ho jayenge."
+                </div>
+
+                <h3>Structure / Formula</h3>
+                <div class="formula-box">
+                    <strong>Formula:</strong> Subject + will have been + V1 + ing + (Since/For + Time)
+                </div>
+
+                <h3>Examples</h3>
+                <ul class="example-list">
+                    <li>By 5 PM, I <strong>will have been studying</strong> for 4 hours.</li>
+                    <li>Next year, they <strong>will have been living</strong> here for a decade.</li>
+                    <li>She <strong>will have been working</strong> since morning when you reach.</li>
+                </ul>
+
+                <h3>Common Mistakes</h3>
+                <div class="mistake-grid">
+                    <div class="mistake-card">
+                        <div class="wrong">❌ I will have be studying.</div>
+                        <div class="right">✔ I will have been studying.</div>
+                        <span class="reason">👉 The correct helper is 'will have been'.</span>
+                    </div>
+                </div>
+
+                <h3>Mini Practice (Future Perf. Cont.)</h3>
+                <div id="practice-perf-cont" class="practice-container"></div>
+            </div>
+        </div>
+
+        <button class="accordion">5. Master Practice (100 Questions)</button>
+        <div class="panel">
+            <div class="panel-content">
+                <p style="text-align: center; margin-bottom: 20px;">Test your mastery over all Future Tenses. Questions range from Beginner to Advanced.</p>
+                
+                <div class="set-title">SET 1: Fundamentals</div>
+                <div id="master-set-1" class="practice-container"></div>
+
+                <div class="set-title">SET 2: Intermediate Challenge</div>
+                <div id="master-set-2" class="practice-container"></div>
+
+                <div class="set-title">SET 3: Tricky Situations</div>
+                <div id="master-set-3" class="practice-container"></div>
+
+                <div class="set-title">SET 4: Advanced Application</div>
+                <div id="master-set-4" class="practice-container"></div>
+
+                <div class="set-title">SET 5: Expert Level</div>
+                <div id="master-set-5" class="practice-container"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <h4>Grammar Learning Hub</h4>
+        <p>Created by Shrishant Yadav</p>
+        <p><small>Education Purpose Only &copy; 2024</small></p>
+    </footer>
+
+    <script>
+        // --- DATA OBJECTS (QUESTIONS) ---
+        // Helper to create question object
+        function q(id, text, answer, hint) {
+            return { id: id, text: text, answer: answer, hint: hint, solved: false };
+        }
+
+        // 1. Mini Practice: Simple Future
+        const simpleQs = [
+            q('sf1', 'I ___ (call) you later.', 'will call', 'Simple promise (will + V1)'),
+            q('sf2', 'She ___ (buy) a new car tomorrow.', 'will buy', 'Future plan'),
+            q('sf3', '___ you come with me? (Will/Does)', 'will', 'Future question'),
+            q('sf4', 'They ___ (not/go) to the party.', 'will not go', 'Negative future'),
+            q('sf5', 'We ___ (win) the match.', 'will win', 'Prediction'),
+            q('sf6', 'It ___ (rain) tomorrow.', 'will rain', 'Weather prediction'),
+            q('sf7', 'He ___ (be) at home.', 'will be', 'Future state'),
+            q('sf8', 'I promise I ___ (help) you.', 'will help', 'Promise'),
+            q('sf9', '___ she pass the exam?', 'will', 'Interrogative'),
+            q('sf10', 'Wait, I ___ (get) some water.', 'will get', 'Instant decision')
+        ];
+
+        // 2. Mini Practice: Future Continuous
+        const contQs = [
+            q('fc1', 'At 8 PM, I ___ (eat) dinner.', 'will be eating', 'Action in progress'),
+            q('fc2', 'She ___ (sleep) when you arrive.', 'will be sleeping', 'Future continuous'),
+            q('fc3', 'They ___ (play) football tomorrow morning.', 'will be playing', 'Plan in progress'),
+            q('fc4', 'I ___ (wait) for you at the station.', 'will be waiting', 'Future duration'),
+            q('fc5', 'We ___ (not/work) on Sunday.', 'will not be working', 'Negative continuous'),
+            q('fc6', '___ you ___ (use) the car?', 'will you be using', 'Polite inquiry'),
+            q('fc7', 'This time next week, I ___ (fly) to Paris.', 'will be flying', 'Future point'),
+            q('fc8', 'He ___ (study) for his exam.', 'will be studying', 'Action happening'),
+            q('fc9', 'Don\'t call, she ___ (drive).', 'will be driving', 'Reason'),
+            q('fc10', 'It ___ (snow) in the mountains.', 'will be snowing', 'Atmosphere')
+        ];
+
+        // 3. Mini Practice: Future Perfect
+        const perfQs = [
+            q('fp1', 'By 9 PM, I ___ (finish) work.', 'will have finished', 'Completed by a time'),
+            q('fp2', 'She ___ (leave) before you get there.', 'will have left', 'Completed before action'),
+            q('fp3', 'We ___ (eat) dinner by then.', 'will have eaten', 'V3 of eat'),
+            q('fp4', 'They ___ (arrive) by noon.', 'will have arrived', 'Deadline'),
+            q('fp5', 'I ___ (read) the book by Sunday.', 'will have read', 'V3 of read'),
+            q('fp6', 'He ___ (not/complete) the task.', 'will not have completed', 'Negative perfect'),
+            q('fp7', '___ you ___ (fix) the car by tomorrow?', 'will you have fixed', 'Question'),
+            q('fp8', 'The train ___ (depart) by 10:00.', 'will have departed', 'Schedule completion'),
+            q('fp9', 'She ___ (cook) everything by 6.', 'will have cooked', 'Finished action'),
+            q('fp10', 'I ___ (save) enough money by next year.', 'will have saved', 'Accumulation')
+        ];
+
+        // 4. Mini Practice: Future Perfect Continuous
+        const perfContQs = [
+            q('fpc1', 'By 5 PM, I ___ (work) for 8 hours.', 'will have been working', 'Duration focus'),
+            q('fpc2', 'Next year, we ___ (live) here for 10 years.', 'will have been living', 'Duration milestone'),
+            q('fpc3', 'She ___ (study) for 3 hours when you come.', 'will have been studying', 'Duration at future point'),
+            q('fpc4', 'They ___ (play) since morning.', 'will have been playing', 'Duration from past to future'),
+            q('fpc5', 'He ___ (drive) all day by evening.', 'will have been driving', 'Continuous duration'),
+            q('fpc6', 'I ___ (wait) for an hour by then.', 'will have been waiting', 'Duration'),
+            q('fpc7', 'By 2030, I ___ (teach) for 20 years.', 'will have been teaching', 'Career duration'),
+            q('fpc8', 'The plant ___ (grow) for a month.', 'will have been growing', 'Process'),
+            q('fpc9', 'It ___ (rain) for two days tomorrow.', 'will have been raining', 'Weather duration'),
+            q('fpc10', 'We ___ (travel) for a week.', 'will have been traveling', 'Trip duration')
+        ];
+
+        // 5. MASTER SET 1 (Fundamentals)
+        const set1 = [
+            q('m1', 'I ___ (go) to school tomorrow.', 'will go', 'Simple Future'),
+            q('m2', 'He ___ (be) happy to see you.', 'will be', 'Simple Future'),
+            q('m3', 'Look at clouds! It ___ (rain).', 'will rain', 'Prediction'),
+            q('m4', 'We ___ (meet) you there.', 'will meet', 'Plan'),
+            q('m5', 'She ___ (cook) dinner tonight.', 'will cook', 'Intent'),
+            q('m6', 'They ___ (not/play) today.', 'will not play', 'Negative'),
+            q('m7', '___ you help me?', 'will', 'Request'),
+            q('m8', 'I ___ (be) 20 next year.', 'will be', 'Fact'),
+            q('m9', 'Tom ___ (pass) the exam.', 'will pass', 'Prediction'),
+            q('m10', 'The bus ___ (arrive) soon.', 'will arrive', 'Schedule'),
+            q('m11', 'At 6 PM, I ___ (watch) TV.', 'will be watching', 'Continuous'),
+            q('m12', 'By 2025, I ___ (graduate).', 'will have graduated', 'Perfect'),
+            q('m13', 'He ___ (call) you back.', 'will call', 'Promise'),
+            q('m14', 'I ___ (take) the red one.', 'will take', 'Decision'),
+            q('m15', 'She ___ (wear) a blue dress.', 'will wear', 'Plan'),
+            q('m16', 'We ___ (visit) the zoo.', 'will visit', 'Plan'),
+            q('m17', 'It ___ (snow) tonight.', 'will snow', 'Weather'),
+            q('m18', 'They ___ (stay) at a hotel.', 'will stay', 'Plan'),
+            q('m19', 'I ___ (not/forget) you.', 'will not forget', 'Promise'),
+            q('m20', '___ she come?', 'will', 'Question')
+        ];
+
+        // MASTER SET 2 (Intermediate)
+        const set2 = [
+            q('m21', 'This time tomorrow, we ___ (fly) to Dubai.', 'will be flying', 'Future Continuous'),
+            q('m22', 'Don\'t phone me at 8, I ___ (do) my homework.', 'will be doing', 'In progress'),
+            q('m23', 'By next week, she ___ (finish) the report.', 'will have finished', 'Future Perfect'),
+            q('m24', 'I ___ (wait) for you here.', 'will be waiting', 'Continuous'),
+            q('m25', 'The mechanic ___ (fix) the car by noon.', 'will have fixed', 'Deadline'),
+            q('m26', 'By next year, he ___ (work) here for 20 years.', 'will have been working', 'Perf Continuous'),
+            q('m27', 'I ___ (send) you the info.', 'will send', 'Offer'),
+            q('m28', 'If it rains, we ___ (cancel) the picnic.', 'will cancel', 'Conditional 1'),
+            q('m29', 'When she arrives, I ___ (tell) her.', 'will tell', 'Time clause'),
+            q('m30', 'He ___ (not/be) late.', 'will not be', 'Promise'),
+            q('m31', 'I ___ (probably/buy) it.', 'will probably buy', 'Probability'),
+            q('m32', 'She ___ (definitely/win).', 'will definitely win', 'Certainty'),
+            q('m33', 'We ___ (have) lunch at 1.', 'will be having', 'Arrangement'),
+            q('m34', 'I ___ (finish) by 5 PM.', 'will have finished', 'Completion'),
+            q('m35', 'By November, I ___ (write) my novel.', 'will have written', 'Perfect'),
+            q('m36', 'She ___ (sleep) when you call.', 'will be sleeping', 'Overlap'),
+            q('m37', 'They ___ (build) the bridge by 2026.', 'will have built', 'Completion'),
+            q('m38', 'I ___ (think) about it.', 'will think', 'Mental process'),
+            q('m39', 'Who ___ (win) the election?', 'will win', 'Question'),
+            q('m40', 'The sun ___ (rise) at 6 AM.', 'will rise', 'Fact')
+        ];
+
+        // MASTER SET 3 (Tricky)
+        const set3 = [
+            q('m41', 'By the time you get here, the movie ___ (start).', 'will have started', 'Sequence'),
+            q('m42', 'I guess I ___ (stay) home.', 'will stay', 'Uncertainty'),
+            q('m43', 'I hope she ___ (like) the gift.', 'will like', 'Hope'),
+            q('m44', 'In 10 years, robots ___ (do) our work.', 'will be doing', 'Prediction trend'),
+            q('m45', 'Unless you hurry, you ___ (miss) the bus.', 'will miss', 'Conditional'),
+            q('m46', 'As soon as he comes, we ___ (leave).', 'will leave', 'Time clause'),
+            q('m47', 'By next month, I ___ (save) $1000.', 'will have saved', 'Perfect'),
+            q('m48', 'Next Monday, she ___ (teach) for 5 years.', 'will have been teaching', 'Duration'),
+            q('m49', 'Don\'t worry, I ___ (pay).', 'will pay', 'Offer'),
+            q('m50', 'There ___ (be) trouble.', 'will be', 'Prediction'),
+            q('m51', 'The shop ___ (close) soon.', 'will close', 'Schedule'),
+            q('m52', 'He ___ (turn) 50 tomorrow.', 'will turn', 'Age fact'),
+            q('m53', 'I ___ (see) the doctor tomorrow.', 'will be seeing', 'Appointment'),
+            q('m54', 'They ___ (announce) the results shortly.', 'will announce', 'Event'),
+            q('m55', 'I ___ (not/allow) this.', 'will not allow', 'Refusal'),
+            q('m56', 'By midnight, we ___ (drive) for 6 hours.', 'will have been driving', 'Duration'),
+            q('m57', 'Maybe he ___ (change) his mind.', 'will change', 'Possibility'),
+            q('m58', 'I think it ___ (be) fun.', 'will be', 'Opinion'),
+            q('m59', 'You ___ (see) what I mean.', 'will see', 'Phrase'),
+            q('m60', 'We ___ (run) out of gas soon.', 'will run', 'Prediction')
+        ];
+
+        // MASTER SET 4 (Advanced)
+        const set4 = [
+            q('m61', 'Next year, I ___ (study) medicine.', 'will be studying', 'Plan/Course'),
+            q('m62', 'Will you ___ (pass) the salt?', 'pass', 'Request (will already there)'),
+            q('m63', 'By 2050, temperatures ___ (rise).', 'will have risen', 'Perfect Change'),
+            q('m64', 'I ___ (wait) right here until you come back.', 'will be waiting', 'Intent'),
+            q('m65', 'By the end of the trip, we ___ (travel) 2000 miles.', 'will have traveled', 'Distance completed'),
+            q('m66', 'She ___ (have) the baby by then.', 'will have had', 'Perfect (Birth)'),
+            q('m67', 'The government ___ (pass) the law.', 'will pass', 'Official action'),
+            q('m68', 'I ___ (wonder) if you could help.', 'wonder', 'Politeness (Trick: Present used for future request context, but if sticking to future tense: will wonder implies future state. Let\'s use "will wonder" for strict tense or "wonder" for polite present. Answer key: will wonder is awkward. Let\'s change Q: I ___ (ask) him later.)', 'will ask'), 
+            /* Fix applied inline above */
+            q('m68_fix', 'I ___ (ask) him later.', 'will ask', 'Plan'),
+            q('m69', 'Look out! You ___ (crash)!', 'are going to crash', 'Evidence (Going to) - But this is Future Tense drill. "Will crash" is acceptable for prediction.'), 
+            /* Note: Prompt asks for Future Tense. 'Will' is standard. 'Going to' is also future. Let's accept 'will crash'. */
+            q('m69_final', 'Look out! You ___ (fall)!', 'will fall', 'Prediction'),
+            q('m70', 'I ___ (carry) that bag for you.', 'will carry', 'Offer'),
+            q('m71', 'The meeting ___ (end) by 4 PM.', 'will have ended', 'Perfect'),
+            q('m72', 'We ___ (not/need) a car.', 'will not need', 'Prediction'),
+            q('m73', 'He ___ (be) very angry.', 'will be', 'State'),
+            q('m74', 'By dinner, I ___ (read) all day.', 'will have been reading', 'Duration'),
+            q('m75', 'You ___ (feel) better soon.', 'will feel', 'Reassurance'),
+            q('m76', 'Who ___ (feed) the dog?', 'will feed', 'Task'),
+            q('m77', 'I ___ (always/love) you.', 'will always love', 'Promise'),
+            q('m78', 'The ice ___ (melt).', 'will melt', 'Process'),
+            q('m79', 'They ___ (tear) down the building.', 'will tear', 'Action'),
+            q('m80', 'I ___ (show) you the way.', 'will show', 'Offer')
+        ];
+
+        // MASTER SET 5 (Expert)
+        const set5 = [
+            q('m81', 'In a few years, we ___ (live) in a digital world.', 'will be living', 'Future state'),
+            q('m82', 'By the time she gets the letter, I ___ (leave).', 'will have left', 'Perfect'),
+            q('m83', 'I assume he ___ (agree).', 'will agree', 'Assumption'),
+            q('m84', 'We ___ (start) without him.', 'will start', 'Decision'),
+            q('m85', 'Don\'t phone them, they ___ (sleep).', 'will be sleeping', 'Deduction'),
+            q('m86', 'Next century, people ___ (live) on Mars.', 'will be living', 'Prediction'),
+            q('m87', 'By then, I ___ (forget) your name.', 'will have forgotten', 'Perfect'),
+            q('m88', 'The strike ___ (continue) for weeks.', 'will continue', 'Prediction'),
+            q('m89', 'If you ask her, she ___ (say) yes.', 'will say', 'Conditional'),
+            q('m90', 'They ___ (finish) the roof by Friday.', 'will have finished', 'Deadline'),
+            q('m91', 'I ___ (be) seeing him tomorrow (Plan).', 'will be', 'Future Cont'),
+            q('m92', 'We ___ (run) out of time.', 'will run', 'Prediction'),
+            q('m93', 'It ___ (take) a long time.', 'will take', 'Duration'),
+            q('m94', 'The flowers ___ (die) without water.', 'will die', 'Consequence'),
+            q('m95', 'I ___ (prove) you wrong.', 'will prove', 'Determination'),
+            q('m96', 'By 2040, oil ___ (run) out.', 'will have run', 'Perfect'),
+            q('m97', 'She ___ (make) a great teacher.', 'will make', 'Prediction'),
+            q('m98', 'I ___ (not/bother) you again.', 'will not bother', 'Promise'),
+            q('m99', 'The truth ___ (come) out.', 'will come', 'Idiom'),
+            q('m100', 'I ___ (master) English tenses soon.', 'will master', 'Determination')
+        ];
+
+        // --- RENDER FUNCTIONS ---
+
+        function renderQuestions(questions, containerId) {
+            const container = document.getElementById(containerId);
+            let html = '';
+            questions.forEach(q => {
+                html += `
+                    <div class="question-card" id="card-${q.id}">
+                        <label class="q-text">Q. ${q.text}</label>
+                        <div class="input-group">
+                            <input type="text" id="input-${q.id}" placeholder="Type answer here..." autocomplete="off">
+                            <button class="check-btn" onclick="checkAnswer('${q.id}')">Check Answer</button>
+                        </div>
+                        <div id="feedback-${q.id}" class="feedback"></div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Initialize content
+        window.onload = function() {
+            renderQuestions(simpleQs, 'practice-simple');
+            renderQuestions(contQs, 'practice-cont');
+            renderQuestions(perfQs, 'practice-perf');
+            renderQuestions(perfContQs, 'practice-perf-cont');
+            
+            renderQuestions(set1, 'master-set-1');
+            renderQuestions(set2, 'master-set-2');
+            renderQuestions(set3, 'master-set-3');
+            renderQuestions(set4, 'master-set-4');
+            renderQuestions(set5, 'master-set-5');
+        };
+
+        // --- ACCORDION LOGIC ---
+        const acc = document.getElementsByClassName("accordion");
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                // Auto-close other panels
+                for(let j=0; j<acc.length; j++){
+                    if(j!==i && acc[j].classList.contains("active")){
+                        acc[j].classList.remove("active");
+                        acc[j].nextElementSibling.style.maxHeight = null;
+                    }
+                }
+
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+        // --- SCORING SYSTEM ---
+        let attempted = 0;
+        let correct = 0;
+        let wrong = 0;
+        
+        // Map all questions
+        const allQuestions = [
+            ...simpleQs, ...contQs, ...perfQs, ...perfContQs,
+            ...set1, ...set2, ...set3, ...set4, ...set5
+        ];
+        
+        const questionMap = {};
+        allQuestions.forEach(q => { questionMap[q.id] = q; });
+
+        function updateScoreboard() {
+            document.getElementById('score-attempted').innerText = attempted;
+            document.getElementById('score-correct').innerText = correct;
+            document.getElementById('score-wrong').innerText = wrong;
+            
+            let percentage = 0;
+            if (attempted > 0) {
+                percentage = Math.round((correct / attempted) * 100);
+            }
+            document.getElementById('score-percentage').innerText = percentage + "%";
+        }
+
+        function checkAnswer(id) {
+            const qObj = questionMap[id];
+            const inputElem = document.getElementById(`input-${id}`);
+            const feedbackElem = document.getElementById(`feedback-${id}`);
+            const btn = document.querySelector(`#card-${id} button`);
+
+            // Prevent multiple attempts
+            if (qObj.solved) return;
+
+            let userAns = inputElem.value.trim().toLowerCase();
+            // Normalization: remove punct, double spaces
+            userAns = userAns.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ");
+            let correctAns = qObj.answer.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+
+            // Handle "won't" vs "will not" variations
+            userAns = userAns.replace("won't", "will not");
+            correctAns = correctAns.replace("won't", "will not");
+
+            if (!userAns) {
+                alert("Please type an answer first.");
+                return;
+            }
+
+            attempted++;
+            qObj.solved = true;
+            inputElem.disabled = true;
+            btn.disabled = true;
+            btn.innerText = "CHECKED";
+
+            if (userAns === correctAns) {
+                correct++;
+                feedbackElem.className = "feedback correct";
+                feedbackElem.innerHTML = `<strong>✔ Correct!</strong> Well done.`;
+            } else {
+                wrong++;
+                feedbackElem.className = "feedback incorrect";
+                feedbackElem.innerHTML = `<strong>❌ Incorrect.</strong><br>Correct Answer: <strong>${qObj.answer}</strong><br><em>Reason: ${qObj.hint}</em>`;
+            }
+
+            updateScoreboard();
+        }
+
+    </script>
+</body>
+</html>

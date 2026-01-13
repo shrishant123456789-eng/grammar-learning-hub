@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tenses – Grammar Learning Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --primary:#1e3c72;
+  --secondary:#2a5298;
+  --accent:#f4c430;
+  --light:#f5f7fb;
+  --dark:#1a1a1a;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg,#eef2f7,#ffffff);
+  color:var(--dark);
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;
+  text-align:center;
+  padding:35px 15px;
+}
+
+header h1{
+  font-size:2.2rem;
+  letter-spacing:1px;
+}
+
+header p{
+  margin-top:8px;
+  font-size:1.05rem;
+  opacity:0.9;
+}
+
+/* MAIN */
+main{
+  max-width:1000px;
+  margin:auto;
+  padding:40px 15px;
+}
+
+/* CARD GRID */
+.tense-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:25px;
+  margin-top:35px;
+}
+
+/* CARD */
+.tense-card{
+  background:#fff;
+  border-radius:16px;
+  padding:30px 20px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+
+.tense-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:5px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+}
+
+.tense-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 18px 40px rgba(0,0,0,0.15);
+}
+
+.tense-card h2{
+  font-size:1.4rem;
+  color:var(--primary);
+  margin-bottom:12px;
+}
+
+.tense-card p{
+  font-size:0.95rem;
+  color:#555;
+  line-height:1.4;
+}
+
+/* PRACTICE CARD */
+.practice{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;
+}
+
+.practice::before{
+  background:var(--accent);
+}
+
+.practice h2,
+.practice p{
+  color:#fff;
+}
+
+/* BACK BUTTON */
+.back-btn{
+  display:inline-block;
+  margin-top:45px;
+  padding:12px 28px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+  color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* NOTE */
+.note{
+  margin-top:40px;
+  font-size:0.95rem;
+  color:#555;
+  text-align:center;
+}
+
+/* FOOTER */
+footer{
+  margin-top:60px;
+  background:#0f172a;
+  color:#fff;
+  text-align:center;
+  padding:22px 12px;
+  font-size:0.9rem;
+  line-height:1.6;
+}
+footer span{
+  color:var(--accent);
+  font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>English Tenses</h1>
+  <p>Present • Past • Future • Practice</p>
+</header>
+
+<main>
+
+<p style="text-align:center;font-size:1.05rem;max-width:800px;margin:auto;">
+Learn English Tenses from <b>Basic to Advanced</b> with clear explanations, examples,  
+and a powerful practice system with <b>live score & answer checking</b>.
+</p>
+
+<div class="tense-grid">
+
+  <div class="tense-card" onclick="location.href='present.html'">
+    <h2>Present Tense</h2>
+    <p>
+      Simple Present<br>
+      Present Continuous<br>
+      Present Perfect<br>
+      Present Perfect Continuous
+    </p>
+  </div>
+
+  <div class="tense-card" onclick="location.href='past.html'">
+    <h2>Past Tense</h2>
+    <p>
+      Simple Past<br>
+      Past Continuous<br>
+      Past Perfect<br>
+      Past Perfect Continuous
+    </p>
+  </div>
+
+  <div class="tense-card" onclick="location.href='future.html'">
+    <h2>Future Tense</h2>
+    <p>
+      Simple Future<br>
+      Future Continuous<br>
+      Future Perfect<br>
+      Future Perfect Continuous
+    </p>
+  </div>
+
+  <div class="tense-card practice" onclick="location.href='practice.html'">
+    <h2>Practice Zone 🔥</h2>
+    <p>
+      500+ Mixed Questions<br>
+      All Tenses Combined<br>
+      Live Score & Answer Analysis
+    </p>
+  </div>
+
+</div>
+
+<div class="note">
+👉 Click on any tense to study all its parts with notes & practice questions.
+</div>
+
+<div style="text-align:center;">
+  <a href="../index.html" class="back-btn">← Back to Grammar Hub</a>
+</div>
+
+</main>
+
+<footer>
+  Grammar Learning Hub © 2026 <br>
+  Created by <span>Shrishant Yadav</span> <br>
+  Education Purpose Only
+</footer>
+
+</body>
+</html>
