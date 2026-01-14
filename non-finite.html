@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non-Finite Verbs | Grammar Learning Hub</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary: #003366; /* Deep Blue */
+            --primary-light: #004d99;
+            --accent: #FFD700; /* Gold */
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --bg-light: #f4f7f6;
+            --success: #28a745;
+            --error: #dc3545;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        /* --- FIXED SCORE PANEL --- */
+        .score-panel {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-left: 5px solid var(--accent);
+            backdrop-filter: blur(5px);
+            font-size: 0.85rem;
+            min-width: 140px;
+        }
+
+        .score-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .score-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .score-item span { display: block; font-weight: bold; font-size: 1.1rem; }
+        .score-item small { font-size: 0.65rem; color: #666; text-transform: uppercase; }
+
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #001f3f 100%);
+            color: var(--text-light);
+            padding: 50px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- CONTAINER & CARDS --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--card-shadow);
+            border-top: 4px solid var(--primary);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--primary-light);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .hinglish-box {
+            background: #fff3cd;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .hinglish-box::before {
+            content: "💡 Hinglish: ";
+            font-weight: bold;
+            color: #856404;
+        }
+
+        /* --- TABLE STYLES --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: var(--primary); color: white; }
+        
+        .mistake-table .wrong { color: var(--error); text-decoration: line-through; }
+        .mistake-table .correct { color: var(--success); font-weight: bold; }
+
+        /* --- ACCORDION --- */
+        .accordion-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .accordion-header {
+            background: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover { background: #f8f9fa; }
+        .accordion-header.active {
+            background: #f0f4f8;
+            color: var(--primary);
+            border-left: 5px solid var(--accent);
+        }
+
+        .accordion-header::after { content: '+'; font-size: 1.5rem; font-weight: bold; }
+        .accordion-header.active::after { content: '-'; }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+            background: #fff;
+        }
+
+        .accordion-inner { padding: 20px 0; border-top: 1px solid #eee; }
+
+        /* --- QUIZ STYLES --- */
+        .quiz-container {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #ccc;
+            margin-top: 20px;
+        }
+
+        .quiz-header {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .question-box {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .quiz-input {
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 300px;
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        .check-btn {
+            padding: 8px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 5px;
+            transition: var(--transition);
+        }
+        .check-btn:hover { background: var(--accent); color: var(--text-dark); }
+        .check-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        .feedback.success { display: block; background: #d4edda; color: #155724; border-left: 4px solid var(--success); }
+        .feedback.error { display: block; background: #f8d7da; color: #721c24; border-left: 4px solid var(--error); }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #222;
+            color: #aaa;
+            margin-top: 50px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .back-btn:hover { background: var(--accent); color: #000; }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .quiz-input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="score-panel">
+        <div class="score-title">Live Score</div>
+        <div class="score-grid">
+            <div class="score-item" style="color: var(--success);">
+                <span id="score-correct">0</span> <small>Correct</small>
+            </div>
+            <div class="score-item" style="color: var(--error);">
+                <span id="score-wrong">0</span> <small>Wrong</small>
+            </div>
+            <div class="score-item" style="color: #333;">
+                <span id="score-percent">0%</span> <small>Score</small>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <h1>Non-Finite Verbs</h1>
+            <p>Master Infinitives, Gerunds & Participles</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>1. Introduction</h2>
+            <div class="highlight-box">
+                <strong>What are Non-Finite Verbs?</strong><br>
+                These verbs do NOT change their form according to the subject (number/person) or tense of the sentence. They act as Nouns, Adjectives, or Adverbs.
+            </div>
+
+            <table style="margin-top: 15px;">
+                <tr>
+                    <th>Finite Verb (Changes)</th>
+                    <th>Non-Finite Verb (No Change)</th>
+                </tr>
+                <tr>
+                    <td>I <strong>like</strong> to play.</td>
+                    <td>I like <strong>to play</strong>.</td>
+                </tr>
+                <tr>
+                    <td>He <strong>likes</strong> to play.</td>
+                    <td>He likes <strong>to play</strong>.</td>
+                </tr>
+                <tr>
+                    <td>They <strong>liked</strong> to play.</td>
+                    <td>They liked <strong>to play</strong>.</td>
+                </tr>
+            </table>
+            <p style="margin-top:10px; font-size: 0.9rem;">*Notice how 'like' changes, but 'to play' remains same.</p>
+
+            <div class="hinglish-box">
+                Non-finite verbs wo verbs hote hain jo subject ya tense ke hisaab se badalte nahi hain. Ye sentence mein verb ka kaam nahi karte, balki Noun ya Adjective ka kaam karte hain.
+            </div>
+        </div>
+
+        <h2>2. Types of Non-Finite Verbs</h2>
+
+        <div class="accordion-item">
+            <div class="accordion-header">1️⃣ INFINITIVE (The 'To' Verb)</div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <h3>Definition</h3>
+                    <p>Usually formed by <strong>To + V1</strong>. It acts like a Noun.</p>
+                    <div class="hinglish-box">Hindi mein: 'Na', 'Ne', 'Ni' (Jaana, khana, sona). <br>Ex: I want to go (Main jaana chahta hu).</div>
+
+                    <h3>Types</h3>
+                    <ul>
+                        <li><strong>To-Infinitive:</strong> To + Base Verb (To walk, To eat).</li>
+                        <li><strong>Bare Infinitive:</strong> Base Verb without 'To' (used after modals, let, make, see, hear).</li>
+                    </ul>
+
+                    <h3>Common Mistakes</h3>
+                    <table class="mistake-table">
+                        <tr><th>Wrong ❌</th><th>Correct ✔</th><th>Reason</th></tr>
+                        <tr><td class="wrong">He made me to cry.</td><td class="correct">He made me cry.</td><td>'Make' takes Bare Infinitive (no 'to').</td></tr>
+                        <tr><td class="wrong">I look forward to meet you.</td><td class="correct">I look forward to meeting you.</td><td>'Look forward to' is a phrase taking Gerund, not Infinitive.</td></tr>
+                    </table>
+
+                    <div class="quiz-container">
+                        <div class="quiz-header">Practice: Infinitives (25 Questions)</div>
+                        <div id="quiz-infinitive"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header">2️⃣ GERUND (Verbal Noun)</div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <h3>Definition</h3>
+                    <p>Formed by <strong>V1 + ing</strong>. It looks like a verb but acts as a <strong>Noun</strong>.</p>
+                    <div class="hinglish-box">Hindi mein: Iska ant bhi 'Na' se hota hai. <br>Ex: Swimming is good (Tairna accha hai).</div>
+
+                    <h3>Usage Rules</h3>
+                    <ul>
+                        <li>Used after prepositions (of, for, about, in).</li>
+                        <li>Used after specific verbs: <em>enjoy, avoid, mind, finish, suggest, keep</em>.</li>
+                    </ul>
+
+                    <h3>Examples</h3>
+                    <ul>
+                        <li><strong>Walking</strong> is good for health. (Subject)</li>
+                        <li>I like <strong>reading</strong>. (Object)</li>
+                        <li>He is fond of <strong>singing</strong>. (Object of preposition)</li>
+                    </ul>
+
+                    <div class="quiz-container">
+                        <div class="quiz-header">Practice: Gerunds (25 Questions)</div>
+                        <div id="quiz-gerund"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header">3️⃣ PARTICIPLE (Verbal Adjective)</div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <h3>Definition</h3>
+                    <p>Acts as an <strong>Adjective</strong> or creates verb tenses.</p>
+                    
+                    <h3>Forms</h3>
+                    <ul>
+                        <li><strong>Present Participle (V1+ing):</strong> Continuous action. <br><em>Ex: A <strong>burning</strong> train. (Jalti hui train)</em></li>
+                        <li><strong>Past Participle (V3):</strong> Completed action/State. <br><em>Ex: A <strong>burnt</strong> train. (Jali hui train)</em></li>
+                        <li><strong>Perfect Participle (Having + V3):</strong> Action completed before another. <br><em>Ex: <strong>Having eaten</strong>, he slept.</em></li>
+                    </ul>
+
+                    <div class="hinglish-box">Hindi mein: 'Ta hua', 'Te huye', ya 'Huye'. <br>Running water (Behta hua paani). Broken chair (Tooti hui kursi).</div>
+
+                    <div class="quiz-container">
+                        <div class="quiz-header">Practice: Participles (25 Questions)</div>
+                        <div id="quiz-participle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>3. Gerund vs Infinitive (Tricky Differences)</h2>
+            <p>Some verbs change meaning depending on what follows.</p>
+            <table style="margin-top:10px;">
+                <tr>
+                    <th>Phrase</th>
+                    <th>Meaning</th>
+                </tr>
+                <tr>
+                    <td><strong>Stop to smoke</strong></td>
+                    <td>Stopped doing something else in order to smoke.</td>
+                </tr>
+                <tr>
+                    <td><strong>Stop smoking</strong></td>
+                    <td>Quit the habit of cigarettes forever.</td>
+                </tr>
+                <tr>
+                    <td><strong>Remember to lock</strong></td>
+                    <td>Don't forget the task.</td>
+                </tr>
+                <tr>
+                    <td><strong>Remember locking</strong></td>
+                    <td>Recall the memory of locking it.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>4. Dangling Participles (Advanced)</h2>
+            <div class="highlight-box" style="background: #fff3cd; border-color: #ffc107;">
+                <strong>Rule:</strong> The subject of the participle phrase must be the same as the subject of the main sentence.
+            </div>
+            
+            <p><strong>Wrong:</strong> <em>Walking down the road, a dog bit him.</em></p>
+            <p class="error-text" style="color:red; font-size:0.9rem;">(Logic: Was the dog walking down the road? No, the person was.)</p>
+            
+            <p><strong>Correct:</strong> <em>While he was walking down the road, a dog bit him.</em></p>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Mixed Practice (50 Questions)</h2>
+            <p>SSC & Competitive Exam Level. Test your ability to choose between forms.</p>
+            <div class="quiz-container">
+                <div id="quiz-mixed"></div>
+            </div>
+        </div>
+
+        <div class="card" style="border-top: 5px solid var(--accent);">
+            <h2>🏆 MEGA TEST ZONE (100 Questions)</h2>
+            <p>The ultimate challenge. Timed style logic (Self-paced).</p>
+            <div class="quiz-container">
+                <div id="quiz-mega"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Grammar Learning Hub &copy; 2024</p>
+        <p>Created by <strong>Shrishant Yadav</strong></p>
+        <p style="font-size: 0.8rem; margin-top: 5px;">Education Purpose Only</p>
+        <a href="index.html" class="back-btn">← Back to Index</a>
+    </footer>
+
+    <script>
+        /* --- ACCORDION FUNCTIONALITY --- */
+        const accordions = document.querySelectorAll('.accordion-header');
+        accordions.forEach(acc => {
+            acc.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        /* --- SCORE STATE --- */
+        const scoreState = {
+            correct: 0,
+            wrong: 0,
+            total: 0
+        };
+
+        function updateScore(isCorrect) {
+            scoreState.total++;
+            if(isCorrect) scoreState.correct++;
+            else scoreState.wrong++;
+
+            document.getElementById('score-correct').innerText = scoreState.correct;
+            document.getElementById('score-wrong').innerText = scoreState.wrong;
+            
+            const percent = Math.round((scoreState.correct / scoreState.total) * 100);
+            document.getElementById('score-percent').innerText = isNaN(percent) ? '0%' : percent + '%';
+        }
+
+        /* --- QUESTION DATA BANK --- */
+        // We will generate specific questions for the UI requirements
+        // Format: { q: "Question text", a: "correct answer", exp: "Explanation" }
+
+        const qInfinitive = [
+            {q: "I want ____ (go).", a: "to go", exp: "Want is followed by to-infinitive."},
+            {q: "He refused ____ (help) me.", a: "to help", exp: "Refuse takes to-infinitive."},
+            {q: "Let him ____ (speak).", a: "speak", exp: "Let takes Bare Infinitive (no 'to')."},
+            {q: "He made me ____ (laugh).", a: "laugh", exp: "Make (active voice) takes Bare Infinitive."},
+            {q: "It is too hot ____ (play) outside.", a: "to play", exp: "Too + adj + to-infinitive structure."},
+            {q: "She seems ____ (be) happy.", a: "to be", exp: "Seem is followed by to-infinitive."},
+            {q: "You had better ____ (leave) now.", a: "leave", exp: "'Had better' takes Bare Infinitive."},
+            {q: "I heard her ____ (sing) a song.", a: "sing", exp: "Perception verbs (hear, see) take bare infinitive for complete action."},
+            {q: "They decided ____ (start) a business.", a: "to start", exp: "Decide takes to-infinitive."},
+            {q: "I would rather ____ (die) than beg.", a: "die", exp: "'Would rather' takes Bare Infinitive."},
+            {q: "He promised ____ (come).", a: "to come", exp: "Promise takes to-infinitive."},
+            {q: "She helps him ____ (do) the work.", a: "do", exp: "Help can take bare or to-infinitive. 'Do' is standard here."},
+            {q: "Did you see him ____ (go)?", a: "go", exp: "See takes Bare Infinitive."},
+            {q: "We hope ____ (pass) the exam.", a: "to pass", exp: "Hope + to-infinitive."},
+            {q: "I dare not ____ (go) there.", a: "go", exp: "Dare not (modal) takes Bare Infinitive."},
+            {q: "He asked me ____ (wait).", a: "to wait", exp: "Ask + Object + to-infinitive."},
+            {q: "Allows us ____ (enter).", a: "to enter", exp: "Allow + Object + to-infinitive."},
+            {q: "You need not ____ (worry).", a: "worry", exp: "Need not (modal) takes Bare Infinitive."},
+            {q: "I am happy ____ (hear) this.", a: "to hear", exp: "Adjective + to-infinitive."},
+            {q: "It is easy ____ (learn).", a: "to learn", exp: "Adjective + to-infinitive."},
+            {q: "He came here ____ (meet) me.", a: "to meet", exp: "Purpose uses to-infinitive."},
+            {q: "Do you wish ____ (leave)?", a: "to leave", exp: "Wish + to-infinitive."},
+            {q: "Bid him ____ (go).", a: "go", exp: "Bid takes Bare Infinitive."},
+            {q: "I saw him ____ (cross) the road.", a: "cross", exp: "Saw (perception) + Bare infinitive."},
+            {q: "He knows how ____ (swim).", a: "to swim", exp: "Know + how + to-infinitive."}
+        ];
+
+        const qGerund = [
+            {q: "I enjoy ____ (read).", a: "reading", exp: "Enjoy is always followed by Gerund."},
+            {q: "Avoid ____ (make) mistakes.", a: "making", exp: "Avoid takes Gerund."},
+            {q: "He is fond of ____ (play).", a: "playing", exp: "Preposition 'of' is followed by Gerund."},
+            {q: "____ (swim) is a good exercise.", a: "swimming", exp: "Gerund acting as Subject."},
+            {q: "She kept ____ (cry).", a: "crying", exp: "Keep/Kept is followed by Gerund."},
+            {q: "Do you mind ____ (open) the door?", a: "opening", exp: "Mind takes Gerund."},
+            {q: "It is no use ____ (wait).", a: "waiting", exp: "Phrase 'It is no use' takes Gerund."},
+            {q: "He is used to ____ (get) up early.", a: "getting", exp: "Phrase 'Used to' (habit) takes Gerund."},
+            {q: "I look forward to ____ (see) you.", a: "seeing", exp: "'Look forward to' takes Gerund."},
+            {q: "Stop ____ (write).", a: "writing", exp: "Stop (cease action) takes Gerund."},
+            {q: "He prevented me from ____ (go).", a: "going", exp: "Prevent + from + Gerund."},
+            {q: "She is good at ____ (dance).", a: "dancing", exp: "Preposition 'at' + Gerund."},
+            {q: "Worth ____ (see).", a: "seeing", exp: "Adjective 'Worth' takes Gerund."},
+            {q: "I can't help ____ (laugh).", a: "laughing", exp: "Phrase 'Can't help' takes Gerund."},
+            {q: "Would you mind ____ (move)?", a: "moving", exp: "Mind takes Gerund."},
+            {q: "He gave up ____ (smoke).", a: "smoking", exp: "Give up (phrasal verb) + Gerund."},
+            {q: "After ____ (finish) work, he went home.", a: "finishing", exp: "Preposition 'After' + Gerund."},
+            {q: "Before ____ (leave), lock the door.", a: "leaving", exp: "Preposition 'Before' + Gerund."},
+            {q: "Excuse me for ____ (interrupt).", a: "interrupting", exp: "Preposition 'for' + Gerund."},
+            {q: "I suggest ____ (go) by bus.", a: "going", exp: "Suggest takes Gerund."},
+            {q: "He denied ____ (steal) the money.", a: "stealing", exp: "Deny takes Gerund."},
+            {q: "Imagine ____ (live) on the moon.", a: "living", exp: "Imagine takes Gerund."},
+            {q: "Practice ____ (speak) English.", a: "speaking", exp: "Practice takes Gerund."},
+            {q: "Miss ____ (catch) the train.", a: "catching", exp: "Miss takes Gerund."},
+            {q: "Busy ____ (do) homework.", a: "doing", exp: "Busy takes Gerund."}
+        ];
+
+        const qParticiple = [
+            {q: "I saw a ____ (burn) house.", a: "burning", exp: "Present Participle (Adjective for active process)."},
+            {q: "The ____ (break) glass cut my foot.", a: "broken", exp: "Past Participle (State/Completed)."},
+            {q: "____ (hear) the noise, he woke up.", a: "hearing", exp: "Present Participle (Action happening same time)."},
+            {q: "____ (blind) by the storm, they got lost.", a: "blinded", exp: "Past Participle (Passive sense)."},
+            {q: "____ (have) finished his work, he slept.", a: "having", exp: "Perfect Participle (Action completed before another)."},
+            {q: "A ____ (roll) stone gathers no moss.", a: "rolling", exp: "Present Participle adjective."},
+            {q: "Generally ____ (speak), men are stronger.", a: "speaking", exp: "Absolute Phrase."},
+            {q: "____ (walk) in the garden, I saw a snake.", a: "walking", exp: "Present Participle."},
+            {q: "A ____ (tire) journey.", a: "tiring", exp: "Present Participle (Causing feeling)."},
+            {q: "A ____ (tire) man.", a: "tired", exp: "Past Participle (Feeling the effect)."},
+            {q: "The ____ (lose) child was found.", a: "lost", exp: "Past Participle (State)."},
+            {q: "____ (be) hungry, he ate an apple.", a: "being", exp: "Present Participle of Be."},
+            {q: "A ____ (develop) country (like India).", a: "developing", exp: "Process is ongoing."},
+            {q: "A ____ (develop) country (like USA).", a: "developed", exp: "Process completed."},
+            {q: "____ (shock) by the news, she fainted.", a: "shocked", exp: "Past Participle (Passive emotion)."},
+            {q: "It was a ____ (shock) news.", a: "shocking", exp: "Present Participle (Cause of emotion)."},
+            {q: "____ (fail) twice, he didn't want to try again.", a: "having failed", exp: "Perfect Participle (Past action)."},
+            {q: "Weather ____ (permit), we will go.", a: "permitting", exp: "Absolute phrase."},
+            {q: "I saw him ____ (run).", a: "running", exp: "Present participle (Process seen)."},
+            {q: "____ (occupy) with work, he forgot lunch.", a: "occupied", exp: "Past Participle."},
+            {q: "The ____ (rise) sun.", a: "rising", exp: "Ongoing action."},
+            {q: "The ____ (rise) sun (already up).", a: "risen", exp: "Completed action."},
+            {q: "____ (turn) to the left, you will see the bank.", a: "turning", exp: "Present Participle."},
+            {q: "____ (deceive) by his friend, he lost hope.", a: "deceived", exp: "Past Participle (Passive)."},
+            {q: "Barking dogs seldom ____ (bite).", a: "bite", exp: "Here 'Barking' is participle, 'bite' is finite."}
+        ];
+
+        // --- MIXED GENERATOR (50 Questions) ---
+        // We combine the arrays and pick random ones or create new hybrid ones.
+        // For simplicity in this file, we will concatenate and shuffle a subset.
+        const allQuestions = [...qInfinitive, ...qGerund, ...qParticiple];
+        
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        const mixedSet = shuffleArray([...allQuestions]).slice(0, 50);
+
+        // --- MEGA TEST GENERATOR (100 Questions) ---
+        // We duplicate the pool to reach 100 for the drill
+        const megaSet = shuffleArray([...allQuestions, ...allQuestions]).slice(0, 100);
+
+        /* --- RENDER FUNCTIONS --- */
+        function renderQuiz(containerId, questionArray) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = ''; // Clear
+
+            questionArray.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'question-box';
+                div.setAttribute('data-answer', item.a);
+                
+                div.innerHTML = `
+                    <span class="question-text">${index + 1}. ${item.q}</span>
+                    <div style="display:flex; flex-wrap:wrap; align-items:center;">
+                        <input type="text" class="quiz-input" placeholder="Type answer">
+                        <button class="check-btn" onclick="checkAnswer(this)">Check</button>
+                    </div>
+                    <div class="feedback" data-explain="${item.exp}"></div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        /* --- CHECK ANSWER LOGIC --- */
+        function checkAnswer(btn) {
+            const parent = btn.parentElement.parentElement; // Go up to question-box
+            const input = parent.querySelector('.quiz-input');
+            const feedback = parent.querySelector('.feedback');
+            const correctAnswer = parent.getAttribute('data-answer').toLowerCase().trim();
+            const explanation = feedback.getAttribute('data-explain');
+            const userAnswer = input.value.toLowerCase().trim();
+
+            if (userAnswer === "") {
+                alert("Please type an answer!");
+                return;
+            }
+
+            // Disable re-attempt
+            input.disabled = true;
+            btn.disabled = true;
+            btn.innerText = "Checked";
+
+            // Validation logic
+            if (userAnswer === correctAnswer) {
+                feedback.className = "feedback success";
+                feedback.innerHTML = `<strong>✔ Correct!</strong> <br> ${explanation}`;
+                updateScore(true);
+            } else {
+                feedback.className = "feedback error";
+                feedback.innerHTML = `<strong>❌ Wrong!</strong> <br> Correct Answer: <strong>${correctAnswer}</strong> <br> Reason: ${explanation}`;
+                updateScore(false);
+            }
+        }
+
+        /* --- INITIALIZE --- */
+        window.onload = function() {
+            renderQuiz('quiz-infinitive', qInfinitive);
+            renderQuiz('quiz-gerund', qGerund);
+            renderQuiz('quiz-participle', qParticiple);
+            renderQuiz('quiz-mixed', mixedSet);
+            renderQuiz('quiz-mega', megaSet);
+        }
+
+    </script>
+</body>
+</html>

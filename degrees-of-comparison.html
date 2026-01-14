@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degrees of Comparison | Grammar Learning Hub</title>
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --primary: #0a2540; /* Deep Blue */
+            --primary-light: #183b61;
+            --accent: #d4af37; /* Gold */
+            --accent-hover: #bfa13f;
+            --bg-body: #f4f7f6;
+            --bg-card: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --success: #28a745;
+            --error: #dc3545;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 80px; /* Space for footer */
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        header h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        header p { color: var(--accent); font-weight: 500; }
+
+        /* --- STICKY SCORE PANEL --- */
+        .score-panel {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: white;
+            padding: 10px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 0.9rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .score-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+        
+        .score-val { font-weight: bold; font-size: 1.1rem; }
+        .s-total { color: var(--primary); }
+        .s-correct { color: var(--success); }
+        .s-wrong { color: var(--error); }
+
+        /* --- CONTAINER --- */
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* --- CARDS & TYPOGRAPHY --- */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+
+        h2 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; }
+        h3 { color: var(--primary-light); margin: 15px 0 10px; font-size: 1.2rem; }
+        p { margin-bottom: 10px; }
+        
+        .hinglish {
+            background: #eef5ff;
+            padding: 10px;
+            border-radius: 5px;
+            font-style: italic;
+            border-left: 3px solid var(--accent);
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .formula {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+
+        .example-box {
+            background: #f9f9f9;
+            padding: 10px;
+            border-left: 3px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .bg-green { background: var(--success); }
+        .bg-red { background: var(--error); }
+        .bg-blue { background: var(--primary); }
+
+        /* --- ACCORDION --- */
+        .accordion {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: 0.4s;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: var(--border-radius);
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .active, .accordion:hover {
+            background-color: #eef5ff;
+            color: var(--primary);
+        }
+
+        .accordion:after {
+            content: '\002B'; /* Plus sign */
+            color: var(--accent);
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+            font-size: 1.5rem;
+        }
+
+        .active:after { content: "\2212"; /* Minus sign */ }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-bottom: 10px;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+
+        .panel-content { padding: 20px 0; }
+
+        /* --- QUIZ SECTION --- */
+        .quiz-container {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #ddd;
+        }
+
+        .q-item {
+            margin-bottom: 20px;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+
+        .q-text { font-weight: 500; margin-bottom: 10px; }
+
+        .q-input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 70%;
+            font-size: 1rem;
+        }
+
+        .btn-check {
+            padding: 8px 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-left: 10px;
+            transition: 0.2s;
+        }
+
+        .btn-check:hover { background: var(--primary-light); }
+        .btn-check:disabled { background: #ccc; cursor: not-allowed; }
+
+        .feedback {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            display: none;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .feedback.correct {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.wrong {
+            display: block;
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .q-input { width: 100%; margin-bottom: 10px; }
+            .btn-check { width: 100%; margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Degrees of Comparison</h1>
+        <p>Grammar Learning Hub</p>
+    </header>
+
+    <div class="score-panel">
+        <div class="score-item">
+            <span class="score-val s-total" id="total-count">0</span>
+            <span>Attempted</span>
+        </div>
+        <div class="score-item">
+            <span class="score-val s-correct" id="correct-count">0</span>
+            <span>Correct</span>
+        </div>
+        <div class="score-item">
+            <span class="score-val s-wrong" id="wrong-count">0</span>
+            <span>Wrong</span>
+        </div>
+        <div class="score-item">
+            <span class="score-val" id="score-percent">0%</span>
+            <span>Score</span>
+        </div>
+    </div>
+
+    <div class="container" id="main-content">
+        </div>
+
+    <footer>
+        <h3>Grammar Learning Hub</h3>
+        <p>Created by <strong>Shrishant Yadav</strong></p>
+        <p>Education Purpose Only</p>
+        <a href="index.html" class="back-btn">Back to Index</a>
+    </footer>
+
+    <script>
+        // --- DATA OBJECT (CONTENT) ---
+        const contentData = {
+            intro: {
+                title: "Introduction",
+                content: `
+                    <p><strong>What are Degrees of Comparison?</strong><br>
+                    Adjectives change in form to show comparison. These forms are called the Degrees of Comparison. They help us compare the quality or quantity of nouns.</p>
+                    
+                    <div class="hinglish">
+                        <strong>Hinglish:</strong> Jab humein do ya do se zyada cheezo ki tulna (compare) karni hoti hai, tab hum adjectives ke alag-alag forms use karte hain.
+                    </div>
+
+                    <p><strong>There are 3 Degrees:</strong></p>
+                    <ul>
+                        <li>1. Positive Degree (Simple quality)</li>
+                        <li>2. Comparative Degree (Comparison between two)</li>
+                        <li>3. Superlative Degree (Comparison among more than two)</li>
+                    </ul>
+                `
+            },
+            types: [
+                {
+                    title: "1. Positive Degree",
+                    desc: "It denotes the simple quality of a person or thing. It is used when no comparison is made.",
+                    hinglish: "Jab hum kisi ek insaan ya cheez ki khasiyat batate hain bina kisi se compare kiye.",
+                    struct: "Subject + Verb + Adjective",
+                    ex: "He is a <b>tall</b> boy.",
+                    q: [
+                        { q: "She is a ______ girl.", a: "smart", hint: "Use positive form of 'smart'" },
+                        { q: "This box is ______.", a: "heavy", hint: "Use positive form of 'heavy'" }
+                    ]
+                },
+                {
+                    title: "2. Comparative Degree",
+                    desc: "It denotes a higher degree of quality than the positive. It is used when two things or sets of things are compared.",
+                    hinglish: "Jab do logo ya do cheezo ke beech tulna hoti hai.",
+                    struct: "Subject + Verb + Adjective + er/more + than + Noun",
+                    ex: "He is <b>taller</b> than his brother.",
+                    q: [
+                        { q: "Iron is ______ than wood.", a: "harder", hint: "Use comparative of 'hard'" },
+                        { q: "This book is ______ interesting than that one.", a: "more", hint: "more/most?" }
+                    ]
+                },
+                {
+                    title: "3. Superlative Degree",
+                    desc: "It denotes the highest degree of quality. It is used when one thing is compared with all other things of the same class (more than two).",
+                    hinglish: "Jab kisi ek cheez ko sabse best ya sabse worst batana ho (group me).",
+                    struct: "Subject + Verb + the + Adjective + est/most + Noun",
+                    ex: "He is the <b>tallest</b> boy in the class.",
+                    q: [
+                        { q: "Mt. Everest is the ______ peak in the world.", a: "highest", hint: "Use superlative of 'high'" },
+                        { q: "She is the ______ girl in class.", a: "wisest", hint: "Use superlative of 'wise'" }
+                    ]
+                }
+            ],
+            rules: [
+                {
+                    id: "r1", title: "Rule 1: One-syllable Adjectives",
+                    expl: "Add 'er' for Comparative and 'est' for Superlative.",
+                    hinglish: "Chote words (ek syllable wale) me 'er' aur 'est' jodte hain.",
+                    form: "Tall → Taller → Tallest",
+                    mistake: "More tall ❌ | Taller ✔",
+                    reason: "One syllable words don't take 'more'.",
+                    questions: [
+                        { q: "Sweet (Comparative)", a: "sweeter" },
+                        { q: "Young (Superlative)", a: "youngest" },
+                        { q: "Old (Comparative)", a: "older" },
+                        { q: "Bold (Superlative)", a: "boldest" },
+                        { q: "Clever (Comparative)", a: "cleverer" },
+                        { q: "Kind (Superlative)", a: "kindest" },
+                        { q: "Fast (Comparative)", a: "faster" },
+                        { q: "Deep (Superlative)", a: "deepest" },
+                        { q: "High (Comparative)", a: "higher" },
+                        { q: "Rich (Superlative)", a: "richest" }
+                    ]
+                },
+                {
+                    id: "r2", title: "Rule 2: Adjectives ending in 'e'",
+                    expl: "Add only 'r' for Comparative and 'st' for Superlative.",
+                    hinglish: "Agar word 'e' par khatam ho raha hai, toh bas 'r' aur 'st' lagayein.",
+                    form: "Large → Larger → Largest",
+                    mistake: "Largeer ❌ | Larger ✔",
+                    reason: "Don't double the 'e'.",
+                    questions: [
+                        { q: "Brave (Comparative)", a: "braver" },
+                        { q: "Fine (Superlative)", a: "finest" },
+                        { q: "White (Comparative)", a: "whiter" },
+                        { q: "Large (Superlative)", a: "largest" },
+                        { q: "Noble (Comparative)", a: "nobler" },
+                        { q: "Wise (Superlative)", a: "wisest" },
+                        { q: "Able (Comparative)", a: "abler" },
+                        { q: "Pure (Superlative)", a: "purest" },
+                        { q: "Dense (Comparative)", a: "denser" },
+                        { q: "Safe (Superlative)", a: "safest" }
+                    ]
+                },
+                {
+                    id: "r3", title: "Rule 3: Adjectives ending in 'y'",
+                    expl: "If a consonant comes before 'y', remove 'y' and add 'ier' and 'iest'.",
+                    hinglish: "Agar 'y' se pehle consonant hai, toh 'y' hatakar 'ier'/'iest' lagayein.",
+                    form: "Happy → Happier → Happiest",
+                    mistake: "Happyer ❌ | Happier ✔",
+                    reason: "Y changes to I.",
+                    questions: [
+                        { q: "Heavy (Comparative)", a: "heavier" },
+                        { q: "Easy (Superlative)", a: "easiest" },
+                        { q: "Busy (Comparative)", a: "busier" },
+                        { q: "Dirty (Superlative)", a: "dirtiest" },
+                        { q: "Wealthy (Comparative)", a: "wealthier" },
+                        { q: "Dry (Superlative)", a: "driest" },
+                        { q: "Pretty (Comparative)", a: "prettier" },
+                        { q: "Merry (Superlative)", a: "merriest" },
+                        { q: "Funny (Comparative)", a: "funnier" },
+                        { q: "Holy (Superlative)", a: "holiest" }
+                    ]
+                },
+                {
+                    id: "r4", title: "Rule 4: CVC Pattern (Consonant-Vowel-Consonant)",
+                    expl: "Double the last consonant before adding 'er' or 'est'.",
+                    hinglish: "Agar last letter consonant hai aur usse pehle vowel hai, toh last letter double hoga.",
+                    form: "Big → Bigger → Biggest",
+                    mistake: "Biger ❌ | Bigger ✔",
+                    reason: "Short vowel sound requires double consonant.",
+                    questions: [
+                        { q: "Hot (Comparative)", a: "hotter" },
+                        { q: "Sad (Superlative)", a: "saddest" },
+                        { q: "Fat (Comparative)", a: "fatter" },
+                        { q: "Thin (Superlative)", a: "thinnest" },
+                        { q: "Wet (Comparative)", a: "wetter" },
+                        { q: "Red (Superlative)", a: "reddest" },
+                        { q: "Big (Comparative)", a: "bigger" },
+                        { q: "Dim (Superlative)", a: "dimmest" },
+                        { q: "Fit (Comparative)", a: "fitter" },
+                        { q: "Mad (Superlative)", a: "maddest" }
+                    ]
+                },
+                {
+                    id: "r5", title: "Rule 5: Two or more Syllables (Long Words)",
+                    expl: "Use 'More' for Comparative and 'Most' for Superlative.",
+                    hinglish: "Lambe words ke aage 'more' aur 'most' lagta hai.",
+                    form: "Beautiful → More beautiful → Most beautiful",
+                    mistake: "Beautifuler ❌ | More beautiful ✔",
+                    reason: "Word is too long for suffix.",
+                    questions: [
+                        { q: "Active (Comparative)", a: "more active" },
+                        { q: "Famous (Superlative)", a: "most famous" },
+                        { q: "Careful (Comparative)", a: "more careful" },
+                        { q: "Difficult (Superlative)", a: "most difficult" },
+                        { q: "Honest (Comparative)", a: "more honest" },
+                        { q: "Important (Superlative)", a: "most important" },
+                        { q: "Urgent (Comparative)", a: "more urgent" },
+                        { q: "Useful (Superlative)", a: "most useful" },
+                        { q: "Intelligent (Comparative)", a: "more intelligent" },
+                        { q: "Splendid (Superlative)", a: "most splendid" }
+                    ]
+                },
+                {
+                    id: "r6", title: "Rule 6: Irregular Adjectives",
+                    expl: "These do not follow any specific rule. You must memorize them.",
+                    hinglish: "Ye rules follow nahi karte, inhe yaad karna padega.",
+                    form: "Good → Better → Best",
+                    mistake: "Gooder ❌ | Better ✔",
+                    reason: "Irregular form.",
+                    questions: [
+                        { q: "Good/Well (Comparative)", a: "better" },
+                        { q: "Bad/Evil (Superlative)", a: "worst" },
+                        { q: "Little (Comparative)", a: "less" },
+                        { q: "Much (Superlative)", a: "most" },
+                        { q: "Far (Distance - Comp)", a: "farther" },
+                        { q: "Old (Family - Comp)", a: "elder" },
+                        { q: "Many (Comparative)", a: "more" },
+                        { q: "Bad (Comparative)", a: "worse" },
+                        { q: "Little (Superlative)", a: "least" },
+                        { q: "Late (Time - Superlative)", a: "latest" }
+                    ]
+                },
+                {
+                    id: "r7", title: "Rule 7: Use of 'Than' vs 'To'",
+                    expl: "Usually we use 'than' after comparative. But Latin adjectives (ending in -or) take 'to'.",
+                    hinglish: "Superior, Junior, Senior ke baad 'than' nahi 'to' lagta hai.",
+                    form: "Senior to, Junior to, Superior to",
+                    mistake: "He is senior than me ❌ | He is senior to me ✔",
+                    reason: "Latin comparatives take 'to'.",
+                    questions: [
+                        { q: "He is senior ______ me.", a: "to" },
+                        { q: "This cloth is superior ______ that.", a: "to" },
+                        { q: "I am older ______ you.", a: "than" },
+                        { q: "She is junior ______ the manager.", a: "to" },
+                        { q: "Iron is harder ______ gold.", a: "than" },
+                        { q: "He is inferior ______ his brother.", a: "to" },
+                        { q: "Prefer tea ______ coffee.", a: "to" },
+                        { q: "She is taller ______ her sister.", a: "than" },
+                        { q: "Prior ______ this event.", a: "to" },
+                        { q: "Better ______ nothing.", a: "than" }
+                    ]
+                },
+                {
+                    id: "r8", title: "Rule 8: Use of 'The' in Superlative",
+                    expl: "The definite article 'the' is mandatory before a superlative adjective.",
+                    hinglish: "Superlative degree ke pehle hamesha 'the' lagta hai.",
+                    form: "He is the best boy.",
+                    mistake: "He is best boy ❌ | He is the best boy ✔",
+                    reason: "Specific/Unique identification requires 'the'.",
+                    questions: [
+                        { q: "He is ______ best player.", a: "the" },
+                        { q: "This is the ______ book.", a: "best" },
+                        { q: "She is ______ most beautiful girl.", a: "the" },
+                        { q: "It was ______ darkest night.", a: "the" },
+                        { q: "Who is ______ tallest boy?", a: "the" },
+                        { q: "Russia is the ______ country.", a: "largest" },
+                        { q: "He is ______ worst singer.", a: "the" },
+                        { q: "January is ______ coldest month.", a: "the" },
+                        { q: "Iron is ______ most useful metal.", a: "the" },
+                        { q: "Everest is the ______ peak.", a: "highest" }
+                    ]
+                },
+                {
+                    id: "r9", title: "Rule 9: Comparative + Comparative (Parallel Increase)",
+                    expl: "Used to show that two things change together.",
+                    hinglish: "Jab do cheezein ek saath badhti ya ghat-ti hain.",
+                    form: "The + Comp, The + Comp",
+                    mistake: "Higher you go, cooler it is ❌ | The higher you go, the cooler it is ✔",
+                    reason: "Requires 'The' on both sides.",
+                    questions: [
+                        { q: "The more you study, the ______ you learn.", a: "more" },
+                        { q: "The higher you go, the ______ (cool) it is.", a: "cooler" },
+                        { q: "The ______ (soon), the better.", a: "sooner" },
+                        { q: "The older he gets, the ______ (wise) he becomes.", a: "wiser" },
+                        { q: "The more you get, the ______ you want.", a: "more" },
+                        { q: "The harder you work, the ______ (fast) you succeed.", a: "faster" },
+                        { q: "The ______ (less) you speak, the better.", a: "less" },
+                        { q: "The ______ (great) the risk, the greater the glory.", a: "greater" },
+                        { q: "The ______ (early) you start, the sooner you finish.", a: "earlier" },
+                        { q: "The deeper the well, the ______ (cool) the water.", a: "cooler" }
+                    ]
+                },
+                {
+                    id: "r10", title: "Rule 10: Double Comparison Errors",
+                    expl: "Never use two comparatives or two superlatives together.",
+                    hinglish: "Do baar comparative mat lagao (More better galat hai).",
+                    form: "More better ❌ | Better ✔",
+                    mistake: "He is more wiser ❌",
+                    reason: "Redundancy.",
+                    questions: [
+                        { q: "He is ______ (more wiser/wiser) than you.", a: "wiser" },
+                        { q: "This is ______ (most best/best).", a: "best" },
+                        { q: "She is ______ (more prettier/prettier).", a: "prettier" },
+                        { q: "It is ______ (more hot/hotter) today.", a: "hotter" },
+                        { q: "He is ______ (more stronger/stronger).", a: "stronger" },
+                        { q: "Choose the ______ (most easiest/easiest) way.", a: "easiest" },
+                        { q: "He is ______ (more taller/taller).", a: "taller" },
+                        { q: "That was the ______ (most worst/worst) day.", a: "worst" },
+                        { q: "I am ______ (more happier/happier).", a: "happier" },
+                        { q: "This is ______ (more cheaper/cheaper).", a: "cheaper" }
+                    ]
+                },
+                {
+                    id: "r11", title: "Rule 11: Absolute Adjectives (No Comparison)",
+                    expl: "Words like unique, perfect, dead, round cannot be compared.",
+                    hinglish: "Ye shabd apne aap me poore hote hain, inka comparative/superlative nahi hota.",
+                    form: "Most unique ❌ | Unique ✔",
+                    mistake: "This is the most unique idea ❌",
+                    reason: "Unique implies one of a kind, can't be 'more' unique.",
+                    questions: [
+                        { q: "This is a ______ (more unique/unique) idea.", a: "unique" },
+                        { q: "He is completely ______ (deader/dead).", a: "dead" },
+                        { q: "This shape is ______ (more round/round).", a: "round" },
+                        { q: "It is a ______ (most perfect/perfect) match.", a: "perfect" },
+                        { q: "The glass is ______ (fuller/full).", a: "full" },
+                        { q: "The box is ______ (emptier/empty).", a: "empty" },
+                        { q: "This is ______ (more universal/universal).", a: "universal" },
+                        { q: "It is ______ (more impossible/impossible).", a: "impossible" },
+                        { q: "The chief is ______ (more supreme/supreme).", a: "supreme" },
+                        { q: "The design is ______ (more triangular/triangular).", a: "triangular" }
+                    ]
+                },
+                {
+                    id: "r12", title: "Rule 12: Comparison with Same Category",
+                    expl: "Compare things of the same class. Use 'that of' or 'those of'.",
+                    hinglish: "Mumbai ki population ki tulna Delhi se nahi, Delhi ki population se hogi.",
+                    form: "Population of A is greater than that of B.",
+                    mistake: "The climate of Goa is better than Mumbai ❌ (compares climate to city)",
+                    reason: "Must compare Climate to Climate.",
+                    questions: [
+                        { q: "The climate of Pune is better than ______ of Mumbai.", a: "that" },
+                        { q: "The streets of London are wider than ______ of Delhi.", a: "those" },
+                        { q: "My car is better than ______ (Ram/Ram's).", a: "ram's" },
+                        { q: "The people of Japan are wiser than ______ of America.", a: "those" },
+                        { q: "Gold of Kolar is purer than ______ of Dubai.", a: "that" },
+                        { q: "His house is bigger than ______ (my/mine).", a: "mine" },
+                        { q: "The scenery of Kashmir is better than ______ of Shimla.", a: "that" },
+                        { q: "The legs of a deer are thinner than ______ of a lion.", a: "those" },
+                        { q: "Her dress is newer than ______ (you/yours).", a: "yours" },
+                        { q: "The roads here are better than ______ of Bihar.", a: "those" }
+                    ]
+                },
+                {
+                    id: "r13", title: "Rule 13: 'One of the' Rule",
+                    expl: "After 'One of the', the adjective is Superlative and Noun is Plural.",
+                    hinglish: "'One of the' ke baad Noun hamesha plural (bahuvachan) aata hai.",
+                    form: "One of the + Superlative + Plural Noun",
+                    mistake: "One of the best boy ❌ | One of the best boys ✔",
+                    reason: "Selection is made from a group.",
+                    questions: [
+                        { q: "He is one of the best ______ (boy/boys).", a: "boys" },
+                        { q: "Ashoka was one of the greatest ______ (king/kings).", a: "kings" },
+                        { q: "This is one of the ______ (old/oldest) buildings.", a: "oldest" },
+                        { q: "It is one of the most useful ______ (metal/metals).", a: "metals" },
+                        { q: "She is one of the wisest ______ (girl/girls).", a: "girls" },
+                        { q: "Mumbai is one of the biggest ______ (city/cities).", a: "cities" },
+                        { q: "This is one of the ______ (rare/rarest) coins.", a: "rarest" },
+                        { q: "He is one of my best ______ (friend/friends).", a: "friends" },
+                        { q: "One of the ______ (tall/tallest) trees.", a: "tallest" },
+                        { q: "One of the most famous ______ (actor/actors).", a: "actors" }
+                    ]
+                }
+            ],
+            mega: {
+                title: "Degrees of Comparison – Mega Practice",
+                questions: [
+                    { q: "Lead is the ______ (heavy) of all metals.", a: "heaviest" },
+                    { q: "He is ______ (strong) than his brother.", a: "stronger" },
+                    { q: "She is ______ (intelligent) than beautiful.", a: "more intelligent" },
+                    { q: "The pen is ______ (mighty) than the sword.", a: "mightier" },
+                    { q: "Prevention is ______ (good) than cure.", a: "better" },
+                    { q: "Who is the ______ (rich) man in the world?", a: "richest" },
+                    { q: "My horse is ______ (fast) than yours.", a: "faster" },
+                    { q: "This is the ______ (bad) movie I have seen.", a: "worst" },
+                    { q: "Iron is ______ (useful) than copper.", a: "more useful" },
+                    { q: "He is senior ______ me.", a: "to" },
+                    { q: "Milk is preferable ______ tea.", a: "to" },
+                    { q: "This is the ______ (old) church in the town.", a: "oldest" },
+                    { q: "He is the ______ (lazy) boy in class.", a: "laziest" },
+                    { q: "No other metal is as ______ (heavy) as lead.", a: "heavy" },
+                    { q: "Very few cities are as ______ (big) as Mumbai.", a: "big" },
+                    { q: "The higher you go, the ______ (cold) it gets.", a: "colder" },
+                    { q: "Death is preferable ______ dishonour.", a: "to" },
+                    { q: "She is the ______ (clever) of the two sisters.", a: "cleverer" }, 
+                    { q: "This is a ______ (unique) opportunity.", a: "unique" },
+                    { q: "The climate of Ranchi is better than ______ of Patna.", a: "that" },
+                    { q: "Shakespeare is the ______ (great) dramatist.", a: "greatest" },
+                    { q: "Your plan is ______ (good) than mine.", a: "better" },
+                    { q: "He is ______ (bad) than you think.", a: "worse" },
+                    { q: "Hunger is the ______ (good) sauce.", a: "best" },
+                    { q: "Diamond is the ______ (hard) substance.", a: "hardest" },
+                    { q: "Of the two boys, he is the ______ (good).", a: "better" },
+                    { q: "The ______ (much), the merrier.", a: "more" },
+                    { q: "He is ______ (wealthy) than wise.", a: "wealthier" },
+                    { q: "This is the ______ (least/less) I can do.", a: "least" },
+                    { q: "She is ______ (happy) than her sister.", a: "happier" },
+                    { q: "Australia is the ______ (large) island.", a: "largest" },
+                    { q: "A live ass is ______ (strong) than a dead lion.", a: "stronger" },
+                    { q: "It is ______ (easy) to preach than to practice.", a: "easier" },
+                    { q: "Health is ______ (precious) than wealth.", a: "more precious" },
+                    { q: "Is your father ______ (well) today?", a: "better" },
+                    { q: "There is ______ (little) hope of his recovery.", a: "little" },
+                    { q: "He has ______ (much) money than brains.", a: "more" },
+                    { q: "The ______ (late) news is good.", a: "latest" },
+                    { q: "He is my ______ (old) brother.", a: "elder" },
+                    { q: "Kolkata is ______ (far) from Delhi than Patna.", a: "farther" },
+                    { q: "Choose the ______ (correct) answer.", a: "correct" },
+                    { q: "The air in the hills is ______ (pure) than in the city.", a: "purer" },
+                    { q: "Silver is ______ (cheap) than gold.", a: "cheaper" },
+                    { q: "The Pacific is the ______ (deep) ocean.", a: "deepest" },
+                    { q: "This fabric is inferior ______ that one.", a: "to" },
+                    { q: "He is the ______ (able) man for the job.", a: "ablest" },
+                    { q: "The condition is becoming ______ (bad) and ______ (bad).", a: "worse and worse" },
+                    { q: "This is the ______ (hot) month of the year.", a: "hottest" },
+                    { q: "Ravi is ______ (polite) than Raju.", a: "more polite" },
+                    { q: "This is the ______ (perfect) example.", a: "perfect" }
+                ]
+            }
+        };
+
+        // --- STATE MANAGEMENT ---
+        let state = {
+            total: 0,
+            correct: 0,
+            wrong: 0
+        };
+
+        // --- DOM ELEMENTS ---
+        const main = document.getElementById('main-content');
+        const scoreTotal = document.getElementById('total-count');
+        const scoreCorrect = document.getElementById('correct-count');
+        const scoreWrong = document.getElementById('wrong-count');
+        const scorePercent = document.getElementById('score-percent');
+
+        // --- RENDER FUNCTIONS ---
+        function renderPage() {
+            let html = '';
+
+            // 1. Intro
+            html += `<div class="card">
+                        <h2>${contentData.intro.title}</h2>
+                        ${contentData.intro.content}
+                     </div>`;
+
+            // 2. Types Accordion Section
+            html += `<div class="card"><h2>Types of Degrees</h2>`;
+            contentData.types.forEach((type, index) => {
+                html += `
+                    <button class="accordion">${type.title}</button>
+                    <div class="panel">
+                        <div class="panel-content">
+                            <p>${type.desc}</p>
+                            <div class="hinglish"><strong>Hinglish:</strong> ${type.hinglish}</div>
+                            <div class="formula"><strong>Structure:</strong> ${type.struct}</div>
+                            <div class="example-box"><strong>Example:</strong> ${type.ex}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+
+            // 3. Rules Accordion Section
+            html += `<div class="card"><h2>Rules of Comparison</h2>`;
+            contentData.rules.forEach((rule, rIndex) => {
+                html += `
+                    <button class="accordion">${rule.title}</button>
+                    <div class="panel">
+                        <div class="panel-content">
+                            <p><strong>Rule:</strong> ${rule.expl}</p>
+                            <div class="hinglish"><strong>Hinglish:</strong> ${rule.hinglish}</div>
+                            <div class="formula">${rule.form}</div>
+                            
+                            <div style="margin: 15px 0;">
+                                <p><strong>Common Mistake:</strong></p>
+                                <p><span class="badge bg-red">Wrong</span> ${rule.mistake}</p>
+                                <p><span class="badge bg-blue">Reason</span> ${rule.reason}</p>
+                            </div>
+
+                            <div class="quiz-container">
+                                <h3>Practice Exercise</h3>
+                                ${renderQuestions(rule.questions, `r${rIndex}`)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+
+            // 4. Mega Practice
+            html += `<div class="card">
+                        <h2>${contentData.mega.title}</h2>
+                        <p>Test your knowledge with mixed questions from all rules.</p>
+                        <div class="quiz-container">
+                            ${renderQuestions(contentData.mega.questions, 'mega')}
+                        </div>
+                     </div>`;
+
+            main.innerHTML = html;
+            attachEventListeners();
+        }
+
+        function renderQuestions(questions, prefix) {
+            return questions.map((q, i) => {
+                const qId = `${prefix}-q${i}`;
+                const hint = q.hint ? `<br><small style="color: #666">(${q.hint})</small>` : '';
+                return `
+                    <div class="q-item">
+                        <div class="q-text">${i + 1}. ${q.q} ${hint}</div>
+                        <div style="display:flex; flex-wrap:wrap; align-items:center;">
+                            <input type="text" class="q-input" id="in-${qId}" placeholder="Type answer here...">
+                            <button class="btn-check" onclick="checkAnswer('${qId}', '${q.a.replace(/'/g, "\\'")}')">Check</button>
+                        </div>
+                        <div class="feedback" id="fb-${qId}"></div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // --- INTERACTION LOGIC ---
+        function attachEventListeners() {
+            // Accordions
+            const acc = document.getElementsByClassName("accordion");
+            for (let i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+            }
+        }
+
+        // --- GAME LOGIC ---
+        window.checkAnswer = function(id, correctAns) {
+            const input = document.getElementById(`in-${id}`);
+            const btn = input.nextElementSibling;
+            const feedback = document.getElementById(`fb-${id}`);
+            
+            // Normalize
+            const userAns = input.value.trim().toLowerCase();
+            const validAns = correctAns.toLowerCase();
+
+            // Prevent empty checks
+            if(!userAns) return;
+
+            // Logic
+            state.total++;
+            
+            if (userAns === validAns) {
+                state.correct++;
+                feedback.className = "feedback correct";
+                feedback.innerHTML = `<strong>✔ Correct!</strong> Well done.`;
+            } else {
+                state.wrong++;
+                feedback.className = "feedback wrong";
+                feedback.innerHTML = `<strong>❌ Wrong.</strong> The correct answer is: <strong>${correctAns}</strong>`;
+            }
+
+            // Update UI
+            input.disabled = true;
+            btn.disabled = true;
+            btn.innerText = "Checked";
+            updateScoreboard();
+        };
+
+        function updateScoreboard() {
+            scoreTotal.innerText = state.total;
+            scoreCorrect.innerText = state.correct;
+            scoreWrong.innerText = state.wrong;
+            
+            const percent = state.total === 0 ? 0 : Math.round((state.correct / state.total) * 100);
+            scorePercent.innerText = percent + "%";
+            
+            if(percent >= 80) scorePercent.style.color = "var(--success)";
+            else if(percent >= 50) scorePercent.style.color = "var(--accent-hover)";
+            else scorePercent.style.color = "var(--error)";
+        }
+
+        // --- INIT ---
+        renderPage();
+
+    </script>
+</body>
+</html>
