@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerund & Infinitive | Grammar Learning Hub</title>
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --primary: #003366; /* Deep Blue */
+            --primary-light: #004d99;
+            --accent: #FFD700; /* Gold */
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --bg-light: #f4f7f6;
+            --success: #28a745;
+            --success-bg: #d4edda;
+            --error: #dc3545;
+            --error-bg: #f8d7da;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        /* --- FIXED SCORE PANEL --- */
+        .score-panel {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-left: 5px solid var(--accent);
+            backdrop-filter: blur(5px);
+            font-size: 0.85rem;
+            min-width: 150px;
+        }
+
+        .score-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .score-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .score-item span { display: block; font-weight: bold; font-size: 1.1rem; }
+        .score-item small { font-size: 0.65rem; color: #666; text-transform: uppercase; }
+
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #001f3f 100%);
+            color: var(--text-light);
+            padding: 50px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- CONTAINER & CARDS --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--card-shadow);
+            border-top: 4px solid var(--primary);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--primary-light);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* --- EXPLANATION BOXES --- */
+        .highlight-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .hinglish-box {
+            background: #fff3cd;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .hinglish-box::before {
+            content: "💡 Hinglish: ";
+            font-weight: bold;
+            color: #856404;
+        }
+
+        /* --- TABLES --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: var(--primary); color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+
+        .mistake-table .wrong { color: var(--error); text-decoration: line-through; }
+        .mistake-table .correct { color: var(--success); font-weight: bold; }
+
+        /* --- ACCORDION --- */
+        .accordion-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .accordion-header {
+            background: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover { background: #f8f9fa; }
+        .accordion-header.active {
+            background: #f0f4f8;
+            color: var(--primary);
+            border-left: 5px solid var(--accent);
+        }
+
+        .accordion-header::after { content: '+'; font-size: 1.5rem; font-weight: bold; }
+        .accordion-header.active::after { content: '-'; }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+            background: #fff;
+        }
+
+        .accordion-inner { padding: 20px 0; border-top: 1px solid #eee; }
+
+        /* --- QUIZ STYLES --- */
+        .quiz-container {
+            background: #fafafa;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .question-block {
+            background: white;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .quiz-input-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .quiz-input {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            flex-grow: 1;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .quiz-input:focus { border-color: var(--primary); outline: none; }
+
+        .check-btn {
+            padding: 8px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+        .check-btn:hover { background: var(--accent); color: var(--text-dark); }
+        .check-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        .feedback.success { display: block; background: var(--success-bg); color: #155724; border-left: 4px solid var(--success); }
+        .feedback.error { display: block; background: var(--error-bg); color: #721c24; border-left: 4px solid var(--error); }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #222;
+            color: #aaa;
+            margin-top: 50px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .back-btn:hover { background: var(--accent); color: #000; }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .quiz-input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="score-panel">
+        <div class="score-title">Live Score</div>
+        <div class="score-grid">
+            <div class="score-item" style="color: var(--success);">
+                <span id="score-correct">0</span> <small>Correct</small>
+            </div>
+            <div class="score-item" style="color: var(--error);">
+                <span id="score-wrong">0</span> <small>Wrong</small>
+            </div>
+            <div class="score-item" style="color: #333;">
+                <span id="score-percent">0%</span> <small>Score</small>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <h1>Gerund & Infinitive</h1>
+            <p>Master the confusing world of V+ing vs To+V1</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>1. Introduction</h2>
+            <div class="highlight-box">
+                <strong>What is the difference?</strong><br>
+                Both look like verbs, but they act like NOUNS.
+                <br>• <strong>Gerund:</strong> Verb + ing (e.g., <em>Swimming</em> is fun.)
+                <br>• <strong>Infinitive:</strong> To + Verb (e.g., I want <em>to swim</em>.)
+            </div>
+            
+            <div class="hinglish-box">
+                Dono ka matlab hindi mein 'Na' se khatam hota hai (Tairna, Khana, Sona). 
+                Lekin English mein kab 'Ing' lagana hai aur kab 'To' lagana hai, iske rules hote hain.
+            </div>
+
+            <h3>Simple Examples:</h3>
+            <ul>
+                <li><strong>Gerund:</strong> <em>Reading</em> books is my hobby. (Subject)</li>
+                <li><strong>Infinitive:</strong> I like <em>to read</em> books. (Object)</li>
+                <li><strong>Gerund:</strong> He started <em>crying</em>.</li>
+                <li><strong>Infinitive:</strong> He decided <em>to cry</em>.</li>
+            </ul>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header">2️⃣ GERUND (Verb + ing as Noun)</div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <h3>Definition</h3>
+                    <p>A Gerund is a verb ending in <strong>-ing</strong> that functions as a <strong>Noun</strong>.</p>
+                    <div class="hinglish-box">
+                        Jab koi Verb sentence mein Noun ka kaam kare (Subject ya Object ban jaye), use Gerund kehte hain.
+                    </div>
+
+                    <h3>Verbs followed by Gerund (Memorize This!)</h3>
+                    <p>If you use a verb after these words, it MUST be a Gerund:</p>
+                    <table>
+                        <tr>
+                            <td>Admit</td><td>Avoid</td><td>Consider</td><td>Deny</td>
+                        </tr>
+                        <tr>
+                            <td>Enjoy</td><td>Finish</td><td>Keep</td><td>Mind</td>
+                        </tr>
+                        <tr>
+                            <td>Miss</td><td>Practice</td><td>Quit</td><td>Suggest</td>
+                        </tr>
+                        <tr>
+                            <td>Stop (cease)</td><td>Recommend</td><td>Risk</td><td>Postpone</td>
+                        </tr>
+                    </table>
+
+                    <h3>Examples:</h3>
+                    <ul>
+                        <li>I <strong>enjoy playing</strong> cricket. (Not 'to play')</li>
+                        <li>He <strong>avoided talking</strong> to her.</li>
+                        <li>Would you <strong>mind opening</strong> the window?</li>
+                        <li>She <strong>suggested going</strong> for a movie.</li>
+                    </ul>
+
+                    <h3>Prepositions + Gerund</h3>
+                    <p>After any preposition (in, on, at, of, for, about, without), always use Gerund.</p>
+                    <ul>
+                        <li>He is good <strong>at swimming</strong>.</li>
+                        <li>Thank you <strong>for coming</strong>.</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header">3️⃣ INFINITIVE (To + V1)</div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <h3>Definition</h3>
+                    <p>The Infinitive is the base form of a verb, usually preceded by 'to'. It shows purpose or intention.</p>
+                    <div class="hinglish-box">
+                        Jab hum future ka plan, iccha (desire), ya purpose batate hain, tab Infinitive use hota hai.
+                    </div>
+
+                    <h3>Verbs followed by Infinitive</h3>
+                    <table>
+                        <tr>
+                            <td>Agree</td><td>Appear</td><td>Choose</td><td>Decide</td>
+                        </tr>
+                        <tr>
+                            <td>Expect</td><td>Hope</td><td>Learn</td><td>Manage</td>
+                        </tr>
+                        <tr>
+                            <td>Offer</td><td>Plan</td><td>Promise</td><td>Refuse</td>
+                        </tr>
+                        <tr>
+                            <td>Seem</td><td>Want</td><td>Wish</td><td>Would like</td>
+                        </tr>
+                    </table>
+
+                    <h3>Examples:</h3>
+                    <ul>
+                        <li>I <strong>want to go</strong> home.</li>
+                        <li>She <strong>promised to help</strong> me.</li>
+                        <li>We <strong>decided to buy</strong> a car.</li>
+                    </ul>
+
+                    <h3>Infinitive of Purpose</h3>
+                    <p>Use 'to' to answer 'Why?'.</p>
+                    <ul>
+                        <li>I went to the shop <strong>to buy</strong> milk. (Why did I go?)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header">4️⃣ GERUND vs INFINITIVE (Tricky Cases)</div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <p>Some verbs can take BOTH, but the meaning changes completely.</p>
+                    
+                    <h3>1. STOP</h3>
+                    <table class="mistake-table">
+                        <tr>
+                            <th>Stop + Gerund (V-ing)</th>
+                            <th>Stop + Infinitive (To V1)</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Stop an activity forever/temporarily.</strong></td>
+                            <td><strong>Stop doing something else TO do this.</strong></td>
+                        </tr>
+                        <tr>
+                            <td>He <em>stopped smoking</em>.<br>(Usne cigarette peena chhod diya)</td>
+                            <td>He <em>stopped to smoke</em>.<br>(Wo cigarette peene ke liye ruka)</td>
+                        </tr>
+                    </table>
+
+                    <h3>2. REMEMBER</h3>
+                    <table class="mistake-table">
+                        <tr>
+                            <th>Remember + Gerund</th>
+                            <th>Remember + Infinitive</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Recall a past memory.</strong></td>
+                            <td><strong>Don't forget a task (Future).</strong></td>
+                        </tr>
+                        <tr>
+                            <td>I <em>remember locking</em> the door.<br>(Mujhe yaad hai maine lock kiya tha)</td>
+                            <td><em>Remember to lock</em> the door.<br>(Lock karna yaad rakhna)</td>
+                        </tr>
+                    </table>
+
+                    <h3>3. FORGET</h3>
+                    <ul>
+                        <li><strong>Forget doing:</strong> Forget a past event. (I'll never forget meeting you.)</li>
+                        <li><strong>Forget to do:</strong> Forget a duty. (Don't forget to call me.)</li>
+                    </ul>
+
+                    <h3>4. TRY</h3>
+                    <ul>
+                        <li><strong>Try doing:</strong> Experiment/Method (Try restarting your phone).</li>
+                        <li><strong>Try to do:</strong> Effort/Attempt (I tried to lift the box, but it was heavy).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Practice Zone</h2>
+            <p>Select a category to load questions. Answer correctly to boost your score.</p>
+            
+            <div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
+                <button class="check-btn" onclick="loadQuiz('gerund')">🟢 Gerund Practice (40)</button>
+                <button class="check-btn" onclick="loadQuiz('infinitive')">🔵 Infinitive Practice (40)</button>
+                <button class="check-btn" onclick="loadQuiz('comparison')">🔴 Tricky Comparison (40)</button>
+                <button class="check-btn" onclick="loadQuiz('mixed')">🟣 Mixed Drill (60)</button>
+                <button class="check-btn" style="background:var(--accent); color:black;" onclick="loadQuiz('mega')">🏆 MEGA TEST (100)</button>
+            </div>
+
+            <div id="quiz-area" class="quiz-container">
+                <p style="text-align:center; color:#666;">Select a button above to start practicing.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Grammar Learning Hub &copy; 2024</p>
+        <p>Created by <strong>Shrishant Yadav</strong></p>
+        <p style="font-size: 0.8rem; margin-top: 5px;">Education Purpose Only</p>
+        <a href="index.html" class="back-btn">← Back to Index</a>
+    </footer>
+
+    <script>
+        /* --- ACCORDION --- */
+        const accordions = document.querySelectorAll('.accordion-header');
+        accordions.forEach(acc => {
+            acc.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        /* --- SCORE SYSTEM --- */
+        const score = { correct: 0, wrong: 0, total: 0 };
+        
+        function updateScore(isCorrect) {
+            score.total++;
+            if (isCorrect) score.correct++;
+            else score.wrong++;
+
+            document.getElementById('score-correct').innerText = score.correct;
+            document.getElementById('score-wrong').innerText = score.wrong;
+            const percent = Math.round((score.correct / score.total) * 100);
+            document.getElementById('score-percent').innerText = isNaN(percent) ? '0%' : percent + '%';
+        }
+
+        /* --- QUESTION BANK --- */
+        // We will generate the questions dynamically based on types to ensure high volume without file bloat.
+        
+        const gerundVerbs = ["enjoy", "avoid", "finish", "mind", "keep", "suggest", "miss", "practice", "deny", "admit", "consider", "risk", "quit", "recommend"];
+        const infinitiveVerbs = ["want", "decide", "hope", "plan", "promise", "refuse", "agree", "offer", "learn", "manage", "deserve", "afford", "threaten"];
+        const prepositions = ["of", "for", "about", "in", "at", "without", "before", "after"];
+        
+        const gActions = ["playing", "eating", "reading", "going", "swimming", "dancing", "cooking", "smoking", "running", "writing"];
+        const iActions = ["to play", "to eat", "to read", "to go", "to swim", "to dance", "to cook", "to smoke", "to run", "to write"];
+
+        function generateQuestions(type, count) {
+            let qArray = [];
+            
+            for(let i=0; i<count; i++) {
+                let qObj = {};
+                
+                if (type === 'gerund') {
+                    const verb = gerundVerbs[Math.floor(Math.random() * gerundVerbs.length)];
+                    const actionBase = gActions[Math.floor(Math.random() * gActions.length)]; 
+                    // actionBase is already Ving e.g., 'playing'
+                    const rootVerb = actionBase.replace('ing', '').replace('mm', 'm').replace('nn', 'n').replace('tt', 't'); 
+                    // Simple logic to show root in bracket. e.g. (play)
+                    
+                    qObj.q = `I ${verb} ____ (${rootVerb.replace('e', '')}).`; // Simple heuristics
+                    // Override heuristic for cleaner UI text
+                    const cleanRoot = actionBase.endsWith('ing') ? actionBase.slice(0, -3) : actionBase;
+                    qObj.q = `He ${verb}s ____ (${cleanRoot}).`;
+                    qObj.a = actionBase;
+                    qObj.exp = `'${verb}' is always followed by a Gerund (V-ing).`;
+                } 
+                else if (type === 'infinitive') {
+                    const verb = infinitiveVerbs[Math.floor(Math.random() * infinitiveVerbs.length)];
+                    const actionBase = iActions[Math.floor(Math.random() * iActions.length)];
+                    const cleanRoot = actionBase.replace('to ', '');
+                    
+                    qObj.q = `They ${verb} ____ (${cleanRoot}).`;
+                    qObj.a = actionBase;
+                    qObj.exp = `'${verb}' is followed by an Infinitive (to + V1).`;
+                }
+                else if (type === 'comparison') {
+                    // Tricky ones
+                    const scenarios = [
+                        {q: "I stopped ____ (smoke) because it is unhealthy.", a: "smoking", exp: "Stopped the habit forever = Gerund."},
+                        {q: "I stopped ____ (smoke) a cigarette on my way home.", a: "to smoke", exp: "Stopped in order to do something = Infinitive."},
+                        {q: "Remember ____ (lock) the door when you leave.", a: "to lock", exp: "Future duty = Remember + Infinitive."},
+                        {q: "I remember ____ (lock) the door; I have the key.", a: "locking", exp: "Past memory = Remember + Gerund."},
+                        {q: "He forgot ____ (bring) his passport and missed the flight.", a: "to bring", exp: "Forgot a duty = Infinitive."},
+                        {q: "I tried ____ (open) the window but it was stuck.", a: "to open", exp: "Attempted effort = Try + Infinitive."},
+                        {q: "If the key doesn't work, try ____ (open) it with a card.", a: "opening", exp: "Experiment/Method = Try + Gerund."},
+                        {q: "I regret ____ (tell) you that you failed.", a: "to tell", exp: "Regret to inform (formal/bad news) = Infinitive."},
+                        {q: "I regret ____ (tell) him my secret.", a: "telling", exp: "Regret a past action = Gerund."}
+                    ];
+                    qObj = scenarios[i % scenarios.length]; // Cycle through defined tricky ones
+                }
+                
+                // Add unique ID
+                qObj.id = type + i;
+                qArray.push(qObj);
+            }
+            return qArray;
+        }
+
+        // Hardcoded Questions for better quality in specific sections (replacing some generated ones)
+        const staticGerundQ = [
+            {q: "Do you mind ____ (wait) a moment?", a: "waiting", exp: "Mind takes Gerund."},
+            {q: "He gave up ____ (smoke) years ago.", a: "smoking", exp: "Give up (prepositional phrase) takes Gerund."},
+            {q: "It is no use ____ (crying) over spilt milk.", a: "crying", exp: "'It is no use' phrase takes Gerund."},
+            {q: "She is fond of ____ (dance).", a: "dancing", exp: "Preposition 'of' takes Gerund."},
+            {q: "Avoid ____ (make) silly mistakes.", a: "making", exp: "Avoid takes Gerund."},
+            {q: "I look forward to ____ (meet) you.", a: "meeting", exp: "'Look forward to' is a phrase that takes Gerund."},
+            {q: "He kept ____ (talk) during the movie.", a: "talking", exp: "Keep takes Gerund."},
+            {q: "Practice ____ (speak) English daily.", a: "speaking", exp: "Practice takes Gerund."},
+            {q: "She left without ____ (say) goodbye.", a: "saying", exp: "Preposition 'without' takes Gerund."},
+            {q: "I enjoy ____ (listen) to music.", a: "listening", exp: "Enjoy takes Gerund."}
+        ];
+
+        const staticInfinitiveQ = [
+            {q: "I want ____ (go) home.", a: "to go", exp: "Want takes Infinitive."},
+            {q: "He refused ____ (help) us.", a: "to help", exp: "Refuse takes Infinitive."},
+            {q: "She decided ____ (marry) him.", a: "to marry", exp: "Decide takes Infinitive."},
+            {q: "I plan ____ (visit) London.", a: "to visit", exp: "Plan takes Infinitive."},
+            {q: "He promised ____ (come) early.", a: "to come", exp: "Promise takes Infinitive."},
+            {q: "I am happy ____ (see) you.", a: "to see", exp: "Adjective (happy) + Infinitive."},
+            {q: "It is easy ____ (learn) English.", a: "to learn", exp: "Adjective (easy) + Infinitive."},
+            {q: "He hopes ____ (pass) the exam.", a: "to pass", exp: "Hope takes Infinitive."},
+            {q: "I would like ____ (have) coffee.", a: "to have", exp: "Would like takes Infinitive."},
+            {q: "He went to the shop ____ (buy) bread.", a: "to buy", exp: "Infinitive of Purpose (Why?)."}
+        ];
+
+        /* --- RENDER QUIZ --- */
+        function loadQuiz(mode) {
+            const area = document.getElementById('quiz-area');
+            area.innerHTML = ""; // Clear existing
+
+            let questions = [];
+
+            if (mode === 'gerund') {
+                questions = [...staticGerundQ, ...generateQuestions('gerund', 30)]; // 10 static + 30 gen = 40
+            } else if (mode === 'infinitive') {
+                questions = [...staticInfinitiveQ, ...generateQuestions('infinitive', 30)]; // 10 static + 30 gen = 40
+            } else if (mode === 'comparison') {
+                questions = generateQuestions('comparison', 40); // Uses the cycle of tricky ones
+            } else if (mode === 'mixed') {
+                // Mix of all
+                const g = [...staticGerundQ, ...generateQuestions('gerund', 20)];
+                const i = [...staticInfinitiveQ, ...generateQuestions('infinitive', 20)];
+                questions = [...g, ...i].sort(() => 0.5 - Math.random()); // Shuffle
+            } else if (mode === 'mega') {
+                // 100 questions
+                 const g = [...staticGerundQ, ...generateQuestions('gerund', 40)];
+                const i = [...staticInfinitiveQ, ...generateQuestions('infinitive', 40)];
+                const c = generateQuestions('comparison', 20);
+                questions = [...g, ...i, ...c].sort(() => 0.5 - Math.random());
+            }
+
+            // Render Logic
+            const title = document.createElement('h3');
+            title.innerText = mode.toUpperCase() + " PRACTICE";
+            title.style.color = "var(--primary)";
+            title.style.marginBottom = "15px";
+            area.appendChild(title);
+
+            questions.forEach((item, index) => {
+                const block = document.createElement('div');
+                block.className = 'question-block';
+                
+                block.innerHTML = `
+                    <span class="question-text">${index + 1}. ${item.q}</span>
+                    <div class="quiz-input-group">
+                        <input type="text" class="quiz-input" placeholder="Type answer here...">
+                        <button class="check-btn" onclick="checkAnswer(this, '${item.a.replace(/'/g, "\\'")}', '${item.exp.replace(/'/g, "\\'")}')">Check</button>
+                    </div>
+                    <div class="feedback"></div>
+                `;
+                area.appendChild(block);
+            });
+        }
+
+        /* --- CHECK ANSWER --- */
+        function checkAnswer(btn, correctAns, explanation) {
+            const container = btn.parentElement;
+            const input = container.querySelector('.quiz-input');
+            const feedback = container.parentElement.querySelector('.feedback');
+            const userAns = input.value.trim().toLowerCase();
+            const validAns = correctAns.toLowerCase();
+
+            if (userAns === "") {
+                alert("Please type an answer.");
+                return;
+            }
+
+            // Disable controls
+            input.disabled = true;
+            btn.disabled = true;
+            btn.innerText = "Checked";
+
+            if (userAns === validAns) {
+                feedback.innerHTML = `<strong>✔ Correct!</strong><br>${explanation}`;
+                feedback.className = "feedback success";
+                updateScore(true);
+            } else {
+                feedback.innerHTML = `<strong>❌ Wrong!</strong><br>Correct Answer: <strong>${correctAns}</strong><br>Reason: ${explanation}`;
+                feedback.className = "feedback error";
+                updateScore(false);
+            }
+        }
+
+    </script>
+</body>
+</html>

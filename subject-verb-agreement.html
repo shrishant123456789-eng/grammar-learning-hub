@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject–Verb Agreement | Grammar Learning Hub</title>
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --primary: #0f172a;       /* Deep Blue */
+            --primary-light: #1e293b;
+            --accent: #f59e0b;        /* Gold */
+            --text-light: #f8fafc;
+            --text-dark: #334155;
+            --bg-light: #f1f5f9;
+            --success: #22c55e;
+            --error: #ef4444;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* --- STICKY SCOREBOARD --- */
+        .score-panel {
+            position: sticky;
+            top: 0;
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 12px 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+        }
+
+        .score-item span {
+            font-weight: bold;
+            color: var(--accent);
+            margin-left: 5px;
+            font-size: 1.1rem;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* --- CONTAINER --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* --- CARDS & TYPOGRAPHY --- */
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            border-left: 5px solid var(--accent);
+        }
+
+        h2.section-title {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            font-size: 1.8rem;
+        }
+
+        h3 { color: var(--primary); margin: 15px 0 5px; }
+
+        .hinglish-box {
+            background-color: #fffbeb;
+            border: 1px solid #fcd34d;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            color: #92400e;
+            font-weight: 500;
+        }
+
+        .rule-box {
+            background-color: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        /* --- ACCORDION --- */
+        .accordion-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e2e8f0;
+        }
+
+        .accordion-header {
+            background: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+            border-left: 6px solid var(--primary);
+        }
+
+        .accordion-header:hover { background: #f1f5f9; }
+
+        .accordion-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: var(--accent);
+        }
+
+        .accordion-header.active .icon { transform: rotate(180deg); }
+        .accordion-header.active { background: #f8fafc; }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: white;
+        }
+
+        .accordion-content {
+            padding: 25px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* --- MISTAKES GRID --- */
+        .mistake-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        @media (min-width: 768px) { .mistake-grid { grid-template-columns: 1fr 1fr; } }
+        
+        .mistake-card { padding: 15px; border-radius: 6px; font-size: 0.95rem; }
+        .wrong { background: #fef2f2; border-left: 4px solid var(--error); }
+        .correct { background: #f0fdf4; border-left: 4px solid var(--success); }
+
+        /* --- QUIZ UI --- */
+        .quiz-wrapper {
+            margin-top: 30px;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .quiz-header {
+            text-align: center;
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .q-text { font-weight: 600; margin-bottom: 15px; display: block; }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .opt-btn {
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .opt-btn:hover:not(:disabled) { border-color: var(--primary); background: #f1f5f9; }
+        .opt-btn.correct-ans { background: var(--success); color: white; border-color: var(--success); }
+        .opt-btn.wrong-ans { background: var(--error); color: white; border-color: var(--error); }
+        .opt-btn:disabled { cursor: not-allowed; opacity: 0.9; }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            display: none;
+        }
+        .feedback.show { display: block; animation: fadeIn 0.3s; }
+        .fb-success { background: #dcfce7; color: #14532d; }
+        .fb-error { background: #fee2e2; color: #7f1d1d; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- MEGA PRACTICE --- */
+        .mega-section {
+            margin-top: 50px;
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            border-top: 8px solid var(--accent);
+            box-shadow: var(--card-shadow);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .back-btn:hover { transform: translateY(-3px); }
+
+    </style>
+</head>
+<body>
+
+    <div class="score-panel">
+        <div class="score-item">Attempted: <span id="s-attempted">0</span></div>
+        <div class="score-item">Correct: <span id="s-correct">0</span></div>
+        <div class="score-item">Wrong: <span id="s-wrong">0</span></div>
+        <div class="score-item">Score: <span id="s-percent">0%</span></div>
+    </div>
+
+    <header>
+        <h1>Subject–Verb Agreement</h1>
+        <p>Grammar Learning Hub</p>
+    </header>
+
+    <div class="container">
+
+        <section class="card">
+            <h2 class="section-title">Introduction</h2>
+            <p><strong>Subject–Verb Agreement</strong> means that the subject and the verb must match each other in number (singular or plural).</p>
+            <div class="rule-box">
+                <strong>The Golden Rule:</strong><br>
+                Singular Subject → Singular Verb (is, was, has, plays)<br>
+                Plural Subject → Plural Verb (are, were, have, play)
+            </div>
+            <div class="hinglish-box">
+                📌 <strong>Hinglish:</strong> Agar Subject ek hai (Singular), toh Verb bhi singular hoga. Agar Subject ek se zyada hai (Plural), toh Verb bhi plural hoga.
+            </div>
+        </section>
+
+        <h2 class="section-title">Rules of Agreement</h2>
+        <div id="accordion-container"></div> <section class="mega-section">
+            <h2 class="section-title">🎓 Mega Practice (50 Questions)</h2>
+            <p>Test your knowledge across all 18 rules.</p>
+            <div id="mega-quiz-container"></div>
+        </section>
+
+    </div>
+
+    <footer>
+        <h3>Grammar Learning Hub</h3>
+        <p>Created by <strong>Shrishant Yadav</strong></p>
+        <p style="font-size: 0.8rem; opacity: 0.8;">Education Purpose Only</p>
+        <a href="index.html" class="back-btn">← Back to Home</a>
+    </footer>
+
+    <script>
+        // --- CONTENT DATA ---
+        const rulesData = [
+            {
+                id: 1,
+                title: "1. Singular Subject → Singular Verb",
+                content: "A singular subject (one person or thing) takes a singular verb.",
+                hinglish: "Jab Subject akela ho, toh Verb singular (s wala, jaise is, has, plays) use karo.",
+                mistakeWrong: "He go to school.",
+                mistakeCorrect: "He goes to school.",
+                reason: "'He' is singular, so it takes 'goes'.",
+                quiz: [
+                    {q: "She _______ tennis everyday.", opts: ["play", "plays"], ans: "plays"},
+                    {q: "The cat _______ sleeping.", opts: ["is", "are"], ans: "is"},
+                    {q: "My brother _______ a car.", opts: ["have", "has"], ans: "has"},
+                    {q: "John _______ in London.", opts: ["live", "lives"], ans: "lives"},
+                    {q: "The sun _______ in the east.", opts: ["rise", "rises"], ans: "rises"},
+                    {q: "He _______ not know the answer.", opts: ["do", "does"], ans: "does"},
+                    {q: "That boy _______ tall.", opts: ["looks", "look"], ans: "looks"},
+                    {q: "Money _______ not grow on trees.", opts: ["does", "do"], ans: "does"},
+                    {q: "She _______ very fast.", opts: ["run", "runs"], ans: "runs"},
+                    {q: "The bird _______ nicely.", opts: ["sing", "sings"], ans: "sings"}
+                ]
+            },
+            {
+                id: 2,
+                title: "2. Plural Subject → Plural Verb",
+                content: "A plural subject (more than one) takes a plural verb.",
+                hinglish: "Jab Subject ek se zyada ho, toh Verb plural (bina 's' wala) use karo.",
+                mistakeWrong: "They is happy.",
+                mistakeCorrect: "They are happy.",
+                reason: "'They' is plural.",
+                quiz: [
+                    {q: "They _______ watching TV.", opts: ["is", "are"], ans: "are"},
+                    {q: "We _______ to the market.", opts: ["go", "goes"], ans: "go"},
+                    {q: "The dogs _______ loudly.", opts: ["bark", "barks"], ans: "bark"},
+                    {q: "My parents _______ me.", opts: ["love", "loves"], ans: "love"},
+                    {q: "These books _______ heavy.", opts: ["are", "is"], ans: "are"},
+                    {q: "Children _______ candy.", opts: ["like", "likes"], ans: "like"},
+                    {q: "The stars _______ bright.", opts: ["shine", "shines"], ans: "shine"},
+                    {q: "We _______ finished the work.", opts: ["has", "have"], ans: "have"},
+                    {q: "Birds _______ in the sky.", opts: ["fly", "flies"], ans: "fly"},
+                    {q: "Those cars _______ fast.", opts: ["run", "runs"], ans: "run"}
+                ]
+            },
+            {
+                id: 3,
+                title: "3. 'And' vs 'Along with / As well as'",
+                content: "If subjects are joined by 'AND', use PLURAL verb. <br>If joined by 'as well as', 'along with', 'together with', the verb agrees with the <strong>FIRST</strong> subject.",
+                hinglish: "'And' ke saath Plural verb lagao. Lekin 'along with', 'as well as' ke case mein pehle wale subject ko dekho.",
+                mistakeWrong: "The captain along with the players were practicing.",
+                mistakeCorrect: "The captain along with the players <strong>was</strong> practicing.",
+                reason: "Main subject is 'The captain' (Singular).",
+                quiz: [
+                    {q: "Ram and Shyam _______ coming.", opts: ["is", "are"], ans: "are"},
+                    {q: "The teacher along with students _______ gone.", opts: ["has", "have"], ans: "has"},
+                    {q: "My father as well as my uncles _______ here.", opts: ["is", "are"], ans: "is"},
+                    {q: "Gold and Silver _______ precious metals.", opts: ["is", "are"], ans: "are"},
+                    {q: "The cow together with her calves _______ grazing.", opts: ["was", "were"], ans: "was"},
+                    {q: "Bread and butter _______ (general items) sold here.", opts: ["is", "are"], ans: "are"},
+                    {q: "He and I _______ playing.", opts: ["am", "are"], ans: "are"},
+                    {q: "The PM with his ministers _______ arrived.", opts: ["has", "have"], ans: "has"},
+                    {q: "The house with its contents _______ insured.", opts: ["was", "were"], ans: "was"},
+                    {q: "Rahul and his friends _______ party.", opts: ["want", "wants"], ans: "want"}
+                ]
+            },
+            {
+                id: 4,
+                title: "4. Either..or / Neither..nor",
+                content: "When using 'Either-or' or 'Neither-nor', the verb agrees with the subject <strong>CLOSEST</strong> to it.",
+                hinglish: "Isme jo subject verb ke sabse paas ho, uske hisaab se verb lagao.",
+                mistakeWrong: "Neither the players nor the coach are coming.",
+                mistakeCorrect: "Neither the players nor the coach <strong>is</strong> coming.",
+                reason: "'Coach' is closer to the verb and is singular.",
+                quiz: [
+                    {q: "Either he or I _______ to blame.", opts: ["is", "am"], ans: "am"},
+                    {q: "Neither Ravi nor his friends _______ present.", opts: ["was", "were"], ans: "were"},
+                    {q: "Either the teacher or the students _______ wrong.", opts: ["is", "are"], ans: "are"},
+                    {q: "Neither my brothers nor my father _______ coming.", opts: ["is", "are"], ans: "is"},
+                    {q: "Either you or he _______ stolen the watch.", opts: ["has", "have"], ans: "has"},
+                    {q: "Neither she nor you _______ guilty.", opts: ["is", "are"], ans: "are"},
+                    {q: "Neither the shoes nor the shirt _______ fit.", opts: ["does", "do"], ans: "does"},
+                    {q: "Either the cat or the dogs _______ eating.", opts: ["is", "are"], ans: "are"},
+                    {q: "Neither John nor Mary _______ the answer.", opts: ["know", "knows"], ans: "knows"},
+                    {q: "Either the manager or the clerks _______ signed it.", opts: ["has", "have"], ans: "have"}
+                ]
+            },
+            {
+                id: 5,
+                title: "5. Indefinite Pronouns (Everyone, Each)",
+                content: "Words like Everyone, Someone, Nobody, Anybody, Each, One are always <strong>SINGULAR</strong>.",
+                hinglish: "Har koi, koi bhi, koi nahi (Everyone, Nobody) hamesha Singular hote hain.",
+                mistakeWrong: "Everyone are happy.",
+                mistakeCorrect: "Everyone <strong>is</strong> happy.",
+                reason: "Everyone takes a singular verb.",
+                quiz: [
+                    {q: "Everyone _______ invited.", opts: ["is", "are"], ans: "is"},
+                    {q: "Someone _______ knocking at the door.", opts: ["is", "are"], ans: "is"},
+                    {q: "Nobody _______ the future.", opts: ["know", "knows"], ans: "knows"},
+                    {q: "Each of the boys _______ a pen.", opts: ["has", "have"], ans: "has"},
+                    {q: "One of my friends _______ a doctor.", opts: ["is", "are"], ans: "is"},
+                    {q: "Neither of the answers _______ correct.", opts: ["is", "are"], ans: "is"},
+                    {q: "Everybody _______ to be rich.", opts: ["want", "wants"], ans: "wants"},
+                    {q: "Anything _______ possible.", opts: ["is", "are"], ans: "is"},
+                    {q: "Nothing _______ changed.", opts: ["has", "have"], ans: "has"},
+                    {q: "Each student _______ given a prize.", opts: ["was", "were"], ans: "was"}
+                ]
+            },
+            {
+                id: 6,
+                title: "6. Collective Nouns",
+                content: "Group nouns (Team, Jury, Family) are <strong>SINGULAR</strong> if acting as one unit. If members disagree, they are Plural.",
+                hinglish: "Agar puri team ek saath kaam kare toh Singular. Agar alag-alag opinion ho toh Plural.",
+                mistakeWrong: "The team are playing well.",
+                mistakeCorrect: "The team <strong>is</strong> playing well.",
+                reason: "Team is acting as one unit.",
+                quiz: [
+                    {q: "The team _______ winning.", opts: ["is", "are"], ans: "is"},
+                    {q: "The jury _______ divided in their opinion.", opts: ["was", "were"], ans: "were"},
+                    {q: "My family _______ in India.", opts: ["live", "lives"], ans: "lives"},
+                    {q: "The committee _______ approved the plan.", opts: ["has", "have"], ans: "has"},
+                    {q: "The audience _______ clapping.", opts: ["was", "were"], ans: "was"},
+                    {q: "The herd of cattle _______ grazing.", opts: ["is", "are"], ans: "is"},
+                    {q: "The jury _______ given the verdict.", opts: ["has", "have"], ans: "has"},
+                    {q: "The class _______ making a noise.", opts: ["is", "are"], ans: "is"},
+                    {q: "The army _______ marching.", opts: ["is", "are"], ans: "is"},
+                    {q: "The staff _______ debating the issue.", opts: ["is", "are"], ans: "are"}
+                ]
+            },
+            {
+                id: 7,
+                title: "7. Subjects Joined by 'And' but One Idea",
+                content: "If two nouns joined by 'and' represent a single idea or object, use a <strong>SINGULAR</strong> verb.",
+                hinglish: "Agar do cheezein milkar ek idea banayein (jaise Bread and Butter = Khana), toh Singular verb lagega.",
+                mistakeWrong: "Bread and butter are my favorite breakfast.",
+                mistakeCorrect: "Bread and butter <strong>is</strong> my favorite breakfast.",
+                reason: "It represents one meal.",
+                quiz: [
+                    {q: "Bread and butter _______ his daily food.", opts: ["is", "are"], ans: "is"},
+                    {q: "Slow and steady _______ the race.", opts: ["win", "wins"], ans: "wins"},
+                    {q: "Rice and curry _______ my favorite dish.", opts: ["is", "are"], ans: "is"},
+                    {q: "Time and tide _______ for none.", opts: ["wait", "waits"], ans: "wait"},
+                    {q: "The horse and carriage _______ at the door.", opts: ["is", "are"], ans: "is"},
+                    {q: "Fish and chips _______ popular here.", opts: ["is", "are"], ans: "is"},
+                    {q: "Hammer and sickle _______ the symbol.", opts: ["is", "are"], ans: "is"},
+                    {q: "Whisky and soda _______ his only drink.", opts: ["was", "were"], ans: "was"},
+                    {q: "Early to bed and early to rise _______ a man healthy.", opts: ["make", "makes"], ans: "makes"},
+                    {q: "My friend and guide _______ come.", opts: ["has", "have"], ans: "has"}
+                ]
+            },
+            {
+                id: 8,
+                title: "8. Subjects with Each / Every",
+                content: "If 'Each' or 'Every' comes before the subject, the verb is always <strong>SINGULAR</strong>.",
+                hinglish: "Chahe jitne bhi noun ho, agar 'Each' ya 'Every' laga hai toh verb Singular hi hoga.",
+                mistakeWrong: "Every man and woman were happy.",
+                mistakeCorrect: "Every man and woman <strong>was</strong> happy.",
+                reason: "'Every' makes the subject singular.",
+                quiz: [
+                    {q: "Every boy and girl _______ given a sweet.", opts: ["was", "were"], ans: "was"},
+                    {q: "Each day and each hour _______ precious.", opts: ["is", "are"], ans: "is"},
+                    {q: "Every student _______ to pass.", opts: ["want", "wants"], ans: "wants"},
+                    {q: "Each of the participants _______ a certificate.", opts: ["get", "gets"], ans: "gets"},
+                    {q: "Every man, woman and child _______ rescued.", opts: ["was", "were"], ans: "was"},
+                    {q: "Each employee _______ a bonus.", opts: ["deserve", "deserves"], ans: "deserves"},
+                    {q: "Every leaf and flower _______ fallen.", opts: ["has", "have"], ans: "has"},
+                    {q: "Each book _______ distinct.", opts: ["is", "are"], ans: "is"},
+                    {q: "Every minute _______.", opts: ["count", "counts"], ans: "counts"},
+                    {q: "Each player _______ fit.", opts: ["look", "looks"], ans: "looks"}
+                ]
+            },
+            {
+                id: 9,
+                title: "9. Uncountable Nouns",
+                content: "Nouns like Furniture, Information, News, Advice, Luggage, Hair are <strong>SINGULAR</strong>.",
+                hinglish: "Ye cheezein gini nahi ja sakti, isliye ye hamesha Singular hoti hain.",
+                mistakeWrong: "The furnitures are old.",
+                mistakeCorrect: "The furniture <strong>is</strong> old.",
+                reason: "Furniture is uncountable (no plural form).",
+                quiz: [
+                    {q: "The news _______ true.", opts: ["is", "are"], ans: "is"},
+                    {q: "His hair _______ black.", opts: ["is", "are"], ans: "is"},
+                    {q: "My luggage _______ missing.", opts: ["is", "are"], ans: "is"},
+                    {q: "Your advice _______ helpful.", opts: ["was", "were"], ans: "was"},
+                    {q: "The information _______ correct.", opts: ["is", "are"], ans: "is"},
+                    {q: "The scenery of Kashmir _______ beautiful.", opts: ["is", "are"], ans: "is"},
+                    {q: "His knowledge of math _______ poor.", opts: ["is", "are"], ans: "is"},
+                    {q: "The stationery _______ been ordered.", opts: ["has", "have"], ans: "has"},
+                    {q: "All the equipment _______ new.", opts: ["is", "are"], ans: "is"},
+                    {q: "The jewelry _______ stolen.", opts: ["was", "were"], ans: "was"}
+                ]
+            },
+            {
+                id: 10,
+                title: "10. Plural-looking Singular Nouns",
+                content: "Nouns ending in 's' like Mathematics, Physics, Politics, Measles are actually <strong>SINGULAR</strong>.",
+                hinglish: "Ye dikhte Plural hain par hote Singular hain (Subjects ya bimari ke naam).",
+                mistakeWrong: "Mathematics are difficult.",
+                mistakeCorrect: "Mathematics <strong>is</strong> difficult.",
+                reason: "It is the name of one subject.",
+                quiz: [
+                    {q: "Physics _______ an interesting subject.", opts: ["is", "are"], ans: "is"},
+                    {q: "Politics _______ a dirty game.", opts: ["is", "are"], ans: "is"},
+                    {q: "Measles _______ a contagious disease.", opts: ["is", "are"], ans: "is"},
+                    {q: "Economics _______ my favorite subject.", opts: ["is", "are"], ans: "is"},
+                    {q: "The news _______ shocking.", opts: ["was", "were"], ans: "was"},
+                    {q: "Billiards _______ played by men.", opts: ["is", "are"], ans: "is"},
+                    {q: "Ethics _______ important.", opts: ["is", "are"], ans: "is"},
+                    {q: "Athletics _______ popular.", opts: ["is", "are"], ans: "is"},
+                    {q: "Mathematics _______ hard for me.", opts: ["is", "are"], ans: "is"},
+                    {q: "Linguistics _______ the study of language.", opts: ["is", "are"], ans: "is"}
+                ]
+            },
+            {
+                id: 11,
+                title: "11. Singular-looking Plural Nouns & Paired Items",
+                content: "Words like Cattle, People, Police look singular but are <strong>PLURAL</strong>. <br>Items in pairs (Scissors, Trousers, Glasses) are also <strong>PLURAL</strong>.",
+                hinglish: "Cattle/People plural hote hain. Scissors/Jeans (jo do hisso se bane ho) wo bhi plural hote hain.",
+                mistakeWrong: "The cattle is grazing.",
+                mistakeCorrect: "The cattle <strong>are</strong> grazing.",
+                reason: "Cattle refers to a group of animals.",
+                quiz: [
+                    {q: "The cattle _______ grazing.", opts: ["is", "are"], ans: "are"},
+                    {q: "The police _______ caught the thief.", opts: ["has", "have"], ans: "have"},
+                    {q: "My scissors _______ sharp.", opts: ["is", "are"], ans: "are"},
+                    {q: "His trousers _______ torn.", opts: ["is", "are"], ans: "are"},
+                    {q: "People _______ waiting.", opts: ["is", "are"], ans: "are"},
+                    {q: "Her spectacles _______ broken.", opts: ["is", "are"], ans: "are"},
+                    {q: "The gentry _______ invited.", opts: ["was", "were"], ans: "were"},
+                    {q: "Vermin _______ destroy crops.", opts: ["do", "does"], ans: "do"},
+                    {q: "Where _______ my jeans?", opts: ["is", "are"], ans: "are"},
+                    {q: "These poultry _______ mine.", opts: ["is", "are"], ans: "are"}
+                ]
+            },
+            {
+                id: 12,
+                title: "12. Relative Pronouns (Who/Which/That)",
+                content: "The verb agrees with the noun <strong>BEFORE</strong> the relative pronoun.",
+                hinglish: "Who/Which se theek pehle wale shabd (Antecedent) ke hisaab se verb lagao.",
+                mistakeWrong: "It is I who is your friend.",
+                mistakeCorrect: "It is I who <strong>am</strong> your friend.",
+                reason: "'I' is the antecedent, so 'am' is used.",
+                quiz: [
+                    {q: "The boy who _______ here is my brother.", opts: ["is", "are"], ans: "is"},
+                    {q: "It is I who _______ to blame.", opts: ["am", "is"], ans: "am"},
+                    {q: "The books that _______ on the table are mine.", opts: ["is", "are"], ans: "are"},
+                    {q: "Students who _______ hard succeed.", opts: ["work", "works"], ans: "work"},
+                    {q: "She is one of the girls who _______ dancing.", opts: ["is", "are"], ans: "are"},
+                    {q: "This is the man who _______ me.", opts: ["help", "helps"], ans: "helps"},
+                    {q: "The dog that _______ is mine.", opts: ["bark", "barks"], ans: "barks"},
+                    {q: "Those who _______ in glass houses...", opts: ["live", "lives"], ans: "live"},
+                    {q: "It is you who _______ wrong.", opts: ["is", "are"], ans: "are"},
+                    {q: "One of the boys who _______ absent.", opts: ["was", "were"], ans: "were"}
+                ]
+            },
+            {
+                id: 13,
+                title: "13. Titles of Books, Movies, Countries",
+                content: "Names of books, movies, or countries are <strong>SINGULAR</strong> even if they look plural.",
+                hinglish: "Kitaab ya movie ka naam hamesha Singular hota hai.",
+                mistakeWrong: "The Arabian Nights are an interesting book.",
+                mistakeCorrect: "The Arabian Nights <strong>is</strong> an interesting book.",
+                reason: "It is one single book title.",
+                quiz: [
+                    {q: "Gulliver's Travels _______ written by Swift.", opts: ["was", "were"], ans: "was"},
+                    {q: "Three Idiots _______ a great movie.", opts: ["is", "are"], ans: "is"},
+                    {q: "The United States _______ a big army.", opts: ["has", "have"], ans: "has"},
+                    {q: "Tom and Jerry _______ my favorite show.", opts: ["is", "are"], ans: "is"},
+                    {q: "The Arabian Nights _______ popular.", opts: ["is", "are"], ans: "is"},
+                    {q: "War and Peace _______ a long novel.", opts: ["is", "are"], ans: "is"},
+                    {q: "The Philippines _______ many islands.", opts: ["has", "have"], ans: "has"},
+                    {q: "Star Wars _______ famous.", opts: ["is", "are"], ans: "is"},
+                    {q: "Tales from Shakespeare _______ good.", opts: ["is", "are"], ans: "is"},
+                    {q: "The West Indies _______ a cricket team.", opts: ["has", "have"], ans: "has"}
+                ]
+            },
+            {
+                id: 14,
+                title: "14. Amounts, Distances, Time",
+                content: "Specific amounts of money, distance, or time are treated as a <strong>SINGULAR</strong> unit.",
+                hinglish: "Jab hum puri rakam ya doori ko ek unit maante hain, toh singular verb lagta hai.",
+                mistakeWrong: "Fifty kilometers are a long distance.",
+                mistakeCorrect: "Fifty kilometers <strong>is</strong> a long distance.",
+                reason: "It acts as one unit of distance.",
+                quiz: [
+                    {q: "Ten thousand rupees _______ a big sum.", opts: ["is", "are"], ans: "is"},
+                    {q: "Five miles _______ not far.", opts: ["is", "are"], ans: "is"},
+                    {q: "Six years _______ a long time.", opts: ["is", "are"], ans: "is"},
+                    {q: "Two hours _______ enough.", opts: ["is", "are"], ans: "is"},
+                    {q: "Fifty kilos _______ heavy.", opts: ["is", "are"], ans: "is"},
+                    {q: "Ten dollars _______ the price.", opts: ["is", "are"], ans: "is"},
+                    {q: "Seven days _______ a week.", opts: ["make", "makes"], ans: "makes"},
+                    {q: "Three months _______ passed.", opts: ["has", "have"], ans: "has"},
+                    {q: "Twenty minutes _______ allowed.", opts: ["is", "are"], ans: "is"},
+                    {q: "Hundred paise _______ one rupee.", opts: ["make", "makes"], ans: "makes"}
+                ]
+            },
+            {
+                id: 15,
+                title: "15. Fractions & Percentages",
+                content: "Look at the noun in the 'of' phrase. <br>Fraction of Singular = Singular Verb.<br>Fraction of Plural = Plural Verb.",
+                hinglish: "'Of' ke baad wala noun dekho. Agar wo plural hai toh verb plural, agar singular hai toh verb singular.",
+                mistakeWrong: "Half of the mangoes is rotten.",
+                mistakeCorrect: "Half of the mangoes <strong>are</strong> rotten.",
+                reason: "'Mangoes' is plural.",
+                quiz: [
+                    {q: "Half of the apple _______ eaten.", opts: ["was", "were"], ans: "was"},
+                    {q: "Half of the apples _______ eaten.", opts: ["was", "were"], ans: "were"},
+                    {q: "A lot of work _______ done.", opts: ["is", "are"], ans: "is"},
+                    {q: "A lot of people _______ here.", opts: ["is", "are"], ans: "are"},
+                    {q: "Two-thirds of the city _______ ruined.", opts: ["was", "were"], ans: "was"},
+                    {q: "Some of the money _______ missing.", opts: ["is", "are"], ans: "is"},
+                    {q: "Some of the students _______ absent.", opts: ["is", "are"], ans: "are"},
+                    {q: "Most of the milk _______ spilt.", opts: ["was", "were"], ans: "was"},
+                    {q: "Most of the boys _______ playing.", opts: ["is", "are"], ans: "are"},
+                    {q: "Plenty of water _______ available.", opts: ["is", "are"], ans: "is"}
+                ]
+            },
+            {
+                id: 16,
+                title: "16. There + Verb",
+                content: "In sentences starting with 'There', the verb agrees with the subject that comes <strong>AFTER</strong> the verb.",
+                hinglish: "'There' subject nahi hota. Verb ke baad dekho kya likha hai.",
+                mistakeWrong: "There is many boys.",
+                mistakeCorrect: "There <strong>are</strong> many boys.",
+                reason: "Subject is 'boys' (plural).",
+                quiz: [
+                    {q: "There _______ a king.", opts: ["was", "were"], ans: "was"},
+                    {q: "There _______ five apples.", opts: ["is", "are"], ans: "are"},
+                    {q: "There _______ no hope.", opts: ["is", "are"], ans: "is"},
+                    {q: "There _______ many mistakes.", opts: ["is", "are"], ans: "are"},
+                    {q: "There _______ a cat and a dog.", opts: ["is", "are"], ans: "is"},
+                    {q: "There _______ been many changes.", opts: ["has", "have"], ans: "have"},
+                    {q: "There _______ a lot of noise.", opts: ["is", "are"], ans: "is"},
+                    {q: "There _______ two possibilities.", opts: ["exist", "exists"], ans: "exist"},
+                    {q: "There _______ go the bell.", opts: ["go", "goes"], ans: "goes"},
+                    {q: "There _______ a pen on the desk.", opts: ["is", "are"], ans: "is"}
+                ]
+            },
+            {
+                id: 17,
+                title: "17. When Subject Comes After Verb (Inversion)",
+                content: "Sometimes the subject is placed after the verb. Find the subject first.",
+                hinglish: "Kabhi-kabhi subject verb ke baad chupa hota hai.",
+                mistakeWrong: "Under the tree sleeps two cats.",
+                mistakeCorrect: "Under the tree <strong>sleep</strong> two cats.",
+                reason: "Subject is 'two cats'.",
+                quiz: [
+                    {q: "Under the tree _______ a tiger.", opts: ["lies", "lie"], ans: "lies"},
+                    {q: "Here _______ the bus.", opts: ["come", "comes"], ans: "comes"},
+                    {q: "Just outside the door _______ two guards.", opts: ["stand", "stands"], ans: "stand"},
+                    {q: "Hardly _______ he work.", opts: ["do", "does"], ans: "does"},
+                    {q: "Rarely _______ we see him.", opts: ["do", "does"], ans: "do"},
+                    {q: "Never _______ I seen such a sight.", opts: ["has", "have"], ans: "have"},
+                    {q: "In the box _______ some chocolates.", opts: ["was", "were"], ans: "were"},
+                    {q: "Down the hill _______ the stones.", opts: ["roll", "rolls"], ans: "roll"},
+                    {q: "On the table _______ a book.", opts: ["is", "are"], ans: "is"},
+                    {q: "Here _______ the winners.", opts: ["is", "are"], ans: "are"}
+                ]
+            },
+            {
+                id: 18,
+                title: "18. A Number of vs The Number of",
+                content: "'A number of' = Plural Verb.<br>'The number of' = Singular Verb.",
+                hinglish: "'A number of' ka matlab 'bahut saare' (Plural). 'The number of' ka matlab 'sankhya' (Singular).",
+                mistakeWrong: "A number of boys is absent.",
+                mistakeCorrect: "A number of boys <strong>are</strong> absent.",
+                reason: "'A number of' means many.",
+                quiz: [
+                    {q: "A number of students _______ failed.", opts: ["has", "have"], ans: "have"},
+                    {q: "The number of students _______ fifty.", opts: ["is", "are"], ans: "is"},
+                    {q: "A number of cars _______ parked.", opts: ["was", "were"], ans: "were"},
+                    {q: "The number of accidents _______ increased.", opts: ["has", "have"], ans: "has"},
+                    {q: "A large number of people _______ waiting.", opts: ["is", "are"], ans: "are"},
+                    {q: "The number of dropouts _______ high.", opts: ["is", "are"], ans: "is"},
+                    {q: "A number of questions _______ asked.", opts: ["was", "were"], ans: "were"},
+                    {q: "The number of days _______ 30.", opts: ["is", "are"], ans: "is"},
+                    {q: "A number of issues _______ resolved.", opts: ["was", "were"], ans: "were"},
+                    {q: "The number of tickets _______ sold.", opts: ["was", "were"], ans: "was"}
+                ]
+            }
+        ];
+
+        const megaQuizData = [
+            {id: 101, q: "Bread and butter _______ good for breakfast.", opts: ["is", "are"], ans: "is", rule: "Rule 7"},
+            {id: 102, q: "The police _______ arresting him.", opts: ["is", "are"], ans: "are", rule: "Rule 11"},
+            {id: 103, q: "Mathematics _______ hard.", opts: ["is", "are"], ans: "is", rule: "Rule 10"},
+            {id: 104, q: "Neither he nor I _______ happy.", opts: ["is", "am"], ans: "am", rule: "Rule 4"},
+            {id: 105, q: "One of the boys _______ missing.", opts: ["is", "are"], ans: "is", rule: "Rule 5"},
+            {id: 106, q: "Ten kilometers _______ a long way.", opts: ["is", "are"], ans: "is", rule: "Rule 14"},
+            {id: 107, q: "The quality of apples _______ good.", opts: ["is", "are"], ans: "is", rule: "Rule 1 (Subject is Quality)"},
+            {id: 108, q: "Many a student _______ tried.", opts: ["has", "have"], ans: "has", rule: "Exception: Many a + Singular"},
+            {id: 109, q: "The poor _______ suffering.", opts: ["is", "are"], ans: "are", rule: "Adjective as Noun"},
+            {id: 110, q: "A pair of shoes _______ bought.", opts: ["was", "were"], ans: "was", rule: "Rule 11 (Pair)"},
+            {id: 111, q: "More than one man _______ present.", opts: ["was", "were"], ans: "was", rule: "Exception"},
+            {id: 112, q: "Slow and steady _______ the race.", opts: ["win", "wins"], ans: "wins", rule: "Rule 7"},
+            {id: 113, q: "Each boy and girl _______ a bag.", opts: ["has", "have"], ans: "has", rule: "Rule 8"},
+            {id: 114, q: "Politics _______ not for me.", opts: ["is", "are"], ans: "is", rule: "Rule 10"},
+            {id: 115, q: "The cattle _______ grazing.", opts: ["is", "are"], ans: "are", rule: "Rule 11"},
+            {id: 116, q: "Fifty rupees _______ too much.", opts: ["is", "are"], ans: "is", rule: "Rule 14"},
+            {id: 117, q: "Every student _______ present.", opts: ["was", "were"], ans: "was", rule: "Rule 8"},
+            {id: 118, q: "Neither of them _______ coming.", opts: ["is", "are"], ans: "is", rule: "Rule 5"},
+            {id: 119, q: "A number of books _______ lost.", opts: ["is", "are"], ans: "are", rule: "Rule 18"},
+            {id: 120, q: "The number of books _______ small.", opts: ["is", "are"], ans: "is", rule: "Rule 18"},
+            {id: 121, q: "Time and tide _______ for none.", opts: ["wait", "waits"], ans: "wait", rule: "Rule 7"},
+            {id: 122, q: "Gulliver's Travels _______ funny.", opts: ["is", "are"], ans: "is", rule: "Rule 13"},
+            {id: 123, q: "My scissors _______ sharp.", opts: ["is", "are"], ans: "are", rule: "Rule 11"},
+            {id: 124, q: "The furniture _______ new.", opts: ["is", "are"], ans: "is", rule: "Rule 9"},
+            {id: 125, q: "There _______ many stars.", opts: ["is", "are"], ans: "are", rule: "Rule 16"},
+            {id: 126, q: "Either you or he _______ guilty.", opts: ["is", "are"], ans: "is", rule: "Rule 4"},
+            {id: 127, q: "The jury _______ divided.", opts: ["was", "were"], ans: "were", rule: "Rule 6"},
+            {id: 128, q: "Two-thirds of the apple _______ rotten.", opts: ["is", "are"], ans: "is", rule: "Rule 15"},
+            {id: 129, q: "The captain with the sailors _______ drowned.", opts: ["was", "were"], ans: "was", rule: "Rule 3"},
+            {id: 130, q: "He is one of those who _______ help.", opts: ["help", "helps"], ans: "help", rule: "Rule 12"},
+            {id: 131, q: "Physics _______ easy.", opts: ["is", "are"], ans: "is", rule: "Rule 10"},
+            {id: 132, q: "Some of the girls _______ absent.", opts: ["is", "are"], ans: "are", rule: "Rule 15"},
+            {id: 133, q: "The secretary and treasurer _______ coming.", opts: ["is", "are"], ans: "is", rule: "Rule 7 (One person)"},
+            {id: 134, q: "The director and the producer _______ arrived.", opts: ["has", "have"], ans: "have", rule: "Rule 3 (Two people)"},
+            {id: 135, q: "Everyone _______ mistakes.", opts: ["make", "makes"], ans: "makes", rule: "Rule 5"},
+            {id: 136, q: "All that glitters _______ not gold.", opts: ["is", "are"], ans: "is", rule: "Proverb"},
+            {id: 137, q: "Rice and curry _______ my favorite.", opts: ["is", "are"], ans: "is", rule: "Rule 7"},
+            {id: 138, q: "Measles _______ dangerous.", opts: ["is", "are"], ans: "is", rule: "Rule 10"},
+            {id: 139, q: "My spectacles _______ lost.", opts: ["was", "were"], ans: "were", rule: "Rule 11"},
+            {id: 140, q: "The Arabian Nights _______ a book.", opts: ["is", "are"], ans: "is", rule: "Rule 13"},
+            {id: 141, q: "A lot of sugar _______ needed.", opts: ["is", "are"], ans: "is", rule: "Rule 15"},
+            {id: 142, q: "He as well as I _______ going.", opts: ["am", "is"], ans: "is", rule: "Rule 3"},
+            {id: 143, q: "Not only he but also his friends _______ coming.", opts: ["is", "are"], ans: "are", rule: "Rule 4 (Closest)"},
+            {id: 144, q: "Nothing but trees _______ seen.", opts: ["was", "were"], ans: "was", rule: "Rule 5"},
+            {id: 145, q: "There _______ a boy and a girl.", opts: ["is", "are"], ans: "is", rule: "Rule 16 (First subject)"},
+            {id: 146, q: "Three years _______ passed.", opts: ["has", "have"], ans: "has", rule: "Rule 14"},
+            {id: 147, q: "The rich _______ happy.", opts: ["is", "are"], ans: "are", rule: "Adjective as Noun"},
+            {id: 148, q: "It is I who _______ helping you.", opts: ["am", "is"], ans: "am", rule: "Rule 12"},
+            {id: 149, q: "Each of the sisters _______ clever.", opts: ["is", "are"], ans: "is", rule: "Rule 5"},
+            {id: 150, q: "Where _______ the tongs?", opts: ["is", "are"], ans: "are", rule: "Rule 11"}
+        ];
+
+        // --- STATE ---
+        let score = { attempted: 0, correct: 0, wrong: 0 };
+        const answeredIds = new Set();
+
+        // --- FUNCTIONS ---
+
+        // 1. Render Rules Accordion
+        function renderAccordion() {
+            const container = document.getElementById('accordion-container');
+            let html = '';
+
+            rulesData.forEach((rule, index) => {
+                html += `
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <h3>${rule.title}</h3>
+                            <span class="icon">▼</span>
+                        </div>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p>${rule.content}</p>
+                                <div class="hinglish-box">
+                                    💡 <strong>Hinglish:</strong> ${rule.hinglish}
+                                </div>
+                                <div class="mistake-grid">
+                                    <div class="mistake-card wrong">❌ ${rule.mistakeWrong}</div>
+                                    <div class="mistake-card correct">✔ ${rule.mistakeCorrect}</div>
+                                </div>
+                                <p style="margin-top:10px; font-size:0.9rem;"><strong>Reason:</strong> ${rule.reason}</p>
+                                
+                                <div class="quiz-wrapper">
+                                    <div class="quiz-header">Practice</div>
+                                    ${rule.quiz.map((q, i) => `
+                                        <div class="question-card" id="q-${rule.id}-${i}">
+                                            <span class="q-text">${i + 1}. ${q.q}</span>
+                                            <div class="options-grid">
+                                                ${q.opts.map(opt => `
+                                                    <button class="opt-btn" onclick="checkAnswer('q-${rule.id}-${i}', '${opt}', this, '${q.ans}', 'Rule ${rule.id}')">${opt}</button>
+                                                `).join('')}
+                                            </div>
+                                            <div class="feedback" id="fb-q-${rule.id}-${i}"></div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // 2. Render Mega Quiz
+        function renderMegaQuiz() {
+            const container = document.getElementById('mega-quiz-container');
+            let html = '';
+            
+            megaQuizData.forEach(q => {
+                html += `
+                    <div class="question-card" id="mq-${q.id}">
+                        <span class="q-text">${q.id - 100}. ${q.q}</span>
+                        <div class="options-grid">
+                            ${q.opts.map(opt => `
+                                <button class="opt-btn" onclick="checkAnswer('mq-${q.id}', '${opt}', this, '${q.ans}', '${q.rule}')">${opt}</button>
+                            `).join('')}
+                        </div>
+                        <div class="feedback" id="fb-mq-${q.id}"></div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // 3. Accordion Toggle
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const body = header.nextElementSibling;
+            const isOpen = header.classList.contains('active');
+
+            // Close all others
+            document.querySelectorAll('.accordion-header').forEach(h => {
+                h.classList.remove('active');
+                h.nextElementSibling.style.maxHeight = null;
+            });
+
+            if (!isOpen) {
+                header.classList.add('active');
+                body.style.maxHeight = body.scrollHeight + "px";
+                
+                // Fix for dynamic content resizing
+                setTimeout(() => {
+                    if(header.classList.contains('active')) body.style.maxHeight = "none";
+                }, 300);
+            }
+        }
+
+        // 4. Check Answer Logic
+        function checkAnswer(qId, selected, btn, correct, reason) {
+            if (answeredIds.has(qId)) return;
+            answeredIds.add(qId);
+            
+            score.attempted++;
+            const feedbackEl = document.getElementById(`fb-${qId}`);
+            const buttons = btn.parentElement.querySelectorAll('.opt-btn');
+
+            if (selected === correct) {
+                score.correct++;
+                btn.classList.add('correct-ans');
+                feedbackEl.innerHTML = `<strong>✔ Correct!</strong> Great job.`;
+                feedbackEl.className = "feedback show fb-success";
+            } else {
+                score.wrong++;
+                btn.classList.add('wrong-ans');
+                // Highlight correct one
+                buttons.forEach(b => {
+                    if (b.innerText === correct) b.classList.add('correct-ans');
+                });
+                feedbackEl.innerHTML = `<strong>❌ Wrong!</strong> Correct answer: <strong>${correct}</strong><br>Reason: ${reason}`;
+                feedbackEl.className = "feedback show fb-error";
+            }
+
+            buttons.forEach(b => b.disabled = true);
+            updateScoreboard();
+        }
+
+        // 5. Update Score
+        function updateScoreboard() {
+            document.getElementById('s-attempted').innerText = score.attempted;
+            document.getElementById('s-correct').innerText = score.correct;
+            document.getElementById('s-wrong').innerText = score.wrong;
+            const percent = score.attempted === 0 ? 0 : Math.round((score.correct / score.attempted) * 100);
+            document.getElementById('s-percent').innerText = percent + "%";
+        }
+
+        // Initialize
+        window.onload = function() {
+            renderAccordion();
+            renderMegaQuiz();
+        };
+
+    </script>
+</body>
+</html>

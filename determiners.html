@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Determiners | Grammar Learning Hub</title>
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --primary: #0f172a;       /* Deep Blue */
+            --primary-light: #1e293b;
+            --accent: #f59e0b;        /* Gold */
+            --text-light: #f8fafc;
+            --text-dark: #334155;
+            --bg-light: #f1f5f9;
+            --success: #22c55e;
+            --error: #ef4444;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* --- STICKY SCOREBOARD --- */
+        .score-panel {
+            position: sticky;
+            top: 0;
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 12px 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+        }
+
+        .score-item span {
+            font-weight: bold;
+            color: var(--accent);
+            margin-left: 5px;
+            font-size: 1.1rem;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        header p {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* --- CONTAINER --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* --- CARDS & TYPOGRAPHY --- */
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            border-left: 5px solid var(--accent);
+        }
+
+        h2.section-title {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: var(--primary);
+            margin: 15px 0 10px 0;
+        }
+
+        p { margin-bottom: 15px; }
+
+        .highlight-box {
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .hinglish-box {
+            background-color: #fffbeb;
+            border: 1px solid #fcd34d;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            color: #92400e;
+            font-weight: 500;
+        }
+
+        /* --- ACCORDION --- */
+        .accordion-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e2e8f0;
+        }
+
+        .accordion-header {
+            background: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+            border-left: 6px solid var(--primary);
+        }
+
+        .accordion-header:hover { background: #f1f5f9; }
+
+        .accordion-header h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: var(--accent);
+        }
+
+        .accordion-header.active .icon { transform: rotate(180deg); }
+        .accordion-header.active { background: #f8fafc; }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: white;
+        }
+
+        .accordion-content {
+            padding: 25px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* --- TABLES & RULES --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 12px;
+            text-align: left;
+        }
+        th { background-color: var(--primary); color: white; }
+        
+        .mistake-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        @media (min-width: 768px) {
+            .mistake-grid { grid-template-columns: 1fr 1fr; }
+        }
+        .mistake-card {
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+        .wrong { background: #fef2f2; border-left: 4px solid var(--error); }
+        .correct { background: #f0fdf4; border-left: 4px solid var(--success); }
+
+        /* --- QUIZ SECTION --- */
+        .quiz-wrapper {
+            margin-top: 30px;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .quiz-header {
+            text-align: center;
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .q-text { font-weight: 600; margin-bottom: 15px; display: block; font-size: 1.05rem; }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        @media (min-width: 600px) {
+            .options-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .opt-btn {
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: #f1f5f9;
+        }
+
+        .opt-btn.correct-ans {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .opt-btn.wrong-ans {
+            background: var(--error);
+            color: white;
+            border-color: var(--error);
+        }
+
+        .opt-btn:disabled { cursor: not-allowed; opacity: 0.9; }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            display: none;
+        }
+        .feedback.show { display: block; animation: fadeIn 0.3s; }
+        .fb-success { background: #dcfce7; color: #14532d; border: 1px solid #86efac; }
+        .fb-error { background: #fee2e2; color: #7f1d1d; border: 1px solid #fca5a5; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- MEGA PRACTICE --- */
+        .mega-section {
+            margin-top: 50px;
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            border-top: 8px solid var(--accent);
+            box-shadow: var(--card-shadow);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .back-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4); }
+
+    </style>
+</head>
+<body>
+
+    <div class="score-panel">
+        <div class="score-item">Attempted: <span id="s-attempted">0</span></div>
+        <div class="score-item">Correct: <span id="s-correct">0</span></div>
+        <div class="score-item">Wrong: <span id="s-wrong">0</span></div>
+        <div class="score-item">Score: <span id="s-percent">0%</span></div>
+    </div>
+
+    <header>
+        <h1>Determiners</h1>
+        <p>Grammar Learning Hub</p>
+    </header>
+
+    <div class="container">
+
+        <section class="card">
+            <h2 class="section-title">Introduction</h2>
+            <p><strong>Determiners</strong> are words placed in front of a noun to specify quantity (e.g., "one dog," "many dogs") or to clarify what the noun refers to (e.g., "my dog," "that dog," "the dog").</p>
+            
+            <div class="hinglish-box">
+                📌 <strong>Hinglish Explanation:</strong><br>
+                Determiners wo shabd hote hain jo noun se pehle aakar ye tay karte hain ki hum kis cheez ki baat kar rahe hain ya wo kitni matra mein hai.
+            </div>
+
+            <h3>Determiners vs. Adjectives</h3>
+            <p>Adjectives describe the quality (e.g., <em>big</em> house), while Determiners introduce the noun (e.g., <em>this</em> house).</p>
+            
+            <div class="highlight-box">
+                <strong>Position Rule:</strong><br>
+                Determiner + (Adjective) + Noun<br>
+                Example: <em>The</em> (Det) <em>black</em> (Adj) <em>cat</em> (Noun).
+            </div>
+        </section>
+
+        <h2 class="section-title">Types of Determiners</h2>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>1. Articles (a, an, the)</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>Articles define whether a noun is specific or unspecific.</p>
+                    <ul>
+                        <li><strong>Indefinite (a, an):</strong> Used for general, singular, countable nouns.</li>
+                        <li><strong>Definite (the):</strong> Used for specific nouns (singular/plural/uncountable).</li>
+                    </ul>
+
+                    <div class="hinglish-box">
+                        👉 <strong>Hinglish:</strong><br>
+                        'A/An' tab use karein jab baat general ho (ek ladka). 'The' tab use karein jab baat specific ho (wahi ladka).
+                    </div>
+
+                    <h4>Common Mistakes</h4>
+                    <div class="mistake-grid">
+                        <div class="mistake-card wrong">❌ He is an honest. <br><small>Adjective alone cannot take an article.</small></div>
+                        <div class="mistake-card correct">✔ He is an honest <strong>man</strong>.</div>
+                        <div class="mistake-card wrong">❌ I saw a elephant.</div>
+                        <div class="mistake-card correct">✔ I saw <strong>an</strong> elephant. (Vowel sound)</div>
+                    </div>
+
+                    <div class="quiz-wrapper" id="quiz-articles"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>2. Demonstratives (this, that, these, those)</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>These point to specific things based on distance and number.</p>
+                    
+                    <table>
+                        <tr><th>Word</th><th>Distance</th><th>Number</th></tr>
+                        <tr><td>This</td><td>Near</td><td>Singular</td></tr>
+                        <tr><td>That</td><td>Far</td><td>Singular</td></tr>
+                        <tr><td>These</td><td>Near</td><td>Plural</td></tr>
+                        <tr><td>Those</td><td>Far</td><td>Plural</td></tr>
+                    </table>
+
+                    <div class="hinglish-box">
+                        👉 <strong>Hinglish:</strong><br>
+                        Paas ke liye 'This/These' aur door ke liye 'That/Those'.
+                    </div>
+
+                    <div class="quiz-wrapper" id="quiz-demonstratives"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>3. Possessives (my, your, his, her, etc.)</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>These show ownership or relationship. They always come before a noun.</p>
+                    <p><strong>List:</strong> My, Your, His, Her, Its, Our, Their.</p>
+
+                    <div class="mistake-grid">
+                        <div class="mistake-card wrong">❌ The book is my. <br><small>'My' is a determiner, it needs a noun.</small></div>
+                        <div class="mistake-card correct">✔ This is <strong>my</strong> book. / The book is <strong>mine</strong>.</div>
+                    </div>
+
+                    <div class="quiz-wrapper" id="quiz-possessives"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>4. Quantifiers (some, any, much, many...)</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>Quantifiers express the amount or quantity of a noun.</p>
+                    
+                    <div class="highlight-box">
+                        <strong>Countable vs Uncountable Rule:</strong><br>
+                        • <strong>Countable:</strong> Many, Few, A few, Several<br>
+                        • <strong>Uncountable:</strong> Much, Little, A little, A bit of<br>
+                        • <strong>Both:</strong> Some, Any, All, A lot of
+                    </div>
+
+                    <div class="hinglish-box">
+                        👉 <strong>Some vs Any:</strong><br>
+                        'Some' positive sentences me use hota hai. 'Any' negative ya question me use hota hai.
+                    </div>
+
+                    <div class="quiz-wrapper" id="quiz-quantifiers"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>5. Numbers (Cardinal & Ordinal)</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <ul>
+                        <li><strong>Cardinal (How many):</strong> One, two, ten, fifty.</li>
+                        <li><strong>Ordinal (Order/Rank):</strong> First, second, last, next.</li>
+                    </ul>
+                    
+                    <p><strong>Order Rule:</strong> Ordinals come before Cardinals.<br>Example: The <em>first two</em> chapters (Not 'The two first').</p>
+
+                    <div class="quiz-wrapper" id="quiz-numbers"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>6. Distributives (each, every, either...)</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>Used to refer to members of a group individually.</p>
+                    <ul>
+                        <li><strong>Each:</strong> Individual focus (Two or more).</li>
+                        <li><strong>Every:</strong> Group focus (Three or more).</li>
+                        <li><strong>Either:</strong> One or the other (of two).</li>
+                        <li><strong>Neither:</strong> None of the two.</li>
+                    </ul>
+
+                    <div class="mistake-grid">
+                        <div class="mistake-card wrong">❌ Every students passed.</div>
+                        <div class="mistake-card correct">✔ Every <strong>student</strong> passed. (Always singular noun)</div>
+                    </div>
+
+                    <div class="quiz-wrapper" id="quiz-distributives"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>7. Interrogative Determiners</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>Used to ask questions. Must be followed by a noun.</p>
+                    <p><strong>Words:</strong> Which, What, Whose.</p>
+                    
+                    <p>Example: <strong>Which</strong> color do you like?</p>
+
+                    <div class="quiz-wrapper" id="quiz-interrogatives"></div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+        <h2 class="section-title">⚠️ Important Rules & Confusions</h2>
+        
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>Little vs A Little vs The Little</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>Used with <strong>Uncountable Nouns</strong>.</p>
+                    <table>
+                        <tr><th>Word</th><th>Meaning</th><th>Tone</th></tr>
+                        <tr><td>Little</td><td>Hardly any (Na ke barabar)</td><td>Negative</td></tr>
+                        <tr><td>A Little</td><td>Some (Thoda sa)</td><td>Positive</td></tr>
+                        <tr><td>The Little</td><td>All that is there (Jo thoda sa hai poora)</td><td>Specific</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>Few vs A Few vs The Few</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>Used with <strong>Countable Nouns</strong>.</p>
+                    <table>
+                        <tr><th>Word</th><th>Meaning</th><th>Tone</th></tr>
+                        <tr><td>Few</td><td>Hardly any (Na ke barabar)</td><td>Negative</td></tr>
+                        <tr><td>A Few</td><td>Some (Kuch)</td><td>Positive</td></tr>
+                        <tr><td>The Few</td><td>All that are there</td><td>Specific</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <section class="mega-section">
+            <h2 class="section-title">🎓 Determiners Mega Practice</h2>
+            <p>Test your knowledge with mixed questions from all categories.</p>
+            <div id="mega-quiz-container"></div>
+        </section>
+
+    </div>
+
+    <footer>
+        <h3>Grammar Learning Hub</h3>
+        <p>Created by <strong>Shrishant Yadav</strong></p>
+        <p style="font-size: 0.8rem; opacity: 0.8;">Education Purpose Only</p>
+        <a href="index.html" class="back-btn">← Back to Home</a>
+    </footer>
+
+    <script>
+        // --- DATA STORAGE ---
+        // Helper to create questions
+        const createQ = (id, q, opts, ans, exp) => ({ id, q, opts, ans, exp });
+
+        const quizzes = {
+            'quiz-articles': [
+                createQ(1, "Copper is _______ useful metal.", ['a', 'an', 'the'], 'a', "'Useful' starts with a consonant sound 'Yoo'."),
+                createQ(2, "He is _______ honest man.", ['a', 'an', 'the'], 'an', "'Honest' starts with a vowel sound 'O'."),
+                createQ(3, "_______ sun rises in the east.", ['A', 'An', 'The'], 'The', "Used for unique things in nature."),
+                createQ(4, "I saw _______ one-eyed man.", ['a', 'an', 'the'], 'a', "'One' starts with a consonant sound 'Wa'."),
+                createQ(5, "She is _______ M.L.A.", ['a', 'an', 'the'], 'an', "'M' starts with a vowel sound 'Em'."),
+                createQ(6, "_______ apple a day keeps the doctor away.", ['A', 'An', 'The'], 'An', "General statement about any apple."),
+                createQ(7, "This is _______ best book.", ['a', 'an', 'the'], 'the', "Superlative degrees take 'the'."),
+                createQ(8, "_______ French defeated the Germans.", ['A', 'An', 'The'], 'The', "'The French' refers to the people of France."),
+                createQ(9, "I met him _______ year ago.", ['a', 'an', 'the'], 'a', "'Year' starts with a consonant sound 'Ya'."),
+                createQ(10, "He plays _______ piano.", ['a', 'an', 'the'], 'the', "Musical instruments take 'the' when played.")
+            ],
+            'quiz-demonstratives': [
+                createQ(11, "_______ book here is mine.", ['This', 'That', 'Those'], 'This', "Singular and near (here)."),
+                createQ(12, "Look at _______ birds in the sky.", ['this', 'these', 'those'], 'those', "Plural and far (sky)."),
+                createQ(13, "I hate _______ sort of things.", ['these', 'those', 'this'], 'this', "'Sort' is singular."),
+                createQ(14, "_______ days were beautiful (past).", ['This', 'That', 'Those'], 'Those', "Plural and distant in time (past)."),
+                createQ(15, "_______ apples are rotten (in hand).", ['This', 'These', 'Those'], 'These', "Plural and near."),
+                createQ(16, "Can you see _______ building over there?", ['that', 'this', 'these'], 'that', "Singular and far."),
+                createQ(17, "_______ is my friend, Ravi.", ['These', 'This', 'Those'], 'This', "Introduction of a person."),
+                createQ(18, "I don't like _______ kind of jokes.", ['that', 'those', 'these'], 'that', "'Kind' is singular."),
+                createQ(19, "_______ shoes fit me well (wearing them).", ['This', 'That', 'These'], 'These', "Plural and near."),
+                createQ(20, "_______ was a great party last night.", ['This', 'That', 'These'], 'That', "Refers to a past event.")
+            ],
+            'quiz-possessives': [
+                createQ(21, "This is _______ pen.", ['my', 'mine', 'I'], 'my', "Possessive determiner before noun."),
+                createQ(22, "The dog wagged _______ tail.", ['it', 'its', "it's"], 'its', "Possessive for animals/things."),
+                createQ(23, "Students must bring _______ ID cards.", ['there', 'their', 'theirs'], 'their', "Possessive for 'students'."),
+                createQ(24, "Is this _______ bag?", ['you', 'yours', 'your'], 'your', "Determiner modifying 'bag'."),
+                createQ(25, "She respects _______ parents.", ['her', 'hers', 'she'], 'her', "Possessive for 'She'."),
+                createQ(26, "We love _______ country.", ['us', 'our', 'ours'], 'our', "Possessive for 'We'."),
+                createQ(27, "One should do _______ duty.", ['his', "one's", 'their'], "one's", "Possessive for 'One' is 'One's'."),
+                createQ(28, "I have lost _______ wallet.", ['my', 'mine', 'me'], 'my', "Standard possessive usage."),
+                createQ(29, "He broke _______ leg.", ['him', 'his', 'he'], 'his', "Ownership of body part."),
+                createQ(30, "They sold _______ house.", ['their', 'there', 'theirs'], 'their', "Possessive determiner.")
+            ],
+            'quiz-quantifiers': [
+                createQ(31, "I have _______ friends.", ['much', 'many', 'a little'], 'many', "Friends are countable."),
+                createQ(32, "There isn't _______ milk left.", ['some', 'any', 'many'], 'any', "Negative sentence use 'any'."),
+                createQ(33, "Would you like _______ tea?", ['some', 'any', 'many'], 'some', "Offer/Request uses 'some'."),
+                createQ(34, "He has _______ knowledge.", ['many', 'little', 'few'], 'little', "Knowledge is uncountable/abstract."),
+                createQ(35, "I have _______ money.", ['a few', 'many', 'enough'], 'enough', "Money is uncountable, 'enough' works."),
+                createQ(36, "How _______ sugar do you want?", ['much', 'many', 'few'], 'much', "Uncountable noun 'sugar'."),
+                createQ(37, "He has _______ patience.", ['few', 'a lot of', 'many'], 'a lot of', "Patience is uncountable."),
+                createQ(38, "There are _______ students in class.", ['a little', 'much', 'several'], 'several', "Countable noun."),
+                createQ(39, "I bought _______ bananas.", ['some', 'any', 'much'], 'some', "Positive sentence."),
+                createQ(40, "She didn't ask _______ questions.", ['some', 'any', 'much'], 'any', "Negative sentence.")
+            ],
+            'quiz-numbers': [
+                createQ(41, "Read the _______ two chapters.", ['one', 'first', 'once'], 'first', "Ordinal number."),
+                createQ(42, "I have _______ eyes.", ['two', 'second', 'twice'], 'two', "Cardinal number."),
+                createQ(43, "He got the _______ prize.", ['one', 'second', 'two'], 'second', "Rank/Order requires Ordinal."),
+                createQ(44, "The _______ three boys stood up.", ['first', 'one', 'once'], 'first', "Ordinal comes before cardinal."),
+                createQ(45, "She has _______ cats.", ['third', 'three', 'thrice'], 'three', "Cardinal quantity."),
+                createQ(46, "It is his _______ birthday.", ['ten', 'tenth', 'tens'], 'tenth', "Ordinal number."),
+                createQ(47, "December is the _______ month.", ['twelve', 'twelfth', 'twelth'], 'twelfth', "Spelling: Twelfth."),
+                createQ(48, "Give me _______ apples.", ['five', 'fifth', 'fives'], 'five', "Cardinal quantity."),
+                createQ(49, "The _______ page is missing.", ['last', 'one', 'ones'], 'last', "Ordinal position."),
+                createQ(50, "Only _______ student was present.", ['one', 'first', 'once'], 'one', "Cardinal count.")
+            ],
+            'quiz-distributives': [
+                createQ(51, "_______ student was given a pen.", ['Each', 'All', 'Many'], 'Each', "Focus on individual, singular verb."),
+                createQ(52, "_______ accusation is true.", ['Neither', 'All', 'Both'], 'Neither', "Singular, means 'none of two'."),
+                createQ(53, "You can take _______ side.", ['either', 'both', 'all'], 'either', "Singular, means 'one or the other'."),
+                createQ(54, "_______ country has its own flag.", ['Every', 'All', 'Many'], 'Every', "Singular noun follows."),
+                createQ(55, "I know _______ of them.", ['every', 'each', 'either'], 'each', "'Each of' is correct structure."),
+                createQ(56, "_______ seat was occupied.", ['Every', 'All', 'Most'], 'Every', "Singular noun 'seat'."),
+                createQ(57, "There are trees on _______ side of the road.", ['either', 'neither', 'both'], 'either', "Meaning 'both sides individually'."),
+                createQ(58, "_______ answer is correct (of two).", ['Neither', 'None', 'All'], 'Neither', "Used for two items."),
+                createQ(59, "He comes here _______ Sunday.", ['each', 'every', 'either'], 'every', "Frequency/Regularity."),
+                createQ(60, "_______ man must die.", ['Each', 'Every', 'All'], 'Every', "General truth about group.")
+            ],
+            'quiz-interrogatives': [
+                createQ(61, "_______ color is your car?", ['Which', 'Who', 'Where'], 'Which', "Selection from choices."),
+                createQ(62, "_______ book is this?", ['Whose', 'Who', 'Whom'], 'Whose', "Asking about possession."),
+                createQ(63, "_______ time is it?", ['What', 'Which', 'Who'], 'What', "General inquiry."),
+                createQ(64, "_______ way should we go?", ['Which', 'Who', 'How'], 'Which', "Selection."),
+                createQ(65, "_______ kind of music do you like?", ['What', 'Who', 'Where'], 'What', "General inquiry."),
+                createQ(66, "_______ house is yours?", ['Which', 'Who', 'When'], 'Which', "Selection."),
+                createQ(67, "_______ plan is better?", ['Whose', 'Who', 'Whom'], 'Whose', "Possession/Authorship."),
+                createQ(68, "_______ subject do you prefer?", ['Which', 'Who', 'Why'], 'Which', "Choice."),
+                createQ(69, "_______ train leaves at 5?", ['What', 'Which', 'Who'], 'Which', "Selection."),
+                createQ(70, "_______ gift did you buy?", ['What', 'Who', 'Whose'], 'What', "Inquiry about object.")
+            ]
+        };
+
+        const megaQuizData = [
+            createQ(101, "_______ knowledge is a dangerous thing.", ['A little', 'Little', 'The little'], 'A little', "Proverb."),
+            createQ(102, "_______ water in the pot evaporated.", ['Little', 'A little', 'The little'], 'The little', "Specific quantity (that was in the pot)."),
+            createQ(103, "He has _______ friends here, so he is lonely.", ['few', 'a few', 'the few'], 'few', "Negative tone (lonely)."),
+            createQ(104, "_______ Himalayas are in the north.", ['A', 'An', 'The'], 'The', "Mountain ranges take 'The'."),
+            createQ(105, "I have _______ work to do.", ['much', 'many', 'few'], 'much', "Work is uncountable."),
+            createQ(106, "_______ boy in the class passed.", ['Every', 'All', 'Many'], 'Every', "Singular noun."),
+            createQ(107, "It was _______ unique idea.", ['a', 'an', 'the'], 'a', "'Unique' starts with 'Yoo' sound."),
+            createQ(108, "_______ of the two boys is guilty.", ['Either', 'Every', 'All'], 'Either', "Refers to two."),
+            createQ(109, "Did you buy _______ books?", ['some', 'any', 'much'], 'any', "Question format."),
+            createQ(110, "_______ rich should help the poor.", ['A', 'An', 'The'], 'The', "'The rich' = Rich people class."),
+            createQ(111, "I don't have _______ money.", ['some', 'any', 'many'], 'any', "Negative."),
+            createQ(112, "_______ first chapter is boring.", ['The', 'A', 'An'], 'The', "Ordinal number specific."),
+            createQ(113, "_______ dog is a faithful animal.", ['A', 'An', 'The'], 'The', "Representing the whole species."),
+            createQ(114, "I have _______ hope.", ['little', 'few', 'many'], 'little', "Hope is abstract/uncountable."),
+            createQ(115, "_______ Ganges is a holy river.", ['A', 'An', 'The'], 'The', "River names take 'The'."),
+            createQ(116, "This is _______ European lady.", ['a', 'an', 'the'], 'a', "European starts with 'Yoo'."),
+            createQ(117, "_______ pen do you want?", ['Which', 'Who', 'Where'], 'Which', "Interrogative."),
+            createQ(118, "Both _______ brothers are doctors.", ['his', 'him', 'he'], 'his', "Possessive."),
+            createQ(119, "There are _______ mistakes in this essay.", ['few', 'little', 'much'], 'few', "Mistakes are countable."),
+            createQ(120, "_______ man is mortal.", ['', 'The', 'A'], '', "Man used in general sense (Humanity) takes no article."),
+            createQ(121, "Give me _______ sugar.", ['some', 'any', 'few'], 'some', "Positive request."),
+            createQ(122, "_______ USA is a superpower.", ['The', 'A', 'An'], 'The', "Countries with 'United' take 'The'."),
+            createQ(123, "Don't make _______ noise.", ['a', 'an', 'the'], 'a', "Phrase: 'Make a noise'."),
+            createQ(124, "_______ Kalidas is the Shakespeare of India.", ['The', 'A', 'An'], '', "Proper nouns usually no article, but 'The Shakespeare' is specific."),
+            createQ(125, "I have _______ dress.", ['this', 'these', 'those'], 'this', "Singular."),
+            createQ(126, "_______ advice is good.", ['This', 'These', 'Those'], 'This', "Advice is singular uncountable."),
+            createQ(127, "He is _______ heir to the throne.", ['a', 'an', 'the'], 'an', "Heir starts with vowel sound 'Air'."),
+            createQ(128, "_______ girls are dancing.", ['Those', 'That', 'This'], 'Those', "Plural."),
+            createQ(129, "She has _______ rice.", ['many', 'much', 'few'], 'much', "Uncountable."),
+            createQ(130, "_______ participants received a certificate.", ['All', 'Every', 'Each'], 'All', "Plural noun follows."),
+            createQ(131, "Wait for _______ while.", ['a', 'an', 'the'], 'a', "Phrase: 'for a while'."),
+            createQ(132, "_______ Mount Everest is high.", ['', 'The', 'A'], '', "Single mountain peaks do NOT take 'The'."),
+            createQ(133, "He is _______ university student.", ['a', 'an', 'the'], 'a', "University starts with 'Yoo'."),
+            createQ(134, "I have _______ doubt.", ['no', 'none', 'any'], 'no', "Adjective/Determiner."),
+            createQ(135, "_______ members attended the meeting.", ['Few', 'Little', 'Much'], 'Few', "Countable."),
+            createQ(136, "Can I have _______ coffee?", ['some', 'any', 'few'], 'some', "Request."),
+            createQ(137, "_______ iron is a hard metal.", ['', 'The', 'An'], '', "Material nouns usually no article."),
+            createQ(138, "_______ gold of this ring is pure.", ['The', 'A', 'An'], 'The', "Specific gold (of this ring)."),
+            createQ(139, "_______ MP was elected.", ['An', 'A', 'The'], 'An', "MP starts with 'Em' sound."),
+            createQ(140, "He lost _______ friends he had.", ['the few', 'few', 'a few'], 'the few', "Specific group (all that he had)."),
+            createQ(141, "_______ sun gives us light.", ['The', 'A', 'An'], 'The', "Unique natural object."),
+            createQ(142, "Do you have _______ pen?", ['any', 'some', 'much'], 'any', "Question."),
+            createQ(143, "_______ my friends are here.", ['All', 'Every', 'Each'], 'All', "'All my' is correct structure."),
+            createQ(144, "_______ child needs love.", ['Every', 'All', 'Many'], 'Every', "Singular."),
+            createQ(145, "I bought _______ dozen eggs.", ['a', 'an', 'the'], 'a', "Unit of measure."),
+            createQ(146, "_______ higher you go, the cooler it is.", ['The', 'A', 'An'], 'The', "Double comparative."),
+            createQ(147, "He is _______ FBI agent.", ['an', 'a', 'the'], 'an', "FBI starts with 'Ef'."),
+            createQ(148, "_______ whole class was silent.", ['The', 'A', 'An'], 'The', "'The whole' is the structure."),
+            createQ(149, "I spent _______ little money I had.", ['the', 'a', 'an'], 'the', "Specific amount (all that I had)."),
+            createQ(150, "_______ orange is enough.", ['One', 'First', 'Once'], 'One', "Cardinal number.")
+        ];
+
+        // --- STATE & LOGIC ---
+        let score = { attempted: 0, correct: 0, wrong: 0 };
+        const answeredIds = new Set();
+
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const body = header.nextElementSibling;
+            const isOpen = header.classList.contains('active');
+
+            // Close all
+            document.querySelectorAll('.accordion-header').forEach(h => {
+                h.classList.remove('active');
+                h.nextElementSibling.style.maxHeight = null;
+            });
+
+            // Open clicked if not already open
+            if (!isOpen) {
+                header.classList.add('active');
+                body.style.maxHeight = body.scrollHeight + "px";
+                
+                // Dynamic resize fix for inner content changes
+                setTimeout(() => {
+                    if(header.classList.contains('active')) {
+                        body.style.maxHeight = "none";
+                    }
+                }, 300);
+            }
+        }
+
+        function renderQuiz(containerId, questions) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = `
+                <div class="quiz-header">Practice Exercise</div>
+                ${questions.map(q => `
+                    <div class="question-card" id="q-card-${q.id}">
+                        <span class="q-text">${q.id > 100 ? q.id - 100 : (q.id > 70 ? q.id : (q.id % 10 === 0 ? 10 : q.id % 10))}. ${q.q}</span>
+                        <div class="options-grid">
+                            ${q.opts.map(opt => 
+                                `<button class="opt-btn" onclick="checkAnswer(${q.id}, '${opt.replace(/'/g, "\\'")}', this, '${q.ans.replace(/'/g, "\\'")}')">${opt}</button>`
+                            ).join('')}
+                        </div>
+                        <div class="feedback" id="fb-${q.id}"></div>
+                    </div>
+                `).join('')}
+            `;
+        }
+
+        function checkAnswer(id, selected, btn, correct) {
+            if (answeredIds.has(id)) return;
+            answeredIds.add(id);
+
+            score.attempted++;
+            const fbBox = document.getElementById(`fb-${id}`);
+            const allBtns = btn.parentElement.querySelectorAll('.opt-btn');
+            
+            // Find Explanation
+            let expl = "Explanation not available.";
+            // Search in categorised quizzes
+            for (let k in quizzes) {
+                const found = quizzes[k].find(x => x.id === id);
+                if (found) expl = found.exp;
+            }
+            // Search in mega quiz
+            if (expl === "Explanation not available.") {
+                const found = megaQuizData.find(x => x.id === id);
+                if (found) expl = found.exp;
+            }
+
+            if (selected === correct) {
+                score.correct++;
+                btn.classList.add('correct-ans');
+                fbBox.innerHTML = `<strong>✔ Correct!</strong> ${expl}`;
+                fbBox.className = "feedback show fb-success";
+            } else {
+                score.wrong++;
+                btn.classList.add('wrong-ans');
+                // Highlight correct
+                allBtns.forEach(b => {
+                    if (b.innerText === correct) b.classList.add('correct-ans');
+                });
+                fbBox.innerHTML = `<strong>❌ Wrong!</strong> Correct: <u>${correct}</u><br>Reason: ${expl}`;
+                fbBox.className = "feedback show fb-error";
+            }
+
+            allBtns.forEach(b => b.disabled = true);
+            updateScore();
+        }
+
+        function updateScore() {
+            document.getElementById('s-attempted').innerText = score.attempted;
+            document.getElementById('s-correct').innerText = score.correct;
+            document.getElementById('s-wrong').innerText = score.wrong;
+            const percent = score.attempted === 0 ? 0 : Math.round((score.correct / score.attempted) * 100);
+            document.getElementById('s-percent').innerText = percent + "%";
+        }
+
+        // --- INIT ---
+        window.onload = function() {
+            renderQuiz('quiz-articles', quizzes['quiz-articles']);
+            renderQuiz('quiz-demonstratives', quizzes['quiz-demonstratives']);
+            renderQuiz('quiz-possessives', quizzes['quiz-possessives']);
+            renderQuiz('quiz-quantifiers', quizzes['quiz-quantifiers']);
+            renderQuiz('quiz-numbers', quizzes['quiz-numbers']);
+            renderQuiz('quiz-distributives', quizzes['quiz-distributives']);
+            renderQuiz('quiz-interrogatives', quizzes['quiz-interrogatives']);
+            renderQuiz('mega-quiz-container', megaQuizData);
+        };
+
+    </script>
+</body>
+</html>

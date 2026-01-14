@@ -3,1738 +3,861 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRONOUNS - Complete Grammar Chapter | Grammar Learning Hub</title>
+    <title>Pronouns | Grammar Learning Hub</title>
     <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --primary: #0f172a;      /* Deep Blue */
+            --primary-light: #1e293b;
+            --accent: #f59e0b;       /* Gold */
+            --text-light: #f8fafc;
+            --text-dark: #334155;
+            --bg-light: #f1f5f9;
+            --success: #22c55e;
+            --error: #ef4444;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            padding-bottom: 60px;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 30px rgba(0,0,0,0.1);
-            min-height: 100vh;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
+        /* --- STICKY SCOREBOARD --- */
+        .score-panel {
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 12px 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
         }
 
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
+        .score-item span {
+            font-weight: bold;
+            color: var(--accent);
+            margin-left: 5px;
+            font-size: 1.1rem;
         }
 
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-        }
-
-        .content {
-            padding: 2rem;
-        }
-
-        .section {
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: #f8f9fa;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-        }
-
-        .section h2 {
-            color: #2c3e50;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid #3498db;
-            position: relative;
-        }
-
-        .section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: #e74c3c;
-        }
-
-        .definition-box {
-            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1.5rem 0;
-            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.3);
+            text-align: center;
+            padding: 50px 20px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        header p {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* --- CONTAINER --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* --- CARDS & SECTIONS --- */
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            border-left: 5px solid var(--accent);
+        }
+
+        h2.section-title {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            font-size: 1.8rem;
+        }
+
+        .highlight-box {
+            background: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
         }
 
         .hinglish-box {
-            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1.5rem 0;
-            box-shadow: 0 5px 15px rgba(253, 121, 168, 0.3);
+            background-color: #fffbeb;
+            border: 1px solid #fcd34d;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            color: #92400e;
+            font-weight: 500;
         }
 
-        .example-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .example-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid #3498db;
-            transition: all 0.3s ease;
-        }
-
-        .example-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-        }
-
-        .correct {
-            color: #27ae60;
-            font-weight: bold;
-        }
-
-        .incorrect {
-            color: #e74c3c;
-            font-weight: bold;
-        }
-
-        .accordion {
-            margin: 1.5rem 0;
-        }
-
+        /* --- ACCORDION --- */
         .accordion-item {
-            margin-bottom: 1rem;
-            border-radius: 10px;
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e2e8f0;
         }
 
         .accordion-header {
-            background: linear-gradient(135deg, #636e72 0%, #2d3436 100%);
-            color: white;
-            padding: 1rem 1.5rem;
+            background: white;
+            padding: 20px;
             cursor: pointer;
-            transition: all 0.3s ease;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: background 0.3s;
+            border-left: 6px solid var(--primary);
         }
 
-        .accordion-header:hover {
-            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+        .accordion-header:hover { background: #f1f5f9; }
+
+        .accordion-header h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: var(--primary);
         }
 
-        .accordion-header::after {
-            content: '▼';
+        .icon {
+            font-size: 1.2rem;
             transition: transform 0.3s ease;
+            color: var(--accent);
         }
 
-        .accordion-item.active .accordion-header::after {
-            transform: rotate(180deg);
+        .accordion-header.active .icon { transform: rotate(180deg); }
+        .accordion-header.active { background: #f8fafc; }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: white;
         }
 
         .accordion-content {
-            background: white;
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
+            padding: 25px;
+            border-top: 1px solid #e2e8f0;
         }
 
-        .accordion-item.active .accordion-content {
-            max-height: 2000px;
-            padding: 1.5rem;
-        }
-
-        .table-responsive {
-            overflow-x: auto;
-            margin: 1.5rem 0;
-        }
-
+        /* --- TABLES & MISTAKES --- */
         table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin: 15px 0;
         }
-
         th, td {
-            padding: 1rem;
+            border: 1px solid #cbd5e1;
+            padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #ecf0f1;
         }
+        th { background-color: var(--primary); color: white; }
 
-        th {
-            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
-            color: white;
-            font-weight: 600;
+        .mistake-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
         }
-
-        tr:hover {
-            background: #f8f9fa;
+        @media (min-width: 768px) {
+            .mistake-grid { grid-template-columns: 1fr 1fr; }
         }
-
-        .rule-box {
-            background: #e8f4f8;
-            border-left: 4px solid #3498db;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 5px;
+        .mistake-card {
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
         }
+        .wrong { background: #fef2f2; border-left: 4px solid var(--error); }
+        .correct { background: #f0fdf4; border-left: 4px solid var(--success); }
 
-        .mistake-box {
-            background: #fff5f5;
-            border-left: 4px solid #e74c3c;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 5px;
-        }
-
-        .practice-section {
-            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-        }
-
-        .question {
-            background: white;
-            color: #333;
-            padding: 1.5rem;
+        /* --- QUIZ UI --- */
+        .quiz-wrapper {
+            margin-top: 30px;
+            background: #f8fafc;
+            padding: 20px;
             border-radius: 10px;
-            margin: 1rem 0;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 1px solid #cbd5e1;
         }
 
-        .question h4 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
+        .quiz-header {
+            text-align: center;
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .input-group {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            margin-top: 1rem;
+        .question-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
         }
 
-        input[type="text"] {
-            flex: 1;
-            padding: 0.8rem;
-            border: 2px solid #ecf0f1;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
+        .q-text { font-weight: 600; margin-bottom: 15px; display: block; font-size: 1.05rem; }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        @media (min-width: 600px) {
+            .options-grid { grid-template-columns: 1fr 1fr; }
         }
 
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #3498db;
-        }
-
-        .btn {
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 5px;
+        .opt-btn {
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            font-weight: 600;
+            transition: all 0.2s;
+            text-align: left;
+            font-weight: 500;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        .opt-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: #f1f5f9;
+        }
+
+        .opt-btn.correct-ans {
+            background: var(--success);
             color: white;
+            border-color: var(--success);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        .opt-btn.wrong-ans {
+            background: var(--error);
             color: white;
+            border-color: var(--error);
         }
 
-        .btn-danger {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            color: white;
-        }
+        .opt-btn:disabled { cursor: not-allowed; opacity: 0.9; }
 
         .feedback {
-            margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 5px;
-            font-weight: 600;
-            animation: slideIn 0.3s ease;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            display: none;
         }
+        .feedback.show { display: block; animation: fadeIn 0.3s; }
+        .fb-success { background: #dcfce7; color: #14532d; border: 1px solid #86efac; }
+        .fb-error { background: #fee2e2; color: #7f1d1d; border: 1px solid #fca5a5; }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
-        .feedback.correct {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .feedback.incorrect {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .score-panel {
-            position: fixed;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
+        /* --- MEGA PRACTICE --- */
+        .mega-section {
+            margin-top: 50px;
             background: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            z-index: 1000;
-            min-width: 200px;
-            text-align: center;
+            padding: 40px;
+            border-radius: var(--radius);
+            border-top: 8px solid var(--accent);
+            box-shadow: var(--card-shadow);
         }
 
-        .score-panel h3 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        .score-item {
-            margin: 0.5rem 0;
-            padding: 0.5rem;
-            background: #f8f9fa;
-            border-radius: 5px;
-            font-weight: 600;
-        }
-
-        .score-percentage {
-            font-size: 2rem;
-            color: #3498db;
-            font-weight: bold;
-        }
-
-        .controls {
-            text-align: center;
-            margin: 2rem 0;
-        }
-
-        .footer {
-            background: #2c3e50;
+        /* --- FOOTER --- */
+        footer {
+            background: var(--primary);
             color: white;
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
+            padding: 40px 20px;
+            margin-top: 60px;
         }
 
-        .footer p {
-            margin: 0.5rem 0;
-        }
-
-        .highlight {
-            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
-            padding: 0.2rem 0.5rem;
-            border-radius: 3px;
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 30px;
             font-weight: bold;
+            transition: transform 0.2s;
         }
+        .back-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4); }
 
-        .exam-tip {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 5px;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-left: 4px solid #fdcb6e;
-        }
-
-        .exam-tip::before {
-            content: "💡 SSC TIP: ";
-            font-weight: bold;
-            color: #e17055;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .content {
-                padding: 1rem;
-            }
-            
-            .score-panel {
-                position: static;
-                transform: none;
-                margin: 2rem auto;
-                max-width: 300px;
-            }
-            
-            .example-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .input-group {
-                flex-direction: column;
-            }
-        }
     </style>
 </head>
 <body>
+
+    <div class="score-panel">
+        <div class="score-item">Attempted: <span id="s-attempted">0</span></div>
+        <div class="score-item">Correct: <span id="s-correct">0</span></div>
+        <div class="score-item">Wrong: <span id="s-wrong">0</span></div>
+        <div class="score-item">Score: <span id="s-percent">0%</span></div>
+    </div>
+
+    <header>
+        <h1>Pronouns</h1>
+        <p>Grammar Learning Hub</p>
+    </header>
+
     <div class="container">
-        <header class="header">
-            <h1>PRONOUNS</h1>
-            <p>Complete Grammar Chapter with Practice & Live Score</p>
-        </header>
 
-        <main class="content">
-            <!-- What is a Pronoun -->
-            <section class="section">
-                <h2>① WHAT IS A PRONOUN?</h2>
-                
-                <div class="definition-box">
-                    <h3>📚 Definition</h3>
-                    <p>A pronoun is a word that replaces a noun to avoid repetition and make sentences smoother and clearer.</p>
-                </div>
-
-                <div class="hinglish-box">
-                    <h3>🇮🇳 Hinglish Explanation</h3>
-                    <p>Pronoun wo shabd hota hai jo noun ki jagah use hota hai taaki baar-baar noun repeat na karna pade. Jaise 'Rahul' ki jagah 'he'.</p>
-                </div>
-
-                <div class="formula-box" style="background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%); color: white; padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0; text-align: center;">
-                    <h3>🧮 Formula</h3>
-                    <p style="font-size: 1.5rem; font-weight: bold;">Pronoun = Replaces Noun</p>
-                </div>
-
-                <div class="example-grid">
-                    <div class="example-card">
-                        <h4>✅ Correct Examples</h4>
-                        <p><span class="highlight">Rahul</span> is my friend. <span class="highlight">He</span> is very kind.</p>
-                        <p>I saw <span class="highlight">Sita</span>. <span class="highlight">She</span> was reading.</p>
-                        <p>This is <span class="highlight">my book</span>. <span class="highlight">It</span> is new.</p>
-                        <p>I met <span class="highlight">Rahul and Sita</span>. <span class="highlight">They</span> are nice.</p>
-                        <p>This pen is <span class="highlight">mine</span>.</p>
-                    </div>
-                    <div class="example-card">
-                        <h4>❌ Wrong Examples</h4>
-                        <p><span class="incorrect">✗ Rahul is my friend. Rahul is very kind.</span> (Repetition - boring!)</p>
-                        <p><span class="incorrect">✗ I saw Sita. Sita was reading.</span> (Repetition - not smooth)</p>
-                        <p><span class="incorrect">✗ This is my book. My book is new.</span> (Too repetitive)</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Accordion Structure -->
-            <div class="accordion">
-                <!-- Types Overview -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>② TYPES OF PRONOUNS (OVERVIEW)</h3>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Type</th>
-                                        <th>Purpose</th>
-                                        <th>Examples</th>
-                                        <th>Hindi Meaning</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Personal</strong></td>
-                                        <td>Person ko indicate karta hai</td>
-                                        <td>I, you, he, she, it, we, they</td>
-                                        <td>Main, aap, woh</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Possessive</strong></td>
-                                        <td>Ownership show karta hai</td>
-                                        <td>my, your, his, her, its, our, their</td>
-                                        <td>Mera, tumhara, uska</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Reflexive</strong></td>
-                                        <td>Khud ko indicate karta hai</td>
-                                        <td>myself, yourself, himself</td>
-                                        <td>Khud, swayam</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Demonstrative</strong></td>
-                                        <td>Near/far things show karta hai</td>
-                                        <td>this, that, these, those</td>
-                                        <td>Yeh, woh, ye sab</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Relative</strong></td>
-                                        <td>Sentence connect karta hai</td>
-                                        <td>who, which, that, whose</td>
-                                        <td>Jo, jisko, jiska</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Interrogative</strong></td>
-                                        <td>Sawal puchta hai</td>
-                                        <td>who, what, which, whose</td>
-                                        <td>Kaun, kya, kiska</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Indefinite</strong></td>
-                                        <td>Non-specific things ko indicate karta hai</td>
-                                        <td>some, any, none, all</td>
-                                        <td>Kuch, koi, sab</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Personal Pronouns -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>③ PERSONAL PRONOUNS</h3>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="definition-box">
-                            <h4>📖 Definition</h4>
-                            <p>Personal pronouns are pronouns that refer to specific persons or things. They change form according to person, number, and case.</p>
-                        </div>
-
-                        <div class="hinglish-box">
-                            <h4>🇮🇳 Hinglish Explanation</h4>
-                            <p>Personal pronouns wo hote hain jo kisi specific insaan ya cheez ki baat karte hain. Ye pronouns person, number aur case ke hisaab se change hote hain.</p>
-                        </div>
-
-                        <div class="rule-box">
-                            <h4>✅ Key Rules</h4>
-                            <ul>
-                                <li><strong>Subject Pronouns:</strong> I, you, he, she, it, we, they (karta/कर्ता के लिए)</li>
-                                <li><strong>Object Pronouns:</strong> me, you, him, her, it, us, them (karma/कर्म के लिए)</li>
-                                <li><strong>First Person:</strong> I, me, we, us (bolne wala)</li>
-                                <li><strong>Second Person:</strong> you (sunte wale ke लिए)</li>
-                                <li><strong>Third Person:</strong> he, she, it, they, him, her, them (teesra vyakti)</li>
-                            </ul>
-                        </div>
-
-                        <div class="table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Person</th>
-                                        <th>Subject Pronoun</th>
-                                        <th>Object Pronoun</th>
-                                        <th>Example</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1st Person Singular</td>
-                                        <td>I</td>
-                                        <td>me</td>
-                                        <td>I am happy. They saw me.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2nd Person Singular</td>
-                                        <td>you</td>
-                                        <td>you</td>
-                                        <td>You are kind. I like you.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3rd Person Singular (Male)</td>
-                                        <td>he</td>
-                                        <td>him</td>
-                                        <td>He is tall. She called him.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3rd Person Singular (Female)</td>
-                                        <td>she</td>
-                                        <td>her</td>
-                                        <td>She is smart. I met her.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3rd Person Singular (Neutral)</td>
-                                        <td>it</td>
-                                        <td>it</td>
-                                        <td>It is cold. I like it.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1st Person Plural</td>
-                                        <td>we</td>
-                                        <td>us</td>
-                                        <td>We are friends. They invited us.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3rd Person Plural</td>
-                                        <td>they</td>
-                                        <td>them</td>
-                                        <td>They are coming. I saw them.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="mistake-box">
-                            <h4>❌ Common Mistakes</h4>
-                            <p><strong>Wrong:</strong> Me am happy. (Object pronoun as subject)</p>
-                            <p><strong>Right:</strong> I am happy.</p>
-                            <p><strong>Why wrong:</strong> Subject ke liye hamesha subject pronoun (I, you, he, she, it, we, they) use karte hain!</p>
-                            
-                            <p><strong>Wrong:</strong> Between you and I (preposition ke baad subject pronoun)</p>
-                            <p><strong>Right:</strong> Between you and me</p>
-                            <p><strong>Why wrong:</strong> Preposition (between, to, for, with) ke baad hamesha object pronoun (me, you, him, her, us, them) aata hai!</p>
-                        </div>
-
-                        <div class="exam-tip">
-                            <strong>SSC TIP:</strong> Subject pronoun = karta (I, he, she, they), Object pronoun = karm (me, him, her, them)!
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Possessive Pronouns -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>④ POSSESSIVE PRONOUNS</h3>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="definition-box">
-                            <h4>📖 Definition</h4>
-                            <p>Possessive pronouns show ownership or possession. They indicate who owns what.</p>
-                        </div>
-
-                        <div class="hinglish-box">
-                            <h4>🇮🇳 Hinglish Explanation</h4>
-                            <p>Possessive pronouns ownership ya kabza dikhate hain. Ye batate hain ki kisi cheez ka malik kaun hai.</p>
-                        </div>
-
-                        <div class="rule-box">
-                            <h4>✅ Key Rules</h4>
-                            <ul>
-                                <li><strong>Possessive Adjectives:</strong> my, your, his, her, its, our, their (noun ke pehle aate hain)</li>
-                                <li><strong>Possessive Pronouns:</strong> mine, yours, his, hers, its, ours, theirs (khud hi noun ka kaam karte hain)</li>
-                                <li>Its vs It's: "Its" = possessive, "It's" = it is</li>
-                                <li>His - dono adjective aur pronoun ka kaam karta hai</li>
-                            </ul>
-                        </div>
-
-                        <div class="example-grid">
-                            <div class="example-card">
-                                <h4>✅ Possessive Adjectives (Before Noun)</h4>
-                                <p>This is <span class="highlight">my</span> book.</p>
-                                <p>That is <span class="highlight">your</span> pen.</p>
-                                <p><span class="highlight">His</span> car is new.</p>
-                                <p><span class="highlight">Her</span> dress is beautiful.</p>
-                                <p><span class="highlight">Their</span> house is big.</p>
-                            </div>
-                            <div class="example-card">
-                                <h4>✅ Possessive Pronouns (Replace Noun)</h4>
-                                <p>This book is <span class="highlight">mine</span>.</p>
-                                <p>That pen is <span class="highlight">yours</span>.</p>
-                                <p>The car is <span class="highlight">his</span>.</p>
-                                <p>The dress is <span class="highlight">hers</span>.</p>
-                                <p>The house is <span class="highlight">theirs</span>.</p>
-                            </div>
-                        </div>
-
-                        <div class="mistake-box">
-                            <h4>❌ Common Mistakes</h4>
-                            <p><strong>Wrong:</strong> This book is my. (Adjective khud stand nahin kar sakta)</p>
-                            <p><strong>Right:</strong> This book is mine.</p>
-                            <p><strong>Why wrong:</strong> Jab pronoun khud stand kare to 'mine' use karte hain, 'my' nahin!</p>
-                            
-                            <p><strong>Wrong:</strong> Its a nice day. (Confusion between its and it's)</p>
-                            <p><strong>Right:</strong> It's a nice day.</p>
-                            <p><strong>Why wrong:</strong> "It's" = "It is", "Its" = possessive form!</p>
-                            
-                            <p><strong>Wrong:</strong> This is yours book. ('s' double ho gaya)</p>
-                            <p><strong>Right:</strong> This is your book. OR This book is yours.</p>
-                            <p><strong>Why wrong:</strong> 'Yours' mein already possessive meaning hai, noun ke pehle 'your' use karte hain!</p>
-                        </div>
-
-                        <div class="exam-tip">
-                            <strong>SSC TIP:</strong> Agar noun hai sentence mein to 'your', agar noun nahin hai to 'yours'!
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Reflexive & Emphatic Pronouns -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>⑤ REFLEXIVE & EMPHATIC PRONOUNS</h3>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="definition-box">
-                            <h4>📖 Definition</h4>
-                            <p><strong>Reflexive Pronouns:</strong> When the subject and object are the same person/thing.</p>
-                            <p><strong>Emphatic Pronouns:</strong> Same words but used for emphasis.</p>
-                        </div>
-
-                        <div class="hinglish-box">
-                            <h4>🇮🇳 Hinglish Explanation</h4>
-                            <p>Reflexive pronouns tab use hote hain jab karta aur karma ek hi ho. Emphatic pronouns same words hote hain lekin stress dene ke liye.</p>
-                        </div>
-
-                        <div class="rule-box">
-                            <h4>✅ Key Rules</h4>
-                            <ul>
-                                <li>Myself, yourself, himself, herself, itself, ourselves, yourselves, themselves</li>
-                                <li><strong>Reflexive:</strong> I hurt myself. (Subject = Object)</li>
-                                <li><strong>Emphatic:</strong> I myself did it. (Stress ke liye)</li>
-                                <li>Kabhi bhi reflexive pronoun subject nahin ban sakta!</li>
-                            </ul>
-                        </div>
-
-                        <div class="example-grid">
-                            <div class="example-card">
-                                <h4>✅ Reflexive Pronouns</h4>
-                                <p>I hurt <span class="highlight">myself</span>.</p>
-                                <p>She looked at <span class="highlight">herself</span> in the mirror.</p>
-                                <p>He blamed <span class="highlight">himself</span>.</p>
-                                <p>We enjoyed <span class="highlight">ourselves</span>.</p>
-                                <p>They helped <span class="highlight">themselves</span>.</p>
-                            </div>
-                            <div class="example-card">
-                                <h4>✅ Emphatic Pronouns</h4>
-                                <p>I <span class="highlight">myself</span> did the work.</p>
-                                <p>She <span class="highlight">herself</span> cooked the food.</p>
-                                <p>He <span class="highlight">himself</span> admitted the mistake.</p>
-                                <p>We <span class="highlight">ourselves</span> saw the incident.</p>
-                                <p>They <span class="highlight">themselves</span> admitted it.</p>
-                            </div>
-                        </div>
-
-                        <div class="mistake-box">
-                            <h4>❌ Common Mistakes</h4>
-                            <p><strong>Wrong:</strong> Myself will do it. (Reflexive as subject)</p>
-                            <p><strong>Right:</strong> I myself will do it. OR I will do it myself.</p>
-                            <p><strong>Why wrong:</strong> Reflexive pronoun kabhi bhi subject nahin ban sakta!</p>
-                            
-                            <p><strong>Wrong:</strong> I and Rahul enjoyed ourselves. (Mixing subjects)</p>
-                            <p><strong>Right:</strong> Rahul and I enjoyed ourselves.</p>
-                            <p><strong>Why wrong:</strong> Doosra subject (Rahul) hone par reflexive pronoun plural hota hai!</p>
-                            
-                            <p><strong>Wrong:</strong> Please yourself. (Wrong context)</p>
-                            <p><strong>Right:</strong> Help yourself. (Correct reflexive use)</p>
-                            <p><strong>Why wrong:</strong> 'Please yourself' alag meaning hai - context matters!</p>
-                        </div>
-
-                        <div class="exam-tip">
-                            <strong>SSC TIP:</strong> Agar sentence mein "by" ho to generally reflexive pronoun aata hai: "She did it by herself"!
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Demonstrative Pronouns -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>⑥ DEMONSTRATIVE PRONOUNS</h3>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="definition-box">
-                            <h4>📖 Definition</h4>
-                            <p>Demonstrative pronouns point to specific things and show their distance from the speaker.</p>
-                        </div>
-
-                        <div class="hinglish-box">
-                            <h4>🇮🇳 Hinglish Explanation</h4>
-                            <p>Demonstrative pronouns specific cheezon ki taraf point karte hain aur dikhate hain ki wo speaker ke kitne paas ya door hain.</p>
-                        </div>
-
-                        <div class="rule-box">
-                            <h4>✅ Key Rules</h4>
-                            <ul>
-                                <li><strong>This:</strong> Near, singular (ye - paas, ek)</li>
-                                <li><strong>That:</strong> Far, singular (wo - door, ek)</li>
-                                <li><strong>These:</strong> Near, plural (ye - paas, bahut)</li>
-                                <li><strong>Those:</strong> Far, plural (wo - door, bahut)</li>
-                                <li>Distance physical ya time dono ho sakti hai!</li>
-                            </ul>
-                        </div>
-
-                        <div class="example-grid">
-                            <div class="example-card">
-                                <h4>✅ Distance Examples</h4>
-                                <p><span class="highlight">This</span> is my book. (Paas mein)</p>
-                                <p><span class="highlight">That</span> is your house. (Door mein)</p>
-                                <p><span class="highlight">These</span> are my friends. (Paas mein, bahut)</p>
-                                <p><span class="highlight">Those</span> are mountains. (Door mein, bahut)</p>
-                            </div>
-                            <div class="example-card">
-                                <h4>✅ Time Examples</h4>
-                                <p><span class="highlight">This</span> week is busy. (Current/near time)</p>
-                                <p><span class="highlight">That</span> day was memorable. (Past/far time)</p>
-                                <p><span class="highlight">These</span> days are hard. (Current days)</p>
-                                <p><span class="highlight">Those</span> were the days! (Past days)</p>
-                            </div>
-                        </div>
-
-                        <div class="mistake-box">
-                            <h4>❌ Common Mistakes</h4>
-                            <p><strong>Wrong:</strong> This books are mine. (Singular pronoun with plural noun)</p>
-                            <p><strong>Right:</strong> These books are mine.</p>
-                            <p><strong>Why wrong:</strong> 'This' singular hai, 'books' plural - match hona chahiye!</p>
-                            
-                            <p><strong>Wrong:</strong> Those is my friend. (Plural pronoun with singular noun)</p>
-                            <p><strong>Right:</strong> That is my friend.</p>
-                            <p><strong>Why wrong:</strong> 'Those' plural hai, 'friend' singular - number match karna important hai!</p>
-                            
-                            <p><strong>Wrong:</strong> This are my shoes. (Wrong verb)</p>
-                            <p><strong>Right:</strong> These are my shoes.</p>
-                            <p><strong>Why wrong:</strong> Pronoun aur verb dono ka number match hona chahiye!</p>
-                        </div>
-
-                        <div class="exam-tip">
-                            <strong>SSC TIP:</strong> This/That = singular, These/Those = plural. Aur hamesha noun ka number dekhkar pronoun chuno!
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Relative Pronouns -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>⑦ RELATIVE PRONOUNS</h3>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="definition-box">
-                            <h4>📖 Definition</h4>
-                            <p>Relative pronouns connect a clause or phrase to a noun or pronoun. They introduce relative clauses.</p>
-                        </div>
-
-                        <div class="hinglish-box">
-                            <h4>🇮🇳 Hinglish Explanation</h4>
-                            <p>Relative pronouns do sentences ko connect karte hain. Ye relative clauses introduce karte hain.</p>
-                        </div>
-
-                        <div class="rule-box">
-                            <h4>✅ Key Rules</h4>
-                            <ul>
-                                <li><strong>Who:</strong> People ke liye (subject)</li>
-                                <li><strong>Whom:</strong> People ke liye (object)</li>
-                                <li><strong>Which:</strong> Things/animals ke liye</li>
-                                <li><strong>That:</strong> People aur things dono ke liye</li>
-                                <li><strong>Whose:</strong> Possession dikhane ke liye</li>
-                                <li><strong>Where:</strong> Place ke liye</li>
-                                <li><strong>When:</strong> Time ke liye</li>
-                            </ul>
-                        </div>
-
-                        <div class="example-grid">
-                            <div class="example-card">
-                                <h4>✅ Who/Whom Examples</h4>
-                                <p>The man <span class="highlight">who</span> came yesterday is my uncle.</p>
-                                <p>The girl <span class="highlight">whom</span> I met is very nice.</p>
-                                <p>The boy <span class="highlight">whose</span> book this is must come forward.</p>
-                            </div>
-                            <div class="example-card">
-                                <h4>✅ Which/That Examples</h4>
-                                <p>The book <span class="highlight">which</span> you gave me is interesting.</p>
-                                <p>The pen <span class="highlight">that</span> I bought is expensive.</p>
-                                <p>The house <span class="highlight">where</span> I live is big.</p>
-                                <p>The day <span class="highlight">when</span> we met was special.</p>
-                            </div>
-                        </div>
-
-                        <div class="mistake-box">
-                            <h4>❌ Common Mistakes</h4>
-                            <p><strong>Wrong:</strong> The man which came yesterday... (Wrong pronoun for person)</p>
-                            <p><strong>Right:</strong> The man who came yesterday...</p>
-                            <p><strong>Why wrong:</strong> People ke liye hamesha 'who' ya 'that', 'which' nahin!</p>
-                            
-                            <p><strong>Wrong:</strong> The book who you gave me... (Wrong pronoun for thing)</p>
-                            <p><strong>Right:</strong> The book which/that you gave me...</p>
-                            <p><strong>Why wrong:</strong> Things ke liye 'which' ya 'that' use karte hain, 'who' nahin!</p>
-                            
-                            <p><strong>Wrong:</strong> Who did you meet? (Formal writing mein)</p>
-                            <p><strong>Right:</strong> Whom did you meet? (Formal)</p>
-                            <p><strong>Why:</strong> Preposition ya verb ke object ke liye 'whom' use karte hain!</p>
-                        </div>
-
-                        <div class="exam-tip">
-                            <strong>SSC TIP:</strong> Who = subject (karta), Whom = object (karma). Agar 'he' fit kare to who, agar 'him' fit kare to whom!
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Interrogative Pronouns -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>⑧ INTERROGATIVE PRONOUNS</h3>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="definition-box">
-                            <h4>📖 Definition</h4>
-                            <p>Interrogative pronouns are used to ask questions. They help us get information about people, things, or ideas.</p>
-                        </div>
-
-                        <div class="hinglish-box">
-                            <h4>🇮🇳 Hinglish Explanation</h4>
-                            <p>Interrogative pronouns sawal puchne ke liye use hote hain. Ye hume people, things ya ideas ke baare mein information lene mein help karte hain.</p>
-                        </div>
-
-                        <div class="rule-box">
-                            <h4>✅ Key Rules</h4>
-                            <ul>
-                                <li><strong>Who:</strong> People ke baare mein sawal (subject)</li>
-                                <li><strong>Whom:</strong> People ke baare mein sawal (object)</li>
-                                <li><strong>What:</strong> Things/ideas ke baare mein sawal</li>
-                                <li><strong>Which:</strong> Choice ke baare mein sawal</li>
-                                <li><strong>Whose:</strong> Ownership ke baare mein sawal</li>
-                            </ul>
-                        </div>
-
-                        <div class="example-grid">
-                            <div class="example-card">
-                                <h4>✅ Question Examples</h4>
-                                <p><span class="highlight">Who</span> is coming to the party?</p>
-                                <p><span class="highlight">Whom</span> did you meet yesterday?</p>
-                                <p><span class="highlight">What</span> is your name?</p>
-                                <p><span class="highlight">Which</span> book do you want?</p>
-                                <p><span class="highlight">Whose</span> pen is this?</p>
-                            </div>
-                            <div class="example-card">
-                                <h4>✅ Answer Examples</h4>
-                                <p><span class="highlight">Who</span> won the match? - Rahul did.</p>
-                                <p><span class="highlight">What</span> happened? - Nothing special.</p>
-                                <p><span class="highlight">Which</span> is better? - This one is.</p>
-                                <p><span class="highlight">Whose</span> turn is it? - It's mine.</p>
-                            </div>
-                        </div>
-
-                        <div class="mistake-box">
-                            <h4>❌ Common Mistakes</h4>
-                            <p><strong>Wrong:</strong> Who book is this? (Wrong pronoun for thing)</p>
-                            <p><strong>Right:</strong> Whose book is this? (Ownership) OR What book is this? (Type)</p>
-                            <p><strong>Why wrong:</strong> 'Who' sirf people ke liye hota hai, things ke liye 'what' ya 'whose'!</p>
-                            
-                            <p><strong>Wrong:</strong> What did come to the party? (Wrong pronoun for person)</p>
-                            <p><strong>Right:</strong> Who came to the party?</p>
-                            <p><strong>Why wrong:</strong> People ke liye 'who' use karte hain, 'what' nahin!</p>
-                            
-                            <p><strong>Wrong:</strong> Who did you give the book? (Missing preposition)</p>
-                            <p><strong>Right:</strong> Who did you give the book to? OR Whom did you give the book?</p>
-                            <p><strong>Why:</strong> Preposition ke object ke liye 'whom' ya 'to whom' use karte hain!</p>
-                        </div>
-
-                        <div class="exam-tip">
-                            <strong>SSC TIP:</strong> Who/Whom = people, What = things/ideas, Which = choice, Whose = ownership!
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Indefinite Pronouns -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>⑨ INDEFINITE PRONOUNS</h3>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="definition-box">
-                            <h4>📖 Definition</h4>
-                            <p>Indefinite pronouns refer to non-specific people or things. They don't point to any particular person or thing.</p>
-                        </div>
-
-                        <div class="hinglish-box">
-                            <h4>🇮🇳 Hinglish Explanation</h4>
-                            <p>Indefinite pronouns non-specific logon ya cheezon ki baat karte hain. Ye kisi particular person ya thing ki taraf point nahin karte.</p>
-                        </div>
-
-                        <div class="rule-box">
-                            <h4>✅ Key Rules</h4>
-                            <ul>
-                                <li><strong>Some:</strong> Positive sentences mein (kuch)</li>
-                                <li><strong>Any:</strong> Negative aur questions mein (koi bhi)</li>
-                                <li><strong>None:</strong> Koi nahin</li>
-                                <li><strong>All:</strong> Sab</li>
-                                <li><strong>Each/Every:</strong> Har ek (singular verb)</li>
-                                <li><strong>Everyone/Someone/Anyone:</strong> Har koi/koi/koi bhi</li>
-                            </ul>
-                        </div>
-
-                        <div class="example-grid">
-                            <div class="example-card">
-                                <h4>✅ Positive Examples</h4>
-                                <p><span class="highlight">Some</span> people are coming.</p>
-                                <p><span class="highlight">All</span> students passed.</p>
-                                <p><span class="highlight">Each</span> person has a ticket.</p>
-                                <p><span class="highlight">Everyone</span> is happy.</p>
-                                <p><span class="highlight">Someone</span> is at the door.</p>
-                            </div>
-                            <div class="example-card">
-                                <h4>✅ Negative/Question Examples</h4>
-                                <p>I don't have <span class="highlight">any</span> money.</p>
-                                <p>Is <span class="highlight">anyone</span> there?</p>
-                                <p><span class="highlight">None</span> of them came.</p>
-                                <p>Do you need <span class="highlight">anything</span>?</p>
-                                <p><span class="highlight">Nobody</span> knows the answer.</p>
-                            </div>
-                        </div>
-
-                        <div class="mistake-box">
-                            <h4>❌ Common Mistakes</h4>
-                            <p><strong>Wrong:</strong> Everyone are happy. (Wrong verb)</p>
-                            <p><strong>Right:</strong> Everyone is happy.</p>
-                            <p><strong>Why wrong:</strong> Everyone, someone, anyone, each - ye sab singular hote hain, plural verb nahin!</p>
-                            
-                            <p><strong>Wrong:</strong> Each students have a book. (Wrong verb form)</p>
-                            <p><strong>Right:</strong> Each student has a book.</p>
-                            <p><strong>Why wrong:</strong> Each ke baat singular noun aur singular verb aata hai!</p>
-                            
-                            <p><strong>Wrong:</strong> I don't have some money. (Wrong in negative)</p>
-                            <p><strong>Right:</strong> I don't have any money.</p>
-                            <p><strong>Why:</strong> Negative sentences mein 'any' use karte hain, 'some' nahin!</p>
-                        </div>
-
-                        <div class="exam-tip">
-                            <strong>SSC TIP:</strong> Each/Every/Everyone/Someone = singular verb (is, has, does). Some = positive, Any = negative/questions!
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Common Errors -->
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>⑩ COMMON ERRORS & EXAM TRAPS</h3>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="table-responsive">
-                            <table class="error-table">
-                                <thead>
-                                    <tr>
-                                        <th>❌ Wrong</th>
-                                        <th>✔ Correct</th>
-                                        <th>Why Wrong?</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="wrong">Me and Rahul went</td>
-                                        <td class="correct">Rahul and I went</td>
-                                        <td>Subject ke liye 'I' use karte hain, 'me' nahin</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="wrong">Between you and I</td>
-                                        <td class="correct">Between you and me</td>
-                                        <td>Preposition ke baad object pronoun 'me' aata hai</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="wrong">Each students are</td>
-                                        <td class="correct">Each student is</td>
-                                        <td>Each singular hai - singular noun aur verb lagta hai</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="wrong">This books are</td>
-                                        <td class="correct">These books are</td>
-                                        <td>This singular, books plural - number match karna hai</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="wrong">Who did you meet to?</td>
-                                        <td class="correct">Who did you meet? OR Whom did you meet?</td>
-                                        <td>Preposition ke object ke liye 'whom' use karte hain</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="wrong">The man which came</td>
-                                        <td class="correct">The man who came</td>
-                                        <td>People ke liye 'who', things ke liye 'which'</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="wrong">Myself will do it</td>
-                                        <td class="correct">I myself will do it</td>
-                                        <td>Reflexive pronoun kabhi subject nahin ban sakta</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="wrong">This is yours book</td>
-                                        <td class="correct">This is your book OR This book is yours</td>
-                                        <td>'Yours' mein already possessive meaning hai - double possession wrong</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="exam-tip">
-                            <strong>SSC EXAM TRAP:</strong> Subject/Object confusion, singular/plural mismatch, who/whom confusion - ye top 3 mistakes hain!
-                        </div>
-                    </div>
-                </div>
+        <section class="card">
+            <h2 class="section-title">Introduction</h2>
+            <p>A <strong>Pronoun</strong> is a word used in place of a Noun. It helps us avoid repeating the same noun over and over again, making sentences sound natural.</p>
+            
+            <div class="hinglish-box">
+                📌 <strong>Hinglish Explanation:</strong><br>
+                Pronoun (Sarvnaam) wo shabd hai jo Noun (Sangya) ki jagah par use hota hai. Taaki humein ek hi naam baar-baar na bolna pade.
             </div>
 
-            <!-- Practice Test -->
-            <section class="practice-section">
-                <h2>⑪ PRACTICE TEST – LIVE SCORE SYSTEM</h2>
-                <p><strong>Total Questions: 60</strong> | Personal & Possessive: 20 | Mixed Pronouns: 20 | Error Detection: 20</p>
-                
-                <div class="controls">
-                    <button class="btn btn-primary" onclick="resetTest()">🔄 Reset Test</button>
-                    <button class="btn btn-success" onclick="window.print()">🖨️ Print/Download</button>
-                </div>
+            <h3>Examples</h3>
+            <ul>
+                <li><strong>Rahul</strong> is absent because <strong>he</strong> is ill. (He = Rahul)</li>
+                <li><strong>The books</strong> are where you left <strong>them</strong>. (Them = The books)</li>
+            </ul>
+        </section>
 
-                <div id="questions-container">
-                    <!-- Questions will be generated by JavaScript -->
-                </div>
+        <h2 class="section-title" style="margin-top: 40px;">Types of Pronouns</h2>
 
-                <div class="controls">
-                    <button class="btn btn-primary" onclick="checkAllAnswers()">✅ Check All Answers</button>
-                </div>
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>1. Personal Pronouns</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>These represent specific people or things. They have two main forms: <strong>Subject</strong> (doer of action) and <strong>Object</strong> (receiver of action).</p>
+                    
+                    <table>
+                        <tr><th>Person</th><th>Subject (Doer)</th><th>Object (Receiver)</th></tr>
+                        <tr><td>1st (Speaker)</td><td>I, We</td><td>Me, Us</td></tr>
+                        <tr><td>2nd (Listener)</td><td>You</td><td>You</td></tr>
+                        <tr><td>3rd (Other)</td><td>He, She, It, They</td><td>Him, Her, It, Them</td></tr>
+                    </table>
 
-                <div id="final-score" style="margin-top: 2rem; padding: 1.5rem; background: white; color: #333; border-radius: 10px; text-align: center; display: none;">
-                    <h3>🎉 Your Final Score</h3>
-                    <div style="font-size: 3rem; color: #3498db; margin: 1rem 0;" id="final-score-percentage"></div>
-                    <p id="final-score-details"></p>
-                </div>
-            </section>
-        </main>
+                    <div class="hinglish-box">
+                        👉 <strong>Rule:</strong> Agar Pronoun sentence shuru kare toh 'Subject Form' use karein. Agar verb ke baad aaye toh 'Object Form' use karein.
+                    </div>
 
-        <div class="score-panel" id="scorePanel">
-            <h3>📊 LIVE SCORE</h3>
-            <div class="score-item">
-                <div>📋 Total</div>
-                <div>60</div>
-            </div>
-            <div class="score-item">
-                <div>✅ Attempted</div>
-                <div id="attempted">0</div>
-            </div>
-            <div class="score-item">
-                <div>✔ Correct</div>
-                <div id="correct">0</div>
-            </div>
-            <div class="score-item">
-                <div>❌ Wrong</div>
-                <div id="wrong">0</div>
-            </div>
-            <div class="score-item">
-                <div>🎯 Accuracy</div>
-                <div id="accuracy" class="score-percentage">0%</div>
+                    <div class="mistake-grid">
+                        <div class="mistake-card wrong">❌ Him and me went to the market.</div>
+                        <div class="mistake-card correct">✔ <strong>He</strong> and <strong>I</strong> went to the market. <br><small>(Use Subject form)</small></div>
+                    </div>
+
+                    <div class="quiz-wrapper" id="quiz-personal"></div>
+                </div>
             </div>
         </div>
 
-        <footer class="footer">
-            <p><strong>Created by SHRISHANT YADAV</strong></p>
-            <p>Grammar Learning Hub | Educational Purpose Only</p>
-            <p>© 2024 All Rights Reserved</p>
-        </footer>
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>2. Possessive Pronouns</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>These show ownership. They stand alone and <strong>do not</strong> need a noun after them.</p>
+                    <p><strong>List:</strong> Mine, Ours, Yours, His, Hers, Theirs.</p>
+
+                    <div class="highlight-box">
+                        <strong>Difference:</strong><br>
+                        This is <strong>my</strong> book. (Adjective - needs noun)<br>
+                        This book is <strong>mine</strong>. (Pronoun - stands alone)
+                    </div>
+
+                    <div class="mistake-grid">
+                        <div class="mistake-card wrong">❌ That car is hers car.</div>
+                        <div class="mistake-card correct">✔ That car is <strong>hers</strong>.</div>
+                    </div>
+
+                    <div class="quiz-wrapper" id="quiz-possessive"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>3. Reflexive Pronouns</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>Used when the Subject and Object are the same person. They end in <strong>-self</strong> or <strong>-selves</strong>.</p>
+                    <p><strong>List:</strong> Myself, yourself, himself, herself, itself, ourselves, themselves.</p>
+
+                    <div class="hinglish-box">
+                        👉 <strong>Hinglish:</strong> Jab koi insaan koi kaam "khud par" ya "apne aap" karta hai.
+                    </div>
+
+                    <div class="mistake-grid">
+                        <div class="mistake-card wrong">❌ Myself Shrishant Yadav. (Intro)</div>
+                        <div class="mistake-card correct">✔ I am Shrishant Yadav. <br><small>(Reflexive pronoun cannot be a Subject)</small></div>
+                    </div>
+
+                    <div class="quiz-wrapper" id="quiz-reflexive"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>4. Demonstrative Pronouns</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>Used to point at specific things.</p>
+                    <ul>
+                        <li><strong>This / That:</strong> Singular</li>
+                        <li><strong>These / Those:</strong> Plural</li>
+                    </ul>
+                    
+                    <p><strong>Note:</strong> If a noun follows immediately (e.g., "This car"), it is an adjective. If it stands alone (e.g., "This is a car"), it is a pronoun.</p>
+
+                    <div class="quiz-wrapper" id="quiz-demonstrative"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>5. Relative Pronouns</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>Used to join clauses or relate to a noun mentioned earlier.</p>
+                    <table>
+                        <tr><th>Word</th><th>Use</th></tr>
+                        <tr><td>Who/Whom</td><td>For People</td></tr>
+                        <tr><td>Which</td><td>For Things/Animals</td></tr>
+                        <tr><td>That</td><td>For People or Things</td></tr>
+                        <tr><td>Whose</td><td>Possession</td></tr>
+                    </table>
+
+                    <div class="mistake-grid">
+                        <div class="mistake-card wrong">❌ The dog who bit me.</div>
+                        <div class="mistake-card correct">✔ The dog <strong>which/that</strong> bit me.</div>
+                    </div>
+
+                    <div class="quiz-wrapper" id="quiz-relative"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>6. Interrogative Pronouns</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>Used to ask questions.</p>
+                    <p><strong>List:</strong> Who, Whom, Whose, Which, What.</p>
+
+                    <div class="hinglish-box">
+                        👉 <strong>Example:</strong><br>
+                        <strong>Who</strong> is there? (Subject)<br>
+                        <strong>Whom</strong> did you meet? (Object)
+                    </div>
+
+                    <div class="quiz-wrapper" id="quiz-interrogative"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>7. Indefinite Pronouns</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>Refer to people or things in a general way, not specific.</p>
+                    <p><strong>Singular:</strong> Everyone, someone, nobody, anything, something.<br>
+                    <strong>Plural:</strong> Many, few, several, both.</p>
+
+                    <div class="mistake-grid">
+                        <div class="mistake-card wrong">❌ Everyone are present.</div>
+                        <div class="mistake-card correct">✔ Everyone <strong>is</strong> present. <br><small>('Everyone' is grammatically singular)</small></div>
+                    </div>
+
+                    <div class="quiz-wrapper" id="quiz-indefinite"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>8. Distributive Pronouns</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>Refer to persons or things one at a time. They are always <strong>Singular</strong>.</p>
+                    <p><strong>List:</strong> Each, Either, Neither.</p>
+
+                    <div class="hinglish-box">
+                        👉 <strong>Use:</strong><br>
+                        <strong>Either:</strong> Do mein se ek.<br>
+                        <strong>Neither:</strong> Do mein se koi nahi.
+                    </div>
+
+                    <div class="mistake-grid">
+                        <div class="mistake-card wrong">❌ Each of the boys have a pen.</div>
+                        <div class="mistake-card correct">✔ Each of the boys <strong>has</strong> a pen.</div>
+                    </div>
+
+                    <div class="quiz-wrapper" id="quiz-distributive"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h3>9. Reciprocal Pronouns</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-content">
+                    <p>Used when two or more people do the same thing to each other.</p>
+                    <ul>
+                        <li><strong>Each other:</strong> For two people.</li>
+                        <li><strong>One another:</strong> For more than two.</li>
+                    </ul>
+
+                    <div class="quiz-wrapper" id="quiz-reciprocal"></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="mega-section">
+            <h2 class="section-title">🎓 Pronouns Mega Practice</h2>
+            <p>Challenge yourself with 50 mixed questions from all categories.</p>
+            <div id="mega-quiz-container"></div>
+        </section>
+
     </div>
 
+    <footer>
+        <h3>Grammar Learning Hub</h3>
+        <p>Created by <strong>Shrishant Yadav</strong></p>
+        <p style="font-size: 0.8rem; opacity: 0.8;">Education Purpose Only</p>
+        <a href="index.html" class="back-btn">← Back to Home</a>
+    </footer>
+
     <script>
-        // Question database - 60 questions
-        const questions = [
-            // Personal & Possessive Pronouns (1-20)
-            {
-                type: "personal-possessive",
-                question: "Fill in: ___ am going to the market. (I/me)",
-                answer: "i",
-                explanation: "Subject ke liye 'I' use karte hain, 'me' object ke liye hota hai"
-            },
-            {
-                type: "personal-possessive",
-                question: "Complete: She gave the book to ___. (I/me)",
-                answer: "me",
-                explanation: "Preposition 'to' ke baad object pronoun 'me' aata hai"
-            },
-            {
-                type: "personal-possessive",
-                question: "Fill: This is ___ pen. (my/mine)",
-                answer: "my",
-                explanation: "Noun ke pehle possessive adjective 'my' use karte hain"
-            },
-            {
-                type: "personal-possessive",
-                question: "Complete: This pen is ___. (my/mine)",
-                answer: "mine",
-                explanation: "Jab pronoun khud stand kare to possessive pronoun 'mine' use hota hai"
-            },
-            {
-                type: "personal-possessive",
-                question: "Fill in: Between you and ___, I think he's wrong. (I/me)",
-                answer: "me",
-                explanation: "Preposition 'between' ke baad object pronoun 'me' aata hai"
-            },
-            {
-                type: "personal-possessive",
-                question: "Complete: ___ and Rahul are friends. (I/Me)",
-                answer: "i",
-                explanation: "Subject mein hamesha subject pronoun 'I' use karte hain"
-            },
-            {
-                type: "personal-possessive",
-                question: "Fill: That house is ___. (their/theirs)",
-                answer: "theirs",
-                explanation: "Khud stand karne wale possessive pronoun ke liye 'theirs' use hota hai"
-            },
-            {
-                type: "personal-possessive",
-                question: "Complete: I saw ___ in the mirror. (myself/mine)",
-                answer: "myself",
-                explanation: "Jab subject aur object same ho to reflexive pronoun 'myself' use hota hai"
-            },
-            {
-                type: "personal-possessive",
-                question: "Fill in: Please give it to ___. (he/him)",
-                answer: "him",
-                explanation: "Preposition 'to' ke baad object pronoun 'him' aata hai"
-            },
-            {
-                type: "personal-possessive",
-                question: "Complete: ___ is a good boy. (He/Him)",
-                answer: "he",
-                explanation: "Subject ke liye 'He' use karte hain, 'Him' object ke liye hota hai"
-            },
-            {
-                type: "personal-possessive",
-                question: "Fill: This is ___ car. (his/he's)",
-                answer: "his",
-                explanation: "'His' possessive form hai, 'he's' = he is"
-            },
-            {
-                type: "personal-possessive",
-                question: "Complete: The car is ___. (his/he's)",
-                answer: "his",
-                explanation: "Possession dikhane ke liye 'his' use karte hain"
-            },
-            {
-                type: "personal-possessive",
-                question: "Fill in: I spoke to ___. (she/her)",
-                answer: "her",
-                explanation: "Preposition 'to' ke baad object pronoun 'her' aata hai"
-            },
-            {
-                type: "personal-possessive",
-                question: "Complete: ___ is my sister. (She/Her)",
-                answer: "she",
-                explanation: "Subject ke liye 'She' use karte hain"
-            },
-            {
-                type: "personal-possessive",
-                question: "Fill: We enjoyed ___. (ourself/ourselves)",
-                answer: "ourselves",
-                explanation: "Plural subject 'we' ke saath plural reflexive 'ourselves' aata hai"
-            },
-            {
-                type: "personal-possessive",
-                question: "Complete: Give it to ___. (they/them)",
-                answer: "them",
-                explanation: "Preposition 'to' ke baad object pronoun 'them' aata hai"
-            },
-            {
-                type: "personal-possessive",
-                question: "Fill in: ___ are coming tomorrow. (They/Them)",
-                answer: "they",
-                explanation: "Subject ke liye 'They' use karte hain"
-            },
-            {
-                type: "personal-possessive",
-                question: "Complete: I know ___. (they/them) very well.",
-                answer: "them",
-                explanation: "Verb 'know' ke baad object pronoun 'them' aata hai"
-            },
-            {
-                type: "personal-possessive",
-                question: "Fill: This book is ___. (your/yours)",
-                answer: "yours",
-                explanation: "Khud stand karne wale possessive pronoun ke liye 'yours' use hota hai"
-            },
-            {
-                type: "personal-possessive",
-                question: "Complete: ___ book is on the table. (Your/Yours)",
-                answer: "your",
-                explanation: "Noun ke pehle possessive adjective 'your' use karte hain"
-            },
+        // --- DATA STORAGE ---
+        // Helper to create questions
+        const createQ = (id, q, opts, ans, exp) => ({ id, q, opts, ans, exp });
 
-            // Mixed Pronouns (21-40)
-            {
-                type: "mixed",
-                question: "Fill in: ___ is your name? (Who/What)",
-                answer: "what",
-                explanation: "Name ke baare mein sawal ke liye 'What' use karte hain"
-            },
-            {
-                type: "mixed",
-                question: "Complete: ___ came to the party? (Who/Whom)",
-                answer: "who",
-                explanation: "Subject ke liye 'Who' use karte hain, 'Whom' object ke liye"
-            },
-            {
-                type: "mixed",
-                question: "Fill: ___ did you meet? (Who/Whom)",
-                answer: "whom",
-                explanation: "Object ke liye 'Whom' use karte hain, yahan 'you' ne kisi ko meet kiya"
-            },
-            {
-                type: "mixed",
-                question: "Complete: ___ pen do you want? (Which/What)",
-                answer: "which",
-                explanation: "Choice ke beech mein selection ke liye 'Which' use karte hain"
-            },
-            {
-                type: "mixed",
-                question: "Fill in: ___ is this pen? (Who/Whose)",
-                answer: "whose",
-                explanation: "Ownership ke sawal ke liye 'Whose' use karte hain"
-            },
-            {
-                type: "mixed",
-                question: "Complete: The man ___ came yesterday is my uncle. (who/which)",
-                answer: "who",
-                explanation: "People ke liye 'Who' use karte hain, things ke liye 'which'"
-            },
-            {
-                type: "mixed",
-                question: "Fill: The book ___ you gave me is interesting. (who/which)",
-                answer: "which",
-                explanation: "Things ke liye 'Which' ya 'that' use karte hain"
-            },
-            {
-                type: "mixed",
-                question: "Complete: I hurt ___. (myself/mine)",
-                answer: "myself",
-                explanation: "Jab subject aur object same ho to reflexive pronoun use karte hain"
-            },
-            {
-                type: "mixed",
-                question: "Fill in: She did it ___. (herself/hers)",
-                answer: "herself",
-                explanation: "Reflexive pronoun 'herself' stress dene ke liye use hota hai"
-            },
-            {
-                type: "mixed",
-                question: "Complete: ___ of them came. (None/Nobody)",
-                answer: "none",
-                explanation: "'None of' ke baad plural noun aata hai, 'Nobody' singular ke saath"
-            },
-            {
-                type: "mixed",
-                question: "Fill: ___ knows the answer. (None/Nobody)",
-                answer: "nobody",
-                explanation: "'Nobody' singular subject hai, 'None' generally 'of' ke saath aata hai"
-            },
-            {
-                type: "mixed",
-                question: "Complete: ___ people are coming. (Some/Any)",
-                answer: "some",
-                explanation: "Positive statements mein 'Some' use karte hain"
-            },
-            {
-                type: "mixed",
-                question: "Fill in: I don't have ___ money. (some/any)",
-                answer: "any",
-                explanation: "Negative sentences mein 'Any' use karte hain"
-            },
-            {
-                type: "mixed",
-                question: "Complete: Is ___ there? (someone/anyone)",
-                answer: "anyone",
-                explanation: "Questions mein 'Any' forms use karte hain"
-            },
-            {
-                type: "mixed",
-                question: "Fill: ___ student has a book. (Each/Every)",
-                answer: "each",
-                explanation: "Dono sahi hain lekin 'Each' individual focus deta hai"
-            },
-            {
-                type: "mixed",
-                question: "Complete: ___ is welcome. (Everyone/All)",
-                answer: "everyone",
-                explanation: "'Everyone' singular indefinite pronoun hai"
-            },
-            {
-                type: "mixed",
-                question: "Fill in: ___ are welcome. (Everyone/All)",
-                answer: "all",
-                explanation: "'All' plural concept ko indicate karta hai"
-            },
-            {
-                type: "mixed",
-                question: "Complete: This is ___ book. (my/mine)",
-                answer: "my",
-                explanation: "Noun ke pehle possessive adjective 'my' use karte hain"
-            },
-            {
-                type: "mixed",
-                question: "Fill: The book is ___. (my/mine)",
-                answer: "mine",
-                explanation: "Khud stand karne wale possessive pronoun ke liye 'mine' use hota hai"
-            },
-            {
-                type: "mixed",
-                question: "Complete: ___ is this? (Who/Whom)",
-                answer: "who",
-                explanation: "Subject ke liye 'Who' use karte hain"
-            },
-            {
-                type: "mixed",
-                question: "Fill in: To ___ are you speaking? (who/whom)",
-                answer: "whom",
-                explanation: "Preposition 'to' ke baad object pronoun 'whom' aata hai"
-            },
+        const quizzes = {
+            'quiz-personal': [
+                createQ(1, "_______ am going to the market.", ['I', 'Me', 'My'], 'I', "Use Subject form 'I' before the verb."),
+                createQ(2, "Teacher called _______ in the office.", ['he', 'him', 'his'], 'him', "Use Object form 'him' after the verb."),
+                createQ(3, "_______ are playing football.", ['Them', 'They', 'Their'], 'They', "Subject form required."),
+                createQ(4, "This gift is for _______.", ['she', 'her', 'hers'], 'her', "Object form is used after prepositions (for)."),
+                createQ(5, "_______ and I are friends.", ['He', 'Him', 'His'], 'He', "Subject form needed."),
+                createQ(6, "Let _______ go.", ['we', 'us', 'our'], 'us', "After 'Let', use Object form."),
+                createQ(7, "_______ is a good idea.", ['It', 'Him', 'Them'], 'It', "Used for non-living things/ideas."),
+                createQ(8, "Nobody helps _______.", ['I', 'me', 'my'], 'me', "Object form after verb 'helps'."),
+                createQ(9, "_______ lives in London.", ['She', 'Her', 'Hers'], 'She', "Subject form."),
+                createQ(10, "Between you and _______, he is a liar.", ['I', 'me', 'my'], 'me', "After prepositions (between), use Object form.")
+            ],
+            'quiz-possessive': [
+                createQ(11, "This book is _______.", ['my', 'mine', 'me'], 'mine', "Possessive Pronoun stands alone."),
+                createQ(12, "Is this pen _______?", ['your', 'yours', 'you'], 'yours', "No noun follows, so use 'yours'."),
+                createQ(13, "That house is _______.", ['theirs', 'their', 'them'], 'theirs', "Stands alone."),
+                createQ(14, "This bag is _______, not yours.", ['her', 'hers', 'she'], 'hers', "Possessive Pronoun."),
+                createQ(15, "These shoes are _______.", ['his', 'him', 'he'], 'his', "'His' is both adjective and pronoun form."),
+                createQ(16, "The choice is _______.", ['your', 'yours', 'you'], 'yours', "Stands alone."),
+                createQ(17, "This country is _______.", ['our', 'ours', 'us'], 'ours', "Stands alone."),
+                createQ(18, "I lost my pen. Can I borrow _______?", ['your', 'yours', 'you'], 'yours', "Means 'your pen'."),
+                createQ(19, "My car is red, _______ is blue.", ['her', 'hers', 'she'], 'hers', "Means 'her car'."),
+                createQ(20, "This seat is _______.", ['mine', 'my', 'I'], 'mine', "Possessive Pronoun.")
+            ],
+            'quiz-reflexive': [
+                createQ(21, "I hurt _______.", ['me', 'myself', 'mine'], 'myself', "Subject and Object are the same."),
+                createQ(22, "She blamed _______ for the mistake.", ['herself', 'her', 'she'], 'herself', "Reflexive action."),
+                createQ(23, "They enjoyed _______ at the party.", ['themself', 'themselves', 'their'], 'themselves', "Plural reflexive."),
+                createQ(24, "He spoke to _______.", ['himself', 'him', 'his'], 'himself', "Talking to one's own self."),
+                createQ(25, "We prepared the dinner _______.", ['ourselves', 'ourself', 'us'], 'ourselves', "Emphatic/Reflexive use."),
+                createQ(26, "The cat cleans _______.", ['itself', 'it', 'its'], 'itself', "Reflexive for animal."),
+                createQ(27, "You (singular) must take care of _______.", ['yourself', 'yourselves', 'you'], 'yourself', "Singular 'You'."),
+                createQ(28, "You (plural) should help _______.", ['yourself', 'yourselves', 'you'], 'yourselves', "Plural 'You'."),
+                createQ(29, "The door opened by _______.", ['itself', 'it', 'self'], 'itself', "Action happening on its own."),
+                createQ(30, "Don't burn _______.", ['yourself', 'you', 'yours'], 'yourself', "Imperative implied 'you'.")
+            ],
+            'quiz-demonstrative': [
+                createQ(31, "_______ is my house.", ['This', 'These', 'Those'], 'This', "Singular and near."),
+                createQ(32, "_______ are beautiful flowers.", ['This', 'That', 'These'], 'These', "Plural and near."),
+                createQ(33, "_______ was a great movie.", ['That', 'Those', 'These'], 'That', "Singular and far/past."),
+                createQ(34, "Look at _______ birds in the sky.", ['this', 'these', 'those'], 'those', "Plural and far."),
+                createQ(35, "_______ is the best gift ever.", ['This', 'These', 'Those'], 'This', "Singular."),
+                createQ(36, "I like _______ painting over there.", ['that', 'this', 'these'], 'that', "Singular and far."),
+                createQ(37, "_______ are my friends.", ['That', 'This', 'Those'], 'Those', "Plural."),
+                createQ(38, "Can you see _______ stars?", ['that', 'those', 'this'], 'those', "Plural and far."),
+                createQ(39, "_______ are the books I bought.", ['This', 'These', 'That'], 'These', "Plural."),
+                createQ(40, "_______ is not my fault.", ['These', 'Those', 'That'], 'That', "Referring to a situation.")
+            ],
+            'quiz-relative': [
+                createQ(41, "The boy _______ called me is my brother.", ['which', 'who', 'whose'], 'who', "Used for people (Subject)."),
+                createQ(42, "This is the pen _______ I bought.", ['who', 'whose', 'which'], 'which', "Used for things."),
+                createQ(43, "The man _______ car was stolen is sad.", ['who', 'whom', 'whose'], 'whose', "Shows possession."),
+                createQ(44, "The girl _______ you met is a doctor.", ['whom', 'which', 'whose'], 'whom', "Object form for people."),
+                createQ(45, "I found the key _______ was lost.", ['who', 'that', 'whom'], 'that', "'That' can be used for things."),
+                createQ(46, "He is the one _______ helped me.", ['who', 'which', 'whose'], 'who', "Person subject."),
+                createQ(47, "The dog _______ has a black spot is mine.", ['who', 'which', 'whom'], 'which', "Animal."),
+                createQ(48, "This is the house _______ Jack built.", ['who', 'that', 'whom'], 'that', "Inanimate object."),
+                createQ(49, "I know the woman _______ son won.", ['whose', 'who', 'which'], 'whose', "Possession."),
+                createQ(50, "All _______ glitters is not gold.", ['that', 'who', 'which'], 'that', "After 'All', use 'that'.")
+            ],
+            'quiz-interrogative': [
+                createQ(51, "_______ is knocking at the door?", ['Who', 'Which', 'Whose'], 'Who', "Asking for subject person."),
+                createQ(52, "_______ do you want?", ['What', 'Who', 'Whom'], 'What', "Asking for object thing."),
+                createQ(53, "_______ is your favourite color?", ['Who', 'Which', 'Whose'], 'Which', "Selection."),
+                createQ(54, "_______ pen is this?", ['Who', 'Whose', 'Whom'], 'Whose', "Asking for owner."),
+                createQ(55, "_______ did you invite?", ['Whom', 'Which', 'What'], 'Whom', "Asking for object person."),
+                createQ(56, "_______ is the capital of India?", ['What', 'Who', 'Whom'], 'What', "Fact."),
+                createQ(57, "_______ of these boys is the winner?", ['Who', 'Which', 'What'], 'Which', "Selection from group."),
+                createQ(58, "_______ told you that?", ['Who', 'Whom', 'Whose'], 'Who', "Subject."),
+                createQ(59, "By _______ was this written?", ['who', 'whom', 'whose'], 'whom', "After preposition 'by'."),
+                createQ(60, "_______ is better, tea or coffee?", ['What', 'Which', 'Who'], 'Which', "Choice.")
+            ],
+            'quiz-indefinite': [
+                createQ(61, "_______ is knocking at the door.", ['Someone', 'Many', 'Few'], 'Someone', "Singular specific unknown."),
+                createQ(62, "_______ of the students passed.", ['Much', 'Many', 'Every'], 'Many', "Plural count."),
+                createQ(63, "_______ is missing from my bag.", ['Something', 'Both', 'Many'], 'Something', "Singular thing."),
+                createQ(64, "_______ can do this sum.", ['Anyone', 'Few', 'Several'], 'Anyone', "General ability."),
+                createQ(65, "_______ are born great.", ['Some', 'Any', 'One'], 'Some', "Plural general."),
+                createQ(66, "_______ was there to help.", ['Nobody', 'Few', 'Both'], 'Nobody', "Singular."),
+                createQ(67, "Do you have _______ to eat?", ['anything', 'anyone', 'anywhere'], 'anything', "Object thing."),
+                createQ(68, "_______ knows the secret.", ['Everyone', 'Many', 'All'], 'Everyone', "Singular verb 'knows'."),
+                createQ(69, "_______ of the answers were correct.", ['None', 'Any', 'Much'], 'None', "Used for plural negations."),
+                createQ(70, "_______ is well that ends well.", ['All', 'Many', 'Few'], 'All', "Idiom.")
+            ],
+            'quiz-distributive': [
+                createQ(71, "_______ of the two boys won.", ['Each', 'Every', 'All'], 'Each', "Individual focus."),
+                createQ(72, "_______ road leads to the station.", ['Either', 'All', 'Both'], 'Either', "Singular noun 'road'."),
+                createQ(73, "_______ statement is true.", ['Neither', 'All', 'Both'], 'Neither', "Singular."),
+                createQ(74, "_______ of the students got a prize.", ['Each', 'Every', 'All'], 'Each', "Individual."),
+                createQ(75, "You can take _______ side.", ['either', 'both', 'all'], 'either', "Singular choice."),
+                createQ(76, "_______ accusation is true.", ['Neither', 'All', 'Many'], 'Neither', "Singular."),
+                createQ(77, "_______ took a turn.", ['Each', 'All', 'Many'], 'Each', "Individual action."),
+                createQ(78, "_______ of them is guilty.", ['Neither', 'Both', 'All'], 'Neither', "Singular verb 'is'."),
+                createQ(79, "_______ of the two girls is tall.", ['Either', 'All', 'Every'], 'Either', "Choice of two."),
+                createQ(80, "_______ participant was given a certificate.", ['Each', 'All', 'Both'], 'Each', "Singular noun.")
+            ],
+            'quiz-reciprocal': [
+                createQ(81, "The two brothers love _______.", ['each other', 'one another', 'themself'], 'each other', "For two people."),
+                createQ(82, "The team members support _______.", ['one another', 'each other', 'themselves'], 'one another', "For more than two."),
+                createQ(83, "Romeo and Juliet loved _______.", ['each other', 'one another', 'it'], 'each other', "Two people."),
+                createQ(84, "We should help _______.", ['one another', 'each other', 'ourselves'], 'one another', "General group."),
+                createQ(85, "They looked at _______ in surprise.", ['each other', 'one another', 'themself'], 'each other', "Usually two."),
+                createQ(86, "The three sisters fought with _______.", ['one another', 'each other', 'themselves'], 'one another', "More than two."),
+                createQ(87, "Husband and wife should respect _______.", ['each other', 'one another', 'themself'], 'each other', "Two."),
+                createQ(88, "All nations should cooperate with _______.", ['one another', 'each other', 'itself'], 'one another', "Many."),
+                createQ(89, "The twins resemble _______.", ['each other', 'one another', 'themselves'], 'each other', "Two."),
+                createQ(90, "Classmates should interact with _______.", ['one another', 'each other', 'themself'], 'one another', "Group.")
+            ]
+        };
 
-            // Error Detection (41-60)
-            {
-                type: "error",
-                question: "Find the error: Me and Rahul went to the market.",
-                answer: "i and rahul",
-                explanation: "Subject ke liye 'I' use karte hain, 'Me' object ke liye hota hai"
-            },
-            {
-                type: "error",
-                question: "Correct: Between you and I, I think he's wrong.",
-                answer: "between you and me",
-                explanation: "Preposition 'between' ke baad object pronoun 'me' aata hai"
-            },
-            {
-                type: "error",
-                question: "Find the error: Each students have a book.",
-                answer: "each student has",
-                explanation: "'Each' singular hai - singular noun 'student' aur singular verb 'has' aata hai"
-            },
-            {
-                type: "error",
-                question: "Correct: This books are very interesting.",
-                answer: "these books are",
-                explanation: "'This' singular hai, 'books' plural - number match karna hai"
-            },
-            {
-                type: "error",
-                question: "Find the error: Who did you give the book to?",
-                answer: "whom did you give",
-                explanation: "Formal English mein object ke liye 'whom' use karte hain"
-            },
-            {
-                type: "error",
-                question: "Correct: The man which came yesterday is my uncle.",
-                answer: "the man who came",
-                explanation: "People ke liye 'who' use karte hain, 'which' things ke liye hota hai"
-            },
-            {
-                type: "error",
-                question: "Find the error: Myself will do the work.",
-                answer: "i myself will",
-                explanation: "Reflexive pronoun kabhi subject nahin ban sakta - subject 'I' chahiye"
-            },
-            {
-                type: "error",
-                question: "Correct: This is yours book.",
-                answer: "this is your book",
-                explanation: "'Yours' mein already possessive meaning hai - noun ke pehle 'your' use karte hain"
-            },
-            {
-                type: "error",
-                question: "Find the error: She is more intelligent than me.",
-                answer: "she is more intelligent than i",
-                explanation: "Comparisons mein complete form: 'than I am' - subject pronoun chahiye"
-            },
-            {
-                type: "error",
-                question: "Correct: None of the student came.",
-                answer: "none of the students",
-                explanation: "'None of' ke baad plural noun 'students' aata hai"
-            },
-            {
-                type: "error",
-                question: "Find the error: Everyone are happy.",
-                answer: "everyone is happy",
-                explanation: "'Everyone' singular indefinite pronoun hai - singular verb 'is' aata hai"
-            },
-            {
-                type: "error",
-                question: "Correct: The book who you gave me is nice.",
-                answer: "the book which you gave",
-                explanation: "Things ke liye 'which' ya 'that' use karte hain, 'who' people ke liye"
-            },
-            {
-                type: "error",
-                question: "Find the error: I and you will go.",
-                answer: "you and i will",
-                explanation: "English mein courtesy ke liye pehle 'you' fir 'I' aata hai"
-            },
-            {
-                type: "error",
-                question: "Correct: These is my books.",
-                answer: "these are my books",
-                explanation: "'These' plural hai - plural verb 'are' aata hai"
-            },
-            {
-                type: "error",
-                question: "Find the error: He did it by his own.",
-                answer: "he did it by himself",
-                explanation: "'By oneself' correct phrase hai - reflexive pronoun aata hai"
-            },
-            {
-                type: "error",
-                question: "Correct: Somebody have stolen my pen.",
-                answer: "somebody has stolen",
-                explanation: "'Somebody' singular indefinite pronoun hai - singular verb 'has' aata hai"
-            },
-            {
-                type: "error",
-                question: "Find the error: Whom is at the door?",
-                answer: "who is at the door",
-                explanation: "Subject ke liye 'Who' use karte hain, 'Whom' object ke liye"
-            },
-            {
-                type: "error",
-                question: "Correct: The boys who is playing are my friends.",
-                answer: "the boys who are playing",
-                explanation: "'Boys' plural hai - plural verb 'are' aata hai"
-            },
-            {
-                type: "error",
-                question: "Find the error: I don't have some money.",
-                answer: "i don't have any money",
-                explanation: "Negative sentences mein 'any' use karte hain, 'some' nahin"
-            },
-            {
-                type: "error",
-                question: "Correct: Each of the boys have a book.",
-                answer: "each of the boys has",
-                explanation: "'Each' singular concept hai - singular verb 'has' aata hai"
-            }
+        const megaQuizData = [
+            createQ(101, "It is _______ who did it.", ['I', 'me', 'my'], 'I', "After 'It is', use Subject form."),
+            createQ(102, "One should keep _______ promises.", ['ones', "one's", 'his'], "one's", "Possessive of One is One's."),
+            createQ(103, "The baby is crying for _______ mother.", ['its', 'his', 'her'], 'its', "Babies (gender unknown) use 'it'."),
+            createQ(104, "_______ of the boys has come.", ['Each', 'All', 'Many'], 'Each', "Singular verb 'has' requires distributive."),
+            createQ(105, "This is the best _______ I can do.", ['that', 'which', 'who'], 'that', "Superlatives take 'that'."),
+            createQ(106, "Let _______ play.", ['us', 'we', 'our'], 'us', "Object form after Let."),
+            createQ(107, "He availed _______ of the opportunity.", ['himself', 'him', 'his'], 'himself', "'Avail' takes reflexive."),
+            createQ(108, "_______ book is this?", ['Whose', 'Who', 'Which'], 'Whose', "Possession."),
+            createQ(109, "Nobody but _______ was present.", ['he', 'him', 'his'], 'he', "Formal grammar: Subject form after 'but' (meaning except)."),
+            createQ(110, "_______ are you speaking to?", ['Whom', 'Who', 'Whose'], 'Whom', "Object."),
+            createQ(111, "I have a dog _______ name is Tommy.", ['whose', 'who', 'which'], 'whose', "Possession for animal."),
+            createQ(112, "Either of the two roads _______ to the park.", ['leads', 'lead', 'leading'], 'leads', "Either is singular."),
+            createQ(113, "Myself and he went there.", ['Incorrect', 'Correct', 'Maybe'], 'Incorrect', "Reflexive cannot be subject. Correct: He and I."),
+            createQ(114, "The jury gave _______ verdict.", ['its', 'their', 'theirs'], 'its', "Collective noun acting as one unit."),
+            createQ(115, "_______ do you think I am?", ['Who', 'Whom', 'Which'], 'Who', "Subject complement."),
+            createQ(116, "We enjoyed _______ during the holidays.", ['ourselves', 'ourself', 'us'], 'ourselves', "Reflexive."),
+            createQ(117, "This is the same man _______ I saw.", ['that', 'who', 'whom'], 'that', "After 'the same', use 'that'."),
+            createQ(118, "Neither of them _______ present.", ['was', 'were', 'are'], 'was', "Neither is singular."),
+            createQ(119, "They blame _______ for the crash.", ['themselves', 'themself', 'their'], 'themselves', "Reflexive."),
+            createQ(120, "_______ is your opinion?", ['What', 'Which', 'Who'], 'What', "Abstract question."),
+            createQ(121, "The climate of Pune is better than _______ of Mumbai.", ['that', 'this', 'those'], 'that', "Comparison implies 'that climate'."),
+            createQ(122, "This is the boy _______ stole my pen.", ['who', 'whom', 'whose'], 'who', "Subject."),
+            createQ(123, "I have no money with _______.", ['me', 'I', 'myself'], 'me', "Object of preposition 'with'."),
+            createQ(124, "He helps those _______ help themselves.", ['who', 'whom', 'which'], 'who', "Subject of 'help'."),
+            createQ(125, "Everyone should love _______ country.", ['his', 'their', 'ones'], 'his', "Everyone takes singular masculine possessive formally."),
+            createQ(126, "He is taller than _______.", ['I', 'me', 'my'], 'I', "Comparison is between subjects (I am)."),
+            createQ(127, "One must do _______ duty.", ["one's", "his", "their"], "one's", "Consistent pronoun."),
+            createQ(128, "_______ are you waiting for?", ['Whom', 'Who', 'Whose'], 'Whom', "Object of 'for'."),
+            createQ(129, "Many a man has done _______ duty.", ['his', 'their', 'its'], 'his', "'Many a' takes singular."),
+            createQ(130, "The two cats fought with _______.", ['each other', 'one another', 'themselves'], 'each other', "Two."),
+            createQ(131, "She is the girl _______ mother is a nurse.", ['whose', 'who', 'whom'], 'whose', "Possession."),
+            createQ(132, "_______ did you see at the party?", ['Whom', 'Who', 'Which'], 'Whom', "Object."),
+            createQ(133, "Between you and _______, I don't trust him.", ['me', 'I', 'myself'], 'me', "Object after preposition."),
+            createQ(134, "_______ came to see me?", ['Who', 'Whom', 'Whose'], 'Who', "Subject."),
+            createQ(135, "I bought it for _______.", ['myself', 'me', 'I'], 'myself', "Reflexive context or 'me' (but myself emphasizes self-benefit)."),
+            createQ(136, "Use 'me' usually, but 'myself' if emphatic. Here context implies simple object: me.", ['me', 'myself', 'I'], 'me', "Simple object."),
+            createQ(137, "He is the man _______ I trust.", ['whom', 'who', 'whose'], 'whom', "Object of trust."),
+            createQ(138, "_______ of the answers is wrong.", ['Each', 'Many', 'All'], 'Each', "Singular verb."),
+            createQ(139, "If I were _______, I would not go.", ['he', 'him', 'his'], 'he', "Subjective complement after 'were'."),
+            createQ(140, "The dog wagged _______ tail.", ['its', 'it', "it's"], 'its', "Possessive."),
+            createQ(141, "_______ goes there?", ['Who', 'Whom', 'Which'], 'Who', "Subject."),
+            createQ(142, "None of the boys _______ arrived.", ['has', 'have', 'are'], 'has', "None is formally singular."),
+            createQ(143, "My watch is better than _______.", ['yours', 'your', 'you'], 'yours', "Possessive pronoun."),
+            createQ(144, "We hurt _______.", ['ourselves', 'us', 'ourself'], 'ourselves', "Reflexive."),
+            createQ(145, "The streets of Delhi are wider than _______ of Agra.", ['those', 'that', 'this'], 'those', "Plural comparison."),
+            createQ(146, "It was _______ who called.", ['she', 'her', 'hers'], 'she', "Subjective complement."),
+            createQ(147, "I who _______ your friend will help you.", ['am', 'is', 'are'], 'am', "Verb agrees with antecedent 'I'."),
+            createQ(148, "They found _______ in a forest.", ['themselves', 'themself', 'their'], 'themselves', "Reflexive."),
+            createQ(149, "_______ of the girls sang well?", ['Which', 'Who', 'What'], 'Which', "Selection."),
+            createQ(150, "Everything _______ happened was sad.", ['that', 'which', 'who'], 'that', "After 'Everything', use 'that'.")
         ];
 
-        let attempted = 0;
-        let correct = 0;
-        let wrong = 0;
+        // --- STATE & LOGIC ---
+        let score = { attempted: 0, correct: 0, wrong: 0 };
+        const answeredIds = new Set();
 
-        // Initialize the test
-        function initializeTest() {
-            const container = document.getElementById('questions-container');
-            container.innerHTML = '';
-            
-            questions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question';
-                questionDiv.innerHTML = `
-                    <h4>Question ${index + 1} - ${getTypeText(q.type)}</h4>
-                    <p>${q.question}</p>
-                    <div class="input-group">
-                        <input type="text" id="answer-${index}" placeholder="Type your answer here..." 
-                               onkeypress="if(event.key==='Enter') checkAnswer(${index})">
-                        <button class="btn btn-primary" onclick="checkAnswer(${index})">Check Answer</button>
-                    </div>
-                    <div id="feedback-${index}"></div>
-                `;
-                container.appendChild(questionDiv);
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const body = header.nextElementSibling;
+            const isOpen = header.classList.contains('active');
+
+            // Close all
+            document.querySelectorAll('.accordion-header').forEach(h => {
+                h.classList.remove('active');
+                h.nextElementSibling.style.maxHeight = null;
             });
-        }
 
-        function getTypeText(type) {
-            switch(type) {
-                case 'personal-possessive': return '👥 Personal/Possessive';
-                case 'mixed': return '🔄 Mixed Pronouns';
-                case 'error': return '✏️ Error Detection';
-                default: return '❓ Question';
+            // Open clicked if not already open
+            if (!isOpen) {
+                header.classList.add('active');
+                body.style.maxHeight = body.scrollHeight + "px";
+                
+                // Dynamic resize fix for inner content changes
+                setTimeout(() => {
+                    if(header.classList.contains('active')) {
+                        body.style.maxHeight = "none";
+                    }
+                }, 300);
             }
         }
 
-        // Check individual answer
-        function checkAnswer(index) {
-            const userAnswer = document.getElementById(`answer-${index}`).value.trim().toLowerCase();
-            const correctAnswer = questions[index].answer.toLowerCase();
-            const feedbackDiv = document.getElementById(`feedback-${index}`);
+        function renderQuiz(containerId, questions) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = `
+                <div class="quiz-header">Practice Exercise</div>
+                ${questions.map(q => `
+                    <div class="question-card" id="q-card-${q.id}">
+                        <span class="q-text">${q.id > 100 ? q.id - 100 : (q.id > 90 ? q.id : (q.id % 10 === 0 ? 10 : q.id % 10))}. ${q.q}</span>
+                        <div class="options-grid">
+                            ${q.opts.map(opt => 
+                                `<button class="opt-btn" onclick="checkAnswer(${q.id}, '${opt.replace(/'/g, "\\'")}', this, '${q.ans.replace(/'/g, "\\'")}')">${opt}</button>`
+                            ).join('')}
+                        </div>
+                        <div class="feedback" id="fb-${q.id}"></div>
+                    </div>
+                `).join('')}
+            `;
+        }
+
+        function checkAnswer(id, selected, btn, correct) {
+            if (answeredIds.has(id)) return;
+            answeredIds.add(id);
+
+            score.attempted++;
+            const fbBox = document.getElementById(`fb-${id}`);
+            const allBtns = btn.parentElement.querySelectorAll('.opt-btn');
             
-            if (userAnswer === '') return;
-            
-            attempted++;
-            
-            // Check if answer matches (allowing for minor variations)
-            const isCorrect = userAnswer === correctAnswer || 
-                             correctAnswer.split(' ').includes(userAnswer) ||
-                             userAnswer.includes(correctAnswer.split(' ')[0]);
-            
-            if (isCorrect) {
-                correct++;
-                feedbackDiv.className = 'feedback correct';
-                feedbackDiv.innerHTML = `
-                    <div>✅ Correct! Well done!</div>
-                    <div><strong>Explanation:</strong> ${questions[index].explanation}</div>
-                `;
+            // Find Explanation
+            let expl = "Explanation not available.";
+            // Search in categorised quizzes
+            for (let k in quizzes) {
+                const found = quizzes[k].find(x => x.id === id);
+                if (found) expl = found.exp;
+            }
+            // Search in mega quiz
+            if (expl === "Explanation not available.") {
+                const found = megaQuizData.find(x => x.id === id);
+                if (found) expl = found.exp;
+            }
+
+            if (selected === correct) {
+                score.correct++;
+                btn.classList.add('correct-ans');
+                fbBox.innerHTML = `<strong>✔ Correct!</strong> ${expl}`;
+                fbBox.className = "feedback show fb-success";
             } else {
-                wrong++;
-```html
-                feedbackDiv.className = 'feedback incorrect';
-                feedbackDiv.innerHTML = `
-                    <div>❌ Wrong!</div>
-                    <div><strong>Correct Answer:</strong> ${questions[index].answer}</div>
-                    <div><strong>Why your answer is wrong:</strong> Your answer doesn't follow the pronoun rule.</div>
-                    <div><strong>Rule:</strong> ${questions[index].explanation}</div>
-                `;
+                score.wrong++;
+                btn.classList.add('wrong-ans');
+                // Highlight correct
+                allBtns.forEach(b => {
+                    if (b.innerText === correct) b.classList.add('correct-ans');
+                });
+                fbBox.innerHTML = `<strong>❌ Wrong!</strong> Correct: <u>${correct}</u><br>Reason: ${expl}`;
+                fbBox.className = "feedback show fb-error";
             }
-            
+
+            allBtns.forEach(b => b.disabled = true);
             updateScore();
         }
 
-        // Check all answers
-        function checkAllAnswers() {
-            questions.forEach((q, index) => {
-                const answerInput = document.getElementById(`answer-${index}`);
-                if (answerInput.value.trim() !== '' && !document.getElementById(`feedback-${index}`).innerHTML) {
-                    checkAnswer(index);
-                }
-            });
-            
-            // Show final score
-            setTimeout(showFinalScore, 1000);
-        }
-
-        // Update score panel
         function updateScore() {
-            document.getElementById('attempted').textContent = attempted;
-            document.getElementById('correct').textContent = correct;
-            document.getElementById('wrong').textContent = wrong;
-            
-            const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
-            document.getElementById('accuracy').textContent = accuracy + '%';
-            
-            // Add animation
-            const accuracyElement = document.getElementById('accuracy');
-            accuracyElement.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                accuracyElement.style.transform = 'scale(1)';
-            }, 300);
+            document.getElementById('s-attempted').innerText = score.attempted;
+            document.getElementById('s-correct').innerText = score.correct;
+            document.getElementById('s-wrong').innerText = score.wrong;
+            const percent = score.attempted === 0 ? 0 : Math.round((score.correct / score.attempted) * 100);
+            document.getElementById('s-percent').innerText = percent + "%";
         }
 
-        // Show final score
-        function showFinalScore() {
-            const finalScoreDiv = document.getElementById('final-score');
-            const finalScorePercentage = document.getElementById('final-score-percentage');
-            const finalScoreDetails = document.getElementById('final-score-details');
-            
-            const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
-            
-            finalScorePercentage.textContent = accuracy + '%';
-            finalScoreDetails.innerHTML = `
-                <p>Total Questions: 60</p>
-                <p>Attempted: ${attempted}</p>
-                <p>Correct: ${correct}</p>
-                <p>Wrong: ${wrong}</p>
-            `;
-            
-            finalScoreDiv.style.display = 'block';
-            finalScoreDiv.scrollIntoView({ behavior: 'smooth' });
-        }
+        // --- INIT ---
+        window.onload = function() {
+            renderQuiz('quiz-personal', quizzes['quiz-personal']);
+            renderQuiz('quiz-possessive', quizzes['quiz-possessive']);
+            renderQuiz('quiz-reflexive', quizzes['quiz-reflexive']);
+            renderQuiz('quiz-demonstrative', quizzes['quiz-demonstrative']);
+            renderQuiz('quiz-relative', quizzes['quiz-relative']);
+            renderQuiz('quiz-interrogative', quizzes['quiz-interrogative']);
+            renderQuiz('quiz-indefinite', quizzes['quiz-indefinite']);
+            renderQuiz('quiz-distributive', quizzes['quiz-distributive']);
+            renderQuiz('quiz-reciprocal', quizzes['quiz-reciprocal']);
+            renderQuiz('mega-quiz-container', megaQuizData);
+        };
 
-        // Reset test
-        function resetTest() {
-            if (confirm('Are you sure you want to reset the test? All your answers will be cleared.')) {
-                attempted = 0;
-                correct = 0;
-                wrong = 0;
-                updateScore();
-                initializeTest();
-                document.getElementById('final-score').style.display = 'none';
-            }
-        }
-
-        // Accordion functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeTest();
-            
-            const accordionItems = document.querySelectorAll('.accordion-item');
-            
-            accordionItems.forEach(item => {
-                const header = item.querySelector('.accordion-header');
-                
-                header.addEventListener('click', () => {
-                    // Close all other items
-                    accordionItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
-                    
-                    // Toggle current item
-                    item.classList.toggle('active');
-                });
-            });
-        });
-
-        // Auto-save functionality
-        window.addEventListener('beforeunload', function() {
-            const answers = {};
-            questions.forEach((q, index) => {
-                const input = document.getElementById(`answer-${index}`);
-                if (input && input.value) {
-                    answers[index] = input.value;
-                }
-            });
-            localStorage.setItem('pronounsTestAnswers', JSON.stringify(answers));
-        });
-
-        // Load saved answers
-        window.addEventListener('load', function() {
-            const saved = localStorage.getItem('pronounsTestAnswers');
-            if (saved) {
-                const answers = JSON.parse(saved);
-                Object.keys(answers).forEach(index => {
-                    const input = document.getElementById(`answer-${index}`);
-                    if (input) {
-                        input.value = answers[index];
-                    }
-                });
-            }
-        });
     </script>
 </body>
 </html>
