@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spoken English Academy | Basic to Advanced</title>
+
+<style>
+:root{
+    --primary:#0f172a;
+    --accent:#2563eb;
+    --bg:#f1f5f9;
+    --card:#ffffff;
+    --text:#334155;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+    font-family:Segoe UI,Roboto,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:#fff;
+    padding:24px 15px 32px;
+    position:relative;
+}
+
+.profile{
+    position:absolute;
+    top:15px;
+    left:15px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.profile img{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:2px solid #38bdf8;
+    object-fit:cover;
+}
+.profile span{
+    font-size:.9rem;
+    font-weight:600;
+}
+
+header h1{
+    text-align:center;
+    font-size:2rem;
+    margin-bottom:6px;
+}
+header p{
+    text-align:center;
+    opacity:.9;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1100px;
+    margin:30px auto;
+    padding:0 15px;
+}
+
+/* LEVEL */
+.level{
+    background:#fff;
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:25px;
+    box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+.level h2{margin-bottom:6px;color:#0f172a}
+.level p{margin-bottom:14px;font-size:.95rem}
+
+/* MODULE */
+.modules{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:15px;
+}
+
+.module{
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:18px;
+    background:#fff;
+}
+
+.module.active{
+    cursor:pointer;
+    transition:.2s;
+}
+.module.active:hover{
+    border-color:var(--accent);
+    transform:translateY(-3px);
+    box-shadow:0 6px 16px rgba(37,99,235,.15);
+}
+
+.module.coming{
+    opacity:.55;
+    font-style:italic;
+}
+
+.module h3{
+    font-size:1.05rem;
+    margin-bottom:6px;
+    color:#0f172a;
+}
+.module span{
+    font-size:.85rem;
+    color:#64748b;
+}
+
+/* BUTTON */
+.start-btn{
+    display:block;
+    margin:45px auto;
+    padding:14px 38px;
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    border-radius:30px;
+    font-size:1rem;
+    cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+    background:#0f172a;
+    color:#cbd5e1;
+    text-align:center;
+    padding:30px 15px;
+    font-size:.85rem;
+}
+footer b{color:#fff}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="profile">
+        <img src="profile.jpg" alt="Shrishant Yadav">
+        <span>Shrishant Yadav</span>
+    </div>
+
+    <h1>🗣️ Spoken English Academy</h1>
+    <p>Basic to Advanced • Indian Learners • Confidence Builder</p>
+</header>
+
+<div class="container" id="app"></div>
+
+<footer>
+<p>Practice Daily • Speak Confidently • Think in English</p>
+<p><b>Design & Created by SHRISHANT YADAV</b></p>
+</footer>
+
+<script>
+const modulesData = [
+  {level:"🔰 Level 1: Foundation (Zero se)", desc:"English bolna shuru karne ke liye base strong karo.", items:[
+    {id:1,title:"Module 1: English Basics",sub:"Alphabet • Sounds • Sentence Order"},
+    {id:2,title:"Module 2: Parts of Speech (Spoken)",sub:"Noun • Pronoun • Verb • Adjective"}
+  ]},
+  {level:"🔰 Level 2: Basic Spoken English", desc:"Daily life me English bolna seekho.", items:[
+    {id:3,title:"Module 3: Basic Tenses",sub:"Present • Past • Future"},
+    {id:4,title:"Module 4: Daily Conversations",sub:"Routine • Questions"},
+    {id:5,title:"Module 5: Common Spoken Mistakes",sub:"He/She • Do/Does"}
+  ]},
+  {level:"🟡 Level 3: Lower Intermediate", desc:"Broken English se structured English.", items:[
+    {id:6,title:"Module 6: Sentence Expansion",sub:"Because • If • When"},
+    {id:7,title:"Module 7: Functional English",sub:"Requests • Directions"},
+    {id:8,title:"Module 8: Speaking Vocabulary",sub:"Verbs • Feelings"}
+  ]},
+  {level:"🟠 Level 4: Intermediate Spoken", desc:"Confidence + real life English.", items:[
+    {id:9,title:"Module 9: Advanced Tenses",sub:"Perfect • Continuous"},
+    {id:10,title:"Module 10: Confidence Building",sub:"Fear Removal"},
+    {id:11,title:"Module 11: Real-life Situations",sub:"Office • Market"}
+  ]},
+  {level:"🔵 Level 5: Upper Intermediate", desc:"Natural spoken English.", items:[
+    {id:12,title:"Module 12: Grammar for Fluency",sub:"Modals • Conditionals"},
+    {id:13,title:"Module 13: Natural English",sub:"Fillers • Linking"},
+    {id:14,title:"Module 14: Conversation Practice",sub:"Opinion • Story"}
+  ]},
+  {level:"🔴 Level 6: Advanced Spoken", desc:"Professional speaker.", items:[
+    {id:15,title:"Module 15: Fluency & Accent",sub:"Stress • Rhythm"},
+    {id:16,title:"Module 16: Advanced Vocabulary",sub:"Idioms"},
+    {id:17,title:"Module 17: Public Speaking",sub:"Presentation • GD"}
+  ]},
+  {level:"🏆 Level 7: Mastery", desc:"English = Habit.", items:[
+    {id:18,title:"Module 18: Thinking in English",sub:"Instant Response"},
+    {id:19,title:"Module 19: Real-world Practice",sub:"Mock Interview"},
+    {id:20,title:"Module 20: Error Polishing",sub:"Indian Errors"}
+  ]}
+];
+
+const app = document.getElementById("app");
+
+modulesData.forEach(section=>{
+  const box=document.createElement("div");
+  box.className="level";
+  box.innerHTML=`<h2>${section.level}</h2><p>${section.desc}</p><div class="modules"></div>`;
+  const grid=box.querySelector(".modules");
+
+  section.items.forEach(m=>{
+    const file=`module${m.id}-content.html`;
+    const div=document.createElement("div");
+    div.className="module";
+
+    fetch(file,{method:"HEAD"}).then(r=>{
+      if(r.ok){
+        div.classList.add("active");
+        div.onclick=()=>location.href=file;
+      }else{
+        div.classList.add("coming");
+      }
+    }).catch(()=>div.classList.add("coming"));
+
+    div.innerHTML=`<h3>${m.title}</h3><span>${m.sub}</span>`;
+    grid.appendChild(div);
+  });
+
+  app.appendChild(box);
+});
+</script>
+
+</body>
+</html>

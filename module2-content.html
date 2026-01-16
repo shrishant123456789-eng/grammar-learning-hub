@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2: Parts of Speech | Spoken English Mastery</title>
+    <style>
+        :root {
+            --primary: #4f46e5; /* Indigo */
+            --primary-dark: #3730a3;
+            --secondary: #f59e0b; /* Amber */
+            --bg-light: #f3f4f6;
+            --white: #ffffff;
+            --text-dark: #111827;
+            --text-gray: #4b5563;
+            --success: #10b981;
+            --error: #ef4444;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
+        
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; padding-bottom: 90px; }
+
+        /* --- Header --- */
+        header { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: var(--white); padding: 2rem 1rem; text-align: center; border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; margin-bottom: 2rem; box-shadow: var(--shadow); position: relative; }
+        header h1 { font-size: 1.8rem; margin-bottom: 0.5rem; font-weight: 800; letter-spacing: -0.5px; }
+        header p { font-size: 1rem; opacity: 0.9; margin-bottom: 10px; }
+        .badge { background: var(--secondary); color: #000; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .goal-box { background: rgba(255,255,255,0.15); padding: 8px 15px; border-radius: 8px; display: inline-block; font-size: 0.9rem; margin-top: 10px; border: 1px solid rgba(255,255,255,0.2); }
+
+        /* --- Container --- */
+        .container { max-width: 800px; margin: 0 auto; padding: 0 1rem; }
+
+        /* --- Cards --- */
+        .card { background: var(--white); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow); border: 1px solid #e5e7eb; position: relative; overflow: hidden; }
+        .card-title { font-size: 1.25rem; color: var(--primary); margin-bottom: 1rem; border-bottom: 2px solid var(--bg-light); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; font-weight: 700; }
+        
+        /* --- Typography & Highlights --- */
+        h3 { color: var(--text-dark); margin-top: 1rem; margin-bottom: 0.5rem; }
+        p { margin-bottom: 1rem; color: var(--text-gray); }
+        .hinglish-box { background: #fffbeb; border-left: 5px solid var(--secondary); padding: 1rem; margin: 1rem 0; font-style: italic; color: #92400e; border-radius: 4px; }
+        .english-box { background: #eef2ff; border-left: 5px solid var(--primary); padding: 1rem; margin: 1rem 0; color: #3730a3; border-radius: 4px; }
+        ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { margin-bottom: 0.5rem; }
+        
+        /* --- Topic Navigation (Grid) --- */
+        .topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 2rem; }
+        .topic-btn { background: var(--white); border: 1px solid #e0e7ff; color: var(--text-gray); padding: 12px 5px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; text-align: center; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .topic-btn:hover { background: #f5f3ff; transform: translateY(-2px); border-color: var(--primary); color: var(--primary); }
+        .topic-btn.active { background: var(--primary); color: var(--white); border-color: var(--primary); box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3); }
+
+        /* --- Content Sections --- */
+        .topic-content { display: none; animation: fadeIn 0.4s ease; }
+        .topic-content.active { display: block; }
+
+        /* --- Practice Section --- */
+        .start-btn-container { text-align: center; margin: 3rem 0; padding: 2rem; background: #f0fdf4; border-radius: 20px; border: 2px dashed #86efac; }
+        .btn-large { background: var(--success); color: white; border: none; padding: 18px 45px; font-size: 1.3rem; border-radius: 50px; cursor: pointer; font-weight: 800; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); transition: transform 0.2s, background 0.2s; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-large:hover { transform: scale(1.05); background: #059669; }
+
+        /* --- Quiz Interface --- */
+        #quiz-interface { display: none; }
+        .question-box { background: var(--white); padding: 1.5rem; border-radius: var(--radius); margin-bottom: 1rem; box-shadow: var(--shadow); border-top: 5px solid var(--primary); }
+        .q-meta { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.9rem; color: #6b7280; font-weight: 600; }
+        .q-text { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-dark); }
+        
+        .options-grid { display: flex; flex-direction: column; gap: 12px; }
+        .option-btn { background: #f9fafb; border: 2px solid #e5e7eb; padding: 15px; border-radius: 10px; text-align: left; cursor: pointer; transition: all 0.2s; font-size: 1rem; font-weight: 500; position: relative; }
+        .option-btn:hover { background: #f3f4f6; border-color: #d1d5db; }
+        .option-btn.selected { border-color: var(--primary); background: #eef2ff; color: var(--primary); }
+        .option-btn.correct { background: #ecfdf5; border-color: var(--success); color: #065f46; }
+        .option-btn.wrong { background: #fef2f2; border-color: var(--error); color: #991b1b; }
+
+        /* Feedback Animation */
+        .feedback-box { margin-top: 1.5rem; padding: 1rem; border-radius: 8px; display: none; animation: slideDown 0.3s ease; }
+        .feedback-box.correct { background: #ecfdf5; border-left: 5px solid var(--success); }
+        .feedback-box.wrong { background: #fef2f2; border-left: 5px solid var(--error); }
+
+        .quiz-controls { display: flex; justify-content: space-between; margin-top: 2rem; }
+        .btn-check { background: var(--primary); color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2); }
+        .btn-next { background: var(--text-dark); color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; display: none; font-weight: bold; }
+
+        /* --- Live Scoreboard --- */
+        .scoreboard { position: fixed; bottom: 40px; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 12px; box-shadow: 0 -4px 20px rgba(0,0,0,0.1); display: flex; justify-content: center; gap: 20px; z-index: 100; border-top: 1px solid #e5e7eb; display: none; }
+        .score-pill { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 700; background: #f3f4f6; padding: 5px 15px; border-radius: 20px; }
+        .sc-green { color: var(--success); }
+        .sc-red { color: var(--error); }
+        .sc-blue { color: var(--primary); }
+
+        /* --- Footer --- */
+        footer { background: #1f2937; color: #9ca3af; text-align: center; padding: 15px; font-size: 0.8rem; position: fixed; bottom: 0; width: 100%; z-index: 101; }
+
+        /* --- Download PDF Button --- */
+        .pdf-btn { background: #4b5563; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9rem; float: right; margin-top: -5px; }
+        .pdf-btn:hover { background: #374151; }
+
+        /* --- Speaking Section --- */
+        .speak-card { background: linear-gradient(to right, #fff, #f0f9ff); border-left: 5px solid var(--primary); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Print/PDF Styling --- */
+        @media print {
+            body { background: white; padding: 0; color: black; }
+            header, .topic-grid, .start-btn-container, .quiz-controls, .scoreboard, footer, .pdf-btn { display: none !important; }
+            .container { max-width: 100%; padding: 0; }
+            .card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+            .topic-content { display: block !important; margin-bottom: 20px; }
+            #quiz-interface { display: none !important; }
+            .hinglish-box, .english-box { border-width: 2px; }
+        }
+
+        @media (max-width: 600px) {
+            .topic-grid { grid-template-columns: 1fr 1fr; }
+            header h1 { font-size: 1.5rem; }
+            .scoreboard { flex-wrap: wrap; justify-content: space-around; bottom: 50px; }
+            .score-pill { font-size: 0.8rem; padding: 4px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="badge">Level 1: Foundation</div>
+    <h1>Module 2: Parts of Speech</h1>
+    <p>Complete Spoken English Learning Platform</p>
+    <div class="goal-box">👉 Goal: Simple sentences bol paana</div>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <button class="pdf-btn" onclick="downloadPDF()">📄 Download PDF</button>
+        <div class="card-title">📖 What is 'Parts of Speech'?</div>
+        
+        <div class="hinglish-box">
+            <h4>🇮🇳 Hinglish Explanation:</h4>
+            <p>“Jab hum koi tasty dish banate hain, toh humein ingredients chahiye hote hain (jaise namak, paani, sabzi). Waise hi, English sentence banane ke liye humein 'Parts of Speech' chahiye. Is module me hum seekhenge ki sentence ke andar word ka role kya hota hai – kaun kaam kar raha hai (Noun), kya kaam ho raha hai (Verb), aur cheezein kahan rakhi hain (Preposition).”</p>
+        </div>
+
+        <div class="english-box">
+            <h4>🇬🇧 English Explanation:</h4>
+            <p>Parts of Speech are the building blocks of a sentence. Just like a house needs bricks, cement, and wood, a sentence needs Nouns, Verbs, and Adjectives. In this module, you will learn how to put these blocks together to speak simple, correct sentences.</p>
+        </div>
+
+        <div class="card-title" style="margin-top:20px; border:none; font-size:1rem;">⚡ Key Takeaways:</div>
+        <ul>
+            <li><strong>Noun:</strong> The name of a person, place, or thing (The "Hero" of the sentence).</li>
+            <li><strong>Pronoun:</strong> Used in place of a Noun (I, You, He, She) to avoid repetition.</li>
+            <li><strong>Verb:</strong> The action word (Run, Eat) or state (Is, Am, Are).</li>
+            <li><strong>Adjective:</strong> Adds detail or description (Good, Bad, Red, Happy).</li>
+            <li><strong>Preposition:</strong> Shows location or time (In, On, At).</li>
+        </ul>
+    </div>
+
+    <h3 style="text-align: center; margin-bottom: 1rem;">📚 Select a Topic to Learn</h3>
+    <div class="topic-grid">
+        <button class="topic-btn active" onclick="showTopic(1)">1. Intro</button>
+        <button class="topic-btn" onclick="showTopic(2)">2. Noun</button>
+        <button class="topic-btn" onclick="showTopic(3)">3. Pronoun</button>
+        <button class="topic-btn" onclick="showTopic(4)">4. Verb</button>
+        <button class="topic-btn" onclick="showTopic(5)">5. Adjective</button>
+        <button class="topic-btn" onclick="showTopic(6)">6. Prepositions</button>
+        <button class="topic-btn" onclick="showTopic(7)">7. Building</button>
+        <button class="topic-btn" onclick="showTopic(8)">8. Mistakes</button>
+        <button class="topic-btn" onclick="showTopic(9)">9. Confidence</button>
+        <button class="topic-btn" onclick="showTopic(10)">10. Practice</button>
+    </div>
+
+    <div id="content-area">
+
+        <div id="topic-1" class="topic-content active card">
+            <div class="card-title">▶ Topic 1: Introduction to Parts of Speech</div>
+            <p>Think of a sentence like a cricket team. Every player has a role. Some bat, some bowl.</p>
+            <div class="hinglish-box">
+                <p>Sentence me har word ka ek kaam hota hai. Koi 'Naam' batata hai, koi 'Kaam' batata hai, aur koi 'Taareef' karta hai. In roles ko hi Parts of Speech kehte hain.</p>
+            </div>
+            <p><strong>Why is this important?</strong> If you put the bowler in the wrong place, you lose. If you put words in the wrong place, the meaning changes!</p>
+        </div>
+
+        <div id="topic-2" class="topic-content card">
+            <div class="card-title">▶ Topic 2: Noun (Spoken Use)</div>
+            <p><strong>Definition:</strong> Naming words. Names of people, places, things, or ideas.</p>
+            <div class="hinglish-box">
+                <p>Aan-baan aur shaan se yaad rakho: Duniya me jis bhi cheez ka naam hai, wo Noun hai. Example: Rahul, Delhi, Mobile, Love.</p>
+            </div>
+            <ul style="background: #fdf2f8; padding: 15px; border-radius: 8px;">
+                <li><strong>Person:</strong> Rahul, Doctor, Mom.</li>
+                <li><strong>Place:</strong> India, Kitchen, Office.</li>
+                <li><strong>Thing:</strong> Phone, Water, Car.</li>
+            </ul>
+        </div>
+
+        <div id="topic-3" class="topic-content card">
+            <div class="card-title">▶ Topic 3: Pronoun (Spoken Use)</div>
+            <p><strong>Definition:</strong> Words used instead of a Noun.</p>
+            <div class="hinglish-box">
+                <p>Baar-baar naam lena ajeeb lagta hai. "Rahul is good. Rahul is happy." No! Hum bolte hain: "Rahul is good. <strong>He</strong> is happy."</p>
+            </div>
+            <table style="width:100%; border-collapse: collapse; margin-top:10px;">
+                <tr style="background:#e0e7ff;"><th style="padding:8px; text-align:left;">English</th><th style="padding:8px; text-align:left;">Hindi</th></tr>
+                <tr><td style="padding:8px; border-bottom:1px solid #ddd;">I</td><td style="padding:8px; border-bottom:1px solid #ddd;">Main</td></tr>
+                <tr><td style="padding:8px; border-bottom:1px solid #ddd;">You</td><td style="padding:8px; border-bottom:1px solid #ddd;">Tum / Aap</td></tr>
+                <tr><td style="padding:8px; border-bottom:1px solid #ddd;">He</td><td style="padding:8px; border-bottom:1px solid #ddd;">Woh (Male)</td></tr>
+                <tr><td style="padding:8px; border-bottom:1px solid #ddd;">She</td><td style="padding:8px; border-bottom:1px solid #ddd;">Woh (Female)</td></tr>
+                <tr><td style="padding:8px; border-bottom:1px solid #ddd;">We</td><td style="padding:8px; border-bottom:1px solid #ddd;">Hum</td></tr>
+                <tr><td style="padding:8px;">They</td><td style="padding:8px;">Ve log</td></tr>
+            </table>
+        </div>
+
+        <div id="topic-4" class="topic-content card">
+            <div class="card-title">▶ Topic 4: Verb (Action Words)</div>
+            <p><strong>Definition:</strong> The engine of the sentence. It shows Action or State.</p>
+            <div class="english-box">
+                <p>1. Action Verbs: Run, Eat, Sleep, Talk.<br>
+                2. Helping Verbs (State): Is, Am, Are, Was, Were.</p>
+            </div>
+            <div class="hinglish-box">
+                <p>Bina Verb ke sentence nahi banta. <br>
+                Wrong: "I happy." (Isme action/state missing hai).<br>
+                Correct: "I <strong>am</strong> happy." (Am = Verb).</p>
+            </div>
+        </div>
+
+        <div id="topic-5" class="topic-content card">
+            <div class="card-title">▶ Topic 5: Adjective (Describing Words)</div>
+            <p><strong>Definition:</strong> Words that describe a Noun.</p>
+            <div class="hinglish-box">
+                <p>Ye noun ki 'visheshata' (quality) batate hain. Kaisa hai? Achha, bura, lamba, chhota.</p>
+            </div>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>She is a <strong>smart</strong> girl.</li>
+                <li>The tea is <strong>hot</strong>.</li>
+                <li>It is a <strong>big</strong> house.</li>
+            </ul>
+        </div>
+
+        <div id="topic-6" class="topic-content card">
+            <div class="card-title">▶ Topic 6: Prepositions (in / on / at)</div>
+            <p>These are very confusing for beginners. Let's simplify.</p>
+            <div class="hinglish-box">
+                <p><strong>IN (Mein/Andar):</strong> Jab koi cheez kisi boundary ke andar ho. (In the room, In India).</p>
+                <p><strong>ON (Par/Upar):</strong> Jab cheez surface touch kar rahi ho. (On the table, On the wall).</p>
+                <p><strong>AT (Specific Point):</strong> Kisi specific location ya time par. (At 5 PM, At the bus stop).</p>
+            </div>
+        </div>
+
+        <div id="topic-7" class="topic-content card">
+            <div class="card-title">▶ Topic 7: Spoken Sentence Building</div>
+            <p>Combine everything now!</p>
+            <p style="font-size: 1.2rem; text-align: center; background: #fffbeb; padding: 10px; font-weight: bold;">
+                [Pronoun] + [Verb] + [Preposition] + [Noun]
+            </p>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li>He (Pro) + is sitting (Verb) + on (Prep) + the chair (Noun).</li>
+                <li>I (Pro) + live (Verb) + in (Prep) + Delhi (Noun).</li>
+            </ul>
+        </div>
+
+        <div id="topic-8" class="topic-content card">
+            <div class="card-title">▶ Topic 8: Common Indian Mistakes</div>
+            <table style="width:100%; border-collapse: collapse;">
+                <tr>
+                    <th style="text-align:left; color:var(--error); padding:8px;">❌ Wrong</th>
+                    <th style="text-align:left; color:var(--success); padding:8px;">✅ Correct</th>
+                </tr>
+                <tr>
+                    <td style="padding:10px; border-bottom:1px solid #ddd;">He is in home.</td>
+                    <td style="padding:10px; border-bottom:1px solid #ddd;">He is <strong>at</strong> home.</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px; border-bottom:1px solid #ddd;">I am agree.</td>
+                    <td style="padding:10px; border-bottom:1px solid #ddd;">I <strong>agree</strong>.</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px; border-bottom:1px solid #ddd;">She is more tall.</td>
+                    <td style="padding:10px; border-bottom:1px solid #ddd;">She is <strong>taller</strong>.</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;">Marriage anniversary.</td>
+                    <td style="padding:10px;">Wedding anniversary.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="topic-9" class="topic-content card">
+            <div class="card-title">▶ Topic 9: Confidence Tips</div>
+            <div class="speak-card" style="padding:15px; border-radius:8px;">
+                <h3>🗣️ Speak Yourself - Daily Practice</h3>
+                <p>Stand in front of a mirror and say these 5 sentences loudly:</p>
+                <ol style="margin-left: 20px;">
+                    <li>I am a learner.</li>
+                    <li>My English is improving.</li>
+                    <li>I am sitting on a chair.</li>
+                    <li>The fan is above me.</li>
+                    <li>I am confident.</li>
+                </ol>
+                <p style="margin-top:10px;"><strong>Tip:</strong> Don't fear grammar. Even if you say "I go market" instead of "I am going to market", people will understand. Start speaking!</p>
+            </div>
+        </div>
+
+        <div id="topic-10" class="topic-content card active">
+            <div class="card-title">▶ Topic 10: Practice Section</div>
+            <p>Are you ready to test your knowledge? We have 100+ questions for you.</p>
+            
+            <div class="start-btn-container">
+                <button class="btn-large" onclick="startQuiz()">🚀 START PRACTICE</button>
+                <p style="margin-top:15px; font-weight:bold; color:var(--text-gray);">100 Questions • Instant Results</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="quiz-interface">
+        <div class="card">
+            <div class="q-meta">
+                <span id="q-category">Grammar</span>
+                <span>Question <span id="q-current">1</span> / <span id="q-total">100</span></span>
+            </div>
+            
+            <div class="question-box">
+                <p class="q-text" id="question-text">Loading question...</p>
+                <div class="options-grid" id="options-container">
+                    </div>
+                
+                <div class="feedback-box" id="feedback">
+                    </div>
+            </div>
+
+            <div class="quiz-controls">
+                <button class="btn-check" id="btn-check" onclick="checkAnswer()">Check Answer</button>
+                <button class="btn-next" id="btn-next" onclick="nextQuestion()">Next Question ➡</button>
+            </div>
+        </div>
+        <div style="height: 60px;"></div> </div>
+
+</div>
+
+<div class="scoreboard" id="scoreboard">
+    <div class="score-pill">
+        <span class="sc-green">✅</span> <span id="score-correct">0</span> Correct
+    </div>
+    <div class="score-pill">
+        <span class="sc-red">❌</span> <span id="score-wrong">0</span> Wrong
+    </div>
+    <div class="score-pill">
+        <span class="sc-blue">🎯</span> <span id="score-accuracy">0%</span> Accuracy
+    </div>
+</div>
+
+<footer>
+    Created by SHRISHANT YADAV | Education Purpose Only
+</footer>
+
+<script>
+    // --- DATA: 100 QUESTIONS ---
+    // A mix of Identification, Fill-in-blanks, Translation, Correction
+    const quizQuestions = [
+        // --- NOUNS (1-10) ---
+        { q: "Identify the NOUN: 'Rahul eats an apple.'", options: ["Eats", "An", "Rahul", "Red"], a: 2, cat: "Noun", exp: "Rahul is the name of a person." },
+        { q: "Identify the NOUN: 'The cat is sleeping.'", options: ["Is", "Cat", "Sleeping", "The"], a: 1, cat: "Noun", exp: "Cat is the name of an animal." },
+        { q: "Identify the NOUN: 'Mumbai is a big city.'", options: ["Big", "Is", "Mumbai", "A"], a: 2, cat: "Noun", exp: "Mumbai is the name of a place." },
+        { q: "Identify the NOUN: 'I have a computer.'", options: ["Have", "I", "Computer", "A"], a: 2, cat: "Noun", exp: "Computer is a thing." },
+        { q: "Which word is NOT a noun?", options: ["Table", "Run", "Fan", "Boy"], a: 1, cat: "Noun", exp: "'Run' is an action (Verb), not a name." },
+        { q: "Identify the NOUN: 'My happiness is important.'", options: ["My", "Is", "Happiness", "Important"], a: 2, cat: "Noun", exp: "Happiness is an idea/feeling (Abstract Noun)." },
+        { q: "Identify the NOUN: 'Open the door.'", options: ["Open", "The", "Door", "Fast"], a: 2, cat: "Noun", exp: "Door is a thing." },
+        { q: "Identify the NOUN: 'Gold is expensive.'", options: ["Expensive", "Gold", "Is", "Very"], a: 1, cat: "Noun", exp: "Gold is a material noun." },
+        { q: "Identify the NOUN: 'Teacher teaches well.'", options: ["Teacher", "Teaches", "Well", "He"], a: 0, cat: "Noun", exp: "Teacher is a person." },
+        { q: "Identify the NOUN: 'Birds fly in the sky.'", options: ["Fly", "In", "Birds", "The"], a: 2, cat: "Noun", exp: "Birds are living things." },
+
+        // --- PRONOUNS (11-25) ---
+        { q: "Rahul is a boy. ___ is smart.", options: ["She", "He", "It", "They"], a: 1, cat: "Pronoun", exp: "Rahul is male, so we use 'He'." },
+        { q: "Sita is a girl. ___ is cooking.", options: ["He", "She", "It", "We"], a: 1, cat: "Pronoun", exp: "Sita is female, so we use 'She'." },
+        { q: "I have a dog. ___ is black.", options: ["He", "She", "It", "They"], a: 2, cat: "Pronoun", exp: "For animals/things, we usually use 'It'." },
+        { q: "Ram and Shyam are friends. ___ play together.", options: ["We", "They", "He", "You"], a: 1, cat: "Pronoun", exp: "Two people (plural) -> They." },
+        { q: "My mother and I are going out. ___ are happy.", options: ["They", "We", "She", "I"], a: 1, cat: "Pronoun", exp: "Includes 'I', so we use 'We' (Hum)." },
+        { q: "Where are ___ going? (Talking to someone)", options: ["You", "He", "She", "I"], a: 0, cat: "Pronoun", exp: "Talking to second person -> You." },
+        { q: "This is my book. Give it to ___.", options: ["I", "My", "Me", "Mine"], a: 2, cat: "Pronoun", exp: "Object form of I is 'Me'." },
+        { q: "Look at ___! She is dancing.", options: ["She", "Her", "Him", "It"], a: 1, cat: "Pronoun", exp: "Object form of She is 'Her'." },
+        { q: "I like ___ (Apples).", options: ["It", "They", "Them", "Their"], a: 2, cat: "Pronoun", exp: "Plural object -> Them." },
+        { q: "Is this pen ___?", options: ["You", "Your", "Yours", "Me"], a: 2, cat: "Pronoun", exp: "Possession at end -> Yours." },
+        { q: "___ am a student.", options: ["I", "Me", "My", "Mine"], a: 0, cat: "Pronoun", exp: "Subject is 'I'." },
+        { q: "___ are my best friend.", options: ["He", "She", "You", "It"], a: 2, cat: "Pronoun", exp: "With 'are', we use 'You' (singular context)." },
+        { q: "___ is raining outside.", options: ["He", "She", "It", "They"], a: 2, cat: "Pronoun", exp: "For weather, we start with 'It'." },
+        { q: "Tell ___ (Rohan) to come here.", options: ["He", "Him", "His", "Self"], a: 1, cat: "Pronoun", exp: "Object form of He is 'Him'." },
+        { q: "___ love India.", options: ["We", "Us", "Our", "Ours"], a: 0, cat: "Pronoun", exp: "Subject is 'We'." },
+
+        // --- VERBS (26-40) ---
+        { q: "I ___ playing cricket.", options: ["is", "am", "are", "be"], a: 1, cat: "Verb", exp: "I always goes with 'am'." },
+        { q: "She ___ to the market.", options: ["go", "goes", "going", "gone"], a: 1, cat: "Verb", exp: "She (singular) + Simple Present = Goes." },
+        { q: "They ___ watching TV.", options: ["is", "am", "are", "was"], a: 2, cat: "Verb", exp: "They is plural -> Are." },
+        { q: "We ___ hungry.", options: ["is", "am", "are", "have"], a: 2, cat: "Verb", exp: "We are hungry." },
+        { q: "Identify the VERB: 'He runs fast.'", options: ["He", "Runs", "Fast", "None"], a: 1, cat: "Verb", exp: "Runs is the action." },
+        { q: "I ___ a car.", options: ["have", "has", "is", "am"], a: 0, cat: "Verb", exp: "I have." },
+        { q: "She ___ a pen.", options: ["have", "has", "is", "are"], a: 1, cat: "Verb", exp: "She has." },
+        { q: "He ___ sleeping yesterday.", options: ["is", "was", "were", "are"], a: 1, cat: "Verb", exp: "Yesterday (Past) + He = Was." },
+        { q: "___ you speak English?", options: ["Does", "Do", "Is", "Are"], a: 1, cat: "Verb", exp: "You uses 'Do' for questions." },
+        { q: "___ she like ice cream?", options: ["Do", "Does", "Is", "Has"], a: 1, cat: "Verb", exp: "She uses 'Does' for questions." },
+        { q: "Identify the VERB: 'Close the window.'", options: ["Window", "The", "Close", "My"], a: 2, cat: "Verb", exp: "Close is the action." },
+        { q: "They ___ come tomorrow.", options: ["will", "did", "was", "had"], a: 0, cat: "Verb", exp: "Tomorrow -> Will." },
+        { q: "I ___ my homework.", options: ["did", "done", "does", "do"], a: 0, cat: "Verb", exp: "Past tense of do is 'did'." },
+        { q: "The baby is ___.", options: ["cry", "crying", "cries", "cried"], a: 1, cat: "Verb", exp: "Is + ing form." },
+        { q: "Please ___ down.", options: ["sit", "sat", "sitting", "sits"], a: 0, cat: "Verb", exp: "Imperative uses base form 'Sit'." },
+
+        // --- ADJECTIVES (41-55) ---
+        { q: "She is a ___ girl.", options: ["beautiful", "beauty", "beautify", "beautifully"], a: 0, cat: "Adjective", exp: "Describes the girl." },
+        { q: "The tea is very ___.", options: ["hot", "heat", "hotness", "heated"], a: 0, cat: "Adjective", exp: "Describes the tea." },
+        { q: "He is an ___ man.", options: ["honest", "honesty", "honestly", "honor"], a: 0, cat: "Adjective", exp: "Describes the man." },
+        { q: "This bag is ___ (Weight).", options: ["heavy", "heavily", "weight", "heave"], a: 0, cat: "Adjective", exp: "Heavy describes the bag." },
+        { q: "Identify the ADJECTIVE: 'Red car'", options: ["Car", "Red", "Is", "A"], a: 1, cat: "Adjective", exp: "Red describes the color." },
+        { q: "The exam was ___.", options: ["easy", "ease", "easily", "easier"], a: 0, cat: "Adjective", exp: "Easy describes the exam." },
+        { q: "He is ___ than me.", options: ["tall", "taller", "tallest", "toller"], a: 1, cat: "Adjective", exp: "Comparison -> Taller." },
+        { q: "She has ___ hair.", options: ["long", "length", "longly", "elongate"], a: 0, cat: "Adjective", exp: "Long describes hair." },
+        { q: "Be ___!", options: ["careful", "care", "carefully", "caring"], a: 0, cat: "Adjective", exp: "Be careful." },
+        { q: "I am ___.", options: ["happy", "happiness", "happily", "happen"], a: 0, cat: "Adjective", exp: "Describes my state." },
+        { q: "This is a ___ movie.", options: ["good", "well", "better", "goodly"], a: 0, cat: "Adjective", exp: "Good movie." },
+        { q: "The room is ___.", options: ["clean", "cleanly", "cleaning", "cleaned"], a: 0, cat: "Adjective", exp: "Clean describes the room." },
+        { q: "He is a ___ boy.", options: ["naughty", "naught", "naughtly", "notty"], a: 0, cat: "Adjective", exp: "Naughty describes behavior." },
+        { q: "The sky is ___.", options: ["blue", "color", "sky", "air"], a: 0, cat: "Adjective", exp: "Blue is the color/adjective." },
+        { q: "This box is ___ (Size).", options: ["small", "smallness", "smally", "smalls"], a: 0, cat: "Adjective", exp: "Small describes size." },
+
+        // --- PREPOSITIONS (56-75) ---
+        { q: "The cat is ___ the table.", options: ["in", "on", "at", "to"], a: 1, cat: "Preposition", exp: "On the surface." },
+        { q: "I live ___ India.", options: ["on", "at", "in", "to"], a: 2, cat: "Preposition", exp: "In a country." },
+        { q: "He is sitting ___ the room.", options: ["on", "in", "at", "of"], a: 1, cat: "Preposition", exp: "Inside a boundary -> In." },
+        { q: "The pen is ___ my pocket.", options: ["in", "on", "at", "to"], a: 0, cat: "Preposition", exp: "Inside -> In." },
+        { q: "See you ___ 5 PM.", options: ["on", "in", "at", "to"], a: 2, cat: "Preposition", exp: "Specific time -> At." },
+        { q: "The meeting is ___ Monday.", options: ["in", "on", "at", "by"], a: 1, cat: "Preposition", exp: "Days (Mon/Tue) -> On." },
+        { q: "My birthday is ___ June.", options: ["in", "on", "at", "to"], a: 0, cat: "Preposition", exp: "Months -> In." },
+        { q: "Look ___ the board.", options: ["on", "in", "at", "to"], a: 2, cat: "Preposition", exp: "Look at specific point." },
+        { q: "He is good ___ English.", options: ["in", "on", "at", "with"], a: 2, cat: "Preposition", exp: "Good AT a skill." },
+        { q: "Listen ___ me.", options: ["to", "at", "on", "in"], a: 0, cat: "Preposition", exp: "Listen TO." },
+        { q: "I go to office ___ bus.", options: ["in", "by", "on", "with"], a: 1, cat: "Preposition", exp: "Transport -> By." },
+        { q: "Wait ___ me.", options: ["to", "for", "of", "at"], a: 1, cat: "Preposition", exp: "Wait FOR." },
+        { q: "He jumped ___ the river.", options: ["in", "into", "on", "at"], a: 1, cat: "Preposition", exp: "Movement inside -> Into." },
+        { q: "The fan is ___ my head.", options: ["on", "above", "in", "at"], a: 1, cat: "Preposition", exp: "Higher than, but not touching -> Above." },
+        { q: "She is sitting ___ Ram and Shyam.", options: ["among", "between", "in", "on"], a: 1, cat: "Preposition", exp: "Two people -> Between." },
+        { q: "I am ___ home.", options: ["in", "on", "at", "to"], a: 2, cat: "Preposition", exp: "Location -> At home." },
+        { q: "Put it ___ the box.", options: ["inside", "on", "at", "up"], a: 0, cat: "Preposition", exp: "Inside." },
+        { q: "I am talking ___ you.", options: ["to", "at", "on", "in"], a: 0, cat: "Preposition", exp: "Talk TO." },
+        { q: "This gift is ___ you.", options: ["to", "for", "of", "by"], a: 1, cat: "Preposition", exp: "For you." },
+        { q: "He is afraid ___ dogs.", options: ["of", "from", "by", "to"], a: 0, cat: "Preposition", exp: "Afraid OF." },
+
+        // --- TRANSLATION & MISTAKES (76-100) ---
+        { q: "Hindi: 'Main jaa raha hoon.'", options: ["I am going.", "I going.", "I go.", "I was go."], a: 0, cat: "Translation", exp: "Present Continuous." },
+        { q: "Hindi: 'Woh khush hai.'", options: ["He happy.", "He is happy.", "He has happy.", "He be happy."], a: 1, cat: "Translation", exp: "State -> Is." },
+        { q: "Hindi: 'Mere paas pen hai.'", options: ["I have a pen.", "I has a pen.", "Me have pen.", "My pen."], a: 0, cat: "Translation", exp: "Possession -> Have." },
+        { q: "Correct: 'He don't know.'", options: ["He doesn't know.", "He not know.", "He no know.", "He isn't know."], a: 0, cat: "Correction", exp: "He/She -> Doesn't." },
+        { q: "Correct: 'I am agree.'", options: ["I am agreed.", "I agree.", "I agreeing.", "I agrees."], a: 1, cat: "Correction", exp: "Agree is a verb. No 'am' needed." },
+        { q: "Correct: 'She cousin sister.'", options: ["She is my cousin.", "She is cousin sister.", "She cousin.", "She sister."], a: 0, cat: "Correction", exp: "Only 'Cousin', no brother/sister." },
+        { q: "Hindi: 'Baith jao.'", options: ["Sit down.", "Sitting.", "Sat down.", "Sit."], a: 0, cat: "Translation", exp: "Imperative." },
+        { q: "Hindi: 'Waha jao.'", options: ["Go there.", "Go here.", "Come there.", "Go."], a: 0, cat: "Translation", exp: "There = Waha." },
+        { q: "Correct: 'People is coming.'", options: ["People are coming.", "People am coming.", "Peoples is coming.", "Person are coming."], a: 0, cat: "Correction", exp: "People is plural -> Are." },
+        { q: "Correct: 'I like play.'", options: ["I like playing.", "I like to playing.", "I liking play.", "I plays."], a: 0, cat: "Correction", exp: "Like + V-ing." },
+        { q: "Hindi: 'Main teacher hoon.'", options: ["I am a teacher.", "I teacher.", "I is teacher.", "Me teacher."], a: 0, cat: "Translation", exp: "I am a..." },
+        { q: "Hindi: 'Tum kaun ho?'", options: ["Who are you?", "Who you are?", "Who is you?", "Whose you?"], a: 0, cat: "Translation", exp: "Question order." },
+        { q: "Correct: 'He go to school daily.'", options: ["He goes to school daily.", "He going school.", "He went school.", "He go school."], a: 0, cat: "Correction", exp: "Daily habit -> Goes." },
+        { q: "Correct: 'Its a good day.'", options: ["It's a good day.", "Its good day.", "It a good day.", "Is a good day."], a: 0, cat: "Correction", exp: "It's = It is." },
+        { q: "Hindi: 'Mujhe pani chahiye.'", options: ["I want water.", "I need water.", "Give water.", "All of above."], a: 3, cat: "Translation", exp: "All are correct contexts." },
+        { q: "Correct: 'Me and Rahul went.'", options: ["Rahul and I went.", "I and Rahul went.", "Me and Rahul go.", "Rahul and me go."], a: 0, cat: "Correction", exp: "Polite order: Others first, then I." },
+        { q: "Hindi: 'Kya tum busy ho?'", options: ["Are you busy?", "Do you busy?", "You busy?", "Is you busy?"], a: 0, cat: "Translation", exp: "State question -> Are." },
+        { q: "Hindi: 'Suno.'", options: ["Listen.", "Hear.", "Talk.", "Say."], a: 0, cat: "Translation", exp: "Listen implies attention." },
+        { q: "Correct: 'I didn't went.'", options: ["I didn't go.", "I not went.", "I didn't gone.", "I no went."], a: 0, cat: "Correction", exp: "Did + 1st form (Go)." },
+        { q: "Hindi: 'Main thak gaya hoon.'", options: ["I am tired.", "I have tired.", "I was tired.", "I tiring."], a: 0, cat: "Translation", exp: "State -> Tired." },
+        { q: "Hindi: 'Yeh mera galti hai.'", options: ["It's my fault.", "It my mistake.", "This me fault.", "It mine fault."], a: 0, cat: "Translation", exp: "My fault." },
+        { q: "Correct: 'Marriage Anniversary'", options: ["Wedding Anniversary", "Marriage Date", "Wedding Day", "Anniversary"], a: 0, cat: "Correction", exp: "We celebrate a Wedding Anniversary." },
+        { q: "Correct: 'Good night' (when meeting at 8 PM)", options: ["Good Evening", "Good Night", "Hello", "Hi"], a: 0, cat: "Correction", exp: "Greeting is Good Evening. Good Night is for bye." },
+        { q: "Hindi: 'Samajh gaye?'", options: ["Got it?", "Understood?", "Did you understand?", "All of above"], a: 3, cat: "Translation", exp: "All are valid." },
+        { q: "Last Question: English is ___.", options: ["Easy", "Hard", "Impossible", "Bad"], a: 0, cat: "Motivation", exp: "Yes, it is easy!" }
+    ];
+
+    // --- STATE ---
+    let currentQIndex = 0;
+    let scoreCorrect = 0;
+    let scoreWrong = 0;
+    let selectedOptionIndex = null;
+
+    // --- LOGIC ---
+    function showTopic(id) {
+        // Toggle Nav
+        document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.topic-btn')[id-1].classList.add('active');
+        
+        // Toggle Content
+        document.querySelectorAll('.topic-content').forEach(c => c.classList.remove('active'));
+        document.getElementById(`topic-${id}`).classList.add('active');
+
+        // Manage Scoreboard visibility
+        if(id === 10) {
+            document.getElementById('scoreboard').style.display = 'flex';
+        }
+    }
+
+    function startQuiz() {
+        document.querySelector('.topic-grid').style.display = 'none';
+        document.querySelector('.start-btn-container').style.display = 'none';
+        document.getElementById('content-area').children[9].querySelector('h3') ? document.getElementById('content-area').children[9].querySelector('h3').style.display = 'none' : null; // Hide header if needed
+        document.getElementById('quiz-interface').style.display = 'block';
+        
+        // Load first question
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        const q = quizQuestions[currentQIndex];
+        
+        // UI Updates
+        document.getElementById('q-current').innerText = currentQIndex + 1;
+        document.getElementById('q-category').innerText = q.cat;
+        document.getElementById('question-text').innerText = q.q;
+        
+        // Reset state
+        selectedOptionIndex = null;
+        const feedback = document.getElementById('feedback');
+        feedback.style.display = 'none';
+        feedback.className = 'feedback-box';
+        
+        const btnCheck = document.getElementById('btn-check');
+        btnCheck.style.display = 'block';
+        btnCheck.disabled = false;
+        document.getElementById('btn-next').style.display = 'none';
+
+        // Render Options
+        const container = document.getElementById('options-container');
+        container.innerHTML = '';
+        q.options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => selectOption(idx, btn);
+            container.appendChild(btn);
+        });
+    }
+
+    function selectOption(idx, btn) {
+        if(document.getElementById('btn-check').disabled) return;
+        
+        selectedOptionIndex = idx;
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+    }
+
+    function checkAnswer() {
+        if(selectedOptionIndex === null) {
+            alert("Please select an answer!");
+            return;
+        }
+
+        const q = quizQuestions[currentQIndex];
+        const feedback = document.getElementById('feedback');
+        const options = document.querySelectorAll('.option-btn');
+        
+        // Disable interaction
+        document.getElementById('btn-check').disabled = true;
+        document.getElementById('btn-check').style.display = 'none';
+        document.getElementById('btn-next').style.display = 'block';
+
+        if(selectedOptionIndex === q.a) {
+            // Correct
+            scoreCorrect++;
+            options[selectedOptionIndex].classList.add('correct');
+            feedback.innerHTML = `<strong>✅ Correct!</strong> ${q.exp}`;
+            feedback.classList.add('correct');
+        } else {
+            // Wrong
+            scoreWrong++;
+            options[selectedOptionIndex].classList.add('wrong');
+            options[q.a].classList.add('correct'); // Show correct
+            feedback.innerHTML = `<strong>❌ Wrong!</strong><br>Correct answer: "${q.options[q.a]}"<br><em>Reason: ${q.exp}</em>`;
+            feedback.classList.add('wrong');
+        }
+        
+        feedback.style.display = 'block';
+        updateScoreboard();
+    }
+
+    function nextQuestion() {
+        currentQIndex++;
+        if(currentQIndex < quizQuestions.length) {
+            loadQuestion();
+        } else {
+            finishQuiz();
+        }
+    }
+
+    function updateScoreboard() {
+        const total = scoreCorrect + scoreWrong;
+        const acc = total === 0 ? 0 : Math.round((scoreCorrect/total)*100);
+        
+        document.getElementById('score-correct').innerText = scoreCorrect;
+        document.getElementById('score-wrong').innerText = scoreWrong;
+        document.getElementById('score-accuracy').innerText = acc + "%";
+    }
+
+    function finishQuiz() {
+        const total = quizQuestions.length;
+        const acc = Math.round((scoreCorrect/total)*100);
+        
+        document.getElementById('quiz-interface').innerHTML = `
+            <div class="card" style="text-align:center; padding:3rem;">
+                <h2 style="color:var(--primary); font-size:2.5rem; margin-bottom:1rem;">🎉 Completed!</h2>
+                <div style="font-size:3rem; font-weight:800; color:var(--text-dark);">${acc}% Accuracy</div>
+                <p style="margin:1rem 0;">Correct: ${scoreCorrect} | Wrong: ${scoreWrong}</p>
+                <div class="hinglish-box">
+                    ${acc > 70 ? "Bahut badhiya! You are ready for the next level." : "Thodi aur practice chahiye. Try again!"}
+                </div>
+                <button class="btn-large" onclick="location.reload()">🔄 Retry Module</button>
+            </div>
+        `;
+    }
+
+    function downloadPDF() {
+        // Simple client-side print trigger which acts as "Save as PDF"
+        // This is the most reliable way without external libraries
+        window.print();
+    }
+
+    // Initialize logic
+    // (Optional: Randomize questions array if needed, keeping static for now to ensure order)
+</script>
+
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: English Basics | Spoken English Mastery</title>
+    <style>
+        :root {
+            --primary: #2563eb; /* Royal Blue */
+            --primary-dark: #1e40af;
+            --secondary: #f59e0b; /* Amber for accents */
+            --bg-light: #f3f4f6;
+            --white: #ffffff;
+            --text-dark: #1f2937;
+            --text-gray: #4b5563;
+            --success: #10b981;
+            --error: #ef4444;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; padding-bottom: 80px; }
+
+        /* --- Header --- */
+        header { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: var(--white); padding: 2rem 1rem; text-align: center; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; margin-bottom: 2rem; box-shadow: var(--shadow); }
+        header h1 { font-size: 1.8rem; margin-bottom: 0.5rem; font-weight: 700; }
+        header p { font-size: 1rem; opacity: 0.9; }
+        .badge { background: var(--secondary); color: #000; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- Container --- */
+        .container { max-width: 800px; margin: 0 auto; padding: 0 1rem; }
+
+        /* --- Cards --- */
+        .card { background: var(--white); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow); border: 1px solid #e5e7eb; }
+        .card-title { font-size: 1.25rem; color: var(--primary); margin-bottom: 1rem; border-bottom: 2px solid var(--bg-light); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+        
+        /* --- Typography & Highlights --- */
+        h3 { color: var(--text-dark); margin-top: 1rem; margin-bottom: 0.5rem; }
+        p { margin-bottom: 1rem; color: var(--text-gray); }
+        .hinglish-box { background: #fffbeb; border-left: 4px solid var(--secondary); padding: 1rem; margin: 1rem 0; font-style: italic; color: #92400e; }
+        .english-box { background: #eff6ff; border-left: 4px solid var(--primary); padding: 1rem; margin: 1rem 0; color: #1e40af; }
+        ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { margin-bottom: 0.5rem; }
+        
+        /* --- Topic Navigation (Grid) --- */
+        .topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-bottom: 2rem; }
+        .topic-btn { background: var(--white); border: 1px solid var(--primary); color: var(--primary); padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; text-align: center; }
+        .topic-btn:hover { background: #eff6ff; transform: translateY(-2px); }
+        .topic-btn.active { background: var(--primary); color: var(--white); box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3); }
+
+        /* --- Content Sections --- */
+        .topic-content { display: none; animation: fadeIn 0.4s ease; }
+        .topic-content.active { display: block; }
+
+        /* --- Practice Section --- */
+        .start-btn-container { text-align: center; margin: 3rem 0; }
+        .btn-large { background: var(--success); color: white; border: none; padding: 15px 40px; font-size: 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); transition: transform 0.2s; }
+        .btn-large:hover { transform: scale(1.05); background: #059669; }
+
+        /* --- Quiz Interface --- */
+        #quiz-interface { display: none; }
+        .question-box { background: var(--white); padding: 1.5rem; border-radius: var(--radius); margin-bottom: 1rem; box-shadow: var(--shadow); }
+        .q-text { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-dark); }
+        .options-grid { display: flex; flex-direction: column; gap: 10px; }
+        .option-btn { background: var(--bg-light); border: 2px solid transparent; padding: 12px; border-radius: 8px; text-align: left; cursor: pointer; transition: all 0.2s; font-size: 1rem; }
+        .option-btn:hover { background: #e5e7eb; }
+        .option-btn.selected { border-color: var(--primary); background: #eff6ff; }
+        .option-btn.correct { background: #d1fae5; border-color: var(--success); color: #065f46; }
+        .option-btn.wrong { background: #fee2e2; border-color: var(--error); color: #991b1b; }
+
+        .feedback-box { margin-top: 1rem; padding: 1rem; border-radius: 8px; display: none; }
+        .feedback-box.correct { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+        .feedback-box.wrong { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+        .quiz-controls { display: flex; justify-content: space-between; margin-top: 1.5rem; }
+        .btn-check { background: var(--primary); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .btn-next { background: var(--text-dark); color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; display: none; }
+
+        /* --- Live Scoreboard --- */
+        .scoreboard { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); padding: 10px; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); display: flex; justify-content: space-around; align-items: center; z-index: 100; border-top: 1px solid #e5e7eb; display: none; }
+        .score-item { text-align: center; font-size: 0.9rem; }
+        .score-val { font-weight: bold; font-size: 1.1rem; display: block; }
+        .txt-green { color: var(--success); }
+        .txt-red { color: var(--error); }
+        .txt-blue { color: var(--primary); }
+
+        /* --- Speaking Section --- */
+        .mirror-practice { border-left: 4px solid var(--secondary); background: #ffffff; padding: 15px; margin-top: 10px; }
+        .speaker-icon { font-size: 1.5rem; margin-right: 10px; vertical-align: middle; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        @media (max-width: 600px) {
+            .topic-grid { grid-template-columns: 1fr 1fr; }
+            header h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <span class="badge">Level 1: Foundation</span>
+    <h1>Module 1: English Basics</h1>
+    <p>Complete Spoken English Learning Platform</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <div class="card-title">📖 What is this Module?</div>
+        <p><strong>English Basics</strong> is the first step for anyone who wants to speak English fluently but doesn't know where to start. This module focuses purely on <strong>Spoken English</strong>, not boring grammar rules.</p>
+        
+        <div class="hinglish-box">
+            <h4>🇮🇳 Hinglish Explanation:</h4>
+            <p>“Is module me hum English ke bilkul basic concepts seekhenge. Agar aapko lagta hai ki English bolna bohot mushkil hai, toh ye module aapka darr khatam karega. Hum seekhenge ki words ko kaise bolna hai, sentences kaise banana hai (S + V + O rule), aur daily life me use hone wale sawal kaise poochne hain.”</p>
+        </div>
+
+        <div class="english-box">
+            <h4>🇬🇧 English Explanation:</h4>
+            <p>In this module, we will learn the building blocks of English. You will learn correct pronunciation, essential daily words, and the secret formula to make any sentence. By the end of this module, you will be able to speak simple sentences confidently.</p>
+        </div>
+
+        <div class="card-title" style="margin-top:20px; border:none; font-size:1rem;">⚡ Key Takeaways:</div>
+        <ul>
+            <li><strong>Alphabet Sounds:</strong> Understanding that letters have different sounds (Phonics).</li>
+            <li><strong>Vowels vs Consonants:</strong> The glue that holds words together.</li>
+            <li><strong>S + V + O Rule:</strong> The golden rule for 90% of English sentences.</li>
+            <li><strong>Question Formation:</strong> How to ask 'Yes/No' and 'Wh-' questions easily.</li>
+            <li><strong>Confidence:</strong> Breaking the fear of making mistakes.</li>
+        </ul>
+    </div>
+
+    <h3 style="text-align: center; margin-bottom: 1rem;">📚 Select a Topic to Learn</h3>
+    <div class="topic-grid">
+        <button class="topic-btn active" onclick="showTopic(1)">1. Intro</button>
+        <button class="topic-btn" onclick="showTopic(2)">2. Alphabet</button>
+        <button class="topic-btn" onclick="showTopic(3)">3. Vowels</button>
+        <button class="topic-btn" onclick="showTopic(4)">4. Daily Words</button>
+        <button class="topic-btn" onclick="showTopic(5)">5. S-V-O Rule</button>
+        <button class="topic-btn" onclick="showTopic(6)">6. Yes/No Qs</button>
+        <button class="topic-btn" onclick="showTopic(7)">7. Wh- Qs</button>
+        <button class="topic-btn" onclick="showTopic(8)">8. Mistakes</button>
+        <button class="topic-btn" onclick="showTopic(9)">9. Confidence</button>
+        <button class="topic-btn" onclick="showTopic(10)">10. Practice</button>
+    </div>
+
+    <div id="content-area">
+
+        <div id="topic-1" class="topic-content active card">
+            <div class="card-title">▶ Topic 1: Introduction to English Basics</div>
+            <p>Welcome! Before we speak, we must understand that English is just a language, not a measure of intelligence.</p>
+            <div class="hinglish-box">
+                <p>Sabse pehle ye samjhein: English sirf ek language hai, communication ka tool hai. Galti karne se mat dariye. Bachcha bhi gir-gir kar chalna seekhta hai.</p>
+            </div>
+            <p><strong>Goal of Module 1:</strong> To make you comfortable with the structure of English.</p>
+        </div>
+
+        <div id="topic-2" class="topic-content card">
+            <div class="card-title">▶ Topic 2: Alphabet & Sounds (A–Z)</div>
+            <p>English has 26 letters, but 44 sounds. Writing is different from Speaking.</p>
+            <ul>
+                <li><strong>A - Z:</strong> The written letters.</li>
+                <li><strong>Phonics:</strong> The sound they make inside a word.</li>
+            </ul>
+            <div class="hinglish-box">
+                <p>Example: Letter 'C' ka naam 'See' hai, par sound 'Ka' (Cat) ya 'Sa' (City) hota hai. Hum sounds par focus karenge.</p>
+            </div>
+            <p><strong>Practice:</strong> Say these aloud clearly: Apple, Ball, Cat, Dog, Elephant.</p>
+        </div>
+
+        <div id="topic-3" class="topic-content card">
+            <div class="card-title">▶ Topic 3: Vowels & Consonants</div>
+            <p><strong>Vowels (Swara):</strong> A, E, I, O, U. These give sound to words.</p>
+            <p><strong>Consonants (Vyanjan):</strong> All other letters (B, C, D, F...).</p>
+            <div class="hinglish-box">
+                <p>Bina Vowel ke English ka koi word nahi banta (exception: rhythm/sky jahan 'y' vowel ka kaam karta hai). Vowels hi word ko "awaaz" dete hain.</p>
+            </div>
+        </div>
+
+        <div id="topic-4" class="topic-content card">
+            <div class="card-title">▶ Topic 4: Common Daily Words</div>
+            <p>To start speaking, you need a "Toolkit" of words.</p>
+            <table style="width:100%; border-collapse: collapse; margin-top:10px;">
+                <tr style="background:#f3f4f6; text-align:left;">
+                    <th style="padding:8px;">Subject (Doer)</th>
+                    <th style="padding:8px;">Action (Verb)</th>
+                    <th style="padding:8px;">Object/Place</th>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border-bottom:1px solid #ddd;">I (Main)</td>
+                    <td style="padding:8px; border-bottom:1px solid #ddd;">Go (Jaana)</td>
+                    <td style="padding:8px; border-bottom:1px solid #ddd;">Market</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border-bottom:1px solid #ddd;">You (Tum/Aap)</td>
+                    <td style="padding:8px; border-bottom:1px solid #ddd;">Eat (Khaana)</td>
+                    <td style="padding:8px; border-bottom:1px solid #ddd;">Food</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px; border-bottom:1px solid #ddd;">We (Hum)</td>
+                    <td style="padding:8px; border-bottom:1px solid #ddd;">Play (Khelna)</td>
+                    <td style="padding:8px; border-bottom:1px solid #ddd;">Cricket</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px;">They (Ve log)</td>
+                    <td style="padding:8px;">Speak (Bolna)</td>
+                    <td style="padding:8px;">English</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="topic-5" class="topic-content card">
+            <div class="card-title">▶ Topic 5: Sentence Order (S + V + O)</div>
+            <p>This is the <strong>Golden Rule</strong> of English.</p>
+            <div class="english-box">
+                <h3>Subject + Verb + Object</h3>
+                <p>(Who is doing?) + (What action?) + (To whom/what?)</p>
+            </div>
+            <div class="hinglish-box">
+                <p>Hindi: Main (S) cricket (O) khelta hoon (V). (S-O-V)<br>
+                English: I (S) play (V) cricket (O). (S-V-O)</p>
+                <p><strong>Note:</strong> Hindi me verb last me aata hai, English me Subject ke turant baad aata hai.</p>
+            </div>
+            <p><strong>Examples:</strong><br>
+            ✅ I love music.<br>
+            ✅ She drinks water.<br>
+            ✅ We learn English.</p>
+        </div>
+
+        <div id="topic-6" class="topic-content card">
+            <div class="card-title">▶ Topic 6: Yes / No Questions</div>
+            <p>Questions that can be answered with just "Yes" or "No".</p>
+            <p><strong>Formula:</strong> Helping Verb + Subject + Main Verb?</p>
+            <ul>
+                <li><strong>Do you</strong> like tea? (Kya apko chai pasand hai?)</li>
+                <li><strong>Are you</strong> happy? (Kya aap khush hain?)</li>
+                <li><strong>Can you</strong> swim? (Kya aap tair sakte hain?)</li>
+            </ul>
+        </div>
+
+        <div id="topic-7" class="topic-content card">
+            <div class="card-title">▶ Topic 7: Wh-Questions</div>
+            <p>Used to ask for information. They cannot be answered with Yes/No.</p>
+            <ul>
+                <li><strong>What:</strong> Kya (Things) -> <em>What is your name?</em></li>
+                <li><strong>Where:</strong> Kahan (Place) -> <em>Where do you live?</em></li>
+                <li><strong>When:</strong> Kab (Time) -> <em>When will you come?</em></li>
+                <li><strong>Why:</strong> Kyun (Reason) -> <em>Why are you sad?</em></li>
+                <li><strong>Who:</strong> Kaun (Person) -> <em>Who is he?</em></li>
+                <li><strong>How:</strong> Kaise (Process) -> <em>How are you?</em></li>
+            </ul>
+        </div>
+
+        <div id="topic-8" class="topic-content card">
+            <div class="card-title">▶ Topic 8: Common Beginner Mistakes</div>
+            <table style="width:100%; border-collapse: collapse;">
+                <tr>
+                    <th style="text-align:left; color:var(--error);">❌ Wrong (Common Indian Mistakes)</th>
+                    <th style="text-align:left; color:var(--success);">✅ Correct Spoken English</th>
+                </tr>
+                <tr>
+                    <td style="padding:10px; border-bottom:1px solid #ddd;">I am go to market.</td>
+                    <td style="padding:10px; border-bottom:1px solid #ddd;">I am <strong>going</strong> to market.</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px; border-bottom:1px solid #ddd;">He have a car.</td>
+                    <td style="padding:10px; border-bottom:1px solid #ddd;">He <strong>has</strong> a car.</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px; border-bottom:1px solid #ddd;">I am agree.</td>
+                    <td style="padding:10px; border-bottom:1px solid #ddd;">I <strong>agree</strong>.</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;">She don't know.</td>
+                    <td style="padding:10px;">She <strong>doesn't</strong> know.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="topic-9" class="topic-content card">
+            <div class="card-title">▶ Topic 9: Confidence Tips</div>
+            <div class="hinglish-box">
+                <p><strong>1. Translation band karo:</strong> Mann me Hindi se English translate mat karo. Direct English words socho.</p>
+                <p><strong>2. Mirror Practice:</strong> Sheeshe ke samne khade hokar khud se baat karo.</p>
+                <p><strong>3. Speak Loudly:</strong> Dhire bologe to darr lagega. Tez aawaz me confidence aata hai.</p>
+            </div>
+            <p>Remember: Mistake is proof that you are trying.</p>
+        </div>
+
+        <div id="topic-10" class="topic-content card active">
+            <div class="card-title">▶ Topic 10: Practice Section</div>
+            <p>You have learned the basics. Now it is time to test yourself.</p>
+            
+            <div class="mirror-practice">
+                <h3>🗣️ Speak Yourself First</h3>
+                <p>Read these sentences loudly before starting the quiz:</p>
+                <p>1. My name is [Your Name].</p>
+                <p>2. I am learning English.</p>
+                <p>3. I can speak confidently.</p>
+                <p>4. Today is a good day.</p>
+            </div>
+
+            <div class="start-btn-container">
+                <button class="btn-large" onclick="startQuiz()">🚀 START PRACTICE (100+ Qs)</button>
+                <p style="margin-top:10px; font-size:0.9rem;">Interactive Quiz • Live Score • Explanations</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="quiz-interface">
+        <div class="card">
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                <span class="badge" id="q-category">Grammar</span>
+                <span style="font-weight:bold; color:var(--text-gray);">Q: <span id="q-current">1</span> / <span id="q-total">100</span></span>
+            </div>
+            
+            <div class="question-box">
+                <p class="q-text" id="question-text">Question goes here...</p>
+                <div class="options-grid" id="options-container">
+                    </div>
+                
+                <div class="feedback-box" id="feedback">
+                    <strong>Explanation:</strong> <span id="explanation-text"></span>
+                </div>
+            </div>
+
+            <div class="quiz-controls">
+                <button class="btn-check" id="btn-check" onclick="checkAnswer()">Check Answer</button>
+                <button class="btn-next" id="btn-next" onclick="nextQuestion()">Next Question ➡</button>
+            </div>
+        </div>
+        <div style="height: 60px;"></div> </div>
+
+</div>
+
+<div class="scoreboard" id="scoreboard">
+    <div class="score-item">
+        <span class="score-val txt-green" id="score-correct">0</span>
+        <small>Correct</small>
+    </div>
+    <div class="score-item">
+        <span class="score-val txt-red" id="score-wrong">0</span>
+        <small>Wrong</small>
+    </div>
+    <div class="score-item">
+        <span class="score-val txt-blue" id="score-accuracy">0%</span>
+        <small>Accuracy</small>
+    </div>
+</div>
+
+<script>
+    // --- TOPIC NAVIGATION LOGIC ---
+    function showTopic(id) {
+        // Hide all topics
+        const topics = document.querySelectorAll('.topic-content');
+        topics.forEach(t => t.classList.remove('active'));
+        
+        // Remove active class from buttons
+        const buttons = document.querySelectorAll('.topic-btn');
+        buttons.forEach(b => b.classList.remove('active'));
+
+        // Show selected topic
+        document.getElementById(`topic-${id}`).classList.add('active');
+        
+        // Highlight button (index is id-1)
+        buttons[id-1].classList.add('active');
+
+        // If practice section is clicked, ensure quiz is hidden and start button is shown
+        if(id === 10) {
+            document.getElementById('quiz-interface').style.display = 'none';
+            document.getElementById('scoreboard').style.display = 'none';
+        }
+    }
+
+    // --- QUIZ DATA ENGINE (100 Questions) ---
+    // Generating a robust set covering all required categories.
+    
+    const quizQuestions = [
+        // --- SECTION 1: S-V-O BASIC STRUCTURE ---
+        { q: "Choose the correct sentence order:", options: ["I cricket play.", "I play cricket.", "Play I cricket.", "Cricket I play."], a: 1, type: "SVO", exp: "English follows Subject (I) + Verb (play) + Object (cricket)." },
+        { q: "Which sentence is correct?", options: ["She eats apple.", "She eat apple.", "Eats she apple.", "Apple eats she."], a: 0, type: "SVO", exp: "Subject (She) + Verb (eats) + Object (apple). 'She' is singular, so we add 's' to eat." },
+        { q: "Identify the VERB: 'They run fast.'", options: ["They", "Run", "Fast", "None"], a: 1, type: "Grammar", exp: "'Run' is the action word." },
+        { q: "Identify the SUBJECT: 'My mother cooks food.'", options: ["Cooks", "Food", "My mother", "My"], a: 2, type: "Grammar", exp: "'My mother' is the doer of the action." },
+        { q: "Choose the correct order:", options: ["He goes to school.", "He to school goes.", "Goes he school to.", "To school he goes."], a: 0, type: "SVO", exp: "S (He) + V (Goes) + O (School)." },
+        
+        // --- SECTION 2: HINDI TO ENGLISH (TRANSLATION) ---
+        { q: "Translate: 'Main khush hoon.'", options: ["I is happy.", "I am happy.", "I happy am.", "Me happy."], a: 1, type: "Translation", exp: "With 'I', we use 'am'." },
+        { q: "Translate: 'Woh aa raha hai.'", options: ["He is coming.", "He coming is.", "He come.", "He is come."], a: 0, type: "Translation", exp: "Continuous action uses 'is + ing'." },
+        { q: "Translate: 'Kya tum taiyaar ho?'", options: ["You are ready?", "Do you ready?", "Are you ready?", "Ready you are?"], a: 2, type: "Translation", exp: "For 'Kya' (question), helping verb 'Are' comes first." },
+        { q: "Translate: 'Mere paas ek pen hai.'", options: ["I have a pen.", "I has a pen.", "Me have pen.", "My have pen."], a: 0, type: "Translation", exp: "Possession uses 'Have' with 'I'." },
+        { q: "Translate: 'Voh market gayi.'", options: ["She go market.", "She went to market.", "She goes market.", "She gone market."], a: 1, type: "Translation", exp: "Past tense of go is 'went'." },
+
+        // --- SECTION 3: COMMON MISTAKES ---
+        { q: "Correct this: 'He don't know.'", options: ["He not know.", "He doesn't know.", "He no know.", "He isn't know."], a: 1, type: "Correction", exp: "With He/She/It, we use 'Doesn't', not 'Don't'." },
+        { q: "Correct this: 'I am agree.'", options: ["I agree.", "I agreeing.", "I am agreed.", "I agrees."], a: 0, type: "Correction", exp: "Agree is a verb itself. Don't use 'am' before it." },
+        { q: "Correct this: 'She is my cousin sister.'", options: ["She is my cousin.", "She is my cousin female.", "She is sister cousin.", "No change."], a: 0, type: "Correction", exp: "In English, we just say 'Cousin'. We don't say cousin brother/sister." },
+        { q: "Correct this: 'Listen me.'", options: ["Listen to me.", "Listen my.", "Hear me.", "Listening me."], a: 0, type: "Correction", exp: "We always say 'Listen TO' someone." },
+        { q: "Correct this: 'I am go.'", options: ["I go.", "I am going.", "I going.", "I goes."], a: 1, type: "Correction", exp: "If using 'am', the verb must have '-ing'." },
+
+        // --- SECTION 4: YES/NO QUESTIONS ---
+        { q: "___ you like coffee?", options: ["Are", "Do", "Is", "Have"], a: 1, type: "Question", exp: "Use 'Do' for habits/likes with 'You'." },
+        { q: "___ he playing?", options: ["Do", "Does", "Is", "Are"], a: 2, type: "Question", exp: "Use 'Is' for continuous action with 'He'." },
+        { q: "___ they your friends?", options: ["Is", "Am", "Are", "Do"], a: 2, type: "Question", exp: "'They' is plural, so we use 'Are'." },
+        { q: "___ she speak English?", options: ["Do", "Is", "Does", "Has"], a: 2, type: "Question", exp: "Use 'Does' for He/She/It in simple present." },
+        { q: "___ you busy?", options: ["Do", "Are", "Have", "Can"], a: 1, type: "Question", exp: "Asking about state/condition uses 'Are'." },
+
+        // --- SECTION 5: WH- QUESTIONS ---
+        { q: "___ is your name?", options: ["Where", "Who", "What", "Why"], a: 2, type: "Wh-Word", exp: "Asking for information -> What." },
+        { q: "___ are you going?", options: ["What", "Where", "Who", "Which"], a: 1, type: "Wh-Word", exp: "Asking for place -> Where." },
+        { q: "___ are you crying?", options: ["What", "Why", "Where", "Who"], a: 1, type: "Wh-Word", exp: "Asking for reason -> Why." },
+        { q: "___ is that boy?", options: ["What", "When", "Who", "How"], a: 2, type: "Wh-Word", exp: "Asking about a person -> Who." },
+        { q: "___ old are you?", options: ["What", "How", "Who", "Where"], a: 1, type: "Wh-Word", exp: "Asking age/quantity -> How." },
+
+        // --- SECTION 6: VOCABULARY FILLERS ---
+        { q: "I wake up ___ the morning.", options: ["on", "at", "in", "to"], a: 2, type: "Preposition", exp: "We always say 'In the morning'." },
+        { q: "The cat is ___ the table.", options: ["under", "between", "in", "of"], a: 0, type: "Preposition", exp: "'Under' means beneath something." },
+        { q: "I go to office ___ bus.", options: ["in", "by", "on", "with"], a: 1, type: "Preposition", exp: "For transport modes, use 'By' (By car, By bus)." },
+        { q: "She is good ___ English.", options: ["in", "at", "on", "with"], a: 1, type: "Preposition", exp: "Skill is always 'Good AT' something." },
+        { q: "Wait ___ me.", options: ["to", "for", "of", "at"], a: 1, type: "Preposition", exp: "Wait 'for' someone." },
+
+        // --- SECTION 7: SITUATION BASED ---
+        { q: "Someone says 'Thank you'. What do you say?", options: ["No problem.", "You are welcome.", "It's okay.", "All of the above."], a: 3, type: "Situation", exp: "All are polite responses to Thank you." },
+        { q: "You want to ask for water politely.", options: ["Give water.", "I want water.", "May I have some water?", "Water give me."], a: 2, type: "Situation", exp: "'May I' is the polite way to ask." },
+        { q: "Meeting a friend in the morning.", options: ["Good Night.", "Good Morning.", "Good Bye.", "Sleep well."], a: 1, type: "Situation", exp: "Greeting for morning." },
+        { q: "You made a mistake. You say:", options: ["Sorry.", "Whatever.", "Go away.", "Not my fault."], a: 0, type: "Situation", exp: "Apologize with 'Sorry'." },
+        { q: "Asking someone's well-being.", options: ["Who are you?", "How are you?", "What are you?", "Where are you?"], a: 1, type: "Situation", exp: "'How are you' means 'Aap kaise hain'." },
+
+        // --- FILLING UP TO 100 WITH VARIATIONS (Procedural generation simulation via array extension) ---
+        // Basic Grammar Drills
+        { q: "I ___ a student.", options: ["is", "am", "are", "be"], a: 1, type: "Drill", exp: "I am." },
+        { q: "He ___ a teacher.", options: ["is", "am", "are", "be"], a: 0, type: "Drill", exp: "He is." },
+        { q: "They ___ playing.", options: ["is", "am", "are", "was"], a: 2, type: "Drill", exp: "They are." },
+        { q: "She ___ not like tea.", options: ["do", "does", "is", "has"], a: 1, type: "Drill", exp: "She does not." },
+        { q: "We ___ friends.", options: ["is", "am", "are", "be"], a: 2, type: "Drill", exp: "We are." },
+        { q: "It ___ raining.", options: ["is", "am", "are", "have"], a: 0, type: "Drill", exp: "It is." },
+        { q: "You ___ nice.", options: ["is", "am", "are", "was"], a: 2, type: "Drill", exp: "You are." },
+        { q: "___ I come in?", options: ["May", "Am", "Is", "Are"], a: 0, type: "Drill", exp: "May I come in?" },
+        { q: "I ___ to music.", options: ["listen", "hearing", "listens", "hear"], a: 0, type: "Drill", exp: "I listen." },
+        { q: "He ___ football.", options: ["play", "plays", "playing", "played"], a: 1, type: "Drill", exp: "He plays (Simple Present)." },
+
+        // Object Pronouns
+        { q: "Give the book to ___ (Main).", options: ["I", "Me", "My", "Mine"], a: 1, type: "Pronoun", exp: "Object form of I is 'Me'." },
+        { q: "I told ___ (Woh-Ladka).", options: ["He", "Him", "His", "She"], a: 1, type: "Pronoun", exp: "Object form of He is 'Him'." },
+        { q: "She called ___ (Hum).", options: ["We", "Us", "Our", "Ours"], a: 1, type: "Pronoun", exp: "Object form of We is 'Us'." },
+        { q: "Look at ___ (Woh-Ladki).", options: ["Her", "She", "Him", "Hers"], a: 0, type: "Pronoun", exp: "Object form of She is 'Her'." },
+        { q: "Play with ___ (Ve log).", options: ["They", "Them", "Their", "There"], a: 1, type: "Pronoun", exp: "Object form of They is 'Them'." },
+
+        // Tense Check
+        { q: "Yesterday, I ___ to the park.", options: ["go", "gone", "went", "going"], a: 2, type: "Tense", exp: "Past simple of go is 'went'." },
+        { q: "Tomorrow, I ___ come.", options: ["will", "did", "was", "am"], a: 0, type: "Tense", exp: "Future uses 'will'." },
+        { q: "He is ___ now.", options: ["sleep", "slept", "sleeping", "sleeps"], a: 2, type: "Tense", exp: "Is + ing for current action." },
+        { q: "I have ___ my work.", options: ["finish", "finished", "finishing", "finishes"], a: 1, type: "Tense", exp: "Have + 3rd form (Finished)." },
+        { q: "Did you ___ him?", options: ["see", "saw", "seen", "seeing"], a: 0, type: "Tense", exp: "With 'Did', always use 1st form (See)." },
+
+        // Articles
+        { q: "I have ___ apple.", options: ["a", "an", "the", "none"], a: 1, type: "Article", exp: "Apple starts with vowel sound -> An." },
+        { q: "She is ___ doctor.", options: ["a", "an", "the", "none"], a: 0, type: "Article", exp: "Doctor starts with consonant -> A." },
+        { q: "The sun is in ___ sky.", options: ["a", "an", "the", "none"], a: 2, type: "Article", exp: "Specific things (Sky) use 'The'." },
+        { q: "He is ___ honest man.", options: ["a", "an", "the", "none"], a: 1, type: "Article", exp: "Honest starts with 'O' sound -> An." },
+        { q: "I need ___ umbrella.", options: ["a", "an", "the", "none"], a: 1, type: "Article", exp: "Umbrella -> U (vowel sound) -> An." },
+
+        // More Translation
+        { q: "Trans: 'Bahar mat jao.'", options: ["Don't go out.", "Not go out.", "No go out.", "Go out not."], a: 0, type: "Trans", exp: "Imperative negative starts with 'Don't'." },
+        { q: "Trans: 'Mujhe bhook lagi hai.'", options: ["I am hungry.", "I have hungry.", "My hungry.", "I am hunger."], a: 0, type: "Trans", exp: "Feeling -> I am + Adjective." },
+        { q: "Trans: 'Der mat karo.'", options: ["Don't late.", "Don't be late.", "Not late.", "No late."], a: 1, type: "Trans", exp: "Don't be late." },
+        { q: "Trans: 'Ye mera hai.'", options: ["This is mine.", "This is my.", "It is me.", "This is I."], a: 0, type: "Trans", exp: "Possessive pronoun at end -> Mine." },
+        { q: "Trans: 'Chillaao mat.'", options: ["Don't shout.", "No shout.", "Not shout.", "Stop shout."], a: 0, type: "Trans", exp: "Don't shout." },
+
+        // Mixed Bag to reach count
+        { q: "Opposite of 'Good'", options: ["Bad", "Nice", "Happy", "Sad"], a: 0, type: "Vocab", exp: "Opposite is Bad." },
+        { q: "Opposite of 'Come'", options: ["Go", "Stay", "Sit", "Run"], a: 0, type: "Vocab", exp: "Opposite is Go." },
+        { q: "Opposite of 'Up'", options: ["Down", "Left", "Right", "Top"], a: 0, type: "Vocab", exp: "Opposite is Down." },
+        { q: "Opposite of 'Hot'", options: ["Cold", "Warm", "Fire", "Ice"], a: 0, type: "Vocab", exp: "Opposite is Cold." },
+        { q: "Day after Monday?", options: ["Sunday", "Tuesday", "Wednesday", "Friday"], a: 1, type: "Vocab", exp: "Tuesday." },
+        { q: "3 + 4 = ?", options: ["Seven", "Six", "Eight", "Five"], a: 0, type: "Vocab", exp: "Seven." },
+        { q: "Color of Milk?", options: ["Red", "Blue", "White", "Green"], a: 2, type: "Vocab", exp: "White." },
+        { q: "Plural of 'Boy'", options: ["Boys", "Boyes", "Boies", "Boy"], a: 0, type: "Grammar", exp: "Add 's'." },
+        { q: "Plural of 'Baby'", options: ["Babys", "Babies", "Babyes", "Babe"], a: 1, type: "Grammar", exp: "Remove y, add ies." },
+        { q: "Past of 'Eat'", options: ["Eated", "Ate", "Eaten", "Eating"], a: 1, type: "Grammar", exp: "Eat -> Ate." },
+        
+        { q: "Where ___ you born?", options: ["was", "were", "are", "did"], a: 1, type: "Grammar", exp: "You were born." },
+        { q: "I ___ not happy.", options: ["am", "is", "are", "be"], a: 0, type: "Grammar", exp: "I am." },
+        { q: "She ___ not have money.", options: ["do", "does", "is", "has"], a: 1, type: "Grammar", exp: "She does not have." },
+        { q: "We ___ watching TV.", options: ["are", "is", "am", "was"], a: 0, type: "Grammar", exp: "We are." },
+        { q: "___ they come here?", options: ["Did", "Was", "Were", "Are"], a: 0, type: "Grammar", exp: "Did they come (Past)." },
+        { q: "I ___ a letter.", options: ["write", "wrote", "written", "writing"], a: 0, type: "Grammar", exp: "I write (habit)." },
+        { q: "She ___ a song.", options: ["sings", "sing", "song", "sung"], a: 0, type: "Grammar", exp: "She sings." },
+        { q: "He is ___ tall.", options: ["very", "much", "many", "lot"], a: 0, type: "Grammar", exp: "Very tall." },
+        { q: "I have ___ friends.", options: ["much", "many", "any", "little"], a: 1, type: "Grammar", exp: "Many friends (countable)." },
+        { q: "There is ___ water.", options: ["many", "much", "few", "a"], a: 1, type: "Grammar", exp: "Much water (uncountable)." },
+        
+        { q: "Close the ___.", options: ["Door", "Floor", "Roof", "Wall"], a: 0, type: "Vocab", exp: "Close the door." },
+        { q: "Read the ___.", options: ["Book", "Pen", "Table", "Chair"], a: 0, type: "Vocab", exp: "Read the book." },
+        { q: "Sit on the ___.", options: ["Chair", "Fan", "Light", "Wall"], a: 0, type: "Vocab", exp: "Sit on the chair." },
+        { q: "Write with a ___.", options: ["Pen", "Paper", "Bag", "Shoe"], a: 0, type: "Vocab", exp: "Write with a pen." },
+        { q: "Wear your ___.", options: ["Shoes", "Book", "Pen", "Table"], a: 0, type: "Vocab", exp: "Wear shoes." },
+        
+        { q: "I ___ can do it.", options: ["myself", "himself", "herself", "itself"], a: 0, type: "Reflexive", exp: "I -> myself." },
+        { q: "He hurt ___.", options: ["himself", "herself", "myself", "yourself"], a: 0, type: "Reflexive", exp: "He -> himself." },
+        { q: "She did it ___.", options: ["herself", "himself", "itself", "myself"], a: 0, type: "Reflexive", exp: "She -> herself." },
+        { q: "We enjoyed ___.", options: ["ourselves", "themselves", "myself", "himself"], a: 0, type: "Reflexive", exp: "We -> ourselves." },
+        { q: "They talked to ___.", options: ["themselves", "ourselves", "itself", "myself"], a: 0, type: "Reflexive", exp: "They -> themselves." },
+        
+        { q: "Can you ___ English?", options: ["speak", "spoke", "spoken", "speaking"], a: 0, type: "Modal", exp: "After 'Can', use 1st form." },
+        { q: "I ___ go now.", options: ["must", "has", "have", "am"], a: 0, type: "Modal", exp: "I must go." },
+        { q: "You ___ smoke.", options: ["should not", "cannot", "may not", "will not"], a: 0, type: "Modal", exp: "Advice: Should not." },
+        { q: "___ I help you?", options: ["May", "Am", "Is", "Are"], a: 0, type: "Modal", exp: "May I help." },
+        { q: "He ___ swim.", options: ["can", "is", "have", "do"], a: 0, type: "Modal", exp: "Ability: Can." },
+
+        // Final Batch
+        { q: "Don't give ___.", options: ["up", "in", "on", "at"], a: 0, type: "Phrase", exp: "Give up (Haar manna)." },
+        { q: "Switch ___ the light.", options: ["on", "in", "at", "to"], a: 0, type: "Phrase", exp: "Switch on." },
+        { q: "Look ___ the board.", options: ["at", "on", "in", "to"], a: 0, type: "Phrase", exp: "Look at." },
+        { q: "Listen ___ music.", options: ["to", "at", "on", "in"], a: 0, type: "Phrase", exp: "Listen to." },
+        { q: "Talk ___ me.", options: ["to", "at", "on", "in"], a: 0, type: "Phrase", exp: "Talk to." }
+    ];
+
+    // --- QUIZ STATE ---
+    let currentQIndex = 0;
+    let scoreCorrect = 0;
+    let scoreWrong = 0;
+    let selectedOptionIndex = null;
+    
+    // --- FUNCTIONS ---
+
+    function startQuiz() {
+        // Show interface
+        document.getElementById('content-area').style.display = 'none';
+        document.querySelector('.topic-grid').style.display = 'none';
+        document.querySelector('h3').style.display = 'none'; // Hide "Select Topic"
+        document.getElementById('quiz-interface').style.display = 'block';
+        document.getElementById('scoreboard').style.display = 'flex';
+        
+        // Reset Stats
+        currentQIndex = 0;
+        scoreCorrect = 0;
+        scoreWrong = 0;
+        updateScoreboard();
+        
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        const q = quizQuestions[currentQIndex];
+        
+        // Update UI
+        document.getElementById('q-current').innerText = currentQIndex + 1;
+        document.getElementById('q-total').innerText = quizQuestions.length;
+        document.getElementById('q-category').innerText = q.type;
+        document.getElementById('question-text').innerText = q.q;
+        
+        // Reset State
+        selectedOptionIndex = null;
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('feedback').className = 'feedback-box';
+        document.getElementById('btn-check').disabled = false;
+        document.getElementById('btn-check').style.display = 'block';
+        document.getElementById('btn-next').style.display = 'none';
+        
+        // Render Options
+        const container = document.getElementById('options-container');
+        container.innerHTML = '';
+        
+        q.options.forEach((opt, index) => {
+            const btn = document.createElement('div');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => selectOption(index, btn);
+            container.appendChild(btn);
+        });
+    }
+
+    function selectOption(index, btnElement) {
+        if (document.getElementById('btn-check').disabled) return; // Prevent changing after submit
+
+        selectedOptionIndex = index;
+        
+        // Visual Selection
+        const allBtns = document.querySelectorAll('.option-btn');
+        allBtns.forEach(b => b.classList.remove('selected'));
+        btnElement.classList.add('selected');
+    }
+
+    function checkAnswer() {
+        if (selectedOptionIndex === null) {
+            alert("Please select an answer first! (Koi ek option chuniye)");
+            return;
+        }
+
+        const q = quizQuestions[currentQIndex];
+        const allBtns = document.querySelectorAll('.option-btn');
+        const feedback = document.getElementById('feedback');
+        const expText = document.getElementById('explanation-text');
+        
+        // Disable interaction
+        document.getElementById('btn-check').disabled = true;
+        document.getElementById('btn-check').style.display = 'none';
+        document.getElementById('btn-next').style.display = 'block';
+
+        if (selectedOptionIndex === q.a) {
+            // Correct
+            scoreCorrect++;
+            allBtns[selectedOptionIndex].classList.add('correct');
+            feedback.classList.add('correct');
+            feedback.innerHTML = `<strong>✅ Correct!</strong> ${q.exp}`;
+        } else {
+            // Wrong
+            scoreWrong++;
+            allBtns[selectedOptionIndex].classList.add('wrong');
+            allBtns[q.a].classList.add('correct'); // Show correct one
+            feedback.classList.add('wrong');
+            feedback.innerHTML = `<strong>❌ Wrong!</strong> Correct answer is: "${q.options[q.a]}".<br><br><em>Why?</em> ${q.exp}`;
+        }
+
+        feedback.style.display = 'block';
+        updateScoreboard();
+    }
+
+    function nextQuestion() {
+        currentQIndex++;
+        if (currentQIndex < quizQuestions.length) {
+            loadQuestion();
+        } else {
+            showFinalResult();
+        }
+    }
+
+    function updateScoreboard() {
+        const total = scoreCorrect + scoreWrong;
+        const accuracy = total === 0 ? 0 : Math.round((scoreCorrect / total) * 100);
+        
+        document.getElementById('score-correct').innerText = scoreCorrect;
+        document.getElementById('score-wrong').innerText = scoreWrong;
+        document.getElementById('score-accuracy').innerText = accuracy + "%";
+    }
+
+    function showFinalResult() {
+        const total = quizQuestions.length;
+        const accuracy = Math.round((scoreCorrect / total) * 100);
+        let msg = "";
+        
+        if (accuracy > 80) msg = "🏆 Excellent! You are ready for Level 2.";
+        else if (accuracy > 50) msg = "👍 Good Job! Practice once more to be perfect.";
+        else msg = "💪 Don't worry! Review the topics and try again.";
+
+        document.getElementById('quiz-interface').innerHTML = `
+            <div class="card" style="text-align:center; padding: 3rem;">
+                <h2 style="color:var(--primary); font-size:2rem;">Quiz Completed!</h2>
+                <div style="font-size:3rem; margin:1rem 0;">${accuracy}%</div>
+                <p>Correct: ${scoreCorrect} | Wrong: ${scoreWrong}</p>
+                <hr style="margin:20px 0;">
+                <p class="hinglish-box">${msg}</p>
+                <button class="btn-large" onclick="location.reload()">🔄 Restart Module</button>
+            </div>
+        `;
+    }
+
+</script>
+
+</body>
+</html>
