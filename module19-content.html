@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 19: Real-World Practice | Mastery Level</title>
+    <style>
+        :root {
+            /* Mastery Theme: Professional Blue, Gold, Clean White */
+            --primary: #0f172a; /* Slate 900 */
+            --primary-light: #334155;
+            --accent: #d97706; /* Amber 600 */
+            --accent-glow: #fbbf24;
+            --success: #15803d;
+            --error: #b91c1c;
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body { margin: 0; padding: 0; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border-bottom: 5px solid var(--accent);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        .badge {
+            background: var(--accent); color: white;
+            padding: 0.3rem 1rem; border-radius: 50px;
+            font-size: 0.9rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; display: inline-block; margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4);
+        }
+        header h1 { margin: 0; font-size: 2.5rem; font-weight: 800; letter-spacing: -0.5px; }
+        header p { font-size: 1.2rem; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1400px; margin: 0 auto; padding: 2rem;
+            display: grid; grid-template-columns: 280px 1fr; gap: 2rem;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: var(--bg-card); border-radius: var(--radius);
+            padding: 1.5rem; box-shadow: var(--shadow);
+            height: fit-content; position: sticky; top: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+        .nav-header { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 0.5rem; letter-spacing: 0.5px; }
+        .nav-btn {
+            display: flex; align-items: center; width: 100%;
+            text-align: left; padding: 12px 15px; margin-bottom: 8px;
+            background: transparent; border: 1px solid transparent;
+            border-radius: 8px; cursor: pointer; font-weight: 600;
+            color: var(--text-main); transition: all 0.2s;
+        }
+        .nav-btn:hover { background: #f8fafc; color: #2563eb; transform: translateX(5px); }
+        .nav-btn.active { background: #1e3a8a; color: white; box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3); }
+        .nav-icon { margin-right: 12px; font-size: 1.1rem; }
+
+        /* CONTENT AREA */
+        .content-area {
+            background: var(--bg-card); border-radius: var(--radius);
+            padding: 2.5rem; box-shadow: var(--shadow);
+            min-height: 85vh; border: 1px solid #e2e8f0;
+        }
+
+        /* SECTIONS */
+        .section { display: none; animation: fadeIn 0.4s ease-out; }
+        .section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* INFO BOXES */
+        .hinglish-box {
+            background: #fffbeb; border-left: 5px solid var(--accent);
+            padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;
+        }
+        .english-box {
+            background: #eff6ff; border-left: 5px solid #2563eb;
+            padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;
+        }
+        h2 { color: var(--primary); font-size: 2rem; margin-bottom: 1.5rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+        h3 { color: var(--text-main); margin-top: 1.5rem; }
+
+        /* PRACTICE CARDS */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .card {
+            background: #fff; border: 1px solid #e2e8f0;
+            border-radius: 12px; padding: 1.5rem; position: relative;
+            transition: all 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .card:hover { transform: translateY(-5px); border-color: #3b82f6; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1); }
+        
+        .card-tag { 
+            font-size: 0.75rem; text-transform: uppercase; color: var(--accent); 
+            font-weight: 800; margin-bottom: 0.5rem; display: block; 
+        }
+        .card-q { font-size: 1.2rem; font-weight: 700; color: var(--text-main); margin-bottom: 1rem; line-height: 1.4; }
+        .card-answer { 
+            background: #f8fafc; padding: 1rem; border-radius: 8px; 
+            margin-top: 1rem; display: none; border-left: 4px solid var(--success); 
+        }
+        .card-answer.visible { display: block; animation: fadeIn 0.3s; }
+        .card-tip { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-top: 0.5rem; }
+
+        /* TTS BUTTON */
+        .tts-btn {
+            background: #e2e8f0; border: none; width: 32px; height: 32px;
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            color: var(--primary); transition: 0.2s; float: right; margin-left: 10px;
+        }
+        .tts-btn:hover { background: var(--accent); color: white; }
+
+        /* INTERACTION BUTTONS */
+        .btn-reveal {
+            background: var(--primary); color: white; border: none;
+            padding: 8px 16px; border-radius: 6px; cursor: pointer;
+            font-weight: 600; font-size: 0.9rem; margin-top: 10px;
+            width: 100%; transition: 0.2s;
+        }
+        .btn-reveal:hover { background: #334155; }
+
+        .rating-area { display: flex; gap: 10px; margin-top: 10px; display: none; }
+        .rating-area.visible { display: flex; }
+        .btn-good { flex: 1; background: var(--success); color: white; border: none; padding: 8px; border-radius: 6px; cursor: pointer; }
+        .btn-bad { flex: 1; background: var(--error); color: white; border: none; padding: 8px; border-radius: 6px; cursor: pointer; }
+
+        /* SCOREBOARD (Sticky) */
+        .scoreboard {
+            background: var(--primary); color: white;
+            padding: 1rem 2rem; border-radius: 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 2rem; position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .score-box { text-align: center; }
+        .score-val { font-size: 1.5rem; font-weight: 800; display: block; line-height: 1; color: var(--accent-glow); }
+        .score-lbl { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
+
+        /* DOWNLOAD BTN */
+        .download-btn {
+            background: var(--accent); color: white; width: 100%;
+            padding: 1.2rem; border: none; border-radius: 12px;
+            font-size: 1.1rem; font-weight: 800; cursor: pointer;
+            margin-top: 3rem; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
+            transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .download-btn:hover { background: #b45309; transform: translateY(-2px); }
+
+        footer { text-align: center; margin-top: 4rem; padding: 2rem; color: var(--text-muted); border-top: 1px solid #e2e8f0; }
+
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; }
+            .sidebar { position: static; margin-bottom: 2rem; overflow-x: auto; white-space: nowrap; display: block; padding-bottom: 10px; }
+            .nav-btn { display: inline-flex; width: auto; margin-right: 10px; }
+            header h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="badge">Level 7: Mastery</div>
+    <h1>Real-World Practice Simulator</h1>
+    <p>Interviews. Role Plays. Debates. Daily Challenges. No Theory, Only Action.</p>
+</header>
+
+<div class="container">
+    <aside class="sidebar">
+        <div class="nav-header">Foundation</div>
+        <button class="nav-btn active" onclick="showSection('intro')"><span class="nav-icon">📌</span> Start Here</button>
+        
+        <div class="nav-header" style="margin-top:1rem;">Practice Zones</div>
+        <button class="nav-btn" onclick="showSection('interview')"><span class="nav-icon">👔</span> Mock Interviews</button>
+        <button class="nav-btn" onclick="showSection('roleplay')"><span class="nav-icon">🎭</span> Role Plays</button>
+        <button class="nav-btn" onclick="showSection('debate')"><span class="nav-icon">⚖️</span> Debate & Opinion</button>
+        <button class="nav-btn" onclick="showSection('challenge')"><span class="nav-icon">📅</span> Daily Challenge</button>
+        <button class="nav-btn" onclick="showSection('confidence')"><span class="nav-icon">🦁</span> Confidence Booster</button>
+        <button class="nav-btn" onclick="showSection('mistakes')"><span class="nav-icon">⚠️</span> Mistake Analysis</button>
+    </aside>
+
+    <main class="content-area">
+        
+        <div class="scoreboard">
+            <div class="score-box">
+                <span class="score-val" id="score-confident">0</span>
+                <span class="score-lbl">Confident ✅</span>
+            </div>
+            <div class="score-box">
+                <span class="score-val" id="score-weak" style="color: #f87171;">0</span>
+                <span class="score-lbl">Needs Work ❌</span>
+            </div>
+            <div class="score-box">
+                <span class="score-val" id="score-total">0</span>
+                <span class="score-lbl">Total Practice</span>
+            </div>
+            <div class="score-box">
+                <span class="score-val" id="score-pct">0%</span>
+                <span class="score-lbl">Fluency Score</span>
+            </div>
+        </div>
+
+        <div id="intro" class="section active">
+            <h2>Welcome to Real-World Training</h2>
+            
+            <div class="hinglish-box">
+                <h3>🇮🇳 Hinglish Explanation</h3>
+                <p>Ab tak humne seekha, ab hum <strong>Apply</strong> karenge. Real life mein koi script nahi hoti. Interviewer kuch bhi pooch sakta hai, shopkeeper se kuch bhi baat ho sakti hai.</p>
+                <p>Is module mein aapko: <strong>Bolna hai, Check karna hai, aur Improve karna hai.</strong></p>
+                <p><em>Rule:</em> Galti karo, par ruko mat. Confident raho.</p>
+            </div>
+
+            <div class="english-box">
+                <h3>🇬🇧 How to Use This Module</h3>
+                <ul>
+                    <li><strong>Step 1:</strong> Read the Situation or Question aloud.</li>
+                    <li><strong>Step 2:</strong> Speak your answer immediately (Don't think too much).</li>
+                    <li><strong>Step 3:</strong> Click "Reveal Model Answer" to compare.</li>
+                    <li><strong>Step 4:</strong> Rate yourself: "Confident" or "Weak".</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="interview" class="section">
+            <h2>👔 Mock Interview Simulator</h2>
+            <p>Prepare for HR, Technical, and Situational questions.</p>
+            <div class="card-grid" id="interview-grid"></div>
+            <button class="btn-reveal" onclick="loadMore('interview')" style="margin-top:2rem;">Load New Questions</button>
+        </div>
+
+        <div id="roleplay" class="section">
+            <h2>🎭 Real-Life Role Plays</h2>
+            <p>Act out these scenarios. You are Speaker A.</p>
+            <div class="card-grid" id="roleplay-grid"></div>
+        </div>
+
+        <div id="debate" class="section">
+            <h2>⚖️ Debate & Opinion Speaking</h2>
+            <p>Pick a side. Speak for 1 minute. Use strong opinion words.</p>
+            <div class="card-grid" id="debate-grid"></div>
+        </div>
+
+        <div id="challenge" class="section">
+            <h2>📅 Daily Speaking Challenges</h2>
+            <p>Quick tasks to keep your fluency sharp every day.</p>
+            <div class="card-grid" id="challenge-grid"></div>
+        </div>
+
+        <div id="confidence" class="section">
+            <h2>🦁 Confidence & Power Phrases</h2>
+            <p>Replace weak language with strong, professional English.</p>
+            <div class="card-grid" id="confidence-grid"></div>
+        </div>
+
+        <div id="mistakes" class="section">
+            <h2>⚠️ Common Indian Spoken Mistakes</h2>
+            <p>Identify and fix these common errors instantly.</p>
+            <div class="card-grid" id="mistakes-grid"></div>
+        </div>
+
+        <button class="download-btn" onclick="alert('Downloading Real-World Practice Guide PDF...')">
+            📥 Download Real-World Speaking Practice Guide (PDF)
+        </button>
+
+    </main>
+</div>
+
+<footer>
+    <p>Created by SHRISHANT YADAV | Education Purpose Only</p>
+    <p>© 2026 Complete Spoken English Platform</p>
+</footer>
+
+<script>
+    // --- CONTENT DATABASE ---
+    
+    // 1. INTERVIEW DATA
+    const interviewData = [
+        {
+            q: "Tell me something about yourself.",
+            tag: "HR Round",
+            ans: "Sure! My name is [Name]. I have a background in [Field] and I am really passionate about [Skill]. In my free time, I enjoy [Hobby].",
+            tip: "Keep it short. Focus on professional details, not family history."
+        },
+        {
+            q: "What are your greatest strengths?",
+            tag: "Personal",
+            ans: "I believe my greatest strength is my adaptability. I can adjust to new situations quickly and I enjoy learning new tools.",
+            tip: "Don't just say a word (e.g., 'Hardworking'). Give a reason or example."
+        },
+        {
+            q: "Why should we hire you?",
+            tag: "Persuasion",
+            ans: "You should hire me because I have the right skills for this role, and I am eager to contribute to the company's growth from day one.",
+            tip: "Connect your skills to the company's needs."
+        },
+        {
+            q: "Where do you see yourself in 5 years?",
+            tag: "Vision",
+            ans: "In 5 years, I see myself taking on more responsibilities and perhaps leading a team within this organization.",
+            tip: "Show ambition but stay loyal to the company in your answer."
+        },
+        {
+            q: "How do you handle pressure?",
+            tag: "Situation",
+            ans: "I stay calm and prioritize my tasks. I break down big problems into smaller steps to manage them effectively.",
+            tip: "Give a practical example of how you organize work."
+        }
+    ];
+
+    // 2. ROLE PLAY DATA
+    const roleplayData = [
+        {
+            q: "Situation: You received a wrong order at a restaurant.",
+            tag: "Complaint",
+            ans: "Excuse me, I think there has been a mistake. I ordered the pasta, but this looks like pizza. Could you please check?",
+            tip: "Be polite but firm. Use 'Could you please' instead of 'Change this'."
+        },
+        {
+            q: "Situation: Asking for a leave from your boss.",
+            tag: "Office",
+            ans: "Hi [Name], I would like to request leave for two days next week as I have some personal work to attend to.",
+            tip: "State the dates clearly and assure that work won't suffer."
+        },
+        {
+            q: "Situation: Bargaining with a shopkeeper.",
+            tag: "Market",
+            ans: "That's a bit too expensive. Can you give me a better price if I buy two of them?",
+            tip: "Use 'Better price' or 'Best rate' instead of just saying 'Reduce money'."
+        },
+        {
+            q: "Situation: Helping a stranger with directions.",
+            tag: "Public",
+            ans: "Sure! Go straight for about 200 meters, then turn left. You will see the metro station on your right.",
+            tip: "Use clear directional words: Straight, Turn Left, On your right."
+        }
+    ];
+
+    // 3. DEBATE DATA
+    const debateData = [
+        {
+            q: "Topic: Work from Home vs. Office.",
+            tag: "Opinion",
+            ans: "In my opinion, Work from Home saves time and increases productivity, but Office work is better for team bonding.",
+            tip: "Use 'On the one hand... On the other hand' structure."
+        },
+        {
+            q: "Topic: Is Social Media good for students?",
+            tag: "Opinion",
+            ans: "I believe social media is a double-edged sword. It's great for learning, but it can be very distracting if not used wisely.",
+            tip: "Acknowledge both positive and negative sides."
+        },
+        {
+            q: "Topic: Should English be the only official language?",
+            tag: "Debate",
+            ans: "I politely disagree. While English is important for global business, local languages preserve our culture and identity.",
+            tip: "Disagree politely using 'I see your point, but...'."
+        }
+    ];
+
+    // 4. DAILY CHALLENGES
+    const challengeData = [
+        {
+            q: "Challenge: Speak for 30 seconds about your favorite movie.",
+            tag: "Fluency",
+            ans: "My favorite movie is [Name] because the story was gripping and the acting was superb. I especially loved the ending...",
+            tip: "Don't stop. Use fillers like 'actually' or 'you know' if you get stuck."
+        },
+        {
+            q: "Challenge: Describe your room in 5 sentences.",
+            tag: "Description",
+            ans: "My room is small but cozy. The walls are painted blue. I have a desk near the window...",
+            tip: "Visualize your room and describe what you see."
+        },
+        {
+            q: "Challenge: Convince a friend to join a gym.",
+            tag: "Persuasion",
+            ans: "Come on, let's join the gym! It will be fun, and we can keep each other motivated to get fit.",
+            tip: "Focus on the benefits for the other person."
+        }
+    ];
+
+    // 5. CONFIDENCE BOOSTER
+    const confidenceData = [
+        {
+            q: "Weak: 'I want to tell you something.'",
+            tag: "Replace",
+            ans: "Strong: 'I'd like to share an idea with you.'",
+            tip: "Using 'Share an idea' sounds more collaborative."
+        },
+        {
+            q: "Weak: 'Sorry, I don't know.'",
+            tag: "Replace",
+            ans: "Strong: 'That's a great question. Let me find that out for you.'",
+            tip: "Never just say 'I don't know'. Offer to find the answer."
+        },
+        {
+            q: "Weak: 'Maybe I can do it.'",
+            tag: "Replace",
+            ans: "Strong: 'I am confident I can handle this task.'",
+            tip: "Remove 'Maybe' to sound sure of yourself."
+        }
+    ];
+
+    // 6. MISTAKES
+    const mistakesData = [
+        {
+            q: "Wrong: 'I am agree.'",
+            tag: "Grammar",
+            ans: "Correct: 'I agree.'",
+            tip: "Agree is a verb. No need for 'am'."
+        },
+        {
+            q: "Wrong: 'He go to office.'",
+            tag: "Grammar",
+            ans: "Correct: 'He goes to office.'",
+            tip: "He/She/It takes 's/es' in simple present."
+        },
+        {
+            q: "Wrong: 'Please reply back.'",
+            tag: "Redundant",
+            ans: "Correct: 'Please reply.'",
+            tip: "Reply means to write back. 'Back' is extra."
+        }
+    ];
+
+    // --- LOGIC ENGINE ---
+
+    let score = { confident: 0, weak: 0, total: 0 };
+
+    function renderCards(gridId, data) {
+        const grid = document.getElementById(gridId);
+        // Clear grid first if reloading
+        grid.innerHTML = ''; 
+        
+        data.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <span class="card-tag">${item.tag}</span>
+                <div class="card-q">${item.q}</div>
+                <button class="btn-reveal" onclick="revealAnswer(this)">👀 Show Model Answer</button>
+                <div class="card-answer">
+                    <strong>Model Answer:</strong><br>
+                    "${item.ans}"
+                    <button class="tts-btn" onclick="speak('${item.ans.replace(/'/g, "\\'")}')">🔊</button>
+                    <div class="card-tip">💡 Tip: ${item.tip}</div>
+                </div>
+                <div class="rating-area">
+                    <button class="btn-good" onclick="rateAnswer(true, this)">😎 Spoke Confidently</button>
+                    <button class="btn-bad" onclick="rateAnswer(false, this)">😐 Hesitated</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function revealAnswer(btn) {
+        const card = btn.parentElement;
+        card.querySelector('.card-answer').classList.add('visible');
+        card.querySelector('.rating-area').classList.add('visible');
+        btn.style.display = 'none'; // Hide reveal button
+    }
+
+    function rateAnswer(isConfident, btn) {
+        const ratingArea = btn.parentElement;
+        const card = ratingArea.parentElement;
+        
+        // Disable buttons to prevent double scoring
+        const btns = ratingArea.querySelectorAll('button');
+        btns.forEach(b => b.disabled = true);
+        
+        score.total++;
+        if (isConfident) {
+            score.confident++;
+            ratingArea.innerHTML = "<span style='color:var(--success); font-weight:bold; width:100%; text-align:center;'>Great Job! Keep it up.</span>";
+        } else {
+            score.weak++;
+            ratingArea.innerHTML = "<span style='color:var(--error); font-weight:bold; width:100%; text-align:center;'>Keep Practicing! You'll get it.</span>";
+        }
+        
+        updateScoreboard();
+    }
+
+    function updateScoreboard() {
+        document.getElementById('score-confident').innerText = score.confident;
+        document.getElementById('score-weak').innerText = score.weak;
+        document.getElementById('score-total').innerText = score.total;
+        
+        const pct = score.total === 0 ? 0 : Math.round((score.confident / score.total) * 100);
+        document.getElementById('score-pct').innerText = pct + "%";
+    }
+
+    function speak(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-IN'; // Indian Accent Preference
+            utterance.rate = 0.95;
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("TTS not supported.");
+        }
+    }
+
+    function showSection(id) {
+        document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+        
+        document.getElementById(id).classList.add('active');
+        
+        // Highlight Sidebar
+        const navs = document.querySelectorAll('.nav-btn');
+        navs.forEach(btn => {
+            if(btn.getAttribute('onclick').includes(id)) btn.classList.add('active');
+        });
+
+        if(window.innerWidth < 900) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    // Simulation of "Loading More" questions
+    function loadMore(type) {
+        alert("Simulating Database Fetch: Loading 10 new random Interview questions...");
+        // In a real app, this would append new items to interviewData and re-render
+    }
+
+    // Initialize
+    window.onload = function() {
+        renderCards('interview-grid', interviewData);
+        renderCards('roleplay-grid', roleplayData);
+        renderCards('debate-grid', debateData);
+        renderCards('challenge-grid', challengeData);
+        renderCards('confidence-grid', confidenceData);
+        renderCards('mistakes-grid', mistakesData);
+    };
+
+</script>
+
+</body>
+</html>
